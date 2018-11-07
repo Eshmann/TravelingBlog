@@ -26,6 +26,9 @@ namespace AdventureDb
         public DbSet<TagTrip> TagPosts { get; set; }
         public DbSet<TagPostBlog> TagPostBlogs { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<CountryTrip> CountryTrips { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CommentConfiguration());
