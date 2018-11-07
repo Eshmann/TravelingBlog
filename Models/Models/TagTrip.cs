@@ -5,12 +5,12 @@ using System.Text;
 
 namespace AdventureDb.Models
 {
-    [Table("TagPost")]
-    public class TagPost
+    [Table("TagTrip")]
+    public class TagTrip
     {
         public int TagId { get; set; }
-        public int PostId { get; set; }
+        public int TripId { get; set; }
         public Tag Tag { get; set; }
-        public Post Post { get; set; }
+        public Trip Post { get; set; }
     }
 }

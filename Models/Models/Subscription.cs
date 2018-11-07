@@ -9,8 +9,8 @@ namespace AdventureDb.Models
     public class Subscription
     {
         public int UserId { get; set; }
-        public int SubscriberId { get; set; }
+        public int SubcriberId { get; set; }
         public User UserIdNavigation { get; set; }
-        public User SubscriberIdNavigation { get; set; }
+        public User SubscriberIdNavidgation { get; set; }
     }
 }

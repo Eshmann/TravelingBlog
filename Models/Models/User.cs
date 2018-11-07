@@ -22,14 +22,14 @@ namespace AdventureDb.Models
         public Role Role { get; set; }
         public ICollection<Subscription> RelationWithUserIdNavigation { get; set; }
         public ICollection<Subscription> RelationWithSubscriberIdNavigation { get; set; }
-        public ICollection<Post> Posts { get; set; }
+        public ICollection<Trip> Trips { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Rating> Ratings { get; set; }
         public User()
         {
             RelationWithUserIdNavigation = new List<Subscription>();
             RelationWithSubscriberIdNavigation = new List<Subscription>();
-            Posts = new List<Post>();
+            Trips = new List<Trip>();
             Comments = new List<Comment>();
             Ratings = new List<Rating>();
         }

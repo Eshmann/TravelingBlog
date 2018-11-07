@@ -2,14 +2,12 @@
 
 namespace AdventureDb.Models
 {
-    [Table("Comment")]
-    public class Comment
+    [Table("CountryTrip")]
+    public class CountryTrip
     {
-        public int UserId { get; set; }
+        public int CountryId { get; set; }
         public int TripId { get; set; }
-        public User User { get; set; }
+        public Country Country { get; set; }
         public Trip Trip { get; set; }
-        public string Content { get; set; }
-        
     }
 }

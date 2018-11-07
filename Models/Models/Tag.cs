@@ -10,11 +10,11 @@ namespace AdventureDb.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<TagPost> TagPosts{get;set;}
+        public ICollection<TagTrip> TagTrips{get;set;}
         public ICollection<TagPostBlog> TagPostBlogs { get; set; }
         public Tag()
         {
-            TagPosts = new List<TagPost>();
+            TagTrips = new List<TagTrip>();
             TagPostBlogs = new List<TagPostBlog>();
         }
     }

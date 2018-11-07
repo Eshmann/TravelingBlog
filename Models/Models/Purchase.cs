@@ -10,5 +10,7 @@ namespace AdventureDb.Models
         public double AmountSpent { get; set; }
         public int PostBlogId { get; set; }
         public PostBlog PostBlog { get; set; }
+        public int CurrencyId { get; set; }
+        public  Currency Currency { get; set; }
     }
 }

@@ -6,9 +6,9 @@ namespace AdventureDb.Models
     public class Rating
     {
         public int UserId { get; set; }
-        public int PostBlogId { get; set; }
-        public int RatingPostBlog { get; set; }
-        public User User { get; set; }
-        public PostBlog PostBlog { get; set; }
+        public int TripId { get; set; }
+        public bool? RatingPostBlog { get; set; }
+        public User User { get; set; }        
+        public Trip Trip { get; set; }
     }
 }

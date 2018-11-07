@@ -5,8 +5,8 @@ using System.Text;
 
 namespace AdventureDb.Models
 {
-    [Table("Post")]
-    public class Post
+    [Table("Trip")]
+    public class Trip
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -15,12 +15,16 @@ namespace AdventureDb.Models
         public User User { get; set; }
         public ICollection<PostBlog> PostBlogs { get; set; }
         public ICollection<Comment> Comments { get; set; }
-        public ICollection<TagPost> TagPosts { get; set; }
-        public Post()
+        public ICollection<TagTrip> TagTrips { get; set; }
+        public  ICollection<CountryTrip> CountryTrips { get; set; }
+        public ICollection<Rating> Ratings { get; set; }
+        public Trip()
         {
             PostBlogs = new List<PostBlog>();
             Comments = new List<Comment>();
-            TagPosts = new List<TagPost>();
+            TagTrips = new List<TagTrip>();
+            CountryTrips = new List<CountryTrip>();
+            Ratings = new List<Rating>();
         }
     }
 }
