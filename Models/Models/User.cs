@@ -20,6 +20,7 @@ namespace AdventureDb.Models
         public Country Country { get; set; }
         public int RoleId { get; set; }
         public Role Role { get; set; }
+        public UserImage UserImage { get; set; }
         public ICollection<Subscription> RelationWithUserIdNavigation { get; set; }
         public ICollection<Subscription> RelationWithSubscriberIdNavigation { get; set; }
         public ICollection<Trip> Trips { get; set; }

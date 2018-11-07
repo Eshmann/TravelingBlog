@@ -29,6 +29,7 @@ namespace AdventureDb
         public DbSet<Image> Images { get; set; }
         public DbSet<CountryTrip> CountryTrips { get; set; }
         public DbSet<Currency> Currencies { get; set; }
+        public DbSet<UserImage> UserImages { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CommentConfiguration());
@@ -47,6 +48,7 @@ namespace AdventureDb
             modelBuilder.ApplyConfiguration(new CountryTripConfiguration());
             modelBuilder.ApplyConfiguration(new ImageConfiguration());
             modelBuilder.ApplyConfiguration(new CountryPostBlogConfiguration());
+            modelBuilder.ApplyConfiguration(new UserImageConfiguration());
         }
     }
 }

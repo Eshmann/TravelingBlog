@@ -23,6 +23,8 @@ namespace AdventureDb.Configurations
                 HasConstraintName("fk_constraint_role_user").OnDelete(DeleteBehavior.Cascade);
             builder.Property(u => u.CountryId).HasColumnName("country_id");
             builder.Property(u => u.RoleId).HasColumnName("role_id");
+            builder.HasOne(u => u.UserImage).WithOne(i => i.User).HasForeignKey<UserImage>(i => i.UserId).
+                HasConstraintName("fk_constraint_userid_userimage").OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
