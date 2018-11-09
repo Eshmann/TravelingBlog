@@ -1,1 +1,11 @@
-hello download zipaaaaaaaaaaaaaaaaaaa ^^
+1.Download rar archive.
+2. Unrrar it.
+3. where is src file open comand prompt or power shell and try to run:
+3.1 npm install
+3.2 ng build (if errors try 'npm rebuild node-sass' then 'ng build'
+4. Open project (also you will need secret key of facebook auth)
+5. Create Local Db (name can be changed in appsetings.json)
+5.1 Add-Migration Initial
+5.2 Update-Database
+6. Build Project
+7. Try to run
