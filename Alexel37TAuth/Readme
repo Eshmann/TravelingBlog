@@ -9,3 +9,6 @@
 5.2 Update-Database
 6. Build Project
 7. Try to run
+8. Try again 'ng build'
+9. Also disable breakpoints
+10. If it's something to edit file i reccomend use no option
