@@ -6,7 +6,7 @@ namespace AdventureDb.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly AdventureBlogContext context;
+        public AdventureBlogContext context;
         public IUserRepository Users { get ;private set; }
         public ITripRepository Trips { get ;private set ; }
         public IPostBlogRepository PostBlogs { get ;private set; }

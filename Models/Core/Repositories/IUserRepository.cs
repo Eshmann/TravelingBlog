@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AdventureDb.Core.Repositories
 {
-    public interface IUserRepository:IRepository<User>
+    public interface IUserRepository : IRepository<User>
     {
         IEnumerable<User> GetUsersWithRole();
         IEnumerable<User> GetUsersWithCountry();

@@ -5,7 +5,7 @@ using AdventureDb.Core.Repositories;
 
 namespace AdventureDb.Core
 {
-    public interface IUnitOfWork:IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         IUserRepository Users { get; }
         ITripRepository Trips { get; }

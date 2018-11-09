@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AdventureDb.Core.Repositories
 {
-    public interface ITripRepository:IRepository<Trip>
+    public interface ITripRepository : IRepository<Trip>
     {
         IEnumerable<Trip> GetTripsWithUser(int pageIndex, int pageSize);
         IEnumerable<Trip> GetTopTrips(int count);

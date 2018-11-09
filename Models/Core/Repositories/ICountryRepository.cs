@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AdventureDb.Core.Repositories
 {
-    public interface ICountryRepository: IRepository<Country>
+    public interface ICountryRepository : IRepository<Country>
     {
         Country GetCountryWithUsers(int id);
         Country GetCountryWithTrips(int id);

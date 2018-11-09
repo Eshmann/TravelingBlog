@@ -6,13 +6,13 @@ namespace AdventureDb
 {
     public class AdventureBlogContext:DbContext
     {
-        public AdventureBlogContext()
+        public AdventureBlogContext(DbContextOptions<AdventureBlogContext> options) : base(options)
         {
-
+            
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-PDG2T0A\SQLEXPRESS;Database=AdventureDb;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer(@"Server=DESKTOP-9ORID8P\SQLEXPRESS;Database=AdventureDb;Trusted_Connection=True;");
         }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Country> Countries { get; set; }

@@ -18,11 +18,11 @@ namespace AdventureDb.Persistence.Repositories
             {
                 return AdventureBlogContext.Tags.Include(t => t.TagPostBlogs).SingleOrDefault(t => t.Id == id);
             }
-            catch(ArgumentNullException)
+            catch (ArgumentNullException)
             {
                 return null;
             }
-            catch(InvalidOperationException)
+            catch (InvalidOperationException)
             {
                 return null;
             }
