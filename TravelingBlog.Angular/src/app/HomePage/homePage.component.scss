@@ -1,0 +1,278 @@
+
+
+.welcome{
+    width: auto; /* Ширина слоя */
+    height: 500px;
+    margin: 20px; /* Значение отступов */
+    padding: 5px; /* Поля вокруг текста */
+    background-image: url("D:/TravelBlogs/src/assets/images/adventure.jpg")
+}
+
+.welcome-content{
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-size: 40px;
+}
+
+.welcome-action{
+    margin: 200px;
+}
+
+.quick-explaine{
+    width: 400px; /* Ширина слоя */
+    height: 400px;
+    margin: 20px; /* Значение отступов */
+    padding: 5px; /* Поля вокруг текста */
+    background-image: url("D:/TravelBlogs/src/assets/images/card.jpg")
+}
+.quick-explaine2{
+    width: 400px; /* Ширина слоя */
+    height: 400px;
+    background-image: url("D:/TravelBlogs/src/assets/images/mountaine.jpg")
+}
+.quick-explaine3{
+    width: 400px; /* Ширина слоя */
+    height: 400px;
+    background-image: url("D:/TravelBlogs/src/assets/images/mountaine.jpg")
+}
+
+
+
+.arrow{
+    width: 40px;
+    height: 10px;
+    background-color: red;
+}
+
+.arrow-img{
+    width: auto;
+    height: auto;
+    background-image: url("D:/TravelBlogs/src/assets/images/card.jpg")
+}
+
+
+
+.step-content{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    text-align: center;
+
+}
+
+.card{
+    width: 400px;
+    height: 400px;
+
+}
+.card-image{
+    background-image: url("D:/TravelBlogs/src/assets/images/adventure.jpg")
+}
+
+.card-content{
+    width: 100px;
+    height: 100px;
+    background-color: green
+}
+
+.conteiner{
+    padding-top: 40px;
+}
+
+.img{
+    width: 100%;
+    height: 400px;
+}
+
+.cont{
+    width: auto;
+    height: 500px;
+}
+
+.col-3 {
+    width: 33.33%;
+}
+
+.section-heading {
+    padding: 0 0 15px 0;
+}
+
+.row {
+    padding: 15px !important;
+   
+}
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.primary-color, .primary-color .section-title, .primary-color .section-subtitle, .featured .pricing, .featured .pricing p {
+    color:#fff;    
+}
+
+.testimonial {
+    padding: 15px;
+}
+
+blockquote {
+    position: relative;
+}
+
+.testimonial img {
+    max-height: 120px;
+    border-radius: 250em;
+}
+
+.testimonial footer {
+    padding-top: 12px;
+}
+
+
+.testimonial.classic img {
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.testimonial.classic q {
+    display: block;
+}
+
+.testimonial.classic footer:before {
+    display: block;
+    content: "";
+    width: 30px;
+    height: 4px;
+    margin: 10px auto 15px auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.galary-image{
+    border: 2px solid #55c5e9; /* Рамка вокруг фотографии */
+    padding: 15px; /* Расстояние от картинки до рамки */
+    background: gray; /* Цвет фона */
+    margin-right: 10px; /* Отступ справа */
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+.row clearfix{
+    text-align: center;
+}
+
+#gallery img {
+    max-height: 300px;
+   
+}
+
+#gallery [class*='col-'] {
+    padding: 0;
+}
+
+#gallery a {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+#gallery a:hover img {
+    opacity: 0.15;
+    
+}
+
+#gallery a:before {
+    font-size: 2.2em;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    content: "+";
+    width: 70px;
+    height: 70px;
+    border-radius: 100em;
+    display: block;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    line-height: 72px;
+    margin: -35px 0 0 -35px;
+    opacity: 0;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
+ 
+    
+}
+
+#gallery a:hover:before {
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+}
+
+#landing-footer {
+    clear: both;
+}
+
+#landing-footer .row {
+    padding: 0;
+}
+
+#landing-footer p {
+    margin: 0;
+}
+
+#landing-footer ul {
+    list-style: none;
+    text-align: right;
+}
+
+#landing-footer li {
+    display: inline-block;
+}
+
+
+footer #copyright {
+    background: #1D1D1D;
+  }
+  
+  footer #copyright .row {
+    padding: 10px 0;
+  }
+  
+  footer #copyright .copyright-text,
+  footer #copyright .nav-inline {
+    line-height: 38px;
+    margin-bottom: 0;
+  }
+  
+  .social-footer a i {
+    font-size: 14px;
+    height: 35px;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid #EB586F;
+    line-height: 35px;
+    margin: 4px;
+    width: 35px;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+  }
+  
+
+  .copyright{
+      background-color: #1D1D1D;
+      width: auto;
+      height: 200px;
+  }
+  .footer{
+      background-color: #1D1D1D;
+
+  }
+
+  .copyright-text{
+      background-color: #EB586F;
+  }
+
+ 
