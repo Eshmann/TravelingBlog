@@ -7,7 +7,8 @@ namespace TravelingBlog.DataAcceesLayer.Data
 {
     public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
-        public ApplicationDbContext(DbContextOptions options):base(options)
+        public ApplicationDbContext(DbContextOptions options)
+            : base(options)
         {
         }
 

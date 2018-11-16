@@ -22,6 +22,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using System.IO;
 using TravelingBlog.Models;
+using NLog;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace TravelingBlog
 {
@@ -29,9 +31,10 @@ namespace TravelingBlog
     {
         private const string SecretKey = "iNivDmHLpUA223sqsfhqGbMRdRj1PVkH"; // todo: get this from somewhere secure
         private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
-
+        
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -40,9 +43,14 @@ namespace TravelingBlog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); //not full
+            services.ConfigureCors();
+            services.ConfigureIISIntegration();
+            services.ConfigureLoggerService();
+            services.ConfigureSqlContext(Configuration);
+            services.ConfigureUnitOfWork();
+            services.ConfigureAutoMapper();
 
+            // Add framework services.
             services.AddSingleton<IJwtFactory, JwtFactory>();
 
             services.Configure<FacebookAuthSettings>(Configuration.GetSection(nameof(FacebookAuthSettings)));
@@ -104,7 +112,6 @@ namespace TravelingBlog
             builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
             builder.AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
-            services.AddAutoMapper();
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
 
         }
@@ -137,7 +144,31 @@ namespace TravelingBlog
 
             app.UseAuthentication();
             app.UseDefaultFiles();
+
+            app.UseCors("CorsPolicy");
+
+            // app.UseForwardedHeaders will forward proxy headers to the current request. This will help us during the Linux deployment.
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.All
+            });
+
+            // app.Use(async (context, next) => … will point on the index page in the Angular project.
+            app.Use(async (context, next) =>
+            {
+                await next();
+
+                if (context.Response.StatusCode == 404
+                    && !Path.HasExtension(context.Request.Path.Value))
+                {
+                    context.Request.Path = "/index.html";
+                    await next();
+                }
+            });
+
+            // app.UseStaticFiles() enables using static files for the request.
             app.UseStaticFiles();
+
             app.UseMvc();
 
             app.Run(async (context) =>

@@ -15,13 +15,13 @@ namespace TravelingBlog.Controllers
     [Route("api/[controller]/[action]")]
     public class DashboardController : Controller
     {
-        private readonly ClaimsPrincipal _caller;
-        private readonly ApplicationDbContext _appDbContext;
+        private readonly ClaimsPrincipal caller;
+        private readonly ApplicationDbContext appDbContext;
 
         public DashboardController(UserManager<AppUser> userManager, ApplicationDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
         {
-            _caller = httpContextAccessor.HttpContext.User;
-            _appDbContext = appDbContext;
+            caller = httpContextAccessor.HttpContext.User;
+            this.appDbContext = appDbContext;
         }
 
         // GET api/dashboard/home
@@ -30,8 +30,8 @@ namespace TravelingBlog.Controllers
         {
             // retrieve the user info
             //HttpContext.User
-            var userId = _caller.Claims.Single(c => c.Type == "id");
-            var customer = await _appDbContext.UserInfoes.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == userId.Value);
+            var userId = caller.Claims.Single(c => c.Type == "id");
+            var customer = await appDbContext.UserInfoes.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == userId.Value);
 
             return new OkObjectResult(new
             {

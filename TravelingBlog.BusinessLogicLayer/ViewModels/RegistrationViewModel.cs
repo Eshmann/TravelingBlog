@@ -1,4 +1,4 @@
-﻿namespace TravelingBlog.ViewModels
+﻿namespace TravelingBlog.BusinessLogicLayer.ViewModels
 {
     public class RegistrationViewModel
     {

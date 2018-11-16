@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace TravelingBlog.ViewModels.Validations
+namespace TravelingBlog.BusinessLogicLayer.ViewModels.Validations
 {
     public class RegistrationViewModelValidator : AbstractValidator<RegistrationViewModel>
     {
