@@ -1,12 +1,13 @@
 ﻿using TravelingBlog.DataAcceesLayer.Models.Entities;
 using System.Collections.Generic;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
+using System.Threading.Tasks;
 
 namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
 {
     public interface ICountryRepository: IRepository<Country>
     {
-        IEnumerable<Country> GetAllCountries();
-        Country GetCountryById(int countryId);
+        Task<IEnumerable<Country>> GetAllCountriesAsync();
+        Task<Country> GetCountryByIdAsync(int countryId);
     }
 }

@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate);
 
-        IEnumerable<TEntity> FindAll();
+        Task<IEnumerable<TEntity>> FindAllAsync();
 
-        TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
+        Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
+
+        IEnumerable<TEntity> Include(params Expression<Func<TEntity, object>>[] includes);
 
         #region CRUD operation
         void Add(TEntity entity);

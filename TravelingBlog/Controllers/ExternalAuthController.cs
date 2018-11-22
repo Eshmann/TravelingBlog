@@ -12,24 +12,25 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using TravelingBlog.DataAcceesLayer.Models;
+using TravelingBlog.BusinessLogicLayer.Contracts;
 
 namespace TravelingBlog.Controllers
 {
     [Route("api/[controller]/[action]")]
     public class ExternalAuthController : Controller
     {
-        private readonly ApplicationDbContext appDbContext;
+        private readonly IUnitOfWork unitOfWork;
         private readonly UserManager<AppUser> userManager;
         private readonly FacebookAuthSettings fbAuthSettings;
         private readonly IJwtFactory jwtFactory;
         private readonly JwtIssuerOptions jwtOptions;
         private static readonly HttpClient Client = new HttpClient();
 
-        public ExternalAuthController(IOptions<FacebookAuthSettings> fbAuthSettingsAccessor, UserManager<AppUser> userManager, ApplicationDbContext appDbContext, IJwtFactory jwtFactory, IOptions<JwtIssuerOptions> jwtOptions)
+        public ExternalAuthController(IOptions<FacebookAuthSettings> fbAuthSettingsAccessor, UserManager<AppUser> userManager, IUnitOfWork unitOfWork, IJwtFactory jwtFactory, IOptions<JwtIssuerOptions> jwtOptions)
         {
             fbAuthSettings = fbAuthSettingsAccessor.Value;
             this.userManager = userManager;
-            this.appDbContext = appDbContext;
+            this.unitOfWork = unitOfWork;
             this.jwtFactory = jwtFactory;
             this.jwtOptions = jwtOptions.Value;
         }
@@ -71,8 +72,8 @@ namespace TravelingBlog.Controllers
 
                 if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
-                await appDbContext.UserInfoes.AddAsync(new UserInfo { IdentityId = appUser.Id, FirstName = userInfo.FirstName, LastName = userInfo.LastName });
-                await appDbContext.SaveChangesAsync();
+                unitOfWork.Users.Add(new UserInfo { IdentityId = appUser.Id, FirstName = userInfo.FirstName, LastName = userInfo.LastName });
+                await unitOfWork.CompleteAsync();
             }
 
             // generate the jwt for the local user...

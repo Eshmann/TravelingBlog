@@ -2,6 +2,7 @@
 using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
 using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.DataAcceesLayer.Data;
+using System.Threading.Tasks;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {
@@ -19,7 +20,6 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         {
             this.ApplicationDbContext = ApplicationDbContext;
         }
-
 
         public IUserRepository Users
         {
@@ -81,9 +81,9 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
             }
         }
 
-        public int Complete()
+        public async Task CompleteAsync()
         {
-            return ApplicationDbContext.SaveChanges();
+            await this.ApplicationDbContext.SaveChangesAsync();
         }
 
         private bool disposed = false;

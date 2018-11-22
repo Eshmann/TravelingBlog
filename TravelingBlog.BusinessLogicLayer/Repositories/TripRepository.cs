@@ -5,6 +5,7 @@ using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
 using Microsoft.EntityFrameworkCore;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 using TravelingBlog.DataAcceesLayer.Data;
+using System.Threading.Tasks;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {
@@ -14,15 +15,15 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         {
         }
 
-        public Trip GetTripById(int tripId)
+        public async Task<Trip> GetTripByIdAsync(int tripId)
         {
-            return SingleOrDefault(t => t.Id.Equals(tripId));
+            return await SingleOrDefaultAsync(t => t.Id.Equals(tripId));
         }
 
-        public IEnumerable<Trip> GetAllTrips()
+        public async Task<IEnumerable<Trip>> GetAllTripsAsync()
         {
-            return FindAll()
-                .OrderBy(t => t.Name);
+            var trips = await FindAllAsync();
+            return trips.OrderBy(t => t.Name);
         }
     }
 }

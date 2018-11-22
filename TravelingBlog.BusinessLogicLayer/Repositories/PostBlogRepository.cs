@@ -6,6 +6,7 @@ using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
 using System.Collections.Generic;
 using TravelingBlog.BusinessLogicLayer.Repositories;
 using TravelingBlog.DataAcceesLayer.Data;
+using System.Threading.Tasks;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {
@@ -15,15 +16,15 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         {
         }
 
-        public PostBlog GetPostBlogById(int postBlogId)
+        public async Task<PostBlog> GetPostBlogByIdAsync(int postBlogId)
         {
-            return SingleOrDefault(c => c.Id.Equals(postBlogId));
+            return await SingleOrDefaultAsync(c => c.Id.Equals(postBlogId));
         }
 
-        public IEnumerable<PostBlog> GetAllPostBlogs()
+        public async Task<IEnumerable<PostBlog>> GetAllPostBlogsAsync()
         {
-            return FindAll()
-                .OrderBy(pb => pb.Name);
+            var postBlogs = await FindAllAsync();
+            return postBlogs.OrderBy(pb => pb.Name);
         }
     }
 }

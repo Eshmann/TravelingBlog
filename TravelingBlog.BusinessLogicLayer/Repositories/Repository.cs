@@ -2,6 +2,10 @@
 using System.Linq;
 using System.Collections.Generic;
 using TravelingBlog.DataAcceesLayer.Data;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using System;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {
@@ -14,6 +18,35 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
             this.ApplicationDbContext = applicationDbContext;
         }
 
+        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await this.ApplicationDbContext.Set<TEntity>().Where(predicate).ToListAsync();
+        }
+
+        public async Task<IEnumerable<TEntity>> FindAllAsync()
+        {
+            return await this.ApplicationDbContext.Set<TEntity>().ToListAsync();
+        }
+
+        public async Task<TEntity> SingleOrDefaultAsync(System.Linq.Expressions.Expression<System.Func<TEntity, bool>> predicate)
+        {
+            return await ApplicationDbContext.Set<TEntity>().SingleOrDefaultAsync<TEntity>(predicate);
+        }
+
+        public IEnumerable<TEntity> Include(params Expression<Func<TEntity, object>>[] includes)
+        {
+            DbSet<TEntity> dbSet = ApplicationDbContext.Set<TEntity>();
+
+            IEnumerable<TEntity> query = null;
+            foreach (var include in includes)
+            {
+                query = dbSet.Include(include);
+            }
+
+            return query ?? dbSet;
+        }
+
+        #region CRUD operation
         public void Add(TEntity entity)
         {
             ApplicationDbContext.Set<TEntity>().Add(entity);
@@ -22,16 +55,6 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         public void AddRange(IEnumerable<TEntity> entities)
         {
             ApplicationDbContext.Set<TEntity>().AddRange(entities);
-        }
-
-        public IEnumerable<TEntity> Find(System.Linq.Expressions.Expression<System.Func<TEntity, bool>> predicate)
-        {
-            return ApplicationDbContext.Set<TEntity>().Where(predicate);
-        }
-
-        public IEnumerable<TEntity> FindAll()
-        {
-            return this.ApplicationDbContext.Set<TEntity>();
         }
 
         public void Update(TEntity entity)
@@ -53,10 +76,6 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         {
             ApplicationDbContext.Set<TEntity>().RemoveRange(entities);
         }
-
-        public TEntity SingleOrDefault(System.Linq.Expressions.Expression<System.Func<TEntity, bool>> predicate)
-        {
-            return ApplicationDbContext.Set<TEntity>().SingleOrDefault<TEntity>(predicate);
-        }
+        #endregion
     }
 }

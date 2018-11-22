@@ -6,6 +6,7 @@ using TravelingBlog.DataAcceesLayer.Models.Entities;
 using TravelingBlog.DataAcceesLayer.Data;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {
@@ -15,15 +16,15 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         {
         }
 
-        public Country GetCountryById(int countryId)
+        public async Task<Country> GetCountryByIdAsync(int countryId)
         {
-            return SingleOrDefault(c => c.Id.Equals(countryId));
+            return await SingleOrDefaultAsync(c => c.Id.Equals(countryId));
         }
 
-        public IEnumerable<Country> GetAllCountries()
+        public async Task<IEnumerable<Country>> GetAllCountriesAsync()
         {
-            return FindAll()
-                .OrderBy(c => c.Name);
+            var countries = await FindAllAsync();
+            return countries.OrderBy(c => c.Name);
         }
     }
 }

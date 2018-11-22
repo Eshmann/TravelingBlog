@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 using System.Collections.Generic;
 using TravelingBlog.DataAcceesLayer.Data;
+using System.Threading.Tasks;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {
@@ -14,15 +15,15 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         {
         }
 
-        public Tag GetTagById(int tagId)
+        public async Task<Tag> GetTagByIdAsync(int tagId)
         {
-            return SingleOrDefault(c => c.Id.Equals(tagId));
+            return await SingleOrDefaultAsync(c => c.Id.Equals(tagId));
         }
 
-        public IEnumerable<Tag> GetAllTags()
+        public async Task<IEnumerable<Tag>> GetAllTagsAsync()
         {
-            return FindAll()
-                .OrderBy(pb => pb.Name);
+            var tags = await FindAllAsync();
+            return tags.OrderBy(pb => pb.Name);
         }
     }
 }

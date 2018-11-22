@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
 
 namespace TravelingBlog.BusinessLogicLayer.Contracts
@@ -10,6 +11,7 @@ namespace TravelingBlog.BusinessLogicLayer.Contracts
         IPostBlogRepository PostBlogs { get; }
         ICountryRepository Countries { get; }
         ITagRepository Tags { get; }
-        int Complete();
+
+        Task CompleteAsync();
     }
 }
