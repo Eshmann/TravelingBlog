@@ -9,5 +9,6 @@ namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
     {
         Task<IEnumerable<UserInfo>> GetAllUsersAsync();
         Task<UserInfo> GetUserByIdAsync(int userId);
+        Task<UserInfo> GetUserByIdentityId(string id);
     }
 }

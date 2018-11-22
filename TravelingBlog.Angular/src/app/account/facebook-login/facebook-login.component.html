@@ -1,5 +1,4 @@
-<div class="row">
-  <div class="col-md-6">
+  <div class="col" style="text-align:center">
     <a *ngIf="!isRequesting" href="javascript:void(0)" (click)="launchFbLogin()"> <img class="img-fluid" src="/assets/facebook-login.png" /></a>
     <app-spinner [isRunning]="isRequesting"></app-spinner>
     <div *ngIf="failed" class="alert alert-danger" role="alert">
@@ -10,4 +9,4 @@
       </ul>
     </div>
   </div>
-</div>
+

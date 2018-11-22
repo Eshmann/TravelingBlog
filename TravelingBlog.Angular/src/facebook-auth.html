@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>JwtAuthDemo - Facebook Auth</title>
+  <title>Facebook Auth</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="assets/util.js"></script>
 </head>
@@ -22,7 +22,7 @@
         message.error = getParameterByName("error");
         message.errorDescription = getParameterByName("error_description");
       }
-    window.opener.postMessage(JSON.stringify(message), "https://localhost:44360");
+    window.opener.postMessage(JSON.stringify(message), "https://trvlblg.azurewebsites.net");
   </script>
 </body>
 </html>

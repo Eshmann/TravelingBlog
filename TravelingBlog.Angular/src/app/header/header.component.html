@@ -1,32 +1,59 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">JwtAuthDemo</a>
+    <!-- Logo -->
+    <a class="navbar-brand mb-0 h1" href="#">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDq_dCjo9JFjXBoftUnO0ENqioclM8bgfI3mc9lO22XbqIQ62k" width="45" height="45" class="d-inline-block align-top" alt="">
+      TraveligBlog
+    </a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <!-- end logo -->
+
+    <!-- Navigation components -->
+    <!-- Home - Guide - Trips buttons -->
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-
-      <ul *ngIf="status" class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" (click)="logout()" href="#">Logoff</a>
+      <ul class="navbar-nav nav1 mr-auto">
+        <li>
+          <a class="nav-link" href="#">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/dashboard">Dashboard</a>
+        <li>
+            <a class="nav-link" href="#">Guids</a>
+        </li>
+        <li>
+            <a class="nav-link" href="#">Trips</a>
+          </li>
+      </ul>
+      <ul class="navbar-nav navbar-left">
+        <form class="form-inline my-1 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+      </ul>
+
+<!-- Right navbar before sign -->
+      <ul *ngIf="!status" class="navbar-nav ml-auto">
+        <li>
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a class="btn btn-info btn-sm" href="#"  routerLink="/login">SIGN-IN</a>
+          </div>
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a class="btn btn-info btn-sm " href="#" routerLink="/register">SIGN-UP</a>
+          </div>
         </li>
       </ul>
 
-      <ul *ngIf="!status" class="nav navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/register">Email signup</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/login">Email login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/facebook-login">Facebook signup/login</a>
+<!-- Right navbar after sign -->
+      <ul *ngIf="status" class="navbar-nav ml-auto">
+        <li >
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
+              <a class="btn btn-info btn-sm " href="#" routerLink="/dashboard">My Page</a>
+          </div>
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
+              <a class="btn btn-info btn-sm "(click)="logout()" href="#">SIGN OUT</a>
+          </div>
         </li>
       </ul>
-
     </div>
   </nav>
 </header>

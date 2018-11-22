@@ -9,5 +9,7 @@ namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
     {
         Task<IEnumerable<Trip>> GetAllTripsAsync();
         Task<Trip> GetTripByIdAsync(int tripId);
+        bool IsUserCreator(int userId, int tripId);
+        Trip GetTripWithPostBlogs(int id);
     }
 }

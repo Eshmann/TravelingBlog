@@ -25,5 +25,14 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
             var trips = await FindAllAsync();
             return trips.OrderBy(t => t.Name);
         }
+
+        public bool IsUserCreator(int userId, int tripId)
+        {
+            return Set.Any(i => i.UserInfoId == userId && i.Id == tripId);
+        }
+        public Trip GetTripWithPostBlogs(int id)
+        {
+            return ApplicationDbContext.Trips.Include(t => t.PostBlogs).SingleOrDefault(t => t.Id == id);
+        }
     }
 }
