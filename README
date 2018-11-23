@@ -4,6 +4,7 @@
 3. Open Angular Project (there is src folder). Open comand prompt or power shell (shift+rmb) and try to run (there is also package.json):
 3.1 (Need node 11.0.0 and NPM 6.4.1 to check versions 'node -v' and 'npm -v') "npm install".
 3.2 (If you don't have angular installed) "npm install -g @angular/cli".
+3.25 Also you need to check if some lines uses localhost instead our trvlblg.azurewebservice.net
 3.3 "ng build".
 4. Open project TravelingBlog (also you will need secret key of facebook auth) AspNetCore 2.1.
 5. If you have a db skip this step. 
