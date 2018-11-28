@@ -10,6 +10,7 @@ import { DashboardService } from './services/dashboard.service';
 
 import { AuthGuard } from '../auth.guard';
 import { SettingsComponent } from './settings/settings.component';
+import { TripsComponent } from './trips/trips.component';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { SettingsComponent } from './settings/settings.component';
     routing,
     SharedModule
   ],
-  declarations: [RootComponent, HomeComponent, SettingsComponent],
+  declarations: [RootComponent, HomeComponent, SettingsComponent, TripsComponent],
   exports: [],
   providers: [AuthGuard, DashboardService]
 })

@@ -29,13 +29,13 @@ namespace TravelingBlog
 {
     public class Startup
     {
-        private const string SecretKey = "iNivDmHLpUA223sqsfhqGbMRdRj1PVkH"; // todo: get this from somewhere secure
-        private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
+        private readonly SymmetricSecurityKey _signingKey;
         
         public Startup(IConfiguration configuration)
         {
             LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
+            _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetSection("JwtIssuerOptions")["SecretKey"]));
         }
 
         public IConfiguration Configuration { get; }

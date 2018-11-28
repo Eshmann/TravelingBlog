@@ -6,7 +6,7 @@ export class ConfigService {
   _apiURI: string;
 
   constructor() {
-    this._apiURI = 'https://trvlblg.azurewebsites.net';
+    this._apiURI = 'https://localhost:44360';
   }
 
   getApiURI() {
