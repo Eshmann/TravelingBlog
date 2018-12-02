@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.DataAcceesLayer.Models.Entities
 {
     [Table("Image")]
-    public class Image
+    public class Image : IEntity
     {
         public int Id { get; set; }
         public string Path { get; set; }

@@ -1,14 +1,14 @@
-﻿using System.Security.Claims;
-using System.Threading.Tasks;
-using TravelingBlog.Auth;
-using TravelingBlog.Helpers;
-using TravelingBlog.Models;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
-using TravelingBlog.BusinessLogicLayer.ViewModels;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using TravelingBlog.BusinessLogicLayer.Helpers;
+using TravelingBlog.BusinessLogicLayer.Services.Auth;
+using TravelingBlog.BusinessLogicLayer.ViewModels;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
+using TravelingBlog.Models;
 
 namespace TravelingBlog.Controllers
 {
