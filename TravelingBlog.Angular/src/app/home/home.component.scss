@@ -220,10 +220,14 @@ border-radius: 4px;
 }
 
 .overlay .preview {
-position: absolute;
-left: 45%;
-top: 50%;
-color: #fff;
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  color: #fff;
+}
+
+.overlay .preview .icon-preview {
+  background-image: url("assets/images/gallery-img/preview.png");
 }
 
 .overlay .link {
@@ -232,6 +236,10 @@ left: 60%;
 margin-left: 10px;
 top: 50%;
 color: #fff;
+}
+
+.overlay .link .icon-link {
+  background-image: url("assets/images/gallery-img/link.png");
 }
 
 .shot-item:hover .overlay {
