@@ -1,0 +1,21 @@
+git clone + {repoadress}
+
+git checkout -b '1-modify-readme-add-index'
+
+git add .
+
+git commit -m "Closes #1 - {name}"
+
+//git pull origin {name}
+
+git push origin {name}
+
+git checkout master
+
+git checkout -b 3-Set-title
+
+
+git push 3-Set-title
+
+==
+git pull

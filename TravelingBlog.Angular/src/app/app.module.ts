@@ -15,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { AccountModule } from './account/account.module';
 /* Dashboard Imports */
 import { DashboardModule } from './dashboard/dashboard.module';
+/*Edit Imports */
+import { EditModule } from './edit/edit.module';
 
 import { ConfigService } from './shared/utils/config.service';
 import { FooterComponent } from './footer/footer.component';
@@ -29,6 +31,7 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     AccountModule,
     DashboardModule,
+    EditModule,
     BrowserModule,
     FormsModule,
     HttpModule,

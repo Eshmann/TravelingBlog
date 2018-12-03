@@ -11,6 +11,7 @@ namespace TravelingBlog.BusinessLogicLayer.ViewModels.DTO
         public string Name { get; set; }
         public bool IsDone { get; set; }
         public int? UserId { get; set; } 
+        public string Description { get; set; }
         public IEnumerable<PostBlogDTO> PostBlogs { get; set; }
         public IEnumerable<CommentDTO> Comments { get; set; }
         public IEnumerable<TagDTO> TagTrips { get; set; }
@@ -22,6 +23,7 @@ namespace TravelingBlog.BusinessLogicLayer.ViewModels.DTO
             this.Id = trip.Id;
             this.Name = trip.Name;
             this.IsDone = trip.IsDone;
+            this.Description = trip.Description;
         }
     }
 }

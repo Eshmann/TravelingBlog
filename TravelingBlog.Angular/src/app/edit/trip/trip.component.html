@@ -1,0 +1,55 @@
+<div class="row">
+    <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+        <div class="row">
+            <div class="col-md-6 col-sm-3">
+                <input type="button" value="AddPost" class="btn btn-default" (click)="add()" />
+                <div *ngIf="tableMode; else create">
+                    <h3>Trip</h3>
+                    <label>Name:</label>
+                    <input type="text" [(ngModel)]="trip.name" class="form-control" />
+                    <p>
+                        <label>Finished:</label>
+                        <select [(ngModel)]="trip.isDone" class="custom-select">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label>Description</label>
+                        <textarea [(ngModel)]="trip.description" class="form-control"></textarea>
+                    </p>
+                    <input type="button" value="Save" (click)="saveTrip()" class="btn btn-sm btn-success" />
+
+                    <h3>Posts:</h3>
+                    <li *ngFor="let p of trip.postBlogs">
+                        <label>Name:</label>
+                        <input type="text" [(ngModel)]="p.name" class="form-control"/>
+                        <p>
+                            <label>Plot</label>
+                            <textarea [(ngModel)]="p.plot" class="form-control"></textarea>
+                        </p>
+                        <input type="button" value="Save" (click)="save(p)" class="btn btn-sm btn-success" />
+                        <h1></h1>
+                    </li>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!--шаблон для добавления-->
+<ng-template #create>
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="post.name" class="form-control" />
+    </div>
+    <div class="form-group"> 
+        <label>Plot</label>
+        <textarea [(ngModel)]="post.plot" class="form-control"></textarea>
+    </div>
+    <div>
+        <input type="button" value="Save" (click)="save(post)" class="btn btn-success" />
+        <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+    </div>
+</ng-template>

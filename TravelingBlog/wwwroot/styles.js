@@ -29,7 +29,7 @@ module.exports = [[module.i, "/*! jQuery UI - v1.11.1 - 2014-08-13\n* http://jqu
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\n/*\n * Base structure\n */\n/* Move down content because we have a fixed navbar that is 3.5rem tall */\nbody {\n  padding-top: 3.5rem; }\n/*\n * Typography\n */\nh1 {\n  padding-bottom: 9px;\n  margin-bottom: 20px;\n  border-bottom: 1px solid #eee; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9EOlxcU09GVFxcVG9CZURlbGV0ZWRcXFRyYXZlbGluZ0Jsb2ctZGV2ZWxvcGVyXFxUcmF2ZWxpbmdCbG9nLkFuZ3VsYXIvc3JjXFxzdHlsZXMuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwrRUFBK0U7QUFFL0U7O0dBRUc7QUFFSCwwRUFBMEU7QUFDMUU7RUFDRSxvQkFBbUIsRUFDcEI7QUFFRDs7R0FFRztBQUVIO0VBQ0Usb0JBQW1CO0VBQ25CLG9CQUFtQjtFQUNuQiw4QkFBNkIsRUFDOUIiLCJmaWxlIjoic3JjL3N0eWxlcy5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogWW91IGNhbiBhZGQgZ2xvYmFsIHN0eWxlcyB0byB0aGlzIGZpbGUsIGFuZCBhbHNvIGltcG9ydCBvdGhlciBzdHlsZSBmaWxlcyAqL1xuXG4vKlxuICogQmFzZSBzdHJ1Y3R1cmVcbiAqL1xuXG4vKiBNb3ZlIGRvd24gY29udGVudCBiZWNhdXNlIHdlIGhhdmUgYSBmaXhlZCBuYXZiYXIgdGhhdCBpcyAzLjVyZW0gdGFsbCAqL1xuYm9keSB7XG4gIHBhZGRpbmctdG9wOiAzLjVyZW07XG59XG5cbi8qXG4gKiBUeXBvZ3JhcGh5XG4gKi9cblxuaDEge1xuICBwYWRkaW5nLWJvdHRvbTogOXB4O1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICBib3JkZXItYm90dG9tOiAxcHggc29saWQgI2VlZTtcbn1cbiJdfQ== */", '', '']]
+module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\n/*\n * Base structure\n */\n/* Move down content because we have a fixed navbar that is 3.5rem tall */\nbody {\n  padding-top: 3.5rem; }\n/*\n * Typography\n */\nh1 {\n  padding-bottom: 9px;\n  margin-bottom: 20px;\n  border-bottom: 1px solid #eee; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9EOlxcU09GVFxcVG9CZURlbGV0ZWRcXFRyYXZlbGluZ0Jsb2dcXFRyYXZlbGluZ0Jsb2cuQW5ndWxhci9zcmNcXHN0eWxlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLCtFQUErRTtBQUUvRTs7R0FFRztBQUVILDBFQUEwRTtBQUMxRTtFQUNFLG9CQUFtQixFQUNwQjtBQUVEOztHQUVHO0FBRUg7RUFDRSxvQkFBbUI7RUFDbkIsb0JBQW1CO0VBQ25CLDhCQUE2QixFQUM5QiIsImZpbGUiOiJzcmMvc3R5bGVzLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBZb3UgY2FuIGFkZCBnbG9iYWwgc3R5bGVzIHRvIHRoaXMgZmlsZSwgYW5kIGFsc28gaW1wb3J0IG90aGVyIHN0eWxlIGZpbGVzICovXG5cbi8qXG4gKiBCYXNlIHN0cnVjdHVyZVxuICovXG5cbi8qIE1vdmUgZG93biBjb250ZW50IGJlY2F1c2Ugd2UgaGF2ZSBhIGZpeGVkIG5hdmJhciB0aGF0IGlzIDMuNXJlbSB0YWxsICovXG5ib2R5IHtcbiAgcGFkZGluZy10b3A6IDMuNXJlbTtcbn1cblxuLypcbiAqIFR5cG9ncmFwaHlcbiAqL1xuXG5oMSB7XG4gIHBhZGRpbmctYm90dG9tOiA5cHg7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjZWVlO1xufVxuIl19 */", '', '']]
 
 /***/ }),
 
@@ -637,9 +637,9 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\SOFT\ToBeDeleted\TravelingBlog-developer\TravelingBlog.Angular\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
-__webpack_require__(/*! D:\SOFT\ToBeDeleted\TravelingBlog-developer\TravelingBlog.Angular\node_modules\jqueryui\jquery-ui.min.css */"./node_modules/jqueryui/jquery-ui.min.css");
-module.exports = __webpack_require__(/*! D:\SOFT\ToBeDeleted\TravelingBlog-developer\TravelingBlog.Angular\src\styles.scss */"./src/styles.scss");
+__webpack_require__(/*! D:\SOFT\ToBeDeleted\TravelingBlog\TravelingBlog.Angular\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
+__webpack_require__(/*! D:\SOFT\ToBeDeleted\TravelingBlog\TravelingBlog.Angular\node_modules\jqueryui\jquery-ui.min.css */"./node_modules/jqueryui/jquery-ui.min.css");
+module.exports = __webpack_require__(/*! D:\SOFT\ToBeDeleted\TravelingBlog\TravelingBlog.Angular\src\styles.scss */"./src/styles.scss");
 
 
 /***/ })

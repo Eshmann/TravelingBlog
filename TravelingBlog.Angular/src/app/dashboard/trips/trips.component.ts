@@ -59,7 +59,11 @@ export class TripsComponent implements OnInit {
 
   delete(trip: TripDetails)
   {
-    this.dashboardService.deleteTrip(trip.id).subscribe(data => this.loadTrips());
+    var r = confirm("Are you sure?");
+    if(r==true)
+    {
+      this.dashboardService.deleteTrip(trip.id).subscribe(data => this.loadTrips());
+    }
   }
 
   add()
