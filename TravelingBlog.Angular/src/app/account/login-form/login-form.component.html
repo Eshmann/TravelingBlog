@@ -1,0 +1,35 @@
+<form #f="ngForm" novalidate (ngSubmit)="login(f)">
+  <div class="container">
+    <div *ngIf="brandNew" class="alert alert-success" role="alert">
+      <strong>All set!</strong> Please signin with your account
+    </div>
+  <h1>S I G N</h1>
+  
+    <label for="email">Email</label>
+    <input id="email" type="text" required name="email" class="form-control" placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
+    <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
+
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" required name="password" placeholder="Password" ngModel>
+
+    <p>
+      <button type="submit" class="btn btn-primary" [disabled]="f.invalid || isRequesting">S I G N - I N</button> 
+      OR 
+      <button type="button" class="btn btn-primary" routerLink="/register">
+        S I G N - U P
+      </button> 
+    </p>
+    <p>
+    </p>
+    
+    <app-spinner [isRunning]="isRequesting"></app-spinner>
+        
+    <hr>
+      <app-facebook-login></app-facebook-login>
+    <div *ngIf="errors" class="alert alert-danger" role="alert">
+      <strong>Oops!</strong> {{errors}}
+    </div>
+  </div>
+</form>
+
+
