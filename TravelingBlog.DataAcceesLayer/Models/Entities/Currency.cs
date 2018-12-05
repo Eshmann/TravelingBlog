@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.DataAcceesLayer.Models.Entities
 {
     [Table("Currency")]
-    public class Currency
+    public class Currency : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

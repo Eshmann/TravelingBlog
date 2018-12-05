@@ -1,13 +1,13 @@
-﻿using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using TravelingBlog.DataAcceesLayer.Data;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.Controllers
 {

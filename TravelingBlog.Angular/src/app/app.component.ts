@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  model: any = {};
+  onSubmit() {
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model));
+  }
 }

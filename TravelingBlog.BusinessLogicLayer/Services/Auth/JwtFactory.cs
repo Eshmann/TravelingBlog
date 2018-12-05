@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using TravelingBlog.BusinessLogicLayer.Helpers;
 using TravelingBlog.Models;
-using Microsoft.Extensions.Options;
 
-namespace TravelingBlog.Auth
+namespace TravelingBlog.BusinessLogicLayer.Services.Auth
 {
     public class JwtFactory : IJwtFactory
     {
@@ -25,8 +26,8 @@ namespace TravelingBlog.Auth
                  new Claim(JwtRegisteredClaimNames.Sub, userName),
                  new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
                  new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
-                 identity.FindFirst(Helpers.Constants.Strings.JwtClaimIdentifiers.Rol),
-                 identity.FindFirst(Helpers.Constants.Strings.JwtClaimIdentifiers.Id)
+                 identity.FindFirst(Constants.Strings.JwtClaimIdentifiers.Rol),
+                 identity.FindFirst(Constants.Strings.JwtClaimIdentifiers.Id)
              };
 
             // Create the JWT security token and encode it.

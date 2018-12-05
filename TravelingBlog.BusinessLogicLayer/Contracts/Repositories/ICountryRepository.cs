@@ -1,7 +1,6 @@
-﻿using TravelingBlog.DataAcceesLayer.Models.Entities;
-using System.Collections.Generic;
-using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
 {
