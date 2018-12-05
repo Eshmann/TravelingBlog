@@ -6,5 +6,6 @@
         public string Name { get; set; }
         public bool IsDone { get; set; }
         public int? UserId { get; set; }
+        public string Description { get; set; }
     }
 }

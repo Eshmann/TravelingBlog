@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { RootComponent } from './root/root.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TripsComponent } from './trips/trips.component';
 
 import { AuthGuard } from '../auth.guard';
 
@@ -16,6 +17,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: 'settings', component: SettingsComponent },
+      { path: 'trips', component: TripsComponent },
     ]
   }
 ]);

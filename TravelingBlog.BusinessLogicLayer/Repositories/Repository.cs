@@ -52,6 +52,7 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         public void Add(TEntity entity)
         {
             ApplicationDbContext.Set<TEntity>().Add(entity);
+            ApplicationDbContext.SaveChanges();
         }
 
         public void AddRange(IEnumerable<TEntity> entities)
@@ -62,6 +63,7 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         public void Update(TEntity entity)
         {
             ApplicationDbContext.Set<TEntity>().Update(entity);
+            ApplicationDbContext.SaveChanges();
         }
 
         public void UpdateRange(IEnumerable<TEntity> entities)
@@ -72,6 +74,7 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         public void Remove(TEntity entity)
         {
             ApplicationDbContext.Set<TEntity>().Remove(entity);
+            ApplicationDbContext.SaveChanges();
         }
 
         public void RemoveRange(IEnumerable<TEntity> entities)

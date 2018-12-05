@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.BusinessLogicLayer.Services.LoggerService;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
+using TravelingBlog.BusinessLogicLayer.ViewModels.TripViewModels;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.Controllers
@@ -112,6 +113,7 @@ namespace TravelingBlog.Controllers
             }
         }
         [HttpPost]
+        [Route("addtrip")]
         public async Task<IActionResult> AddTripAsync([FromBody]TripDTO model)
         {
             try
@@ -126,7 +128,7 @@ namespace TravelingBlog.Controllers
                     logger.LogError($"Object state is not valid");
                     return BadRequest("Trip object is invalid");
                 }
-                var trip = new Trip { Name = model.Name, IsDone = model.IsDone };
+                var trip = new Trip { Name = model.Name, IsDone = model.IsDone, Description=model.Description };
                 var userId = caller.Claims.Single(c => c.Type == "id");
                 var user = await unitOfWork.Users.GetUserByIdentityId(userId.Value);
                 trip.UserInfo = user;
@@ -190,6 +192,9 @@ namespace TravelingBlog.Controllers
                 var user = await unitOfWork.Users.GetUserByIdentityId(userid.Value);
                 if (unitOfWork.Trips.IsUserCreator(user.Id, id)||caller.IsInRole("admin"))
                 {
+                    trip.Description = model.Description;
+                    trip.IsDone = model.IsDone;
+                    trip.Name = model.Name;
                     unitOfWork.Trips.Update(trip);
                     return Ok(new TripDTO { Id = trip.Id, Name = trip.Name, IsDone = trip.IsDone});
                 }
@@ -201,5 +206,21 @@ namespace TravelingBlog.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
+        //Alexel37 GetUserTrips
+        //api/trip/mytrips
+        [HttpGet("mytrips")]
+        public async Task<IActionResult> GetUserTripsAsync()
+        { 
+            
+            var userId = caller.Claims.Single(c => c.Type == "id");
+            var user = await unitOfWork.Users.GetUserByIdentityId(userId.Value);
+
+            var trips = await unitOfWork.Trips.GetUserTripsAsync(userId.Value);       
+              
+            
+            return Ok(trips);
+        }
+
     }
 }

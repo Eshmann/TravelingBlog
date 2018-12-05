@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-md-6 col-sm-3">
+        <h1>Your Trips:</h1>
+        <input type="button" value="AddTrip" class="btn btn-default" (click)="add()" />
+        <ul *ngIf="tableMode; else create">           
+            <li *ngFor="let p of trips">
+                <!--<ng-template [ngIf]="trip?.id != p.id" [ngIfElse]="edit">-->
+                <ng-template [ngIf]="trip?.id != p.id">
+                    <div>Name: {{ p?.name }}</div>
+                    <div [ngClass]="{greenclass: p?.isDone == true, redclass: p?.isDone == false}">Finished: {{ p?.isDone }}</div>
+                    <p>
+                        <textarea rows="3" cols="60" readonly="readonly" class="form-control">{{ p?.description }}</textarea>
+                    </p>
+                    <p>
+                        <button class="btn btn-sm btn-primary" href="#" routerLink="/edit/trip/{{p.id}}">Edit</button>
+                        <button class="btn btn-sm btn-danger"  (click)="delete(p)">Delete</button>
+                    </p>
+                </ng-template>
+            </li>     
+        </ul>
+    </div>
+</div>
+
+  <!--шаблон для редактирования--><!--
+<ng-template #edit>
+        <label>Name:</label>
+        <input type="text" [(ngModel)]="trip.name" class="form-control" />
+        
+        <p>
+            <label>Finished:</label>
+            <select [(ngModel)]="trip.isDone" class="custom-select">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+        <p>
+        <p>
+            <label>Description</label>
+            <textarea [(ngModel)]="trip.description" class="form-control"></textarea>
+        <p>
+        <p>
+            <input type="button" value="Save" (click)="save()" class="btn btn-sm btn-success" />
+            <input type="button" value="Cancel" (click)="cancel()" class="btn btn-sm btn-warning" />
+        <p>
+    </ng-template>-->
+     
+    <!--шаблон для добавления-->
+    <ng-template #create>
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" [(ngModel)]="trip.name" class="form-control" />
+        </div>
+        <div class="form-group"> 
+            <label>Description</label>
+            <textarea [(ngModel)]="trip.description" class="form-control"></textarea>
+        </div>
+        <div>
+            <input type="button" value="Save" (click)="save()" class="btn btn-success" />
+            <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning" />
+        </div>
+    </ng-template>
