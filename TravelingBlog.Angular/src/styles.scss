@@ -7,7 +7,12 @@
 /* Move down content because we have a fixed navbar that is 3.5rem tall */
 body {
   padding-top: 0rem;
+  position: relative;
+  margin: 0;
+  //padding-bottom: 6rem;
+  min-height: 100%;
 }
+
 
 /*
  * Typography
@@ -17,4 +22,8 @@ h1 {
   padding-bottom: 9px;
   margin-bottom: 20px;
   border-bottom: 1px solid rgb(236, 12, 12);
+}
+html {
+  height: 100%;
+  box-sizing: border-box;
 }

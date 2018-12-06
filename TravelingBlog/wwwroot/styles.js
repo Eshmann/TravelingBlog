@@ -40,7 +40,7 @@ module.exports = [[module.i, "/*! jQuery UI - v1.11.1 - 2014-08-13\n* http://jqu
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\n/*\r\n * Base structure\r\n */\n/* Move down content because we have a fixed navbar that is 3.5rem tall */\nbody {\n  padding-top: 0rem; }\n/*\r\n * Typography\r\n */\nh1 {\n  padding-bottom: 9px;\n  margin-bottom: 20px;\n  border-bottom: 1px solid #ec0c0c; }\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9DOlxcVXNlcnNcXNCw0LTQvNGW0L1cXERlc2t0b3BcXGdpdGh1YlxcVHJhdmVsaW5nQmxvZ1xcVHJhdmVsaW5nQmxvZy5Bbmd1bGFyL3NyY1xcc3R5bGVzLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsK0VBQStFO0FBRS9FOztHQUVHO0FBRUgsMEVBQTBFO0FBQzFFO0VBQ0Usa0JBQWlCLEVBQ2xCO0FBRUQ7O0dBRUc7QUFFSDtFQUNFLG9CQUFtQjtFQUNuQixvQkFBbUI7RUFDbkIsaUNBQXlDLEVBQzFDIiwiZmlsZSI6InNyYy9zdHlsZXMuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFlvdSBjYW4gYWRkIGdsb2JhbCBzdHlsZXMgdG8gdGhpcyBmaWxlLCBhbmQgYWxzbyBpbXBvcnQgb3RoZXIgc3R5bGUgZmlsZXMgKi9cclxuXHJcbi8qXHJcbiAqIEJhc2Ugc3RydWN0dXJlXHJcbiAqL1xyXG5cclxuLyogTW92ZSBkb3duIGNvbnRlbnQgYmVjYXVzZSB3ZSBoYXZlIGEgZml4ZWQgbmF2YmFyIHRoYXQgaXMgMy41cmVtIHRhbGwgKi9cclxuYm9keSB7XHJcbiAgcGFkZGluZy10b3A6IDByZW07XHJcbn1cclxuXHJcbi8qXHJcbiAqIFR5cG9ncmFwaHlcclxuICovXHJcblxyXG5oMSB7XHJcbiAgcGFkZGluZy1ib3R0b206IDlweDtcclxuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xyXG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCByZ2IoMjM2LCAxMiwgMTIpO1xyXG59XHJcbiJdfQ== */", '', '']]
+module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\n/*\r\n * Base structure\r\n */\n/* Move down content because we have a fixed navbar that is 3.5rem tall */\nbody {\n  padding-top: 0rem; }\n/*\r\n * Typography\r\n */\nh1 {\n  padding-bottom: 9px;\n  margin-bottom: 20px;\n  border-bottom: 1px solid #ec0c0c; }\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9BOlxca3JrXFxUcmF2ZWxpbmdCbG9nXFxUcmF2ZWxpbmdCbG9nLkFuZ3VsYXIvc3JjXFxzdHlsZXMuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwrRUFBK0U7QUFFL0U7O0dBRUc7QUFFSCwwRUFBMEU7QUFDMUU7RUFDRSxrQkFBaUIsRUFDbEI7QUFFRDs7R0FFRztBQUVIO0VBQ0Usb0JBQW1CO0VBQ25CLG9CQUFtQjtFQUNuQixpQ0FBeUMsRUFDMUMiLCJmaWxlIjoic3JjL3N0eWxlcy5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogWW91IGNhbiBhZGQgZ2xvYmFsIHN0eWxlcyB0byB0aGlzIGZpbGUsIGFuZCBhbHNvIGltcG9ydCBvdGhlciBzdHlsZSBmaWxlcyAqL1xyXG5cclxuLypcclxuICogQmFzZSBzdHJ1Y3R1cmVcclxuICovXHJcblxyXG4vKiBNb3ZlIGRvd24gY29udGVudCBiZWNhdXNlIHdlIGhhdmUgYSBmaXhlZCBuYXZiYXIgdGhhdCBpcyAzLjVyZW0gdGFsbCAqL1xyXG5ib2R5IHtcclxuICBwYWRkaW5nLXRvcDogMHJlbTtcclxufVxyXG5cclxuLypcclxuICogVHlwb2dyYXBoeVxyXG4gKi9cclxuXHJcbmgxIHtcclxuICBwYWRkaW5nLWJvdHRvbTogOXB4O1xyXG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XHJcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIHJnYigyMzYsIDEyLCAxMik7XHJcbn1cclxuIl19 */", '', '']]
 
 /***/ }),
 
@@ -678,10 +678,10 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\адмін\Desktop\github\TravelingBlog\TravelingBlog.Angular\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
-__webpack_require__(/*! C:\Users\адмін\Desktop\github\TravelingBlog\TravelingBlog.Angular\node_modules\jqueryui\jquery-ui.min.css */"./node_modules/jqueryui/jquery-ui.min.css");
-__webpack_require__(/*! C:\Users\адмін\Desktop\github\TravelingBlog\TravelingBlog.Angular\src\styles.scss */"./src/styles.scss");
-module.exports = __webpack_require__(/*! C:\Users\адмін\Desktop\github\TravelingBlog\TravelingBlog.Angular\node_modules\animate.css\animate.min.css */"./node_modules/animate.css/animate.min.css");
+__webpack_require__(/*! A:\krk\TravelingBlog\TravelingBlog.Angular\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
+__webpack_require__(/*! A:\krk\TravelingBlog\TravelingBlog.Angular\node_modules\jqueryui\jquery-ui.min.css */"./node_modules/jqueryui/jquery-ui.min.css");
+__webpack_require__(/*! A:\krk\TravelingBlog\TravelingBlog.Angular\src\styles.scss */"./src/styles.scss");
+module.exports = __webpack_require__(/*! A:\krk\TravelingBlog\TravelingBlog.Angular\node_modules\animate.css\animate.min.css */"./node_modules/animate.css/animate.min.css");
 
 
 /***/ })
