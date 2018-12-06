@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -36,7 +36,7 @@ namespace TravelingBlog.Controllers
                 Logger.LogInfo("Search success");
                 if (result == null)
                 {
-                    var noresult =  UnitOfWork.Trips.GetAllTripsAsync(search, out var total);
+                    var noresult = UnitOfWork.Trips.GetAllTripsAsync(search, out var total);
                     Logger.LogInfo("Bad search line");
                     return Ok(noresult);
                 }
