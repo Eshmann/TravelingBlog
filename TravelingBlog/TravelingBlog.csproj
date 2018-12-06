@@ -33,4 +33,8 @@
     <ProjectReference Include="..\TravelingBlog.LoggerService\TravelingBlog.LoggerService.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

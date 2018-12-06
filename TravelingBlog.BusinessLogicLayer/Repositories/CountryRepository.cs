@@ -26,5 +26,7 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
             var countries = await FindAllAsync();
             return countries.OrderBy(c => c.Name);
         }
+
+
     }
 }

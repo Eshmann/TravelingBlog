@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.DataAcceesLayer.Models.Entities
 {
     [Table("Country")]
-    public class Country
+    public class Country : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }        

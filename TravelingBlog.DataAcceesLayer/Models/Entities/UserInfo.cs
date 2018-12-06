@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.DataAcceesLayer.Models.Entities
 {
     [Table("UserInfo")]
-    public class UserInfo
+    public class UserInfo : IEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

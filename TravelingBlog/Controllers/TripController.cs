@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TravelingBlog.BusinessLogicLayer.Contracts;
+using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using TravelingBlog.BusinessLogicLayer.ViewModels.TripViewModels;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
@@ -29,11 +30,11 @@ namespace TravelingBlog.Controllers
         }
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> GetAllTrips()
+        public IActionResult GetAllTrips(PagingModel paging)
         {
             try
             {
-                var trips = await unitOfWork.Trips.GetAllTripsAsync();
+                var trips = unitOfWork.Trips.GetAllTripsAsync(paging, out var total);
                 if (trips == null)
                 {
                     logger.LogInfo("TripsNotFound");
@@ -48,7 +49,7 @@ namespace TravelingBlog.Controllers
                         IsDone = trips.ElementAt(i).IsDone,
                         UserId = trips.ElementAt(i).UserInfoId});
                 }
-                return Ok(list);
+                return Ok(new {Total=total, List=list});
             }
             catch(Exception ex)
             {

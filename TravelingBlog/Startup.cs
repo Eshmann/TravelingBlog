@@ -24,6 +24,7 @@ using System.IO;
 using TravelingBlog.Models;
 using NLog;
 using Microsoft.AspNetCore.HttpOverrides;
+using TravelingBlog.ActionFilters;
 
 namespace TravelingBlog
 {
@@ -49,6 +50,9 @@ namespace TravelingBlog
             services.ConfigureSqlContext(Configuration);
             services.ConfigureUnitOfWork();
             services.ConfigureAutoMapper();
+
+            // Add validation attribute service.
+            services.AddScoped<ValidationFilterAttribute>();
 
             // Add framework services.
             services.AddSingleton<IJwtFactory, JwtFactory>();
@@ -123,24 +127,7 @@ namespace TravelingBlog
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseExceptionHandler(
-                builder =>
-                {
-                    builder.Run(
-                        async context =>
-                            {
-                                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                                context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-
-                                var error = context.Features.Get<IExceptionHandlerFeature>();
-                                if (error != null)
-                                {
-                                    context.Response.AddApplicationError(error.Error.Message);
-                                    await context.Response.WriteAsync(error.Error.Message).ConfigureAwait(false);
-                                }
-                            });
-                });
-
+            //app.ConfigureCustomExceptionMiddleware();
             app.UseAuthentication();
             app.UseDefaultFiles();
 

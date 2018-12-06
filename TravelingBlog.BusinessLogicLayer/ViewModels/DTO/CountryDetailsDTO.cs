@@ -8,9 +8,9 @@ namespace TravelingBlog.BusinessLogicLayer.ViewModels.DTO
         public string Name { get; set; }        
         public string MobCode { get; set; }
 
-        public IEnumerable<UserInfo> UserInfoes { get; set; }
-        public IEnumerable<CountryTrip> CountryTrips { get; set; }
-        public IEnumerable<CountryPostBlog> CountryPostBlogs { get; set; }
+        public IEnumerable<UserInfoDTO> UserInfoes { get; set; }
+        public IEnumerable<TripDTO> CountryTrips { get; set; }
+        public IEnumerable<PostBlogDTO> CountryPostBlogs { get; set; }
 
         public CountryDetailsDTO(Country country)
         {

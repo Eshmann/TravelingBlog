@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 
 namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
 {

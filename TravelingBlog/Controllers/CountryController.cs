@@ -52,7 +52,7 @@ namespace TravelingBlog.Controllers
         }
 
 
-      //  [Authorize(Roles = "moderator")]
+        // [Authorize(Roles = "moderator")]
         [HttpPost]
         public IActionResult AddCountry([FromBody]CountryDTO model)
         {
