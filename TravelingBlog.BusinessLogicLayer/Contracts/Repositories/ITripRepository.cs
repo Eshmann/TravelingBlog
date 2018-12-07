@@ -5,6 +5,7 @@ using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TravelingBlog.BusinessLogicLayer.ResourceHelpers;
 using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 using TravelingBlog.BusinessLogicLayer.ViewModels.TripViewModels;
 
@@ -18,5 +19,6 @@ namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
         Trip GetTripWithPostBlogs(int id);
         IQueryable<Trip> SearchTrips(Search searchQuery);
         Task<IEnumerable<TripDetail>> GetUserTripsAsync(string id);
+        IList<Trip> FilterTripsByCountry(Filter filter);
     }
 }

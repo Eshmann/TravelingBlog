@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 using TravelingBlog.DataAcceesLayer.Data;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Internal;
+using TravelingBlog.BusinessLogicLayer.ResourceHelpers;
 using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 using TravelingBlog.BusinessLogicLayer.ViewModels.TripViewModels;
 
@@ -56,13 +58,22 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         {
             List<TripDetail> trips = new List<TripDetail>();
             var user = await ApplicationDbContext.UserInfoes.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == id);
-            var userTrips = ApplicationDbContext.Trips.Where(x => x.UserInfoId==user.Id);
-            foreach(var trip in userTrips)
+            var userTrips = ApplicationDbContext.Trips.Where(x => x.UserInfoId == user.Id);
+            foreach (var trip in userTrips)
             {
                 trips.Add(new TripDetail { Description = trip.Description, IsDone = trip.IsDone, Name = trip.Name, Id = trip.Id });
             }
-            
+
             return trips;
+        }
+
+
+        public IList<Trip> FilterTripsByCountry(Filter filter)
+        {
+            return ApplicationDbContext.Trips.Where(i => i.CountryTrips
+                .Any(x => x.Country.Id == filter.Id))
+                .Skip(filter.PageSize * (filter.PageNumber - 1))
+                .Take(filter.PageSize).ToList();
         }
     }
 }

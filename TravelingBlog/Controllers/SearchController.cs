@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TravelingBlog.BusinessLogicLayer.Contracts;
+using TravelingBlog.BusinessLogicLayer.ResourceHelpers;
 using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 
 namespace TravelingBlog.Controllers
@@ -26,7 +27,7 @@ namespace TravelingBlog.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("search")]
         [AllowAnonymous]
         public IActionResult GetTripsBySearchResult([FromQuery] Search search)
         {
@@ -48,6 +49,24 @@ namespace TravelingBlog.Controllers
                 return StatusCode(500);
             }
 
+        }
+
+        [HttpGet("filter")]
+        [AllowAnonymous]
+        public IActionResult TryFilter([FromQuery]Filter filter)
+        {
+            try
+            {
+                var result = UnitOfWork.Trips.FilterTripsByCountry(filter);
+                Logger.LogInfo("Filter");
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500);
+            }
+          
         }
     }
 }
