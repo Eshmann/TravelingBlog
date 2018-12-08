@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using TravelingBlog.Services.BlobContainer;
 

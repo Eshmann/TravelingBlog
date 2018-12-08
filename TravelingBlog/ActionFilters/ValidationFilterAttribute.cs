@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Linq;
-using TravelingBlog.BusinessLogicLayer.Services.LoggerService;
+using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
 using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.ActionFilters

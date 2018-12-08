@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.BusinessLogicLayer.Helpers;
-using TravelingBlog.BusinessLogicLayer.Services.Auth;
+using TravelingBlog.BusinessLogicLayer.SecondaryServices.Auth;
 using TravelingBlog.BusinessLogicLayer.ViewModels;
 using TravelingBlog.DataAcceesLayer.Models;
 using TravelingBlog.DataAcceesLayer.Models.Entities;

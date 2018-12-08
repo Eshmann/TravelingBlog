@@ -4,8 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.BusinessLogicLayer.Repositories;
-using TravelingBlog.BusinessLogicLayer.Services.LoggerService;
-using TravelingBlog.BusinessLogicLayer.Services.Mappings;
+using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
+using TravelingBlog.BusinessLogicLayer.SecondaryServices.Mappings;
 using TravelingBlog.DataAcceesLayer.Data;
 
 namespace TravelingBlog.Extensions

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using TravelingBlog.BusinessLogicLayer.Services.CustomExceptionMiddleware;
+using TravelingBlog.BusinessLogicLayer.SecondaryServices.CustomExceptionMiddleware;
 
 namespace TravelingBlog.Extensions
 {

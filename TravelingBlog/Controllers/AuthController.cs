@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.Helpers;
-using TravelingBlog.BusinessLogicLayer.Services.Auth;
+using TravelingBlog.BusinessLogicLayer.SecondaryServices.Auth;
 using TravelingBlog.BusinessLogicLayer.ViewModels;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 using TravelingBlog.Models;

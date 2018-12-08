@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using TravelingBlog.BusinessLogicLayer.Services.Auth;
-using TravelingBlog.Models;
+using TravelingBlog.BusinessLogicLayer.Models;
+using TravelingBlog.BusinessLogicLayer.SecondaryServices.Auth;
 
 namespace TravelingBlog.BusinessLogicLayer.Helpers
 {
