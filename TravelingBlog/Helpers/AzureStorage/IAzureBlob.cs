@@ -11,6 +11,6 @@ namespace TravelingBlog.Helpers.AzureStorage
     {
         CloudBlobContainer GetBlobContainer(string connectionString, string containerName);
         Task<string> GetBlockBlobAsync(string blockName, CloudBlobContainer container, byte[] imageBuffer);
-        bool CheckFile(List<IFormFile> files);
+        bool CheckFile(IList<IFormFile> files);
     }
 }

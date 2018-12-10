@@ -91,8 +91,9 @@ namespace TravelingBlog.Controllers
                 {
                     Name = model.Name,
                     DateOfCreation = model.DateOfCreation,
-                    Plot = model.Plot
+                    Plot = model.Plot,
                 };
+                
                 var userId = caller.Claims.Single(c => c.Type == "id");
                 //var customer = await appDbContext.UserInfoes.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == userId.Value);
                 var user = await unitOfWork.Users.GetUserByIdentityId(userId.Value);
@@ -104,7 +105,16 @@ namespace TravelingBlog.Controllers
                     return Forbid();
                 }
                 post.Trip = trip;
-                unitOfWork.PostBlogs.Add(post);
+                var result = unitOfWork.PostBlogs.Add(post);
+
+                //Add images to postblog
+                var images = model.Url.Select(path => new Image
+                {
+                    Path = path,
+                    PostBlogId = result
+                });
+                unitOfWork.Images.AddRange(images);
+
                 logger.LogInfo($"Add some post");
                 return Ok(model);
             }
@@ -125,7 +135,6 @@ namespace TravelingBlog.Controllers
                 var user = await unitOfWork.Users.GetUserByIdentityId(userId.Value);
                 var post = await unitOfWork.PostBlogs.GetPostBlogByIdAsync(id);
                 var trip = await unitOfWork.Trips.GetTripByIdAsync(post.TripId);
-
                 var isUserCreator = unitOfWork.Trips.IsUserCreator(user.Id, trip.Id);
                 if (!isUserCreator)
                 {

@@ -50,10 +50,10 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         }
 
         #region CRUD operation
-        public void Add(TEntity entity)
+        public int Add(TEntity entity)
         {
             ApplicationDbContext.Set<TEntity>().Add(entity);
-            ApplicationDbContext.SaveChanges();
+            return ApplicationDbContext.SaveChanges();
         }
 
         public void AddRange(IEnumerable<TEntity> entities)

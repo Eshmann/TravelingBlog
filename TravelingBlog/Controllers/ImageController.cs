@@ -30,7 +30,7 @@ namespace Fiver.Azure.Blob.Client.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadImage(List<IFormFile> files)
+        public async Task<IActionResult> UploadImage(IList<IFormFile> files)
         {
             var userId = caller.Claims.Single(c => c.Type == "id");
             var user = await unitOfWork.Users.GetUserByIdentityId(userId.Value);
@@ -65,6 +65,7 @@ namespace Fiver.Azure.Blob.Client.Controllers
 
             return Ok(imageDTOList);
         }
+
 
         [HttpDelete]
         public async Task<IActionResult> DeleteAsync()

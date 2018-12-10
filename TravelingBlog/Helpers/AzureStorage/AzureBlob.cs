@@ -37,7 +37,7 @@ namespace TravelingBlog.Helpers.AzureStorage
             return blockBlob.StorageUri.PrimaryUri.AbsolutePath;
         }
 
-        public bool CheckFile(List<IFormFile> files)
+        public bool CheckFile(IList<IFormFile> files)
         {
             bool message = false;
             for (int i = 0; i < files.Count; i++)
