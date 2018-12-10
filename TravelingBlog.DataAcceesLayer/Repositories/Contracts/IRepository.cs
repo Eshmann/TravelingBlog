@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
+using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.DataAcceesLayer.Repositories.Contracts
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class, IEntity
     {
-        Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate);
+        TEntity Get(int id);
 
-        Task<IEnumerable<TEntity>> FindAllAsync();
+        IQueryable<TEntity> GetAll();
 
-        Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> FindAll(Expression<Func<TEntity, bool>> predicate);
+
+        TEntity Find(Expression<Func<TEntity, bool>> predicate);
 
         bool Contains(TEntity entity);
 

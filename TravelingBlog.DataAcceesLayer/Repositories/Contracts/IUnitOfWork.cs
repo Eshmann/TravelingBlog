@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Threading.Tasks;
+using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.DataAcceesLayer.Repositories.Contracts
 {
     public interface IUnitOfWork : IDisposable
     {
         IRepository<TEntity> GetRepository<TEntity>()
-           where TEntity : class;
+           where TEntity : class, IEntity;
 
-        Task CompleteAsync();
+        void Complete();
     }
 }

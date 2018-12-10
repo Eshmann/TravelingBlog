@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace TravelingBlog.DataAcceesLayer.Models.Entities
+namespace TravelingBlog.BusinessLogicLayer.Models
 {
     public class ErrorDetails
     {

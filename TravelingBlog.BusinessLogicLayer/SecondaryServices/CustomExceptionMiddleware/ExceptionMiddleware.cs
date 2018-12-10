@@ -2,8 +2,8 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using TravelingBlog.BusinessLogicLayer.Models;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.BusinessLogicLayer.SecondaryServices.CustomExceptionMiddleware
 {
@@ -39,7 +39,7 @@ namespace TravelingBlog.BusinessLogicLayer.SecondaryServices.CustomExceptionMidd
             return context.Response.WriteAsync(new ErrorDetails()
             {
                 StatusCode = context.Response.StatusCode,
-                Message = "Internal Server Error from the custom middleware."
+                Message = exception.Message
             }.ToString());
         }
     }

@@ -16,7 +16,10 @@ using System.Text;
 using TravelingBlog.ActionFilters;
 using TravelingBlog.BusinessLogicLayer.Helpers;
 using TravelingBlog.BusinessLogicLayer.Models;
+using TravelingBlog.BusinessLogicLayer.ModelsServices;
+using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.Auth;
+using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
 using TravelingBlog.DataAcceesLayer.Data;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 using TravelingBlog.Extensions;
@@ -45,6 +48,8 @@ namespace TravelingBlog
             services.ConfigureSqlContext(Configuration);
             services.ConfigureUnitOfWork();
             services.ConfigureAutoMapper();
+
+            services.AddScoped<ITripService, TripService>();
 
             // Add validation attribute service.
             services.AddScoped<ValidationFilterAttribute>();
@@ -115,13 +120,14 @@ namespace TravelingBlog
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerManager logger)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
+            app.ConfigureCustomExceptionMiddleware();
             app.UseAuthentication();
             app.UseDefaultFiles();
 

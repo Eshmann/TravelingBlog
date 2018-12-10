@@ -4,9 +4,10 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
 {
     public interface IService<TDto, TFilter>
     {
-        IEnumerable<TDto> Find(TFilter filter);
-        IEnumerable<TDto> FindAll();
-        TDto SingleOrDefaultAsync(TFilter filter);
+        TDto Get(int id);
+        IEnumerable<TDto> GetAll();
+        IEnumerable<TDto> FindAll(TFilter filter);
+        TDto Find(TFilter filter);
 
         void Add(TDto dto);
         void Remove(TDto dto);

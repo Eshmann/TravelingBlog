@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TravelingBlog.BusinessLogicLayer.Contracts;
-using TravelingBlog.BusinessLogicLayer.Repositories;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.Mappings;
 using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.DataAcceesLayer.Repositories;
+using TravelingBlog.DataAcceesLayer.Repositories.Contracts;
 
 namespace TravelingBlog.Extensions
 {

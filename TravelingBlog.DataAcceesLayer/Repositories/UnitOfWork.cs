@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using TravelingBlog.DataAcceesLayer.Contracts;
 using TravelingBlog.DataAcceesLayer.Data;
 using TravelingBlog.DataAcceesLayer.Repositories.Contracts;
 
@@ -17,7 +17,7 @@ namespace TravelingBlog.DataAcceesLayer.Repositories
             this.Context = context;
         }
 
-        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
+        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class, IEntity
         {
             if (repositories == null)
             {
@@ -35,9 +35,9 @@ namespace TravelingBlog.DataAcceesLayer.Repositories
         }
 
 
-        public async Task CompleteAsync()
+        public void Complete()
         {
-            await this.Context.SaveChangesAsync();
+            this.Context.SaveChanges();
         }
 
         private bool disposed = false;

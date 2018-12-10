@@ -5,13 +5,12 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.BusinessLogicLayer.Helpers;
+using TravelingBlog.BusinessLogicLayer.Models;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.Auth;
 using TravelingBlog.BusinessLogicLayer.ViewModels;
-using TravelingBlog.DataAcceesLayer.Models;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
-using TravelingBlog.Models;
+using TravelingBlog.DataAcceesLayer.Repositories.Contracts;
 
 namespace TravelingBlog.Controllers
 {
@@ -71,8 +70,8 @@ namespace TravelingBlog.Controllers
 
                 if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
-                unitOfWork.Users.Add(new UserInfo { IdentityId = appUser.Id, FirstName = userInfo.FirstName, LastName = userInfo.LastName });
-                await unitOfWork.CompleteAsync();
+                unitOfWork.GetRepository<UserInfo>().Add(new UserInfo { IdentityId = appUser.Id, FirstName = userInfo.FirstName, LastName = userInfo.LastName });
+                unitOfWork.Complete();
             }
 
             // generate the jwt for the local user...

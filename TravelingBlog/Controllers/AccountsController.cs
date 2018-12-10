@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.BusinessLogicLayer.Helpers;
 using TravelingBlog.BusinessLogicLayer.ViewModels;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
+using TravelingBlog.DataAcceesLayer.Repositories.Contracts;
 
 namespace TravelingBlog.Controllers
 {
@@ -39,8 +39,8 @@ namespace TravelingBlog.Controllers
             if (!result.Succeeded)
                 return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
-            unitOfWork.Users.Add(new UserInfo { IdentityId = userIdentity.Id, FirstName=model.FirstName, LastName=model.LastName });
-            await unitOfWork.CompleteAsync();
+            unitOfWork.GetRepository<UserInfo>().Add(new UserInfo { IdentityId = userIdentity.Id, FirstName=model.FirstName, LastName=model.LastName });
+            unitOfWork.Complete();
 
             return new OkObjectResult("Account created");
         }

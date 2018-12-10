@@ -11,7 +11,7 @@ namespace TravelingBlog.DataAcceesLayer.Configurations
             builder.HasKey(p => p.Id).HasName("pk_constraint_trip");
             builder.Property(p => p.Id).HasColumnName("id");
             //builder.HasAlternateKey(p => p.Name).HasName("uq_constraint_trip");
-            builder.Property(p => p.Name).HasColumnName("postname");
+            builder.Property(p => p.Name).IsRequired().HasColumnName("postname");
             builder.Property(p => p.Description).HasColumnName("description");
             builder.Property(p => p.IsDone).IsRequired().HasColumnName("isDone");
             builder.HasOne(p => p.UserInfo).WithMany(u => u.Trips).HasForeignKey(p => p.UserInfoId).

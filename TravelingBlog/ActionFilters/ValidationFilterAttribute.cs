@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Linq;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
-using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.ActionFilters
 {
@@ -17,14 +15,6 @@ namespace TravelingBlog.ActionFilters
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            var param = context.ActionArguments.SingleOrDefault(p => p.Value is IEntity);
-            if (param.Value == null)
-            {
-                logger.LogError("Object is null");
-                context.Result = new BadRequestObjectResult("Object is null");
-                return;
-            }
-
             if (!context.ModelState.IsValid)
             {
                 logger.LogError("Object is invalid");

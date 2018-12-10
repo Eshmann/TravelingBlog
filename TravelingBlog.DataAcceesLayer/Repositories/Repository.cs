@@ -1,17 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
+using TravelingBlog.DataAcceesLayer.Contracts;
 using TravelingBlog.DataAcceesLayer.Data;
 using TravelingBlog.DataAcceesLayer.Repositories.Contracts;
 
 namespace TravelingBlog.DataAcceesLayer.Repositories
 {
-    // TODO: move "async/await" from Repository to Service? 
-
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
         private readonly ApplicationDbContext Context;
 
@@ -20,19 +17,24 @@ namespace TravelingBlog.DataAcceesLayer.Repositories
             this.Context = context;
         }
 
-        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate)
+        public TEntity Get(int id)
         {
-            return await Context.Set<TEntity>().Where(predicate).ToListAsync();
+            return Context.Set<TEntity>().Where(e => e.Id == id).SingleOrDefault();
         }
 
-        public async Task<IEnumerable<TEntity>> FindAllAsync()
+        public IQueryable<TEntity> GetAll()
         {
-            return await Context.Set<TEntity>().ToListAsync();
+            return Context.Set<TEntity>();
         }
 
-        public async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
+        public IQueryable<TEntity> FindAll(Expression<Func<TEntity, bool>> predicate)
         {
-            return await Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
+            return Context.Set<TEntity>().Where(predicate);
+        }
+
+        public TEntity Find(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Context.Set<TEntity>().SingleOrDefault(predicate);
         }
 
         public bool Contains(TEntity entity)
