@@ -13,3 +13,5 @@
 5.3 "Update-Database".
 6. Rebuild Solution.
 7. Run it.
+8.If animations don't work 
+8.1.npm install animate.css --save 

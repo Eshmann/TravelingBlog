@@ -1,18 +1,17 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using TravelingBlog.Auth;
-using TravelingBlog.DataAcceesLayer.Data;
-using TravelingBlog.Helpers;
-using TravelingBlog.Models;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
-using TravelingBlog.BusinessLogicLayer.ViewModels;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using TravelingBlog.DataAcceesLayer.Models;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.Contracts;
+using TravelingBlog.BusinessLogicLayer.Helpers;
+using TravelingBlog.BusinessLogicLayer.Services.Auth;
+using TravelingBlog.BusinessLogicLayer.ViewModels;
+using TravelingBlog.DataAcceesLayer.Models;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
+using TravelingBlog.Models;
 
 namespace TravelingBlog.Controllers
 {
@@ -54,6 +53,11 @@ namespace TravelingBlog.Controllers
             // 3. we've got a valid token so we can request user data from fb
             var userInfoResponse = await Client.GetStringAsync($"https://graph.facebook.com/v2.8/me?fields=id,email,first_name,last_name,name,gender,locale,birthday,picture&access_token={model.AccessToken}");
             var userInfo = JsonConvert.DeserializeObject<FacebookUserData>(userInfoResponse);
+
+            if(userInfo.Email==null)
+            {
+                userInfo.Email = "FbUser" + userInfo.Id + "@travelingblog.azurewebsites.net";
+            }
 
             // 4. ready to create the local user account (if necessary) and jwt
             var user = await userManager.FindByEmailAsync(userInfo.Email);

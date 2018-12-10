@@ -1,11 +1,11 @@
-﻿using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
-using System.Linq;
-using System.Collections.Generic;
-using TravelingBlog.DataAcceesLayer.Data;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
+using TravelingBlog.DataAcceesLayer.Data;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {

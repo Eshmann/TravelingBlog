@@ -1,20 +1,24 @@
-<form #f="ngForm" novalidate (ngSubmit)="login(f)">
+<form #f="ngForm" novalidate (ngSubmit)="login(f)" class="animated fadeInLeftBig">
   <div class="container">
     <div *ngIf="brandNew" class="alert alert-success" role="alert">
       <strong>All set!</strong> Please signin with your account
     </div>
   <h1>S I G N</h1>
-  
-    <label for="email">Email</label>
-    <input id="email" type="text" required name="email" class="form-control" placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
-    <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
-
+  <div class="alert">
+    <strong [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">*Please enter a valid email</strong>
+  </div>
+       <label for="email">Email</label>
+       <input  type="text" required name="email" class="form-control" placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
     <label for="password">Password</label>
     <input type="password" class="form-control" id="password" required name="password" placeholder="Password" ngModel>
 
     <p>
-      <button type="submit" class="btn btn-primary" [disabled]="f.invalid || isRequesting">S I G N - I N</button> 
+      <button type="submit" class="btn btn-primary" [disabled]="f.invalid || isRequesting">S I G N - I N</button>
+      <br>
+      <br>  
       OR 
+      <br>
+      <br> 
       <button type="button" class="btn btn-primary" routerLink="/register">
         S I G N - U P
       </button> 

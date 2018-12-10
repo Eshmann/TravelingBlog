@@ -1,5 +1,5 @@
-﻿using TravelingBlog.BusinessLogicLayer.ViewModels.Validations;
-using FluentValidation.Attributes;
+﻿using FluentValidation.Attributes;
+using TravelingBlog.BusinessLogicLayer.Services.Validations;
 
 namespace TravelingBlog.BusinessLogicLayer.ViewModels
 {

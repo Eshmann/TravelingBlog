@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/modules/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
 
 import { routing } from './edit.routing';
 

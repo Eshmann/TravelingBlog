@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using System.Linq;
-using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
+using TravelingBlog.BusinessLogicLayer.ViewModels;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 
-namespace TravelingBlog.BusinessLogicLayer.ViewModels.Mappings
+namespace TravelingBlog.BusinessLogicLayer.Services.Mappings
 {
     public class ApplicationProfile : Profile
     {

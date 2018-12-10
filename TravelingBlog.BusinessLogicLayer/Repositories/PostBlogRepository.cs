@@ -1,12 +1,9 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
-using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
-using System.Collections.Generic;
-using TravelingBlog.BusinessLogicLayer.Repositories;
-using TravelingBlog.DataAcceesLayer.Data;
 using System.Threading.Tasks;
+using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
+using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {

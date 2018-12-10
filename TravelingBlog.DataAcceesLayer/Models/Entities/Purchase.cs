@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.DataAcceesLayer.Models.Entities
 {
     [Table("Purchase")]
-    public class Purchase
+    public class Purchase : IEntity
     {
         public int Id { get; set; }
         public string Description { get; set; }

@@ -1,20 +1,27 @@
 form{
   font-family: Arial, Helvetica, sans-serif;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 73px;
+  margin-bottom: 3px;
   color: #f1f1f1;
   // background-color: rgba(10, 4, 15, 0.555) 
 }
 .container {
-  padding: 30px;
-  width: 65%;
+  padding: 15px;
+  width: 100%;
 
 }
 div {
   border-radius: 15px;
   background-color: #31312f;
   // border: 8px solid #371966;
-  padding: 20px;
+  padding: 0px;
+}
+div.alert{
+  margin-bottom: 0px;
+}
+.text-danger{
+  font-size: 100%;
+  color: #dc3545!important;
 }
 hr {
   border: 1px solid #f1f1f1;

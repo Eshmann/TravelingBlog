@@ -1,18 +1,19 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using TravelingBlog.BusinessLogicLayer.Contracts;
+using TravelingBlog.BusinessLogicLayer.Services.LoggerService;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using TravelingBlog.BusinessLogicLayer.ViewModels.TripViewModels;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.Controllers
-{    
+{
     [Route("api/trip")]
     [Authorize]
     public class TripController : Controller
@@ -213,11 +214,22 @@ namespace TravelingBlog.Controllers
         { 
             
             var userId = caller.Claims.Single(c => c.Type == "id");
-            var user = await unitOfWork.Users.GetUserByIdentityId(userId.Value);
 
             var trips = await unitOfWork.Trips.GetUserTripsAsync(userId.Value);       
               
             
+            return Ok(trips);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("mytrips/{id}")]
+        public async Task<IActionResult> GetUserTripsAsync(int id)
+        {
+            var user = await unitOfWork.Users.GetUserByIdAsync(id);
+            
+            var trips = await unitOfWork.Trips.GetUserTripsAsync(user.IdentityId);
+
+
             return Ok(trips);
         }
 

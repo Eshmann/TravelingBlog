@@ -1,29 +1,28 @@
-using System;
-using System.Net;
-using System.Text;
-using TravelingBlog.Auth;
-using TravelingBlog.DataAcceesLayer.Data;
-using TravelingBlog.Extensions;
-using TravelingBlog.Helpers;
-using TravelingBlog.DataAcceesLayer.Models;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
-using System.IO;
-using TravelingBlog.Models;
 using NLog;
-using Microsoft.AspNetCore.HttpOverrides;
+using System;
+using System.IO;
+using System.Net;
+using System.Text;
+using TravelingBlog.ActionFilters;
+using TravelingBlog.BusinessLogicLayer.Helpers;
+using TravelingBlog.BusinessLogicLayer.Services.Auth;
+using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.DataAcceesLayer.Models;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
+using TravelingBlog.Extensions;
+using TravelingBlog.Models;
 
 namespace TravelingBlog
 {
@@ -49,6 +48,9 @@ namespace TravelingBlog
             services.ConfigureSqlContext(Configuration);
             services.ConfigureUnitOfWork();
             services.ConfigureAutoMapper();
+
+            // Add validation attribute service.
+            services.AddScoped<ValidationFilterAttribute>();
 
             // Add framework services.
             services.AddSingleton<IJwtFactory, JwtFactory>();
@@ -123,23 +125,23 @@ namespace TravelingBlog
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseExceptionHandler(
-                builder =>
-                {
-                    builder.Run(
-                        async context =>
-                            {
-                                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                                context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            //app.UseExceptionHandler(
+            //    builder =>
+            //    {
+            //        builder.Run(
+            //            async context =>
+            //                {
+            //                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            //                    context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
 
-                                var error = context.Features.Get<IExceptionHandlerFeature>();
-                                if (error != null)
-                                {
-                                    context.Response.AddApplicationError(error.Error.Message);
-                                    await context.Response.WriteAsync(error.Error.Message).ConfigureAwait(false);
-                                }
-                            });
-                });
+            //                    var error = context.Features.Get<IExceptionHandlerFeature>();
+            //                    if (error != null)
+            //                    {
+            //                        context.Response.AddApplicationError(error.Error.Message);
+            //                        await context.Response.WriteAsync(error.Error.Message).ConfigureAwait(false);
+            //                    }
+            //                });
+            //    });
 
             app.UseAuthentication();
             app.UseDefaultFiles();
@@ -166,6 +168,7 @@ namespace TravelingBlog
             });*/
 
             // app.UseStaticFiles() enables using static files for the request.
+
             app.UseStaticFiles();
 
             app.UseMvc();

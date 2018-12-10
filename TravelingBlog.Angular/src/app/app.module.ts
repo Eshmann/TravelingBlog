@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, XHRBackend } from '@angular/http';
 import { AuthenticateXHRBackend } from './authenticate-xhr.backend';
@@ -17,6 +17,7 @@ import { AccountModule } from './account/account.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 /*Edit Imports */
 import { EditModule } from './edit/edit.module';
+import { UserInfoModule } from './userinfo/userinfo.module';
 
 import { ConfigService } from './shared/utils/config.service';
 import { FooterComponent } from './footer/footer.component';
@@ -26,12 +27,13 @@ import { FooterComponent } from './footer/footer.component';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     AccountModule,
     DashboardModule,
     EditModule,
+    UserInfoModule,
     BrowserModule,
     FormsModule,
     HttpModule,

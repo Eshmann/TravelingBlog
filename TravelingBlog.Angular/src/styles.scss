@@ -6,7 +6,7 @@
 
 /* Move down content because we have a fixed navbar that is 3.5rem tall */
 body {
-  padding-top: 3.5rem;
+  padding-top: 0rem;
 }
 
 /*
@@ -16,5 +16,5 @@ body {
 h1 {
   padding-bottom: 9px;
   margin-bottom: 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgb(236, 12, 12);
 }

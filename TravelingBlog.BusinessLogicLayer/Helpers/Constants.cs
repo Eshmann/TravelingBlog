@@ -1,4 +1,4 @@
-﻿namespace TravelingBlog.Helpers
+﻿namespace TravelingBlog.BusinessLogicLayer.Helpers
 {
     public static class Constants
     {

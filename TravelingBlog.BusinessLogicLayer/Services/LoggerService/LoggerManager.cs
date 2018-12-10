@@ -1,7 +1,6 @@
-﻿using TravelingBlog.BusinessLogicLayer.Contracts;
-using NLog;
+﻿using NLog;
 
-namespace LoggerService
+namespace TravelingBlog.BusinessLogicLayer.Services.LoggerService
 {
     public class LoggerManager : ILoggerManager
     {

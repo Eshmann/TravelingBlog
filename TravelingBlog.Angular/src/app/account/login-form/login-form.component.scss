@@ -1,20 +1,35 @@
 .new-user-alert {
-  padding-top: 2.5rem
+  padding-top: 0px;
+}
+.text-danger {
+  color: #dc3545!important;
+  font-size: 100%;
 }
 form{
   font-family: Arial, Helvetica, sans-serif;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 74px;
+  margin-bottom: 45px;
   color: #f1f1f1;
   // background-color: rgba(10, 4, 15, 0.555) 
 }
+.div.container{
+  margin: 68px;
+  padding: 150px;
+  width: 600px;
+}
 .container {
-  padding: 30px;
-  width: 35%;
+  padding: 70px;
+  width: 100%;
+}
+label{
+  display: inline-block;
+  margin-top: 3px;
+  margin-bottom: 10px;
 }
 div {
+  margin-bottom: 0px;
   border-radius: 15px;
-  background-color: #31312f;
+  background-color:#212529;
   // border: 8px solid #371966;
   padding: 20px;
 }
@@ -22,28 +37,60 @@ hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 15px;
 }
-input[type=text], input[type=password], select {
+input[type=text], select {
+  font-size: 20px;
   width: 100%;
-  padding: 12px 20px;
+  padding: 0.25em;
   margin: 0px 0px 8px 0px;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
 }
+input[type=password], {
+  font-size: 20px;
+  width: 100%;
+  padding: 0.25em;
+  border: 2px solid #999;
+  /* 2 animations: shake, and glow red */
+  animation-name: shake, glow-red;
+  animation-duration: 0.7s, 0.35s;
+  animation-iteration-count: 1, 2;
+  @keyframes shake {
+    0%, 20%, 40%, 60%, 80% {
+      transform: translateX(8px);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: translateX(-8px);
+    }
+  }
+  
+  @keyframes glow-red {
+    50% {
+      border-color: indianred;
+    }
+  }
+}
 h1{
+  color:#f1f1f1;
+  width: auto;
   text-align: center;
+  margin-bottom: 0px;
 }
 p{
-  margin-bottom: 5px;
-  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-top: 20px;
   text-align: center;
 }
 button[type = button]{
-  //width: 40%;
-  margin-left: 9.5px;
+
+  margin-left: auto;
 }
 button[type = submit]{
-  //width: 40%;
-  margin-right: 9.5px
+  margin-right: auto;
 }
+

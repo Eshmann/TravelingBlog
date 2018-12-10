@@ -30,7 +30,6 @@
   <ItemGroup>
     <ProjectReference Include="..\TravelingBlog.BusinessLogicLayer\TravelingBlog.BusinessLogicLayer.csproj" />
     <ProjectReference Include="..\TravelingBlog.DataAcceesLayer\TravelingBlog.DataAcceesLayer.csproj" />
-    <ProjectReference Include="..\TravelingBlog.LoggerService\TravelingBlog.LoggerService.csproj" />
   </ItemGroup>
 
 </Project>

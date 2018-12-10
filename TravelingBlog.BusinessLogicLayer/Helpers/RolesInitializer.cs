@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
-using TravelingBlog.BusinessLogicLayer.ViewModels;
 
-namespace TravelingBlog.Helpers
+namespace TravelingBlog.BusinessLogicLayer.Helpers
 {
     public class RolesInitializer
     {
