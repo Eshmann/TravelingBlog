@@ -20,13 +20,14 @@ import { EditModule } from './edit/edit.module';
 
 import { ConfigService } from './shared/utils/config.service';
 import { FooterComponent } from './footer/footer.component';
+import { SearchModule } from './search/search.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     AccountModule,
@@ -35,6 +36,7 @@ import { FooterComponent } from './footer/footer.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    SearchModule,
     routing
   ],
   providers: [ConfigService, {

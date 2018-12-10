@@ -43,16 +43,17 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
             return ApplicationDbContext.Trips.Include(t => t.PostBlogs).SingleOrDefault(t => t.Id == id);
         }
 
-        public IQueryable<Trip> SearchTrips(Search searchQuery)
+        public IList<Trip> SearchTrips(Search searchQuery, out int total)
         {
             var word = searchQuery.SearchQuery;
             var result = ApplicationDbContext
                 .Trips.Where(x => x.Name.ToLower().Contains(word)
-                || x.Description.ToLower().Contains(word))
-                .Skip(searchQuery.PageSize * (searchQuery.PageNumber - 1))
-                .Take(searchQuery.PageSize);
+                                  || x.Description.ToLower().Contains(word));
+            total = result.Count();
+            var skip = result.Skip(searchQuery.PageSize * (searchQuery.PageNumber - 1))
+             .Take(searchQuery.PageSize);
 
-            return result;
+            return skip.ToList();
         }
         public async Task<IEnumerable<TripDetail>> GetUserTripsAsync(string id)
         {
@@ -67,13 +68,15 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
             return trips;
         }
 
-
-        public IList<Trip> FilterTripsByCountry(Filter filter)
+        public IList<Trip> FilterTripsByCountry(Filter filter, out int total)
         {
-            return ApplicationDbContext.Trips.Where(i => i.CountryTrips
-                .Any(x => x.Country.Id == filter.Id))
-                .Skip(filter.PageSize * (filter.PageNumber - 1))
-                .Take(filter.PageSize).ToList();
+            var query = ApplicationDbContext.Trips.Where(i => i.CountryTrips
+                .Any(x => x.Country.Id == filter.Id));
+            total = query.Count();
+            var result = query.Skip(filter.PageSize * (filter.PageNumber - 1))
+               .Take(filter.PageSize)
+                .ToList();
+            return result.ToList();
         }
     }
 }

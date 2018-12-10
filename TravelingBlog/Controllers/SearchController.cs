@@ -33,15 +33,15 @@ namespace TravelingBlog.Controllers
         {
             try
             {
-                var result = UnitOfWork.Trips.SearchTrips(search);
+                var result = UnitOfWork.Trips.SearchTrips(search, out var total);
                 Logger.LogInfo("Search success");
                 if (result == null)
                 {
-                    var noresult = UnitOfWork.Trips.GetAllTripsAsync(search, out var total);
+                    var noresult = UnitOfWork.Trips.GetAllTripsAsync(search, out var h);
                     Logger.LogInfo("Bad search line");
                     return Ok(noresult);
                 }
-                return Ok(result);
+                return Ok(new { Total = total,Result = result });
             }
             catch (Exception e)
             {
@@ -57,9 +57,9 @@ namespace TravelingBlog.Controllers
         {
             try
             {
-                var result = UnitOfWork.Trips.FilterTripsByCountry(filter);
+                var result = UnitOfWork.Trips.FilterTripsByCountry(filter, out var total);
                 Logger.LogInfo("Filter");
-                return Ok(result);
+                return Ok(new { Total = total, Result = result });
             }
             catch (Exception e)
             {
