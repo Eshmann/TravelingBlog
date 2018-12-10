@@ -11,6 +11,7 @@ namespace TravelingBlog.BusinessLogicLayer.Contracts
         IPostBlogRepository PostBlogs { get; }
         ICountryRepository Countries { get; }
         ITagRepository Tags { get; }
+        IImageRepository Images { get; }
 
         Task CompleteAsync();
     }

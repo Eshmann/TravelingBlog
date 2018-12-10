@@ -17,7 +17,7 @@ namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
         IEnumerable<TEntity> Include(params Expression<Func<TEntity, object>>[] includes);
 
         #region CRUD operation
-        void Add(TEntity entity);
+        int Add(TEntity entity);
 
         void AddRange(IEnumerable<TEntity> entities);
 

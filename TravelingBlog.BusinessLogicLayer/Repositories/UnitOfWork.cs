@@ -15,6 +15,8 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         private IPostBlogRepository postBlogs;
         private ICountryRepository countries;
         private ITagRepository tags;
+        private IImageRepository images;
+        
 
         public UnitOfWork(ApplicationDbContext ApplicationDbContext)
         {
@@ -30,6 +32,17 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
                     this.users = new UserRepository(ApplicationDbContext);
                 }
                 return users;
+            }
+        }
+        public IImageRepository Images
+        {
+            get
+            {
+                if (this.images == null)
+                {
+                    this.images = new ImageRepository(ApplicationDbContext);
+                }
+                return images;
             }
         }
 
