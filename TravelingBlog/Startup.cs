@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 using System.Text;
 using TravelingBlog.Auth;
 using TravelingBlog.DataAcceesLayer.Data;
@@ -9,13 +8,10 @@ using TravelingBlog.DataAcceesLayer.Models;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -25,7 +21,7 @@ using TravelingBlog.Models;
 using NLog;
 using Microsoft.AspNetCore.HttpOverrides;
 using TravelingBlog.ActionFilters;
-using Fiver.Azure.Blob;
+using TravelingBlog.Helpers.AzureStorage;
 
 namespace TravelingBlog
 {
@@ -51,13 +47,7 @@ namespace TravelingBlog
             services.ConfigureSqlContext(Configuration);
             services.ConfigureUnitOfWork();
             services.ConfigureAutoMapper();
-            //services.AddScoped<IAzureBlobStorage>(factory =>
-            //{
-                //return new AzureBlobStorage(new AzureBlobSetings(
-                    //storageAccount: Configuration["Blob_StorageAccount"],
-                    //storageKey: Configuration["Blob_StorageKey"],
-                    //containerName: Configuration["Blob_ContainerName"]));
-          //  });
+            services.AddScoped<IAzureBlob, AzureBlob>();
             // Add validation attribute service.
             services.AddScoped<ValidationFilterAttribute>();
 

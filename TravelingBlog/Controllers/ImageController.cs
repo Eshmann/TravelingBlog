@@ -18,14 +18,15 @@ namespace Fiver.Azure.Blob.Client.Controllers
         private readonly IConfiguration _configuration;
         private readonly ClaimsPrincipal caller;
         readonly IUnitOfWork unitOfWork;
-        public readonly IAzureBlob azureBlob;
+        public IAzureBlob azureBlob;
         private string AzureConnectionString { get; }
-        public ImageController(IConfiguration configuration, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor)
+        public ImageController(IConfiguration configuration, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor, IAzureBlob azureBlob)
         {
             caller = httpContextAccessor.HttpContext.User;
             _configuration = configuration;
             AzureConnectionString = _configuration.GetConnectionString("StorageConnectionString");
             this.unitOfWork = unitOfWork;
+            this.azureBlob = azureBlob;
         }
 
         [HttpPost]
@@ -38,7 +39,7 @@ namespace Fiver.Azure.Blob.Client.Controllers
             if (!azureBlob.CheckFile(files))
                 return BadRequest("eroor");
 
-            foreach(var formFile in files)
+            foreach (var formFile in files)
             {
                 if(formFile.Length <= 0)
                 {
