@@ -1,4 +1,6 @@
-﻿namespace TravelingBlog.BusinessLogicLayer.ViewModels.DTO
+﻿using TravelingBlog.DataAcceesLayer.Models.Entities;
+
+namespace TravelingBlog.BusinessLogicLayer.ViewModels.DTO
 {
     public class RatingDTO
     {

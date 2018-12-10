@@ -689,7 +689,7 @@ module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.5.7' };
+var core = module.exports = { version: '2.6.0' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -6031,7 +6031,7 @@ var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forCh
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  <div class=\"col\" style=\"text-align:center\">\r\n    <a *ngIf=\"!isRequesting\" href=\"javascript:void(0)\" (click)=\"launchFbLogin()\"> <img class=\"img-fluid\" src=\"/assets/facebook-login.png\" /></a>\r\n    <app-spinner [isRunning]=\"isRequesting\"></app-spinner>\r\n    <div *ngIf=\"failed\" class=\"alert alert-danger\" role=\"alert\">\r\n      <p><strong>Oops!</strong> Your facebook login failed.</p>\r\n      <ul>\r\n        <li>Error: {{error}}</li>\r\n        <li>Description: {{errorDescription}}</li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n\r\n"
+module.exports = "  <div class=\"col\" style=\"text-align:center\">\n    <a *ngIf=\"!isRequesting\" href=\"javascript:void(0)\" (click)=\"launchFbLogin()\"> <img class=\"img-fluid\" src=\"/assets/facebook-login.png\" /></a>\n    <app-spinner [isRunning]=\"isRequesting\"></app-spinner>\n    <div *ngIf=\"failed\" class=\"alert alert-danger\" role=\"alert\">\n      <p><strong>Oops!</strong> Your facebook login failed.</p>\n      <ul>\n        <li>Error: {{error}}</li>\n        <li>Description: {{errorDescription}}</li>\n      </ul>\n    </div>\n  </div>\n\n"
 
 /***/ }),
 
@@ -6084,13 +6084,13 @@ var FacebookLoginComponent = (function () {
     }
     FacebookLoginComponent.prototype.launchFbLogin = function () {
         // tslint:disable-next-line:max-line-length
-        this.authWindow = window.open('https://www.facebook.com/v2.11/dialog/oauth?&response_type=token&display=popup&client_id=312472109343376&display=popup&redirect_uri=https://trvlblg.azurewebsites.net/facebook-auth.html&scope=email', null, 'width=600,height=400');
+        this.authWindow = window.open('https://www.facebook.com/v2.11/dialog/oauth?&response_type=token&display=popup&client_id=312472109343376&display=popup&redirect_uri=http://travelingblog.azurewebsites.net/facebook-auth.html&scope=email', null, 'width=600,height=400');
     };
     FacebookLoginComponent.prototype.handleMessage = function (event) {
         var _this = this;
         var message = event;
         // Only trust messages from the below origin.
-        if (message.origin !== 'https://trvlblg.azurewebsites.net')
+        if (message.origin !== 'http://travelingblog.azurewebsites.net')
             return;
         this.authWindow.close();
         var result = JSON.parse(message.data);
@@ -6136,7 +6136,7 @@ var FacebookLoginComponent = (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form #f=\"ngForm\" novalidate (ngSubmit)=\"login(f)\" class=\"animated fadeInLeftBig\">\r\n  <div class=\"container\">\r\n    <div *ngIf=\"brandNew\" class=\"alert alert-success\" role=\"alert\">\r\n      <strong>All set!</strong> Please signin with your account\r\n    </div>\r\n  <h1>S I G N</h1>\r\n  <div class=\"alert\">\r\n    <strong [hidden]=\"email.valid || (email.pristine && !submitted)\" class=\"text-danger\">*Please enter a valid email</strong>\r\n  </div>\r\n       <label for=\"email\">Email</label>\r\n       <input  type=\"text\" required name=\"email\" class=\"form-control\" placeholder=\"Email\" [ngModel]=\"credentials.email\" #email=\"ngModel\" tmFocus validateEmail>\r\n    <label for=\"password\">Password</label>\r\n    <input type=\"password\" class=\"form-control\" id=\"password\" required name=\"password\" placeholder=\"Password\" ngModel>\r\n\r\n    <p>\r\n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"f.invalid || isRequesting\">S I G N - I N</button>\r\n      <br>\r\n      <br>  \r\n      OR \r\n      <br>\r\n      <br> \r\n      <button type=\"button\" class=\"btn btn-primary\" routerLink=\"/register\">\r\n        S I G N - U P\r\n      </button> \r\n    </p>\r\n    <p>\r\n    </p>\r\n    \r\n    <app-spinner [isRunning]=\"isRequesting\"></app-spinner>\r\n        \r\n    <hr>\r\n      <app-facebook-login></app-facebook-login>\r\n    <div *ngIf=\"errors\" class=\"alert alert-danger\" role=\"alert\">\r\n      <strong>Oops!</strong> {{errors}}\r\n    </div>\r\n  </div>\r\n</form>\r\n\r\n\r\n"
+module.exports = "<form #f=\"ngForm\" novalidate (ngSubmit)=\"login(f)\" class=\"animated fadeInLeftBig\">\n  <div class=\"container\">\n    <div *ngIf=\"brandNew\" class=\"alert alert-success\" role=\"alert\">\n      <strong>All set!</strong> Please signin with your account\n    </div>\n  <h1>S I G N</h1>\n  <div class=\"alert\">\n    <strong [hidden]=\"email.valid || (email.pristine && !submitted)\" class=\"text-danger\">*Please enter a valid email</strong>\n  </div>\n       <label for=\"email\">Email</label>\n       <input  type=\"text\" required name=\"email\" class=\"form-control\" placeholder=\"Email\" [ngModel]=\"credentials.email\" #email=\"ngModel\" tmFocus validateEmail>\n    <label for=\"password\">Password</label>\n    <input type=\"password\" class=\"form-control\" id=\"password\" required name=\"password\" placeholder=\"Password\" ngModel>\n\n    <p>\n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"f.invalid || isRequesting\">S I G N - I N</button>\n      <br>\n      <br>  \n      OR \n      <br>\n      <br> \n      <button type=\"button\" class=\"btn btn-primary\" routerLink=\"/register\">\n        S I G N - U P\n      </button> \n    </p>\n    <p>\n    </p>\n    \n    <app-spinner [isRunning]=\"isRequesting\"></app-spinner>\n        \n    <hr>\n      <app-facebook-login></app-facebook-login>\n    <div *ngIf=\"errors\" class=\"alert alert-danger\" role=\"alert\">\n      <strong>Oops!</strong> {{errors}}\n    </div>\n  </div>\n</form>\n\n\n"
 
 /***/ }),
 
@@ -6147,7 +6147,7 @@ module.exports = "<form #f=\"ngForm\" novalidate (ngSubmit)=\"login(f)\" class=\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".new-user-alert {\n  padding-top: 0px; }\n\n.text-danger {\n  color: #dc3545 !important;\n  font-size: 100%; }\n\nform {\n  font-family: Arial, Helvetica, sans-serif;\n  margin-top: 74px;\n  margin-bottom: 45px;\n  color: #f1f1f1; }\n\n.div.container {\n  margin: 68px;\n  padding: 150px;\n  width: 600px; }\n\n.container {\n  padding: 70px;\n  width: 100%; }\n\nlabel {\n  display: inline-block;\n  margin-top: 3px;\n  margin-bottom: 10px; }\n\ndiv {\n  margin-bottom: 0px;\n  border-radius: 15px;\n  background-color: #212529;\n  padding: 20px; }\n\nhr {\n  border: 1px solid #f1f1f1;\n  margin-bottom: 15px; }\n\ninput[type=text], select {\n  font-size: 20px;\n  width: 100%;\n  padding: 0.25em;\n  margin: 0px 0px 8px 0px;\n  display: inline-block;\n  border: 2px solid #ccc;\n  border-radius: 4px;\n  box-sizing: border-box; }\n\ninput[type=password] {\n  font-size: 20px;\n  width: 100%;\n  padding: 0.25em;\n  border: 2px solid #999;\n  /* 2 animations: shake, and glow red */\n  -webkit-animation-name: shake, glow-red;\n          animation-name: shake, glow-red;\n  -webkit-animation-duration: 0.7s, 0.35s;\n          animation-duration: 0.7s, 0.35s;\n  -webkit-animation-iteration-count: 1, 2;\n          animation-iteration-count: 1, 2; }\n\n@-webkit-keyframes shake {\n  0%, 20%, 40%, 60%, 80% {\n    -webkit-transform: translateX(8px);\n            transform: translateX(8px); }\n  10%,\n  30%,\n  50%,\n  70%,\n  90% {\n    -webkit-transform: translateX(-8px);\n            transform: translateX(-8px); } }\n\n@keyframes shake {\n  0%, 20%, 40%, 60%, 80% {\n    -webkit-transform: translateX(8px);\n            transform: translateX(8px); }\n  10%,\n  30%,\n  50%,\n  70%,\n  90% {\n    -webkit-transform: translateX(-8px);\n            transform: translateX(-8px); } }\n\n@-webkit-keyframes glow-red {\n  50% {\n    border-color: indianred; } }\n\n@keyframes glow-red {\n  50% {\n    border-color: indianred; } }\n\nh1 {\n  color: #f1f1f1;\n  width: auto;\n  text-align: center;\n  margin-bottom: 0px; }\n\np {\n  margin-bottom: 15px;\n  margin-top: 20px;\n  text-align: center; }\n\nbutton[type=button] {\n  margin-left: auto; }\n\nbutton[type=submit] {\n  margin-right: auto; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWNjb3VudC9sb2dpbi1mb3JtL0U6XFxHaXRIdWJcXFRyYXZlbGluZ0Jsb2dcXFRyYXZlbGluZ0Jsb2cuQW5ndWxhci9zcmNcXGFwcFxcYWNjb3VudFxcbG9naW4tZm9ybVxcbG9naW4tZm9ybS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGlCQUFnQixFQUNqQjs7QUFDRDtFQUNFLDBCQUF3QjtFQUN4QixnQkFBZSxFQUNoQjs7QUFDRDtFQUNFLDBDQUF5QztFQUN6QyxpQkFBZ0I7RUFDaEIsb0JBQW1CO0VBQ25CLGVBQWMsRUFFZjs7QUFDRDtFQUNFLGFBQVk7RUFDWixlQUFjO0VBQ2QsYUFBWSxFQUNiOztBQUNEO0VBQ0UsY0FBYTtFQUNiLFlBQVcsRUFDWjs7QUFDRDtFQUNFLHNCQUFxQjtFQUNyQixnQkFBZTtFQUNmLG9CQUFtQixFQUNwQjs7QUFDRDtFQUNFLG1CQUFrQjtFQUNsQixvQkFBbUI7RUFDbkIsMEJBQXdCO0VBRXhCLGNBQWEsRUFDZDs7QUFDRDtFQUNFLDBCQUF5QjtFQUN6QixvQkFBbUIsRUFDcEI7O0FBQ0Q7RUFDRSxnQkFBZTtFQUNmLFlBQVc7RUFDWCxnQkFBZTtFQUNmLHdCQUF1QjtFQUN2QixzQkFBcUI7RUFDckIsdUJBQXNCO0VBQ3RCLG1CQUFrQjtFQUNsQix1QkFBc0IsRUFDdkI7O0FBQ0Q7RUFDRSxnQkFBZTtFQUNmLFlBQVc7RUFDWCxnQkFBZTtFQUNmLHVCQUFzQjtFQUN0Qix1Q0FBdUM7RUFDdkMsd0NBQStCO1VBQS9CLGdDQUErQjtFQUMvQix3Q0FBK0I7VUFBL0IsZ0NBQStCO0VBQy9CLHdDQUErQjtVQUEvQixnQ0FBK0IsRUFtQmhDOztBQWxCQztFQUNFO0lBQ0UsbUNBQTBCO1lBQTFCLDJCQUEwQixFQUFBO0VBRTVCOzs7OztJQUtFLG9DQUEyQjtZQUEzQiw0QkFBMkIsRUFBQSxFQUFBOztBQVQvQjtFQUNFO0lBQ0UsbUNBQTBCO1lBQTFCLDJCQUEwQixFQUFBO0VBRTVCOzs7OztJQUtFLG9DQUEyQjtZQUEzQiw0QkFBMkIsRUFBQSxFQUFBOztBQUkvQjtFQUNFO0lBQ0Usd0JBQXVCLEVBQUEsRUFBQTs7QUFGM0I7RUFDRTtJQUNFLHdCQUF1QixFQUFBLEVBQUE7O0FBSTdCO0VBQ0UsZUFBYTtFQUNiLFlBQVc7RUFDWCxtQkFBa0I7RUFDbEIsbUJBQWtCLEVBQ25COztBQUNEO0VBQ0Usb0JBQW1CO0VBQ25CLGlCQUFnQjtFQUNoQixtQkFBa0IsRUFDbkI7O0FBQ0Q7RUFFRSxrQkFBaUIsRUFDbEI7O0FBQ0Q7RUFDRSxtQkFBa0IsRUFDbkIiLCJmaWxlIjoic3JjL2FwcC9hY2NvdW50L2xvZ2luLWZvcm0vbG9naW4tZm9ybS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5uZXctdXNlci1hbGVydCB7XHJcbiAgcGFkZGluZy10b3A6IDBweDtcclxufVxyXG4udGV4dC1kYW5nZXIge1xyXG4gIGNvbG9yOiAjZGMzNTQ1IWltcG9ydGFudDtcclxuICBmb250LXNpemU6IDEwMCU7XHJcbn1cclxuZm9ybXtcclxuICBmb250LWZhbWlseTogQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjtcclxuICBtYXJnaW4tdG9wOiA3NHB4O1xyXG4gIG1hcmdpbi1ib3R0b206IDQ1cHg7XHJcbiAgY29sb3I6ICNmMWYxZjE7XHJcbiAgLy8gYmFja2dyb3VuZC1jb2xvcjogcmdiYSgxMCwgNCwgMTUsIDAuNTU1KSBcclxufVxyXG4uZGl2LmNvbnRhaW5lcntcclxuICBtYXJnaW46IDY4cHg7XHJcbiAgcGFkZGluZzogMTUwcHg7XHJcbiAgd2lkdGg6IDYwMHB4O1xyXG59XHJcbi5jb250YWluZXIge1xyXG4gIHBhZGRpbmc6IDcwcHg7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbn1cclxubGFiZWx7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIG1hcmdpbi10b3A6IDNweDtcclxuICBtYXJnaW4tYm90dG9tOiAxMHB4O1xyXG59XHJcbmRpdiB7XHJcbiAgbWFyZ2luLWJvdHRvbTogMHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDE1cHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjojMjEyNTI5O1xyXG4gIC8vIGJvcmRlcjogOHB4IHNvbGlkICMzNzE5NjY7XHJcbiAgcGFkZGluZzogMjBweDtcclxufVxyXG5ociB7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgI2YxZjFmMTtcclxuICBtYXJnaW4tYm90dG9tOiAxNXB4O1xyXG59XHJcbmlucHV0W3R5cGU9dGV4dF0sIHNlbGVjdCB7XHJcbiAgZm9udC1zaXplOiAyMHB4O1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIHBhZGRpbmc6IDAuMjVlbTtcclxuICBtYXJnaW46IDBweCAwcHggOHB4IDBweDtcclxuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgYm9yZGVyOiAycHggc29saWQgI2NjYztcclxuICBib3JkZXItcmFkaXVzOiA0cHg7XHJcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG5pbnB1dFt0eXBlPXBhc3N3b3JkXSwge1xyXG4gIGZvbnQtc2l6ZTogMjBweDtcclxuICB3aWR0aDogMTAwJTtcclxuICBwYWRkaW5nOiAwLjI1ZW07XHJcbiAgYm9yZGVyOiAycHggc29saWQgIzk5OTtcclxuICAvKiAyIGFuaW1hdGlvbnM6IHNoYWtlLCBhbmQgZ2xvdyByZWQgKi9cclxuICBhbmltYXRpb24tbmFtZTogc2hha2UsIGdsb3ctcmVkO1xyXG4gIGFuaW1hdGlvbi1kdXJhdGlvbjogMC43cywgMC4zNXM7XHJcbiAgYW5pbWF0aW9uLWl0ZXJhdGlvbi1jb3VudDogMSwgMjtcclxuICBAa2V5ZnJhbWVzIHNoYWtlIHtcclxuICAgIDAlLCAyMCUsIDQwJSwgNjAlLCA4MCUge1xyXG4gICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoOHB4KTtcclxuICAgIH1cclxuICAgIDEwJSxcclxuICAgIDMwJSxcclxuICAgIDUwJSxcclxuICAgIDcwJSxcclxuICAgIDkwJSB7XHJcbiAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWCgtOHB4KTtcclxuICAgIH1cclxuICB9XHJcbiAgXHJcbiAgQGtleWZyYW1lcyBnbG93LXJlZCB7XHJcbiAgICA1MCUge1xyXG4gICAgICBib3JkZXItY29sb3I6IGluZGlhbnJlZDtcclxuICAgIH1cclxuICB9XHJcbn1cclxuaDF7XHJcbiAgY29sb3I6I2YxZjFmMTtcclxuICB3aWR0aDogYXV0bztcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgbWFyZ2luLWJvdHRvbTogMHB4O1xyXG59XHJcbnB7XHJcbiAgbWFyZ2luLWJvdHRvbTogMTVweDtcclxuICBtYXJnaW4tdG9wOiAyMHB4O1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5idXR0b25bdHlwZSA9IGJ1dHRvbl17XHJcblxyXG4gIG1hcmdpbi1sZWZ0OiBhdXRvO1xyXG59XHJcbmJ1dHRvblt0eXBlID0gc3VibWl0XXtcclxuICBtYXJnaW4tcmlnaHQ6IGF1dG87XHJcbn1cclxuXHJcbiJdfQ== */"
+module.exports = ".new-user-alert {\n  padding-top: 0px; }\n\n.text-danger {\n  color: #dc3545 !important;\n  font-size: 100%; }\n\nform {\n  font-family: Arial, Helvetica, sans-serif;\n  margin-top: 74px;\n  margin-bottom: 45px;\n  color: #f1f1f1; }\n\n.div.container {\n  margin: 68px;\n  padding: 150px;\n  width: 600px; }\n\n.container {\n  padding: 70px;\n  width: 100%; }\n\nlabel {\n  display: inline-block;\n  margin-top: 3px;\n  margin-bottom: 10px; }\n\ndiv {\n  margin-bottom: 0px;\n  border-radius: 15px;\n  background-color: #212529;\n  padding: 20px; }\n\nhr {\n  border: 1px solid #f1f1f1;\n  margin-bottom: 15px; }\n\ninput[type=text], select {\n  font-size: 20px;\n  width: 100%;\n  padding: 0.25em;\n  margin: 0px 0px 8px 0px;\n  display: inline-block;\n  border: 2px solid #ccc;\n  border-radius: 4px;\n  box-sizing: border-box; }\n\ninput[type=password] {\n  font-size: 20px;\n  width: 100%;\n  padding: 0.25em;\n  border: 2px solid #999;\n  /* 2 animations: shake, and glow red */\n  -webkit-animation-name: shake, glow-red;\n          animation-name: shake, glow-red;\n  -webkit-animation-duration: 0.7s, 0.35s;\n          animation-duration: 0.7s, 0.35s;\n  -webkit-animation-iteration-count: 1, 2;\n          animation-iteration-count: 1, 2; }\n\n@-webkit-keyframes shake {\n  0%, 20%, 40%, 60%, 80% {\n    -webkit-transform: translateX(8px);\n            transform: translateX(8px); }\n  10%,\n  30%,\n  50%,\n  70%,\n  90% {\n    -webkit-transform: translateX(-8px);\n            transform: translateX(-8px); } }\n\n@keyframes shake {\n  0%, 20%, 40%, 60%, 80% {\n    -webkit-transform: translateX(8px);\n            transform: translateX(8px); }\n  10%,\n  30%,\n  50%,\n  70%,\n  90% {\n    -webkit-transform: translateX(-8px);\n            transform: translateX(-8px); } }\n\n@-webkit-keyframes glow-red {\n  50% {\n    border-color: indianred; } }\n\n@keyframes glow-red {\n  50% {\n    border-color: indianred; } }\n\nh1 {\n  color: #f1f1f1;\n  width: auto;\n  text-align: center;\n  margin-bottom: 0px; }\n\np {\n  margin-bottom: 15px;\n  margin-top: 20px;\n  text-align: center; }\n\nbutton[type=button] {\n  margin-left: auto; }\n\nbutton[type=submit] {\n  margin-right: auto; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWNjb3VudC9sb2dpbi1mb3JtL0U6XFxUZXN0XFxUcmF2ZWxpbmdCbG9nLWRldmVsb3BlclxcVHJhdmVsaW5nQmxvZy5Bbmd1bGFyL3NyY1xcYXBwXFxhY2NvdW50XFxsb2dpbi1mb3JtXFxsb2dpbi1mb3JtLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsaUJBQWdCLEVBQ2pCOztBQUNEO0VBQ0UsMEJBQXdCO0VBQ3hCLGdCQUFlLEVBQ2hCOztBQUNEO0VBQ0UsMENBQXlDO0VBQ3pDLGlCQUFnQjtFQUNoQixvQkFBbUI7RUFDbkIsZUFBYyxFQUVmOztBQUNEO0VBQ0UsYUFBWTtFQUNaLGVBQWM7RUFDZCxhQUFZLEVBQ2I7O0FBQ0Q7RUFDRSxjQUFhO0VBQ2IsWUFBVyxFQUNaOztBQUNEO0VBQ0Usc0JBQXFCO0VBQ3JCLGdCQUFlO0VBQ2Ysb0JBQW1CLEVBQ3BCOztBQUNEO0VBQ0UsbUJBQWtCO0VBQ2xCLG9CQUFtQjtFQUNuQiwwQkFBd0I7RUFFeEIsY0FBYSxFQUNkOztBQUNEO0VBQ0UsMEJBQXlCO0VBQ3pCLG9CQUFtQixFQUNwQjs7QUFDRDtFQUNFLGdCQUFlO0VBQ2YsWUFBVztFQUNYLGdCQUFlO0VBQ2Ysd0JBQXVCO0VBQ3ZCLHNCQUFxQjtFQUNyQix1QkFBc0I7RUFDdEIsbUJBQWtCO0VBQ2xCLHVCQUFzQixFQUN2Qjs7QUFDRDtFQUNFLGdCQUFlO0VBQ2YsWUFBVztFQUNYLGdCQUFlO0VBQ2YsdUJBQXNCO0VBQ3RCLHVDQUF1QztFQUN2Qyx3Q0FBK0I7VUFBL0IsZ0NBQStCO0VBQy9CLHdDQUErQjtVQUEvQixnQ0FBK0I7RUFDL0Isd0NBQStCO1VBQS9CLGdDQUErQixFQW1CaEM7O0FBbEJDO0VBQ0U7SUFDRSxtQ0FBMEI7WUFBMUIsMkJBQTBCLEVBQUE7RUFFNUI7Ozs7O0lBS0Usb0NBQTJCO1lBQTNCLDRCQUEyQixFQUFBLEVBQUE7O0FBVC9CO0VBQ0U7SUFDRSxtQ0FBMEI7WUFBMUIsMkJBQTBCLEVBQUE7RUFFNUI7Ozs7O0lBS0Usb0NBQTJCO1lBQTNCLDRCQUEyQixFQUFBLEVBQUE7O0FBSS9CO0VBQ0U7SUFDRSx3QkFBdUIsRUFBQSxFQUFBOztBQUYzQjtFQUNFO0lBQ0Usd0JBQXVCLEVBQUEsRUFBQTs7QUFJN0I7RUFDRSxlQUFhO0VBQ2IsWUFBVztFQUNYLG1CQUFrQjtFQUNsQixtQkFBa0IsRUFDbkI7O0FBQ0Q7RUFDRSxvQkFBbUI7RUFDbkIsaUJBQWdCO0VBQ2hCLG1CQUFrQixFQUNuQjs7QUFDRDtFQUVFLGtCQUFpQixFQUNsQjs7QUFDRDtFQUNFLG1CQUFrQixFQUNuQiIsImZpbGUiOiJzcmMvYXBwL2FjY291bnQvbG9naW4tZm9ybS9sb2dpbi1mb3JtLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm5ldy11c2VyLWFsZXJ0IHtcbiAgcGFkZGluZy10b3A6IDBweDtcbn1cbi50ZXh0LWRhbmdlciB7XG4gIGNvbG9yOiAjZGMzNTQ1IWltcG9ydGFudDtcbiAgZm9udC1zaXplOiAxMDAlO1xufVxuZm9ybXtcbiAgZm9udC1mYW1pbHk6IEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7XG4gIG1hcmdpbi10b3A6IDc0cHg7XG4gIG1hcmdpbi1ib3R0b206IDQ1cHg7XG4gIGNvbG9yOiAjZjFmMWYxO1xuICAvLyBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEwLCA0LCAxNSwgMC41NTUpIFxufVxuLmRpdi5jb250YWluZXJ7XG4gIG1hcmdpbjogNjhweDtcbiAgcGFkZGluZzogMTUwcHg7XG4gIHdpZHRoOiA2MDBweDtcbn1cbi5jb250YWluZXIge1xuICBwYWRkaW5nOiA3MHB4O1xuICB3aWR0aDogMTAwJTtcbn1cbmxhYmVse1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIG1hcmdpbi10b3A6IDNweDtcbiAgbWFyZ2luLWJvdHRvbTogMTBweDtcbn1cbmRpdiB7XG4gIG1hcmdpbi1ib3R0b206IDBweDtcbiAgYm9yZGVyLXJhZGl1czogMTVweDtcbiAgYmFja2dyb3VuZC1jb2xvcjojMjEyNTI5O1xuICAvLyBib3JkZXI6IDhweCBzb2xpZCAjMzcxOTY2O1xuICBwYWRkaW5nOiAyMHB4O1xufVxuaHIge1xuICBib3JkZXI6IDFweCBzb2xpZCAjZjFmMWYxO1xuICBtYXJnaW4tYm90dG9tOiAxNXB4O1xufVxuaW5wdXRbdHlwZT10ZXh0XSwgc2VsZWN0IHtcbiAgZm9udC1zaXplOiAyMHB4O1xuICB3aWR0aDogMTAwJTtcbiAgcGFkZGluZzogMC4yNWVtO1xuICBtYXJnaW46IDBweCAwcHggOHB4IDBweDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBib3JkZXI6IDJweCBzb2xpZCAjY2NjO1xuICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG59XG5pbnB1dFt0eXBlPXBhc3N3b3JkXSwge1xuICBmb250LXNpemU6IDIwcHg7XG4gIHdpZHRoOiAxMDAlO1xuICBwYWRkaW5nOiAwLjI1ZW07XG4gIGJvcmRlcjogMnB4IHNvbGlkICM5OTk7XG4gIC8qIDIgYW5pbWF0aW9uczogc2hha2UsIGFuZCBnbG93IHJlZCAqL1xuICBhbmltYXRpb24tbmFtZTogc2hha2UsIGdsb3ctcmVkO1xuICBhbmltYXRpb24tZHVyYXRpb246IDAuN3MsIDAuMzVzO1xuICBhbmltYXRpb24taXRlcmF0aW9uLWNvdW50OiAxLCAyO1xuICBAa2V5ZnJhbWVzIHNoYWtlIHtcbiAgICAwJSwgMjAlLCA0MCUsIDYwJSwgODAlIHtcbiAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWCg4cHgpO1xuICAgIH1cbiAgICAxMCUsXG4gICAgMzAlLFxuICAgIDUwJSxcbiAgICA3MCUsXG4gICAgOTAlIHtcbiAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWCgtOHB4KTtcbiAgICB9XG4gIH1cbiAgXG4gIEBrZXlmcmFtZXMgZ2xvdy1yZWQge1xuICAgIDUwJSB7XG4gICAgICBib3JkZXItY29sb3I6IGluZGlhbnJlZDtcbiAgICB9XG4gIH1cbn1cbmgxe1xuICBjb2xvcjojZjFmMWYxO1xuICB3aWR0aDogYXV0bztcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBtYXJnaW4tYm90dG9tOiAwcHg7XG59XG5we1xuICBtYXJnaW4tYm90dG9tOiAxNXB4O1xuICBtYXJnaW4tdG9wOiAyMHB4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5idXR0b25bdHlwZSA9IGJ1dHRvbl17XG5cbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG59XG5idXR0b25bdHlwZSA9IHN1Ym1pdF17XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbn1cblxuIl19 */"
 
 /***/ }),
 
@@ -6234,7 +6234,7 @@ var LoginFormComponent = (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form #f=\"ngForm\" novalidate (ngSubmit)=\"registerUser(f)\" class=\"animated fadeInLeftBig\">\r\n    <div class=\"container\">\r\n        <h1>Register</h1>\r\n        <p>Please fill in this form to create an account.</p>\r\n        <p>OR</p>\r\n        <p><app-facebook-login></app-facebook-login></p>\r\n        <hr>\r\n  <!-- Enter firstName part-->\r\n      <label for=\"first-name\"><b>First name</b></label>\r\n      <input type=\"text\" class=\"form-control\" id=\"first-name\" placeholder=\"Your first name\" name=\"firstName\" tmFocus ngModel>\r\n    \r\n  <!-- Enter lastName part -->\r\n      <label for=\"last-name\"><b>Last name</b></label>\r\n      <input type=\"text\" class=\"form-control\" id=\"last-name\" placeholder=\"Your last name\" name=\"lastName\" ngModel>\r\n    \r\n  <!-- Enter email -->\r\n    <div class=\"alert\">\r\n       <small [hidden]=\"email.valid || (email.pristine && !submitted)\" class=\"text-danger\">*Please enter a valid email</small>\r\n    </div> \r\n      <label for=\"email\"><b>Email</b></label>\r\n      <input id=\"email\" type=\"text\" required name=\"email\" validateEmail class=\"form-control\" placeholder=\"Email\" ngModel #email=\"ngModel\">\r\n  \r\n  <!-- password part -->\r\n      <label for=\"password\"><b>Password</b></label>\r\n      <input id=\"password\" type=\"password\" class=\"form-control\"name=\"password\" placeholder=\"Password\" ngModel>\r\n    \r\n  <!-- Choose country -->\r\n      <label for=\"country\"><b>Country</b></label>\r\n      <input type=\"text\" class=\"form-control\" id=\"location\"  name=\"location\" ngModel placeholder=\"Location\" ngModel>\r\n          \r\n      <hr>\r\n      <p>By creating an account you agree to our <a href=\"#\">Terms & Privacy</a>.</p>\r\n  \r\n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"f.invalid || isRequesting\">Sign Up</button>\r\n  \r\n      <app-spinner [isRunning]=\"isRequesting\"></app-spinner>\r\n  \r\n    </div>\r\n      <div *ngIf=\"errors\" class=\"alert alert-danger\" role=\"alert\">\r\n        <strong>Oops!</strong> {{errors}}\r\n      </div>\r\n  \r\n  </form>\r\n  \r\n  \r\n  "
+module.exports = "<form #f=\"ngForm\" novalidate (ngSubmit)=\"registerUser(f)\" class=\"animated fadeInLeftBig\">\n    <div class=\"container\">\n        <h1>Register</h1>\n        <p>Please fill in this form to create an account.</p>\n        <p>OR</p>\n        <p><app-facebook-login></app-facebook-login></p>\n        <hr>\n  <!-- Enter firstName part-->\n      <label for=\"first-name\"><b>First name</b></label>\n      <input type=\"text\" class=\"form-control\" id=\"first-name\" placeholder=\"Your first name\" name=\"firstName\" tmFocus ngModel>\n    \n  <!-- Enter lastName part -->\n      <label for=\"last-name\"><b>Last name</b></label>\n      <input type=\"text\" class=\"form-control\" id=\"last-name\" placeholder=\"Your last name\" name=\"lastName\" ngModel>\n    \n  <!-- Enter email -->\n    <div class=\"alert\">\n       <small [hidden]=\"email.valid || (email.pristine && !submitted)\" class=\"text-danger\">*Please enter a valid email</small>\n    </div> \n      <label for=\"email\"><b>Email</b></label>\n      <input id=\"email\" type=\"text\" required name=\"email\" validateEmail class=\"form-control\" placeholder=\"Email\" ngModel #email=\"ngModel\">\n  \n  <!-- password part -->\n      <label for=\"password\"><b>Password</b></label>\n      <input id=\"password\" type=\"password\" class=\"form-control\"name=\"password\" placeholder=\"Password\" ngModel>\n    \n  <!-- Choose country -->\n      <label for=\"country\"><b>Country</b></label>\n      <input type=\"text\" class=\"form-control\" id=\"location\"  name=\"location\" ngModel placeholder=\"Location\" ngModel>\n          \n      <hr>\n      <p>By creating an account you agree to our <a href=\"#\">Terms & Privacy</a>.</p>\n  \n      <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"f.invalid || isRequesting\">Sign Up</button>\n  \n      <app-spinner [isRunning]=\"isRequesting\"></app-spinner>\n  \n    </div>\n      <div *ngIf=\"errors\" class=\"alert alert-danger\" role=\"alert\">\n        <strong>Oops!</strong> {{errors}}\n      </div>\n  \n  </form>\n  \n  \n  "
 
 /***/ }),
 
@@ -6245,7 +6245,7 @@ module.exports = "<form #f=\"ngForm\" novalidate (ngSubmit)=\"registerUser(f)\" 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "form {\n  font-family: Arial, Helvetica, sans-serif;\n  margin-top: 73px;\n  margin-bottom: 3px;\n  color: #f1f1f1; }\n\n.container {\n  padding: 15px;\n  width: 100%; }\n\ndiv {\n  border-radius: 15px;\n  background-color: #31312f;\n  padding: 0px; }\n\ndiv.alert {\n  margin-bottom: 0px; }\n\n.text-danger {\n  font-size: 100%;\n  color: #dc3545 !important; }\n\nhr {\n  border: 1px solid #f1f1f1;\n  margin-bottom: 15px; }\n\na {\n  color: dodgerblue; }\n\ninput {\n  margin-left: 10px; }\n\ninput[type=text], input[type=password], select {\n  width: 100%;\n  padding: 12px 20px;\n  margin: 0px 0px 8px 0px;\n  display: inline-block;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  box-sizing: border-box; }\n\nlabel {\n  margin-bottom: 0px; }\n\nh1 {\n  text-align: center; }\n\np {\n  margin-bottom: 3px;\n  text-align: center; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWNjb3VudC9yZWdpc3RyYXRpb24tZm9ybS9FOlxcR2l0SHViXFxUcmF2ZWxpbmdCbG9nXFxUcmF2ZWxpbmdCbG9nLkFuZ3VsYXIvc3JjXFxhcHBcXGFjY291bnRcXHJlZ2lzdHJhdGlvbi1mb3JtXFxyZWdpc3RyYXRpb24tZm9ybS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDBDQUF5QztFQUN6QyxpQkFBZ0I7RUFDaEIsbUJBQWtCO0VBQ2xCLGVBQWMsRUFFZjs7QUFDRDtFQUNFLGNBQWE7RUFDYixZQUFXLEVBRVo7O0FBQ0Q7RUFDRSxvQkFBbUI7RUFDbkIsMEJBQXlCO0VBRXpCLGFBQVksRUFDYjs7QUFDRDtFQUNFLG1CQUFrQixFQUNuQjs7QUFDRDtFQUNFLGdCQUFlO0VBQ2YsMEJBQXdCLEVBQ3pCOztBQUNEO0VBQ0UsMEJBQXlCO0VBQ3pCLG9CQUFtQixFQUNwQjs7QUFDRDtFQUNFLGtCQUFpQixFQUNsQjs7QUFDRDtFQUNFLGtCQUFpQixFQUNsQjs7QUFDRDtFQUNFLFlBQVc7RUFDWCxtQkFBa0I7RUFDbEIsd0JBQXVCO0VBQ3ZCLHNCQUFxQjtFQUNyQix1QkFBc0I7RUFDdEIsbUJBQWtCO0VBQ2xCLHVCQUFzQixFQUN2Qjs7QUFDRDtFQUNFLG1CQUNGLEVBQUM7O0FBQ0Q7RUFDRSxtQkFBa0IsRUFDbkI7O0FBQ0Q7RUFDRSxtQkFBa0I7RUFDbEIsbUJBQWtCLEVBQ25CIiwiZmlsZSI6InNyYy9hcHAvYWNjb3VudC9yZWdpc3RyYXRpb24tZm9ybS9yZWdpc3RyYXRpb24tZm9ybS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImZvcm17XHJcbiAgZm9udC1mYW1pbHk6IEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7XHJcbiAgbWFyZ2luLXRvcDogNzNweDtcclxuICBtYXJnaW4tYm90dG9tOiAzcHg7XHJcbiAgY29sb3I6ICNmMWYxZjE7XHJcbiAgLy8gYmFja2dyb3VuZC1jb2xvcjogcmdiYSgxMCwgNCwgMTUsIDAuNTU1KSBcclxufVxyXG4uY29udGFpbmVyIHtcclxuICBwYWRkaW5nOiAxNXB4O1xyXG4gIHdpZHRoOiAxMDAlO1xyXG5cclxufVxyXG5kaXYge1xyXG4gIGJvcmRlci1yYWRpdXM6IDE1cHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzMxMzEyZjtcclxuICAvLyBib3JkZXI6IDhweCBzb2xpZCAjMzcxOTY2O1xyXG4gIHBhZGRpbmc6IDBweDtcclxufVxyXG5kaXYuYWxlcnR7XHJcbiAgbWFyZ2luLWJvdHRvbTogMHB4O1xyXG59XHJcbi50ZXh0LWRhbmdlcntcclxuICBmb250LXNpemU6IDEwMCU7XHJcbiAgY29sb3I6ICNkYzM1NDUhaW1wb3J0YW50O1xyXG59XHJcbmhyIHtcclxuICBib3JkZXI6IDFweCBzb2xpZCAjZjFmMWYxO1xyXG4gIG1hcmdpbi1ib3R0b206IDE1cHg7XHJcbn1cclxuYSB7XHJcbiAgY29sb3I6IGRvZGdlcmJsdWU7XHJcbn1cclxuaW5wdXR7XHJcbiAgbWFyZ2luLWxlZnQ6IDEwcHg7XHJcbn1cclxuaW5wdXRbdHlwZT10ZXh0XSwgaW5wdXRbdHlwZT1wYXNzd29yZF0sIHNlbGVjdCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgcGFkZGluZzogMTJweCAyMHB4O1xyXG4gIG1hcmdpbjogMHB4IDBweCA4cHggMHB4O1xyXG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xyXG4gIGJvcmRlci1yYWRpdXM6IDRweDtcclxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG59XHJcbmxhYmVse1xyXG4gIG1hcmdpbi1ib3R0b206IDBweFxyXG59XHJcbmgxe1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5we1xyXG4gIG1hcmdpbi1ib3R0b206IDNweDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn0iXX0= */"
+module.exports = "form {\n  font-family: Arial, Helvetica, sans-serif;\n  margin-top: 73px;\n  margin-bottom: 3px;\n  color: #f1f1f1; }\n\n.container {\n  padding: 15px;\n  width: 100%; }\n\ndiv {\n  border-radius: 15px;\n  background-color: #31312f;\n  padding: 0px; }\n\ndiv.alert {\n  margin-bottom: 0px; }\n\n.text-danger {\n  font-size: 100%;\n  color: #dc3545 !important; }\n\nhr {\n  border: 1px solid #f1f1f1;\n  margin-bottom: 15px; }\n\na {\n  color: dodgerblue; }\n\ninput {\n  margin-left: 10px; }\n\ninput[type=text], input[type=password], select {\n  width: 100%;\n  padding: 12px 20px;\n  margin: 0px 0px 8px 0px;\n  display: inline-block;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  box-sizing: border-box; }\n\nlabel {\n  margin-bottom: 0px; }\n\nh1 {\n  text-align: center; }\n\np {\n  margin-bottom: 3px;\n  text-align: center; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWNjb3VudC9yZWdpc3RyYXRpb24tZm9ybS9FOlxcVGVzdFxcVHJhdmVsaW5nQmxvZy1kZXZlbG9wZXJcXFRyYXZlbGluZ0Jsb2cuQW5ndWxhci9zcmNcXGFwcFxcYWNjb3VudFxccmVnaXN0cmF0aW9uLWZvcm1cXHJlZ2lzdHJhdGlvbi1mb3JtLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsMENBQXlDO0VBQ3pDLGlCQUFnQjtFQUNoQixtQkFBa0I7RUFDbEIsZUFBYyxFQUVmOztBQUNEO0VBQ0UsY0FBYTtFQUNiLFlBQVcsRUFFWjs7QUFDRDtFQUNFLG9CQUFtQjtFQUNuQiwwQkFBeUI7RUFFekIsYUFBWSxFQUNiOztBQUNEO0VBQ0UsbUJBQWtCLEVBQ25COztBQUNEO0VBQ0UsZ0JBQWU7RUFDZiwwQkFBd0IsRUFDekI7O0FBQ0Q7RUFDRSwwQkFBeUI7RUFDekIsb0JBQW1CLEVBQ3BCOztBQUNEO0VBQ0Usa0JBQWlCLEVBQ2xCOztBQUNEO0VBQ0Usa0JBQWlCLEVBQ2xCOztBQUNEO0VBQ0UsWUFBVztFQUNYLG1CQUFrQjtFQUNsQix3QkFBdUI7RUFDdkIsc0JBQXFCO0VBQ3JCLHVCQUFzQjtFQUN0QixtQkFBa0I7RUFDbEIsdUJBQXNCLEVBQ3ZCOztBQUNEO0VBQ0UsbUJBQ0YsRUFBQzs7QUFDRDtFQUNFLG1CQUFrQixFQUNuQjs7QUFDRDtFQUNFLG1CQUFrQjtFQUNsQixtQkFBa0IsRUFDbkIiLCJmaWxlIjoic3JjL2FwcC9hY2NvdW50L3JlZ2lzdHJhdGlvbi1mb3JtL3JlZ2lzdHJhdGlvbi1mb3JtLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiZm9ybXtcbiAgZm9udC1mYW1pbHk6IEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7XG4gIG1hcmdpbi10b3A6IDczcHg7XG4gIG1hcmdpbi1ib3R0b206IDNweDtcbiAgY29sb3I6ICNmMWYxZjE7XG4gIC8vIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMTAsIDQsIDE1LCAwLjU1NSkgXG59XG4uY29udGFpbmVyIHtcbiAgcGFkZGluZzogMTVweDtcbiAgd2lkdGg6IDEwMCU7XG5cbn1cbmRpdiB7XG4gIGJvcmRlci1yYWRpdXM6IDE1cHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICMzMTMxMmY7XG4gIC8vIGJvcmRlcjogOHB4IHNvbGlkICMzNzE5NjY7XG4gIHBhZGRpbmc6IDBweDtcbn1cbmRpdi5hbGVydHtcbiAgbWFyZ2luLWJvdHRvbTogMHB4O1xufVxuLnRleHQtZGFuZ2Vye1xuICBmb250LXNpemU6IDEwMCU7XG4gIGNvbG9yOiAjZGMzNTQ1IWltcG9ydGFudDtcbn1cbmhyIHtcbiAgYm9yZGVyOiAxcHggc29saWQgI2YxZjFmMTtcbiAgbWFyZ2luLWJvdHRvbTogMTVweDtcbn1cbmEge1xuICBjb2xvcjogZG9kZ2VyYmx1ZTtcbn1cbmlucHV0e1xuICBtYXJnaW4tbGVmdDogMTBweDtcbn1cbmlucHV0W3R5cGU9dGV4dF0sIGlucHV0W3R5cGU9cGFzc3dvcmRdLCBzZWxlY3Qge1xuICB3aWR0aDogMTAwJTtcbiAgcGFkZGluZzogMTJweCAyMHB4O1xuICBtYXJnaW46IDBweCAwcHggOHB4IDBweDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xuICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG59XG5sYWJlbHtcbiAgbWFyZ2luLWJvdHRvbTogMHB4XG59XG5oMXtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxucHtcbiAgbWFyZ2luLWJvdHRvbTogM3B4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59Il19 */"
 
 /***/ }),
 
@@ -6320,7 +6320,7 @@ var RegistrationFormComponent = (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\r\n\r\n<div class=\"container\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n\r\n<app-footer></app-footer>\r\n"
+module.exports = "<app-header></app-header>\n\n<div class=\"container\">\n  <router-outlet></router-outlet>\n</div>\n\n<app-footer></app-footer>\n"
 
 /***/ }),
 
@@ -6331,7 +6331,7 @@ module.exports = "<app-header></app-header>\r\n\r\n<div class=\"container\">\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".container {\n  position: relative;\n  margin: 0px;\n  padding: 0px;\n  max-width: 100%;\n  min-height: 200%;\n  max-height: 200%;\n  overflow: hidden; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvRTpcXEdpdEh1YlxcVHJhdmVsaW5nQmxvZ1xcVHJhdmVsaW5nQmxvZy5Bbmd1bGFyL3NyY1xcYXBwXFxhcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxtQkFBa0I7RUFDcEIsWUFBVztFQUNYLGFBQVk7RUFDWixnQkFBZTtFQUNmLGlCQUFnQjtFQUNoQixpQkFBZ0I7RUFDaEIsaUJBQWdCLEVBRWpCIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRhaW5lcntcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBtYXJnaW46IDBweDtcclxuICBwYWRkaW5nOiAwcHg7XHJcbiAgbWF4LXdpZHRoOiAxMDAlO1xyXG4gIG1pbi1oZWlnaHQ6IDIwMCU7XHJcbiAgbWF4LWhlaWdodDogMjAwJTtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG5cclxufSJdfQ== */"
+module.exports = ".container {\n  position: relative;\n  margin: 0px;\n  padding: 0px;\n  max-width: 100%;\n  min-height: 200%;\n  max-height: 200%;\n  overflow: hidden; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvRTpcXFRlc3RcXFRyYXZlbGluZ0Jsb2ctZGV2ZWxvcGVyXFxUcmF2ZWxpbmdCbG9nLkFuZ3VsYXIvc3JjXFxhcHBcXGFwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLG1CQUFrQjtFQUNwQixZQUFXO0VBQ1gsYUFBWTtFQUNaLGdCQUFlO0VBQ2YsaUJBQWdCO0VBQ2hCLGlCQUFnQjtFQUNoQixpQkFBZ0IsRUFFakIiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVye1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbWFyZ2luOiAwcHg7XG4gIHBhZGRpbmc6IDBweDtcbiAgbWF4LXdpZHRoOiAxMDAlO1xuICBtaW4taGVpZ2h0OiAyMDAlO1xuICBtYXgtaGVpZ2h0OiAyMDAlO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuXG59Il19 */"
 
 /***/ }),
 
@@ -6396,8 +6396,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _account_account_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./account/account.module */ "./src/app/account/account.module.ts");
 /* harmony import */ var _dashboard_dashboard_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./dashboard/dashboard.module */ "./src/app/dashboard/dashboard.module.ts");
-/* harmony import */ var _shared_utils_config_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/utils/config.service */ "./src/app/shared/utils/config.service.ts");
-/* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./footer/footer.component */ "./src/app/footer/footer.component.ts");
+/* harmony import */ var _edit_edit_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./edit/edit.module */ "./src/app/edit/edit.module.ts");
+/* harmony import */ var _shared_utils_config_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shared/utils/config.service */ "./src/app/shared/utils/config.service.ts");
+/* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./footer/footer.component */ "./src/app/footer/footer.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6418,6 +6419,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 /* Dashboard Imports */
 
+/*Edit Imports */
+
 
 
 var AppModule = (function () {
@@ -6429,17 +6432,18 @@ var AppModule = (function () {
                 _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
                 _header_header_component__WEBPACK_IMPORTED_MODULE_7__["HeaderComponent"],
                 _home_home_component__WEBPACK_IMPORTED_MODULE_8__["HomeComponent"],
-                _footer_footer_component__WEBPACK_IMPORTED_MODULE_12__["FooterComponent"],
+                _footer_footer_component__WEBPACK_IMPORTED_MODULE_13__["FooterComponent"],
             ],
             imports: [
                 _account_account_module__WEBPACK_IMPORTED_MODULE_9__["AccountModule"],
                 _dashboard_dashboard_module__WEBPACK_IMPORTED_MODULE_10__["DashboardModule"],
+                _edit_edit_module__WEBPACK_IMPORTED_MODULE_11__["EditModule"],
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                 _angular_http__WEBPACK_IMPORTED_MODULE_3__["HttpModule"],
                 _app_routing__WEBPACK_IMPORTED_MODULE_5__["routing"]
             ],
-            providers: [_shared_utils_config_service__WEBPACK_IMPORTED_MODULE_11__["ConfigService"], {
+            providers: [_shared_utils_config_service__WEBPACK_IMPORTED_MODULE_12__["ConfigService"], {
                     provide: _angular_http__WEBPACK_IMPORTED_MODULE_3__["XHRBackend"],
                     useClass: _authenticate_xhr_backend__WEBPACK_IMPORTED_MODULE_4__["AuthenticateXHRBackend"]
                 }],
@@ -6618,12 +6622,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_dashboard_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/dashboard.service */ "./src/app/dashboard/services/dashboard.service.ts");
 /* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../auth.guard */ "./src/app/auth.guard.ts");
 /* harmony import */ var _settings_settings_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./settings/settings.component */ "./src/app/dashboard/settings/settings.component.ts");
+/* harmony import */ var _trips_trips_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./trips/trips.component */ "./src/app/dashboard/trips/trips.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -6645,7 +6651,7 @@ var DashboardModule = (function () {
                 _dashboard_routing__WEBPACK_IMPORTED_MODULE_4__["routing"],
                 _shared_modules_shared_module__WEBPACK_IMPORTED_MODULE_3__["SharedModule"]
             ],
-            declarations: [_root_root_component__WEBPACK_IMPORTED_MODULE_5__["RootComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"], _settings_settings_component__WEBPACK_IMPORTED_MODULE_9__["SettingsComponent"]],
+            declarations: [_root_root_component__WEBPACK_IMPORTED_MODULE_5__["RootComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"], _settings_settings_component__WEBPACK_IMPORTED_MODULE_9__["SettingsComponent"], _trips_trips_component__WEBPACK_IMPORTED_MODULE_10__["TripsComponent"]],
             exports: [],
             providers: [_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"], _services_dashboard_service__WEBPACK_IMPORTED_MODULE_7__["DashboardService"]]
         })
@@ -6671,7 +6677,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _root_root_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./root/root.component */ "./src/app/dashboard/root/root.component.ts");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home/home.component */ "./src/app/dashboard/home/home.component.ts");
 /* harmony import */ var _settings_settings_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./settings/settings.component */ "./src/app/dashboard/settings/settings.component.ts");
-/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth.guard */ "./src/app/auth.guard.ts");
+/* harmony import */ var _trips_trips_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./trips/trips.component */ "./src/app/dashboard/trips/trips.component.ts");
+/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../auth.guard */ "./src/app/auth.guard.ts");
+
 
 
 
@@ -6680,11 +6688,12 @@ __webpack_require__.r(__webpack_exports__);
 var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forChild([
     {
         path: 'dashboard',
-        component: _root_root_component__WEBPACK_IMPORTED_MODULE_1__["RootComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
+        component: _root_root_component__WEBPACK_IMPORTED_MODULE_1__["RootComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_5__["AuthGuard"]],
         children: [
             { path: '', component: _home_home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"] },
             { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"] },
             { path: 'settings', component: _settings_settings_component__WEBPACK_IMPORTED_MODULE_3__["SettingsComponent"] },
+            { path: 'trips', component: _trips_trips_component__WEBPACK_IMPORTED_MODULE_4__["TripsComponent"] },
         ]
     }
 ]);
@@ -6699,7 +6708,7 @@ var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forCh
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-6 col-sm-3\">\r\n    <p>{{homeDetails?.message}}</p>\r\n    <p><strong>Name:</strong> {{homeDetails?.firstName}} {{homeDetails?.lastName}}</p>\r\n    <p *ngIf=\"homeDetails?.location\"><strong>Location:</strong> {{homeDetails?.location}}</p>\r\n    <p *ngIf=\"homeDetails?.locale\"><strong>Locale:</strong> {{homeDetails?.locale}}</p>\r\n    <p *ngIf=\"homeDetails?.gender\"><strong>Gender:</strong> {{homeDetails?.gender}}</p>\r\n    <p *ngIf=\"homeDetails?.facebookId\"><strong>Facebook Id:</strong> {{homeDetails?.facebookId}}</p>\r\n    <div *ngIf=\"homeDetails?.pictureUrl\"><img src=\"{{homeDetails?.pictureUrl}}\" /></div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-6 col-sm-3\">\n    <p>{{homeDetails?.message}}</p>\n    <p><strong>Name:</strong> {{homeDetails?.firstName}} {{homeDetails?.lastName}}</p>\n    <p *ngIf=\"homeDetails?.location\"><strong>Location:</strong> {{homeDetails?.location}}</p>\n    <p *ngIf=\"homeDetails?.locale\"><strong>Locale:</strong> {{homeDetails?.locale}}</p>\n    <p *ngIf=\"homeDetails?.gender\"><strong>Gender:</strong> {{homeDetails?.gender}}</p>\n    <p *ngIf=\"homeDetails?.facebookId\"><strong>Facebook Id:</strong> {{homeDetails?.facebookId}}</p>\n    <div *ngIf=\"homeDetails?.pictureUrl\"><img src=\"{{homeDetails?.pictureUrl}}\" /></div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -6765,6 +6774,30 @@ var HomeComponent = (function () {
 
 /***/ }),
 
+/***/ "./src/app/dashboard/models/trip.details.interface.ts":
+/*!************************************************************!*\
+  !*** ./src/app/dashboard/models/trip.details.interface.ts ***!
+  \************************************************************/
+/*! exports provided: TripDetails */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TripDetails", function() { return TripDetails; });
+var TripDetails = (function () {
+    function TripDetails(id, name, isDone, description) {
+        this.id = id;
+        this.name = name;
+        this.isDone = isDone;
+        this.description = description;
+    }
+    return TripDetails;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/dashboard/root/root.component.html":
 /*!****************************************************!*\
   !*** ./src/app/dashboard/root/root.component.html ***!
@@ -6772,7 +6805,7 @@ var HomeComponent = (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <nav class=\"col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar\">\r\n    <ul class=\"nav nav-pills flex-column\">\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" href=\"#\" routerLinkActive=\"active\" routerLink=\"/dashboard/home\">Home</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" href=\"#\" routerLinkActive=\"active\" routerLink=\"/dashboard/settings\">Settings</a>\r\n      </li>\r\n    </ul>\r\n  </nav>\r\n  <main role=\"main\" class=\"col-sm-9 ml-sm-auto col-md-10 pt-3\">\r\n    <router-outlet></router-outlet>\r\n  </main>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\n  <main role=\"main\" class=\"col-sm-9 ml-sm-auto col-md-10 pt-3\">\n    <router-outlet></router-outlet>\n  </main>\n  <nav class=\"col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar pull-right\">\n    <ul class=\"nav nav-pills flex-column\">\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" href=\"#\" routerLinkActive=\"active\" routerLink=\"/dashboard/home\">Home</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" href=\"#\" routerLinkActive=\"active\" routerLink=\"/dashboard/trips\">My Trips</a>\n      </li>\n      <li class=\"nav-item\">\n          <a class=\"nav-link\" href=\"#\" routerLinkActive=\"active\" routerLink=\"/dashboard/settings\">Settings</a>\n        </li>\n    </ul>\n  </nav>\n</div>\n"
 
 /***/ }),
 
@@ -6783,7 +6816,7 @@ module.exports = "<div class=\"row\">\r\n  <nav class=\"col-sm-3 col-md-2 d-none
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/*\r\n * Sidebar\r\n */\n.sidebar {\n  position: fixed;\n  top: 51px;\n  bottom: 0;\n  left: 0;\n  z-index: 1000;\n  padding: 20px 0;\n  overflow-x: hidden;\n  overflow-y: auto;\n  /* Scrollable contents if viewport is shorter than content. */\n  border-right: 1px solid #eee; }\n.sidebar .nav {\n  margin-bottom: 20px; }\n.sidebar .nav-item {\n  width: 100%; }\n.sidebar .nav-item + .nav-item {\n  margin-left: 0; }\n.sidebar .nav-link {\n  border-radius: 0; }\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGFzaGJvYXJkL3Jvb3QvRTpcXEdpdEh1YlxcVHJhdmVsaW5nQmxvZ1xcVHJhdmVsaW5nQmxvZy5Bbmd1bGFyL3NyY1xcYXBwXFxkYXNoYm9hcmRcXHJvb3RcXHJvb3QuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFSDtFQUNFLGdCQUFlO0VBQ2YsVUFBUztFQUNULFVBQVM7RUFDVCxRQUFPO0VBQ1AsY0FBYTtFQUNiLGdCQUFlO0VBQ2YsbUJBQWtCO0VBQ2xCLGlCQUFnQjtFQUFFLDhEQUE4RDtFQUNoRiw2QkFBNEIsRUFDN0I7QUFFRDtFQUNFLG9CQUFtQixFQUNwQjtBQUVEO0VBQ0UsWUFBVyxFQUNaO0FBRUQ7RUFDRSxlQUFjLEVBQ2Y7QUFFRDtFQUNFLGlCQUFnQixFQUNqQiIsImZpbGUiOiJzcmMvYXBwL2Rhc2hib2FyZC9yb290L3Jvb3QuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxyXG4gKiBTaWRlYmFyXHJcbiAqL1xyXG5cclxuLnNpZGViYXIge1xyXG4gIHBvc2l0aW9uOiBmaXhlZDtcclxuICB0b3A6IDUxcHg7XHJcbiAgYm90dG9tOiAwO1xyXG4gIGxlZnQ6IDA7XHJcbiAgei1pbmRleDogMTAwMDtcclxuICBwYWRkaW5nOiAyMHB4IDA7XHJcbiAgb3ZlcmZsb3cteDogaGlkZGVuO1xyXG4gIG92ZXJmbG93LXk6IGF1dG87IC8qIFNjcm9sbGFibGUgY29udGVudHMgaWYgdmlld3BvcnQgaXMgc2hvcnRlciB0aGFuIGNvbnRlbnQuICovXHJcbiAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgI2VlZTtcclxufVxyXG5cclxuLnNpZGViYXIgLm5hdiB7XHJcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcclxufVxyXG5cclxuLnNpZGViYXIgLm5hdi1pdGVtIHtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuLnNpZGViYXIgLm5hdi1pdGVtICsgLm5hdi1pdGVtIHtcclxuICBtYXJnaW4tbGVmdDogMDtcclxufVxyXG5cclxuLnNpZGViYXIgLm5hdi1saW5rIHtcclxuICBib3JkZXItcmFkaXVzOiAwO1xyXG59XHJcbiJdfQ== */"
+module.exports = "/*\n * Sidebar\n */\n.sidebar {\n  position: fixed;\n  top: 51px;\n  bottom: 0;\n  right: 0;\n  z-index: 1000;\n  padding: 20px 0;\n  overflow-x: hidden;\n  overflow-y: auto;\n  /* Scrollable contents if viewport is shorter than content. */\n  border-left: 1px solid #eee; }\n.sidebar .nav {\n  margin-bottom: 20px; }\n.sidebar .nav-item {\n  width: 100%; }\n.sidebar .nav-item + .nav-item {\n  margin-left: 0; }\n.sidebar .nav-link {\n  border-radius: 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGFzaGJvYXJkL3Jvb3QvRTpcXFRlc3RcXFRyYXZlbGluZ0Jsb2ctZGV2ZWxvcGVyXFxUcmF2ZWxpbmdCbG9nLkFuZ3VsYXIvc3JjXFxhcHBcXGRhc2hib2FyZFxccm9vdFxccm9vdC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUVIO0VBQ0UsZ0JBQWU7RUFDZixVQUFTO0VBQ1QsVUFBUztFQUNULFNBQVE7RUFDUixjQUFhO0VBQ2IsZ0JBQWU7RUFDZixtQkFBa0I7RUFDbEIsaUJBQWdCO0VBQUUsOERBQThEO0VBQ2hGLDRCQUEyQixFQUM1QjtBQUVEO0VBQ0Usb0JBQW1CLEVBQ3BCO0FBRUQ7RUFDRSxZQUFXLEVBQ1o7QUFFRDtFQUNFLGVBQWMsRUFDZjtBQUVEO0VBQ0UsaUJBQWdCLEVBQ2pCIiwiZmlsZSI6InNyYy9hcHAvZGFzaGJvYXJkL3Jvb3Qvcm9vdC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBTaWRlYmFyXG4gKi9cblxuLnNpZGViYXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIHRvcDogNTFweDtcbiAgYm90dG9tOiAwO1xuICByaWdodDogMDtcbiAgei1pbmRleDogMTAwMDtcbiAgcGFkZGluZzogMjBweCAwO1xuICBvdmVyZmxvdy14OiBoaWRkZW47XG4gIG92ZXJmbG93LXk6IGF1dG87IC8qIFNjcm9sbGFibGUgY29udGVudHMgaWYgdmlld3BvcnQgaXMgc2hvcnRlciB0aGFuIGNvbnRlbnQuICovXG4gIGJvcmRlci1sZWZ0OiAxcHggc29saWQgI2VlZTtcbn1cblxuLnNpZGViYXIgLm5hdiB7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG5cbi5zaWRlYmFyIC5uYXYtaXRlbSB7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG4uc2lkZWJhciAubmF2LWl0ZW0gKyAubmF2LWl0ZW0ge1xuICBtYXJnaW4tbGVmdDogMDtcbn1cblxuLnNpZGViYXIgLm5hdi1saW5rIHtcbiAgYm9yZGVyLXJhZGl1czogMDtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -6887,6 +6920,36 @@ var DashboardService = (function (_super) {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    DashboardService.prototype.getTrips = function () {
+        var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.get(this.baseUrl + "/api/trip/mytrips", { headers: headers })
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    DashboardService.prototype.createTrip = function (trip) {
+        var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.post(this.baseUrl + "/api/trip/addTrip", JSON.stringify(trip), { headers: headers }).map(function (response) { return response.json(); }).catch(this.handleError);
+    };
+    DashboardService.prototype.updateTrip = function (trip) {
+        var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.put(this.baseUrl + "/api/trip/" + trip.id, trip, { headers: headers });
+    };
+    DashboardService.prototype.deleteTrip = function (id) {
+        var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.delete(this.baseUrl + "/api/trip/" + id, { headers: headers });
+    };
     DashboardService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"], _shared_utils_config_service__WEBPACK_IMPORTED_MODULE_2__["ConfigService"]])
@@ -6905,7 +6968,7 @@ var DashboardService = (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  settings works!\r\n</p>\r\n"
+module.exports = "<p>\n  settings works!\n</p>\n"
 
 /***/ }),
 
@@ -6955,6 +7018,115 @@ var SettingsComponent = (function () {
         __metadata("design:paramtypes", [])
     ], SettingsComponent);
     return SettingsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dashboard/trips/trips.component.html":
+/*!******************************************************!*\
+  !*** ./src/app/dashboard/trips/trips.component.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\n    <div class=\"col-md-6 col-sm-3\">\n        <h1>Your Trips:</h1>\n        <input type=\"button\" value=\"AddTrip\" class=\"btn btn-default\" (click)=\"add()\" />\n        <ul *ngIf=\"tableMode; else create\">           \n            <li *ngFor=\"let p of trips\">\n                <!--<ng-template [ngIf]=\"trip?.id != p.id\" [ngIfElse]=\"edit\">-->\n                <ng-template [ngIf]=\"trip?.id != p.id\">\n                    <div>Name: {{ p?.name }}</div>\n                    <div [ngClass]=\"{greenclass: p?.isDone == true, redclass: p?.isDone == false}\">Finished: {{ p?.isDone }}</div>\n                    <p>\n                        <textarea rows=\"3\" cols=\"60\" readonly=\"readonly\" class=\"form-control\">{{ p?.description }}</textarea>\n                    </p>\n                    <p>\n                        <button class=\"btn btn-sm btn-primary\" href=\"#\" routerLink=\"/edit/trip/{{p.id}}\">Edit</button>\n                        <button class=\"btn btn-sm btn-danger\"  (click)=\"delete(p)\">Delete</button>\n                    </p>\n                </ng-template>\n            </li>     \n        </ul>\n    </div>\n</div>\n\n  <!--шаблон для редактирования--><!--\n<ng-template #edit>\n        <label>Name:</label>\n        <input type=\"text\" [(ngModel)]=\"trip.name\" class=\"form-control\" />\n        \n        <p>\n            <label>Finished:</label>\n            <select [(ngModel)]=\"trip.isDone\" class=\"custom-select\">\n                <option value=\"true\">True</option>\n                <option value=\"false\">False</option>\n            </select>\n        <p>\n        <p>\n            <label>Description</label>\n            <textarea [(ngModel)]=\"trip.description\" class=\"form-control\"></textarea>\n        <p>\n        <p>\n            <input type=\"button\" value=\"Save\" (click)=\"save()\" class=\"btn btn-sm btn-success\" />\n            <input type=\"button\" value=\"Cancel\" (click)=\"cancel()\" class=\"btn btn-sm btn-warning\" />\n        <p>\n    </ng-template>-->\n     \n    <!--шаблон для добавления-->\n    <ng-template #create>\n        <div class=\"form-group\">\n            <label>Name</label>\n            <input type=\"text\" [(ngModel)]=\"trip.name\" class=\"form-control\" />\n        </div>\n        <div class=\"form-group\"> \n            <label>Description</label>\n            <textarea [(ngModel)]=\"trip.description\" class=\"form-control\"></textarea>\n        </div>\n        <div>\n            <input type=\"button\" value=\"Save\" (click)=\"save()\" class=\"btn btn-success\" />\n            <input type=\"button\" value=\"Cancel\" (click)=\"cancel()\" class=\"btn btn-warning\" />\n        </div>\n    </ng-template>\n"
+
+/***/ }),
+
+/***/ "./src/app/dashboard/trips/trips.component.scss":
+/*!******************************************************!*\
+  !*** ./src/app/dashboard/trips/trips.component.scss ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "textarea {\n  resize: none; }\n\n.redclass {\n  color: red; }\n\n.greenclass {\n  color: green; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGFzaGJvYXJkL3RyaXBzL0U6XFxUZXN0XFxUcmF2ZWxpbmdCbG9nLWRldmVsb3BlclxcVHJhdmVsaW5nQmxvZy5Bbmd1bGFyL3NyY1xcYXBwXFxkYXNoYm9hcmRcXHRyaXBzXFx0cmlwcy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGFBQVksRUFDZjs7QUFFRDtFQUNJLFdBQVMsRUFDWjs7QUFFRDtFQUNJLGFBQVcsRUFDZCIsImZpbGUiOiJzcmMvYXBwL2Rhc2hib2FyZC90cmlwcy90cmlwcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbInRleHRhcmVhIHtcbiAgICByZXNpemU6IG5vbmU7XG59XG5cbi5yZWRjbGFzc3tcbiAgICBjb2xvcjpyZWQ7XG59XG5cbi5ncmVlbmNsYXNze1xuICAgIGNvbG9yOmdyZWVuO1xufSJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/dashboard/trips/trips.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/dashboard/trips/trips.component.ts ***!
+  \****************************************************/
+/*! exports provided: TripsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TripsComponent", function() { return TripsComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var _models_trip_details_interface__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../models/trip.details.interface */ "./src/app/dashboard/models/trip.details.interface.ts");
+/* harmony import */ var _services_dashboard_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/dashboard.service */ "./src/app/dashboard/services/dashboard.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var TripsComponent = (function () {
+    function TripsComponent(dashboardService) {
+        this.dashboardService = dashboardService;
+        this.trip = new _models_trip_details_interface__WEBPACK_IMPORTED_MODULE_1__["TripDetails"]();
+        this.tableMode = true;
+    }
+    TripsComponent.prototype.ngOnInit = function () {
+        this.loadTrips();
+    };
+    TripsComponent.prototype.loadTrips = function () {
+        var _this = this;
+        this.dashboardService.getTrips()
+            .subscribe(function (trips) {
+            _this.trips = trips;
+        }, function (error) {
+            //this.notificationService.printErrorMessage(error);
+        });
+    };
+    TripsComponent.prototype.save = function () {
+        var _this = this;
+        if (this.trip.id == null) {
+            this.dashboardService.createTrip(this.trip).subscribe(function (data) { return _this.loadTrips(); });
+        }
+        else {
+            this.dashboardService.updateTrip(this.trip).subscribe(function (data) { return _this.loadTrips(); });
+        }
+        this.cancel();
+    };
+    TripsComponent.prototype.editTrip = function (trip) {
+        this.trip = trip;
+    };
+    TripsComponent.prototype.cancel = function () {
+        this.trip = new _models_trip_details_interface__WEBPACK_IMPORTED_MODULE_1__["TripDetails"]();
+        this.tableMode = true;
+    };
+    TripsComponent.prototype.delete = function (trip) {
+        var _this = this;
+        var r = confirm("Are you sure?");
+        if (r == true) {
+            this.dashboardService.deleteTrip(trip.id).subscribe(function (data) { return _this.loadTrips(); });
+        }
+    };
+    TripsComponent.prototype.add = function () {
+        this.cancel();
+        this.tableMode = false;
+    };
+    TripsComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-trips',
+            template: __webpack_require__(/*! ./trips.component.html */ "./src/app/dashboard/trips/trips.component.html"),
+            styles: [__webpack_require__(/*! ./trips.component.scss */ "./src/app/dashboard/trips/trips.component.scss")],
+            providers: [_services_dashboard_service__WEBPACK_IMPORTED_MODULE_2__["DashboardService"]] //
+        }),
+        __metadata("design:paramtypes", [_services_dashboard_service__WEBPACK_IMPORTED_MODULE_2__["DashboardService"]])
+    ], TripsComponent);
+    return TripsComponent;
 }());
 
 
@@ -7060,6 +7232,342 @@ var myFocus = (function () {
 
 /***/ }),
 
+/***/ "./src/app/edit/edit.module.ts":
+/*!*************************************!*\
+  !*** ./src/app/edit/edit.module.ts ***!
+  \*************************************/
+/*! exports provided: EditModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditModule", function() { return EditModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/esm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/esm5/forms.js");
+/* harmony import */ var _shared_modules_shared_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/modules/shared.module */ "./src/app/shared/modules/shared.module.ts");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/esm5/platform-browser.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var _edit_routing__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./edit.routing */ "./src/app/edit/edit.routing.ts");
+/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../auth.guard */ "./src/app/auth.guard.ts");
+/* harmony import */ var _trip_trip_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./trip/trip.component */ "./src/app/edit/trip/trip.component.ts");
+/* harmony import */ var _services_edit_services__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./services/edit.services */ "./src/app/edit/services/edit.services.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+var EditModule = (function () {
+    function EditModule() {
+    }
+    EditModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["BrowserModule"],
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"],
+                _edit_routing__WEBPACK_IMPORTED_MODULE_6__["routing"],
+                _shared_modules_shared_module__WEBPACK_IMPORTED_MODULE_3__["SharedModule"]
+            ],
+            declarations: [_trip_trip_component__WEBPACK_IMPORTED_MODULE_8__["TripEditComponent"]],
+            exports: [],
+            providers: [_auth_guard__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"], _services_edit_services__WEBPACK_IMPORTED_MODULE_9__["EditService"]]
+        })
+    ], EditModule);
+    return EditModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/edit/edit.routing.ts":
+/*!**************************************!*\
+  !*** ./src/app/edit/edit.routing.ts ***!
+  \**************************************/
+/*! exports provided: routing */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routing", function() { return routing; });
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var _trip_trip_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./trip/trip.component */ "./src/app/edit/trip/trip.component.ts");
+/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth.guard */ "./src/app/auth.guard.ts");
+
+
+
+var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forChild([
+    {
+        path: 'edit',
+        component: _trip_trip_component__WEBPACK_IMPORTED_MODULE_1__["TripEditComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_2__["AuthGuard"]],
+        children: [
+            { path: 'trip/:id', component: _trip_trip_component__WEBPACK_IMPORTED_MODULE_1__["TripEditComponent"] }
+        ]
+    }
+]);
+
+
+/***/ }),
+
+/***/ "./src/app/edit/models/trip.with.post.interface.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/edit/models/trip.with.post.interface.ts ***!
+  \*********************************************************/
+/*! exports provided: TripWithPost, Post */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TripWithPost", function() { return TripWithPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Post", function() { return Post; });
+var TripWithPost = (function () {
+    function TripWithPost(id, name, isDone, description, postBlogs) {
+        this.id = id;
+        this.name = name;
+        this.isDone = isDone;
+        this.description = description;
+        this.postBlogs = postBlogs;
+    }
+    return TripWithPost;
+}());
+
+var Post = (function () {
+    function Post(id, name, plot, datOfCreation, tripId) {
+        this.id = id;
+        this.name = name;
+        this.plot = plot;
+        this.datOfCreation = datOfCreation;
+        this.tripId = tripId;
+    }
+    return Post;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/edit/services/edit.services.ts":
+/*!************************************************!*\
+  !*** ./src/app/edit/services/edit.services.ts ***!
+  \************************************************/
+/*! exports provided: EditService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditService", function() { return EditService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/esm5/http.js");
+/* harmony import */ var _shared_utils_config_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/utils/config.service */ "./src/app/shared/utils/config.service.ts");
+/* harmony import */ var _shared_services_base_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/services/base.service */ "./src/app/shared/services/base.service.ts");
+/* harmony import */ var _rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../rxjs-operators */ "./src/app/rxjs-operators.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+// Add the RxJS Observable operators we need in this app.
+
+var EditService = (function (_super) {
+    __extends(EditService, _super);
+    function EditService(http, configService) {
+        var _this = _super.call(this) || this;
+        _this.http = http;
+        _this.configService = configService;
+        _this.baseUrl = '';
+        _this.baseUrl = configService.getApiURI();
+        return _this;
+    }
+    EditService.prototype.getTrip = function (id) {
+        var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.get(this.baseUrl + "/api/trip/GetTripWithPosts/" + id, { headers: headers })
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    EditService.prototype.updateTrip = function (trip) {
+        var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.put(this.baseUrl + "/api/trip/" + trip.id, trip, { headers: headers });
+    };
+    EditService.prototype.createPost = function (post) {
+        var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        return this.http.post(this.baseUrl + "/api/PostBlog", JSON.stringify(post), { headers: headers }).map(function (response) { return response.json(); }).catch(this.handleError);
+    };
+    EditService.prototype.updatePost = function (post) {
+        console.log("itworls?)");
+        var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_1__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        var authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', "Bearer " + authToken);
+        //return this.http.put(this.baseUrl + "/api/PostBlog/" + post.id, JSON.stringify(post), { headers }).map(response => response.json()).catch(this.handleError);
+        return this.http.put(this.baseUrl + "/api/postblog/" + post.id, post, { headers: headers });
+    };
+    EditService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_1__["Http"], _shared_utils_config_service__WEBPACK_IMPORTED_MODULE_2__["ConfigService"]])
+    ], EditService);
+    return EditService;
+}(_shared_services_base_service__WEBPACK_IMPORTED_MODULE_3__["BaseService"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/edit/trip/trip.component.html":
+/*!***********************************************!*\
+  !*** ./src/app/edit/trip/trip.component.html ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\n    <main role=\"main\" class=\"col-sm-9 ml-sm-auto col-md-10 pt-3\">\n        <div class=\"row\">\n            <div class=\"col-md-6 col-sm-3\">\n                <input type=\"button\" value=\"AddPost\" class=\"btn btn-default\" (click)=\"add()\" />\n                <div *ngIf=\"tableMode; else create\">\n                    <h3>Trip</h3>\n                    <label>Name:</label>\n                    <input type=\"text\" [(ngModel)]=\"trip.name\" class=\"form-control\" />\n                    <p>\n                        <label>Finished:</label>\n                        <select [(ngModel)]=\"trip.isDone\" class=\"custom-select\">\n                            <option value=\"true\">True</option>\n                            <option value=\"false\">False</option>\n                        </select>\n                    </p>\n                    <p>\n                        <label>Description</label>\n                        <textarea [(ngModel)]=\"trip.description\" class=\"form-control\"></textarea>\n                    </p>\n                    <input type=\"button\" value=\"Save\" (click)=\"saveTrip()\" class=\"btn btn-sm btn-success\" />\n\n                    <h3>Posts:</h3>\n                    <li *ngFor=\"let p of trip.postBlogs\">\n                        <label>Name:</label>\n                        <input type=\"text\" [(ngModel)]=\"p.name\" class=\"form-control\"/>\n                        <p>\n                            <label>Plot</label>\n                            <textarea [(ngModel)]=\"p.plot\" class=\"form-control\"></textarea>\n                        </p>\n                        <input type=\"button\" value=\"Save\" (click)=\"save(p)\" class=\"btn btn-sm btn-success\" />\n                        <h1></h1>\n                    </li>\n\n                </div>\n            </div>\n        </div>\n    </main>\n</div>\n\n<!--шаблон для добавления-->\n<ng-template #create>\n    <div class=\"form-group\">\n        <label>Name</label>\n        <input type=\"text\" [(ngModel)]=\"post.name\" class=\"form-control\" />\n    </div>\n    <div class=\"form-group\"> \n        <label>Plot</label>\n        <textarea [(ngModel)]=\"post.plot\" class=\"form-control\"></textarea>\n    </div>\n    <div>\n        <input type=\"button\" value=\"Save\" (click)=\"save(post)\" class=\"btn btn-success\" />\n        <input type=\"button\" value=\"Cancel\" (click)=\"cancel()\" class=\"btn btn-warning\" />\n    </div>\n</ng-template>"
+
+/***/ }),
+
+/***/ "./src/app/edit/trip/trip.component.scss":
+/*!***********************************************!*\
+  !*** ./src/app/edit/trip/trip.component.scss ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2VkaXQvdHJpcC90cmlwLmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/edit/trip/trip.component.ts":
+/*!*********************************************!*\
+  !*** ./src/app/edit/trip/trip.component.ts ***!
+  \*********************************************/
+/*! exports provided: TripEditComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TripEditComponent", function() { return TripEditComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var _services_edit_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/edit.services */ "./src/app/edit/services/edit.services.ts");
+/* harmony import */ var _models_trip_with_post_interface__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../models/trip.with.post.interface */ "./src/app/edit/models/trip.with.post.interface.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var TripEditComponent = (function () {
+    function TripEditComponent(editService, router, activeRoute) {
+        this.editService = editService;
+        this.router = router;
+        this.loaded = false;
+        this.post = new _models_trip_with_post_interface__WEBPACK_IMPORTED_MODULE_3__["Post"]();
+        this.tableMode = true;
+        // this.id = Number.parseInt(activeRoute.snapshot.params["id"]);
+        //this.id = activeRoute.snapshot.params['id'];
+        this.id = router.url.toString();
+        var s;
+        s = this.id.substring(11, this.id.length);
+        this.id = s;
+    }
+    TripEditComponent.prototype.ngOnInit = function () {
+        this.loadTrip(this.id);
+    };
+    TripEditComponent.prototype.loadTrip = function (id) {
+        var _this = this;
+        this.editService.getTrip(this.id)
+            .subscribe(function (data) {
+            _this.trip = data;
+            if (_this.trip != null)
+                _this.loaded = true;
+        });
+    };
+    TripEditComponent.prototype.save = function (post) {
+        var _this = this;
+        this.post.tripId = Number.parseInt(this.id);
+        console.log(this.trip.postBlogs);
+        console.log(post);
+        if (post.id == null) {
+            this.editService.createPost(post).subscribe(function (data) { return _this.loadTrip(_this.id); });
+        }
+        else {
+            console.log("hello");
+            this.editService.updatePost(post).subscribe(function (data) { return _this.loadTrip(_this.id); });
+        }
+        this.cancel();
+    };
+    TripEditComponent.prototype.cancel = function () {
+        this.post = new _models_trip_with_post_interface__WEBPACK_IMPORTED_MODULE_3__["Post"]();
+        this.tableMode = true;
+    };
+    TripEditComponent.prototype.saveTrip = function () {
+        var _this = this;
+        this.editService.updateTrip(this.trip).subscribe(function (data) { return _this.loadTrip(_this.id); });
+    };
+    TripEditComponent.prototype.add = function () {
+        this.cancel();
+        this.tableMode = false;
+    };
+    TripEditComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-trip',
+            template: __webpack_require__(/*! ./trip.component.html */ "./src/app/edit/trip/trip.component.html"),
+            styles: [__webpack_require__(/*! ./trip.component.scss */ "./src/app/edit/trip/trip.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_services_edit_services__WEBPACK_IMPORTED_MODULE_2__["EditService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]])
+    ], TripEditComponent);
+    return TripEditComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/footer/footer.component.html":
 /*!**********************************************!*\
   !*** ./src/app/footer/footer.component.html ***!
@@ -7067,7 +7575,7 @@ var myFocus = (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"footer-basic\">\r\n    <footer>\r\n        <div class=\"social\"><a href=\"https://twitter.com/travel\"><i class=\"fab fa-twitter-square\"></i></a><a href=\"https://www.instagram.com/travelandleisure/\"><i class=\"fab fa-instagram\"></i></a><a href=\"https://www.snapchat.com/add/cailinoneil\"><i class=\"fab fa-snapchat-square\"></i></a><a href=\"https://www.facebook.com/TripandTravelBlog/\"><i class=\"fab fa-facebook-square\"></i></a></div>\r\n        <ul class=\"list-inline\">\r\n            <li class=\"list-inline-item\"><a href=\"#\">Home</a></li>\r\n            <li class=\"list-inline-item\"><a href=\"#\">Services</a></li>\r\n            <li class=\"list-inline-item\"><a href=\"#\">About</a></li>\r\n            <li class=\"list-inline-item\"><a href=\"#\">Terms</a></li>\r\n            <li class=\"list-inline-item\"><a href=\"#\">Privacy Policy</a></li>\r\n        </ul>\r\n        <p class=\"copyright\">Traveling Blog © 2018</p>\r\n    </footer>\r\n</div>"
+module.exports = "<div class=\"footer-basic\">\n    <footer>\n        <div class=\"social\"><a href=\"https://twitter.com/travel\"><i class=\"fab fa-twitter-square\"></i></a><a href=\"https://www.instagram.com/travelandleisure/\"><i class=\"fab fa-instagram\"></i></a><a href=\"https://www.snapchat.com/add/cailinoneil\"><i class=\"fab fa-snapchat-square\"></i></a><a href=\"https://www.facebook.com/TripandTravelBlog/\"><i class=\"fab fa-facebook-square\"></i></a></div>\n        <ul class=\"list-inline\">\n            <li class=\"list-inline-item\"><a href=\"#\">Home</a></li>\n            <li class=\"list-inline-item\"><a href=\"#\">Services</a></li>\n            <li class=\"list-inline-item\"><a href=\"#\">About</a></li>\n            <li class=\"list-inline-item\"><a href=\"#\">Terms</a></li>\n            <li class=\"list-inline-item\"><a href=\"#\">Privacy Policy</a></li>\n        </ul>\n        <p class=\"copyright\">Traveling Blog © 2018</p>\n    </footer>\n</div>"
 
 /***/ }),
 
@@ -7078,7 +7586,7 @@ module.exports = "<div class=\"footer-basic\">\r\n    <footer>\r\n        <div c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".footer-basic {\n  position: relative;\n  margin: 0;\n  padding: 25px;\n  background-color: #050505d2;\n  color: #ffffff;\n  clear: both; }\n\n.footer-basic ul {\n  padding: 0;\n  list-style: none;\n  text-align: center;\n  font-size: 18px;\n  line-height: 1.6;\n  margin-bottom: 0; }\n\n.footer-basic li {\n  padding: 0 10px; }\n\n.footer-basic ul a {\n  color: inherit;\n  text-decoration: none;\n  opacity: 0.8; }\n\n.footer-basic ul a:hover {\n  opacity: 1; }\n\n.footer-basic .social {\n  text-align: center;\n  padding-bottom: 25px; }\n\n.footer-basic .social > a {\n  font-size: 24px;\n  width: 40px;\n  height: 40px;\n  line-height: 40px;\n  display: inline-block;\n  text-align: center;\n  border-radius: 50%;\n  border: 1px solid #ccc;\n  margin: 0 8px;\n  color: inherit;\n  opacity: 0.75; }\n\n.footer-basic .social > a:hover {\n  opacity: 0.9; }\n\n.footer-basic .copyright {\n  margin-top: 15px;\n  text-align: center;\n  font-size: 13px;\n  color: #aaa;\n  margin-bottom: 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZm9vdGVyL0U6XFxHaXRIdWJcXFRyYXZlbGluZ0Jsb2dcXFRyYXZlbGluZ0Jsb2cuQW5ndWxhci9zcmNcXGFwcFxcZm9vdGVyXFxmb290ZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFFRSxtQkFBa0I7RUFDbEIsVUFBUztFQUNULGNBQWE7RUFDYiw0QkFBMEI7RUFDMUIsZUFBYTtFQUNiLFlBQVUsRUFDVjs7QUFFRjtFQUNFLFdBQVM7RUFDVCxpQkFBZTtFQUNmLG1CQUFpQjtFQUNqQixnQkFBYztFQUNkLGlCQUFlO0VBQ2YsaUJBQWUsRUFDaEI7O0FBRUQ7RUFDRSxnQkFBYyxFQUNmOztBQUVEO0VBQ0UsZUFBYTtFQUNiLHNCQUFvQjtFQUNwQixhQUFXLEVBQ1o7O0FBRUQ7RUFDRSxXQUFTLEVBQ1Y7O0FBRUQ7RUFDRSxtQkFBaUI7RUFDakIscUJBQW1CLEVBQ3BCOztBQUVEO0VBQ0UsZ0JBQWM7RUFDZCxZQUFVO0VBQ1YsYUFBVztFQUNYLGtCQUFnQjtFQUNoQixzQkFBb0I7RUFDcEIsbUJBQWlCO0VBQ2pCLG1CQUFpQjtFQUNqQix1QkFBcUI7RUFDckIsY0FBWTtFQUNaLGVBQWE7RUFDYixjQUFZLEVBQ2I7O0FBRUQ7RUFDRSxhQUFXLEVBQ1o7O0FBRUQ7RUFDRSxpQkFBZTtFQUNmLG1CQUFpQjtFQUNqQixnQkFBYztFQUNkLFlBQVU7RUFDVixpQkFBZSxFQUNoQiIsImZpbGUiOiJzcmMvYXBwL2Zvb3Rlci9mb290ZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZm9vdGVyLWJhc2ljIHtcclxuICAvL3BhZGRpbmc6MzBweCAwO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBtYXJnaW46IDA7XHJcbiAgcGFkZGluZzogMjVweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiMwNTA1MDVkMjtcclxuICBjb2xvcjojZmZmZmZmO1xyXG4gIGNsZWFyOmJvdGg7XHJcbiB9XHJcblxyXG4uZm9vdGVyLWJhc2ljIHVsIHtcclxuICBwYWRkaW5nOjA7XHJcbiAgbGlzdC1zdHlsZTpub25lO1xyXG4gIHRleHQtYWxpZ246Y2VudGVyO1xyXG4gIGZvbnQtc2l6ZToxOHB4O1xyXG4gIGxpbmUtaGVpZ2h0OjEuNjtcclxuICBtYXJnaW4tYm90dG9tOjA7XHJcbn1cclxuXHJcbi5mb290ZXItYmFzaWMgbGkge1xyXG4gIHBhZGRpbmc6MCAxMHB4O1xyXG59XHJcblxyXG4uZm9vdGVyLWJhc2ljIHVsIGEge1xyXG4gIGNvbG9yOmluaGVyaXQ7XHJcbiAgdGV4dC1kZWNvcmF0aW9uOm5vbmU7XHJcbiAgb3BhY2l0eTowLjg7XHJcbn1cclxuXHJcbi5mb290ZXItYmFzaWMgdWwgYTpob3ZlciB7XHJcbiAgb3BhY2l0eToxO1xyXG59XHJcblxyXG4uZm9vdGVyLWJhc2ljIC5zb2NpYWwge1xyXG4gIHRleHQtYWxpZ246Y2VudGVyO1xyXG4gIHBhZGRpbmctYm90dG9tOjI1cHg7XHJcbn1cclxuXHJcbi5mb290ZXItYmFzaWMgLnNvY2lhbCA+IGEge1xyXG4gIGZvbnQtc2l6ZToyNHB4O1xyXG4gIHdpZHRoOjQwcHg7XHJcbiAgaGVpZ2h0OjQwcHg7XHJcbiAgbGluZS1oZWlnaHQ6NDBweDtcclxuICBkaXNwbGF5OmlubGluZS1ibG9jaztcclxuICB0ZXh0LWFsaWduOmNlbnRlcjtcclxuICBib3JkZXItcmFkaXVzOjUwJTtcclxuICBib3JkZXI6MXB4IHNvbGlkICNjY2M7XHJcbiAgbWFyZ2luOjAgOHB4O1xyXG4gIGNvbG9yOmluaGVyaXQ7XHJcbiAgb3BhY2l0eTowLjc1O1xyXG59XHJcblxyXG4uZm9vdGVyLWJhc2ljIC5zb2NpYWwgPiBhOmhvdmVyIHtcclxuICBvcGFjaXR5OjAuOTtcclxufVxyXG5cclxuLmZvb3Rlci1iYXNpYyAuY29weXJpZ2h0IHtcclxuICBtYXJnaW4tdG9wOjE1cHg7XHJcbiAgdGV4dC1hbGlnbjpjZW50ZXI7XHJcbiAgZm9udC1zaXplOjEzcHg7XHJcbiAgY29sb3I6I2FhYTtcclxuICBtYXJnaW4tYm90dG9tOjA7XHJcbn0iXX0= */"
+module.exports = ".footer-basic {\n  position: relative;\n  margin: 0;\n  padding: 25px;\n  background-color: #050505d2;\n  color: #ffffff;\n  clear: both; }\n\n.footer-basic ul {\n  padding: 0;\n  list-style: none;\n  text-align: center;\n  font-size: 18px;\n  line-height: 1.6;\n  margin-bottom: 0; }\n\n.footer-basic li {\n  padding: 0 10px; }\n\n.footer-basic ul a {\n  color: inherit;\n  text-decoration: none;\n  opacity: 0.8; }\n\n.footer-basic ul a:hover {\n  opacity: 1; }\n\n.footer-basic .social {\n  text-align: center;\n  padding-bottom: 25px; }\n\n.footer-basic .social > a {\n  font-size: 24px;\n  width: 40px;\n  height: 40px;\n  line-height: 40px;\n  display: inline-block;\n  text-align: center;\n  border-radius: 50%;\n  border: 1px solid #ccc;\n  margin: 0 8px;\n  color: inherit;\n  opacity: 0.75; }\n\n.footer-basic .social > a:hover {\n  opacity: 0.9; }\n\n.footer-basic .copyright {\n  margin-top: 15px;\n  text-align: center;\n  font-size: 13px;\n  color: #aaa;\n  margin-bottom: 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZm9vdGVyL0U6XFxUZXN0XFxUcmF2ZWxpbmdCbG9nLWRldmVsb3BlclxcVHJhdmVsaW5nQmxvZy5Bbmd1bGFyL3NyY1xcYXBwXFxmb290ZXJcXGZvb3Rlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUVFLG1CQUFrQjtFQUNsQixVQUFTO0VBQ1QsY0FBYTtFQUNiLDRCQUEwQjtFQUMxQixlQUFhO0VBQ2IsWUFBVSxFQUNWOztBQUVGO0VBQ0UsV0FBUztFQUNULGlCQUFlO0VBQ2YsbUJBQWlCO0VBQ2pCLGdCQUFjO0VBQ2QsaUJBQWU7RUFDZixpQkFBZSxFQUNoQjs7QUFFRDtFQUNFLGdCQUFjLEVBQ2Y7O0FBRUQ7RUFDRSxlQUFhO0VBQ2Isc0JBQW9CO0VBQ3BCLGFBQVcsRUFDWjs7QUFFRDtFQUNFLFdBQVMsRUFDVjs7QUFFRDtFQUNFLG1CQUFpQjtFQUNqQixxQkFBbUIsRUFDcEI7O0FBRUQ7RUFDRSxnQkFBYztFQUNkLFlBQVU7RUFDVixhQUFXO0VBQ1gsa0JBQWdCO0VBQ2hCLHNCQUFvQjtFQUNwQixtQkFBaUI7RUFDakIsbUJBQWlCO0VBQ2pCLHVCQUFxQjtFQUNyQixjQUFZO0VBQ1osZUFBYTtFQUNiLGNBQVksRUFDYjs7QUFFRDtFQUNFLGFBQVcsRUFDWjs7QUFFRDtFQUNFLGlCQUFlO0VBQ2YsbUJBQWlCO0VBQ2pCLGdCQUFjO0VBQ2QsWUFBVTtFQUNWLGlCQUFlLEVBQ2hCIiwiZmlsZSI6InNyYy9hcHAvZm9vdGVyL2Zvb3Rlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5mb290ZXItYmFzaWMge1xuICAvL3BhZGRpbmc6MzBweCAwO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1hcmdpbjogMDtcbiAgcGFkZGluZzogMjVweDtcbiAgYmFja2dyb3VuZC1jb2xvcjojMDUwNTA1ZDI7XG4gIGNvbG9yOiNmZmZmZmY7XG4gIGNsZWFyOmJvdGg7XG4gfVxuXG4uZm9vdGVyLWJhc2ljIHVsIHtcbiAgcGFkZGluZzowO1xuICBsaXN0LXN0eWxlOm5vbmU7XG4gIHRleHQtYWxpZ246Y2VudGVyO1xuICBmb250LXNpemU6MThweDtcbiAgbGluZS1oZWlnaHQ6MS42O1xuICBtYXJnaW4tYm90dG9tOjA7XG59XG5cbi5mb290ZXItYmFzaWMgbGkge1xuICBwYWRkaW5nOjAgMTBweDtcbn1cblxuLmZvb3Rlci1iYXNpYyB1bCBhIHtcbiAgY29sb3I6aW5oZXJpdDtcbiAgdGV4dC1kZWNvcmF0aW9uOm5vbmU7XG4gIG9wYWNpdHk6MC44O1xufVxuXG4uZm9vdGVyLWJhc2ljIHVsIGE6aG92ZXIge1xuICBvcGFjaXR5OjE7XG59XG5cbi5mb290ZXItYmFzaWMgLnNvY2lhbCB7XG4gIHRleHQtYWxpZ246Y2VudGVyO1xuICBwYWRkaW5nLWJvdHRvbToyNXB4O1xufVxuXG4uZm9vdGVyLWJhc2ljIC5zb2NpYWwgPiBhIHtcbiAgZm9udC1zaXplOjI0cHg7XG4gIHdpZHRoOjQwcHg7XG4gIGhlaWdodDo0MHB4O1xuICBsaW5lLWhlaWdodDo0MHB4O1xuICBkaXNwbGF5OmlubGluZS1ibG9jaztcbiAgdGV4dC1hbGlnbjpjZW50ZXI7XG4gIGJvcmRlci1yYWRpdXM6NTAlO1xuICBib3JkZXI6MXB4IHNvbGlkICNjY2M7XG4gIG1hcmdpbjowIDhweDtcbiAgY29sb3I6aW5oZXJpdDtcbiAgb3BhY2l0eTowLjc1O1xufVxuXG4uZm9vdGVyLWJhc2ljIC5zb2NpYWwgPiBhOmhvdmVyIHtcbiAgb3BhY2l0eTowLjk7XG59XG5cbi5mb290ZXItYmFzaWMgLmNvcHlyaWdodCB7XG4gIG1hcmdpbi10b3A6MTVweDtcbiAgdGV4dC1hbGlnbjpjZW50ZXI7XG4gIGZvbnQtc2l6ZToxM3B4O1xuICBjb2xvcjojYWFhO1xuICBtYXJnaW4tYm90dG9tOjA7XG59Il19 */"
 
 /***/ }),
 
@@ -7130,7 +7638,7 @@ var FooterComponent = (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\r\n  <nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\">\r\n    <!-- Logo -->\r\n    <a class=\"navbar-brand mb-0 h1\" href=\"#\">\r\n      <img src=\"assets\\logo.png\" width=\"45\" height=\"45\" class=\"d-inline-block align-top\" alt=\"\">TravelingBlog</a>\r\n    <button class=\"navbar-toggler d-lg-none\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarsExampleDefault\" aria-controls=\"navbarsExampleDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n      <span class=\"navbar-toggler-icon\"></span>\r\n    </button>\r\n    <!-- end logo -->\r\n\r\n    <!-- Navigation components -->\r\n    <!-- Home - Guide - Trips buttons -->\r\n    <div class=\"navbar-collapse collapse\" id=\"navbarsExampleDefault\">\r\n      <ul class=\"navbar-nav nav1 mr-auto\">\r\n        <li>\r\n          <a class=\"nav-link\" href=\"#\">Home</a>\r\n        </li>\r\n        <li>\r\n            <a class=\"nav-link\" href=\"#\">Guids</a>\r\n        </li>\r\n        <li>\r\n            <a class=\"nav-link\" href=\"#\">Trips</a>\r\n          </li>\r\n      </ul>\r\n      <nav class=\"navbar-nav navbar-left\" action=\"\">\r\n        <form class=\"form-inline my-1 my-lg-0\">\r\n            <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">\r\n            <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\r\n          </form>\r\n        </nav>\r\n\r\n<!-- Right navbar before sign -->\r\n      <ul *ngIf=\"!status\" class=\"navbar-nav ml-auto\">\r\n        <li>\r\n          <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"First group\">\r\n            <a class=\"btn btn-info btn-sm\" href=\"#\"  routerLink=\"/login\">SIGN-IN</a>\r\n          </div>\r\n          <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"First group\">\r\n            <a class=\"btn btn-info btn-sm \" href=\"#\" routerLink=\"/register\">SIGN-UP</a>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n\r\n<!-- Right navbar after sign -->\r\n      <ul *ngIf=\"status\" class=\"navbar-nav ml-auto\">\r\n        <li >\r\n          <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"Second group\">\r\n              <a class=\"btn btn-info btn-sm \" href=\"#\" routerLink=\"/dashboard\">My Page</a>\r\n          </div>\r\n          <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"Second group\">\r\n              <a class=\"btn btn-info btn-sm \"(click)=\"logout()\" href=\"#\">SIGN OUT</a>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </nav>\r\n</header>\r\n"
+module.exports = "<header>\n  <nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\">\n    <!-- Logo -->\n    <a class=\"navbar-brand mb-0 h1\" href=\"#\">\n      <img src=\"assets\\logo.png\" width=\"45\" height=\"45\" class=\"d-inline-block align-top\" alt=\"\">TravelingBlog</a>\n    <button class=\"navbar-toggler d-lg-none\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarsExampleDefault\" aria-controls=\"navbarsExampleDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <!-- end logo -->\n\n    <!-- Navigation components -->\n    <!-- Home - Guide - Trips buttons -->\n    <div class=\"navbar-collapse collapse\" id=\"navbarsExampleDefault\">\n      <ul class=\"navbar-nav nav1 mr-auto\">\n        <li>\n          <a class=\"nav-link\" href=\"#\">Home</a>\n        </li>\n        <li>\n            <a class=\"nav-link\" href=\"#\">Guids</a>\n        </li>\n        <li>\n            <a class=\"nav-link\" href=\"#\">Trips</a>\n          </li>\n      </ul>\n      <nav class=\"navbar-nav navbar-left\" action=\"\">\n        <form class=\"form-inline my-1 my-lg-0\">\n            <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">\n            <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\n          </form>\n        </nav>\n\n<!-- Right navbar before sign -->\n      <ul *ngIf=\"!status\" class=\"navbar-nav ml-auto\">\n        <li>\n          <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"First group\">\n            <a class=\"btn btn-info btn-sm\" href=\"#\"  routerLink=\"/login\">SIGN-IN</a>\n          </div>\n          <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"First group\">\n            <a class=\"btn btn-info btn-sm \" href=\"#\" routerLink=\"/register\">SIGN-UP</a>\n          </div>\n        </li>\n      </ul>\n\n<!-- Right navbar after sign -->\n      <ul *ngIf=\"status\" class=\"navbar-nav ml-auto\">\n        <li >\n          <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"Second group\">\n              <a class=\"btn btn-info btn-sm \" href=\"#\" routerLink=\"/dashboard\">My Page</a>\n          </div>\n          <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"Second group\">\n              <a class=\"btn btn-info btn-sm \"(click)=\"logout()\" href=\"#\">SIGN OUT</a>\n          </div>\n        </li>\n      </ul>\n    </div>\n  </nav>\n</header>\n"
 
 /***/ }),
 
@@ -7141,7 +7649,7 @@ module.exports = "<header>\r\n  <nav class=\"navbar navbar-expand-md navbar-dark
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".navbar-right {\n  padding-right: 40px; }\n\n.form-group {\n  padding: 10px; }\n\n.color-blue {\n  color: #0080c5; }\n\n.color-red {\n  color: #FF0000; }\n\n.error-message {\n  font-size: 10px; }\n\n.nav1 {\n  margin-right: 55px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaGVhZGVyL0U6XFxHaXRIdWJcXFRyYXZlbGluZ0Jsb2dcXFRyYXZlbGluZ0Jsb2cuQW5ndWxhci9zcmNcXGFwcFxcaGVhZGVyXFxoZWFkZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFBYyxvQkFBbUIsRUFBRzs7QUFDcEM7RUFBWSxjQUFhLEVBQUc7O0FBQzVCO0VBQWEsZUFBYyxFQUFHOztBQUM5QjtFQUFZLGVBQWMsRUFBRzs7QUFDN0I7RUFBZ0IsZ0JBQWUsRUFBRzs7QUFDbEM7RUFFSSxtQkFBa0IsRUFDckIiLCJmaWxlIjoic3JjL2FwcC9oZWFkZXIvaGVhZGVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm5hdmJhci1yaWdodHtwYWRkaW5nLXJpZ2h0OiA0MHB4O31cclxuLmZvcm0tZ3JvdXB7cGFkZGluZzogMTBweDt9XHJcbi5jb2xvci1ibHVlIHtjb2xvcjogIzAwODBjNTt9XHJcbi5jb2xvci1yZWQge2NvbG9yOiAjRkYwMDAwO31cclxuLmVycm9yLW1lc3NhZ2Uge2ZvbnQtc2l6ZTogMTBweDt9XHJcbi5uYXYxe1xyXG4gICAgLy8gcGFkZGluZy1yaWdodDogMjAwcHg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDU1cHg7XHJcbn1cclxuIl19 */"
+module.exports = ".navbar-right {\n  padding-right: 40px; }\n\n.form-group {\n  padding: 10px; }\n\n.color-blue {\n  color: #0080c5; }\n\n.color-red {\n  color: #FF0000; }\n\n.error-message {\n  font-size: 10px; }\n\n.nav1 {\n  margin-right: 55px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaGVhZGVyL0U6XFxUZXN0XFxUcmF2ZWxpbmdCbG9nLWRldmVsb3BlclxcVHJhdmVsaW5nQmxvZy5Bbmd1bGFyL3NyY1xcYXBwXFxoZWFkZXJcXGhlYWRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUFjLG9CQUFtQixFQUFHOztBQUNwQztFQUFZLGNBQWEsRUFBRzs7QUFDNUI7RUFBYSxlQUFjLEVBQUc7O0FBQzlCO0VBQVksZUFBYyxFQUFHOztBQUM3QjtFQUFnQixnQkFBZSxFQUFHOztBQUNsQztFQUVJLG1CQUFrQixFQUNyQiIsImZpbGUiOiJzcmMvYXBwL2hlYWRlci9oZWFkZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubmF2YmFyLXJpZ2h0e3BhZGRpbmctcmlnaHQ6IDQwcHg7fVxuLmZvcm0tZ3JvdXB7cGFkZGluZzogMTBweDt9XG4uY29sb3ItYmx1ZSB7Y29sb3I6ICMwMDgwYzU7fVxuLmNvbG9yLXJlZCB7Y29sb3I6ICNGRjAwMDA7fVxuLmVycm9yLW1lc3NhZ2Uge2ZvbnQtc2l6ZTogMTBweDt9XG4ubmF2MXtcbiAgICAvLyBwYWRkaW5nLXJpZ2h0OiAyMDBweDtcbiAgICBtYXJnaW4tcmlnaHQ6IDU1cHg7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -7205,7 +7713,7 @@ var HeaderComponent = (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\r\n  <div id=\"carouselExampleIndicators\" class=\"carousel slide\" data-ride=\"carousel\">\r\n    <ol class=\"carousel-indicators\">\r\n      <li data-target=\"#carouselExampleIndicators\" data-slide-to=\"0\" class=\"active\"></li>\r\n      <li data-target=\"#carouselExampleIndicators\" data-slide-to=\"1\"></li>\r\n      <li data-target=\"#carouselExampleIndicators\" data-slide-to=\"2\"></li>\r\n    </ol>\r\n    <div class=\"carousel-inner\" role=\"listbox\">\r\n      <div class=\"carousel-item active\" style=\"background-image: url('assets/images/carousel-img/7.jpg')\">\r\n\r\n        <div class=\"carousel-caption d-none d-md-block\">\r\n          <h3 class=\"display-4\">Travels inspire us to adventure</h3>\r\n          <p class=\"lead\">Why us? Our travel blog will help you in organizing a wonderful trip for you.</p>\r\n        </div>\r\n      </div>\r\n      <div class=\"carousel-item\" style=\"background-image: url('assets/images/carousel-img/4.jpg')\">\r\n        <div class=\"carousel-caption d-none d-md-block\">\r\n          <h3 class=\"display-4\">Wanna share emotions with other travellers?</h3>\r\n          <p class=\"lead\">Create a trip and tell everything about your journey. Don`t forget to add photo,\r\n            descriptions!</p>\r\n        </div>\r\n      </div>\r\n      <div class=\"carousel-item\" style=\"background-image: url('assets/images/carousel-img/5.jpg')\">\r\n        <div class=\"carousel-caption d-none d-md-block\">\r\n          <h3 class=\"display-4\">Let`s start! </h3>\r\n          <p class=\"lead\">Discover the world with us! Read blogs, get inspired and plan your trip!</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <a class=\"carousel-control-prev\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"prev\">\r\n      <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\r\n      <span class=\"sr-only\">Previous</span>\r\n    </a>\r\n    <a class=\"carousel-control-next\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"next\">\r\n      <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\r\n      <span class=\"sr-only\">Next</span>\r\n    </a>\r\n  </div>\r\n</header>\r\n\r\n\r\n<aside id=\"testimonials\" class=\"text-center\" data-enllax-ratio=\".2\" tabindex=\"-1\" style=\"background-position: center 34px;\">\r\n  <div class=\"section-heading\">\r\n    <h2 class=\"section-title\">Our experienced blogs!</h2>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-4\">\r\n      <blockquote class=\" testimonial classic\">\r\n        <img src=\"assets/images/user-img/user-1.jpg\" alt=\"User\"/>\r\n        <h3>England - why not?</h3>\r\n        <q>Brits love to sip, slurp and gulp down tea while occasionally dunking a digestive in there too.\r\n          Among the three ghosts said to haunt Athelhampton House, one of them is an ape.\r\n          An interesting fact is that French was the official language of England for about 300 years.</q>\r\n        <p>Julie Fan - Happy Customer</p>\r\n      </blockquote>\r\n    </div>\r\n\r\n    <div class=\"col-sm-4\">\r\n      <blockquote class=\"testimonial classic\">\r\n        <img src=\"assets/images/user-img/user-3.jpg\" alt=\"User\" />\r\n        <h3>\"Like Spain, I am bound to the past.\"</h3>\r\n        <q>It’s like a dream to come to Spain and stay for a couple of years and get somebody to teach me Spanish\r\n          music.\r\n          I have seen dawn and sunset on moors and windy hills coming in solemn beauty like slow old tunes of Spain.\r\n        </q>\r\n        <p>Thomas Doe </p>\r\n      </blockquote>\r\n    </div>\r\n\r\n    <div class=\"col-sm-4\">\r\n      <blockquote class=\"testimonial classic\">\r\n        <img src=\"assets/images/user-img/user-2.jpg\" alt=\"User\" />\r\n        <h3>Trip to the Netherland</h3>\r\n        <q>Yep, a country so small you can drive through it from its Northern- to its Southern-tip (the largest\r\n          distance)\r\n          in just about two hours if you don’t hit any heavy traffic.\r\n          Somehow the Dutch still manage to crank out enough food to “Feed the World” with so little space! I liked it!</q>\r\n        <p>Roslyn Doe</p>\r\n      </blockquote>\r\n    </div>\r\n  </div>\r\n\r\n</aside>\r\n\r\n<section id=\"portfolios\" class=\"section-padding\">\r\n  <div class=\"container\">\r\n    <h2 class=\"section-title\" data-wow-delay=\"0.4s\">Countries and places which inspire</h2>\r\n    <div class=\"row\">\r\n      <div id=\"portfolio\" class=\"row\" data-wow-delay=\"0.4s\">\r\n        <div class=\"col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development print\">\r\n          <div class=\"portfolio-item\">\r\n            <div class=\"shot-item\">\r\n              <img src=\"assets/images/block-img/7.jpg\" alt=\"\" />\r\n              <div class=\"overlay\">\r\n                <div class=\"icons\">\r\n                  <a class=\"lightbox preview\" href=\"assets/images/block-img/7.jpg\" data-fancybox=\"block-img\" data-title=\"Image #1\">\r\n                    <i class=\"icon-preview\" title=\"Full-screen window\"></i>\r\n                  </a>\r\n                  <a class=\"link\" href=\"#\">\r\n                    <i class=\"icon-link\" title=\"Go to trip\"></i>\r\n                  </a>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-6 col-md-4 col-lg-4 col-xl-4 mix design print\">\r\n          <div class=\"portfolio-item\">\r\n            <div class=\"shot-item\">\r\n              <img src=\"assets/images/block-img/2.jpg\" alt=\"\" />\r\n              <div class=\"overlay\">\r\n                <div class=\"icons\">\r\n                  <a class=\"lightbox preview\" href=\"assets/images/block-img/2.jpg\" data-fancybox=\"block-img\" data-title=\"Image #2\">\r\n                    <i class=\"icon-preview\" title=\"Full-screen window\"></i>\r\n                  </a>\r\n                  <a class=\"link\" href=\"#\">\r\n                    <i class=\"icon-link\" title=\"Go to trip\"></i>\r\n                  </a>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development\">\r\n          <div class=\"portfolio-item\">\r\n            <div class=\"shot-item\">\r\n              <img src=\"assets/images/block-img/3.jpg\" alt=\"\" />\r\n              <div class=\"overlay\">\r\n                <div class=\"icons\">\r\n                  <a class=\"lightbox preview\" href=\"assets/images/block-img/3.jpg\" data-fancybox=\"block-img\" data-title=\"Image #3\">\r\n                    <i class=\"icon-preview\" title=\"Full-screen window\"></i>\r\n                  </a>\r\n                  <a class=\"link\" href=\"#\">\r\n                    <i class=\"icon-link\" title=\"Go to trip\"></i>\r\n                  </a>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development design\">\r\n          <div class=\"portfolio-item\">\r\n            <div class=\"shot-item\">\r\n              <img src=\"assets/images/block-img/4.jpg\" alt=\"\" />\r\n              <div class=\"overlay\">\r\n                <div class=\"icons\">\r\n                  <a class=\"lightbox preview\" href=\"assets/images/block-img/4.jpg\" data-fancybox=\"block-img\" data-title=\"Image #4\">\r\n                    <i class=\"icon-preview\" title=\"Full-screen window\"></i>\r\n                  </a>\r\n                  <a class=\"link\" href=\"#\">\r\n                    <i class=\"icon-link\" title=\"Go to trip\"></i>\r\n                  </a>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development\">\r\n          <div class=\"portfolio-item\">\r\n            <div class=\"shot-item\">\r\n              <img src=\"assets/images/block-img/5.jpg\" alt=\"\" />\r\n              <div class=\"overlay\">\r\n                <div class=\"icons\">\r\n                  <a class=\"lightbox preview\" href=\"assets/images/block-img/5.jpg\" data-fancybox=\"block-img\" data-title=\"Image #5\">\r\n                    <i class=\"icon-preview\" title=\"Full-screen window\"></i>\r\n                  </a>\r\n                  <a class=\"link\" href=\"#\">\r\n                    <i class=\"icon-link\" title=\"Go to trip\"></i>\r\n                  </a>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-6 col-md-4 col-lg-4 col-xl-4 mix print design\">\r\n          <div class=\"portfolio-item\">\r\n            <div class=\"shot-item\">\r\n              <img src=\"assets/images/block-img/6.jpg\" alt=\"\" />\r\n              <div class=\"overlay\">\r\n                <div class=\"icons\">\r\n                  <a class=\"lightbox preview\" href=\"assets/images/block-img/6.jpg\" data-fancybox=\"block-img\" data-title=\"Image #6\">\r\n                    <i class=\"icon-preview\" title=\"Full-screen window\"></i>\r\n                  </a>\r\n                  <a class=\"link\" href=\"#\">\r\n                    <i class=\"icon-link\" title=\"Go to trip\"></i>\r\n                  </a>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>\r\n\r\n<form>\r\n  <div class=\"button-section\">\r\n    <h3>Let`s register and start your advantures!</h3>\r\n    <input class=\"registrationButton\" type=\"button\" value=\"Register\" onclick=\"window.location.href='/register'\" />\r\n    <br>\r\n    <br>\r\n  </div>\r\n</form>\r\n"
+module.exports = "<header>\n  <div id=\"carouselExampleIndicators\" class=\"carousel slide\" data-ride=\"carousel\">\n    <ol class=\"carousel-indicators\">\n      <li data-target=\"#carouselExampleIndicators\" data-slide-to=\"0\" class=\"active\"></li>\n      <li data-target=\"#carouselExampleIndicators\" data-slide-to=\"1\"></li>\n      <li data-target=\"#carouselExampleIndicators\" data-slide-to=\"2\"></li>\n    </ol>\n    <div class=\"carousel-inner\" role=\"listbox\">\n      <div class=\"carousel-item active\" style=\"background-image: url('assets/images/carousel-img/7.jpg')\">\n\n        <div class=\"carousel-caption d-none d-md-block\">\n          <h3 class=\"display-4\">Travels inspire us to adventure</h3>\n          <p class=\"lead\">Why us? Our travel blog will help you in organizing a wonderful trip for you.</p>\n        </div>\n      </div>\n      <div class=\"carousel-item\" style=\"background-image: url('assets/images/carousel-img/4.jpg')\">\n        <div class=\"carousel-caption d-none d-md-block\">\n          <h3 class=\"display-4\">Wanna share emotions with other travellers?</h3>\n          <p class=\"lead\">Create a trip and tell everything about your journey. Don`t forget to add photo,\n            descriptions!</p>\n        </div>\n      </div>\n      <div class=\"carousel-item\" style=\"background-image: url('assets/images/carousel-img/5.jpg')\">\n        <div class=\"carousel-caption d-none d-md-block\">\n          <h3 class=\"display-4\">Let`s start! </h3>\n          <p class=\"lead\">Discover the world with us! Read blogs, get inspired and plan your trip!</p>\n        </div>\n      </div>\n    </div>\n    <a class=\"carousel-control-prev\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"prev\">\n      <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"carousel-control-next\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"next\">\n      <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Next</span>\n    </a>\n  </div>\n</header>\n\n\n<aside id=\"testimonials\" class=\"text-center\" data-enllax-ratio=\".2\" tabindex=\"-1\" style=\"background-position: center 34px;\">\n  <div class=\"section-heading\">\n    <h2 class=\"section-title\">Our experienced blogs!</h2>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-sm-4\">\n      <blockquote class=\" testimonial classic\">\n        <img src=\"assets/images/user-img/user-1.jpg\" alt=\"User\"/>\n        <h3>England - why not?</h3>\n        <q>Brits love to sip, slurp and gulp down tea while occasionally dunking a digestive in there too.\n          Among the three ghosts said to haunt Athelhampton House, one of them is an ape.\n          An interesting fact is that French was the official language of England for about 300 years.</q>\n        <p>Julie Fan - Happy Customer</p>\n      </blockquote>\n    </div>\n\n    <div class=\"col-sm-4\">\n      <blockquote class=\"testimonial classic\">\n        <img src=\"assets/images/user-img/user-3.jpg\" alt=\"User\" />\n        <h3>\"Like Spain, I am bound to the past.\"</h3>\n        <q>It’s like a dream to come to Spain and stay for a couple of years and get somebody to teach me Spanish\n          music.\n          I have seen dawn and sunset on moors and windy hills coming in solemn beauty like slow old tunes of Spain.\n        </q>\n        <p>Thomas Doe </p>\n      </blockquote>\n    </div>\n\n    <div class=\"col-sm-4\">\n      <blockquote class=\"testimonial classic\">\n        <img src=\"assets/images/user-img/user-2.jpg\" alt=\"User\" />\n        <h3>Trip to the Netherland</h3>\n        <q>Yep, a country so small you can drive through it from its Northern- to its Southern-tip (the largest\n          distance)\n          in just about two hours if you don’t hit any heavy traffic.\n          Somehow the Dutch still manage to crank out enough food to “Feed the World” with so little space! I liked it!</q>\n        <p>Roslyn Doe</p>\n      </blockquote>\n    </div>\n  </div>\n\n</aside>\n\n<section id=\"portfolios\" class=\"section-padding\">\n  <div class=\"container\">\n    <h2 class=\"section-title\" data-wow-delay=\"0.4s\">Countries and places which inspire</h2>\n    <div class=\"row\">\n      <div id=\"portfolio\" class=\"row\" data-wow-delay=\"0.4s\">\n        <div class=\"col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development print\">\n          <div class=\"portfolio-item\">\n            <div class=\"shot-item\">\n              <img src=\"assets/images/block-img/1.jpg\" alt=\"\" />\n              <div class=\"overlay\">\n                <div class=\"icons\">\n                  <a class=\"lightbox preview\" href=\"assets/images/block-img/1.jpg\">\n                    <i class=\"icon-preview\"></i>\n                  </a>\n                  <a class=\"link\" href=\"#\">\n                    <i class=\"icon-link\"></i>\n                  </a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-sm-6 col-md-4 col-lg-4 col-xl-4 mix design print\">\n          <div class=\"portfolio-item\">\n            <div class=\"shot-item\">\n              <img src=\"assets/images/block-img/2.jpg\" alt=\"\" />\n              <div class=\"overlay\">\n                <div class=\"icons\">\n                  <a class=\"lightbox preview\" href=\"assets/images/block-img/2.jpg\">\n                    <i class=\"icon-preview\"></i>\n                  </a>\n                  <a class=\"link\" href=\"#\">\n                    <i class=\"icon-link\"></i>\n                  </a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development\">\n          <div class=\"portfolio-item\">\n            <div class=\"shot-item\">\n              <img src=\"assets/images/block-img/3.jpg\" alt=\"\" />\n              <div class=\"overlay\">\n                <div class=\"icons\">\n                  <a class=\"lightbox preview\" href=\"assets/images/block-img/3.jpg\">\n                    <i class=\"icon-preview\"></i>\n                  </a>\n                  <a class=\"link\" href=\"#\">\n                    <i class=\"icon-link\"></i>\n                  </a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development design\">\n          <div class=\"portfolio-item\">\n            <div class=\"shot-item\">\n              <img src=\"assets/images/block-img/4.jpg\" alt=\"\" />\n              <div class=\"overlay\">\n                <div class=\"icons\">\n                  <a class=\"lightbox preview\" href=\"assets/images/block-img/4.jpg\">\n                    <i class=\"icon-preview\"></i>\n                  </a>\n                  <a class=\"link\" href=\"#\">\n                    <i class=\"icon-link\"></i>\n                  </a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development\">\n          <div class=\"portfolio-item\">\n            <div class=\"shot-item\">\n              <img src=\"assets/images/block-img/5.jpg\" alt=\"\" />\n              <div class=\"overlay\">\n                <div class=\"icons\">\n                  <a class=\"lightbox preview\" href=\"assets/images/block-img/5.jpg\">\n                    <i class=\"icon-preview\"></i>\n                  </a>\n                  <a class=\"link\" href=\"#\">\n                    <i class=\"icon-link\"></i>\n                  </a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-sm-6 col-md-4 col-lg-4 col-xl-4 mix print design\">\n          <div class=\"portfolio-item\">\n            <div class=\"shot-item\">\n              <img src=\"assets/images/block-img/6.jpg\" alt=\"\" />\n              <div class=\"overlay\">\n                <div class=\"icons\">\n                  <a class=\"lightbox preview\" href=\"assets/images/block-img/6.jpg\">\n                    <i class=\"icon-preview\"></i>\n                  </a>\n                  <a class=\"link\" href=\"#\">\n                    <i class=\"icon-link\"></i>\n                  </a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n\n<form>\n  <div class=\"button-section\">\n    <h3>Let`s register and start your advantures!</h3>\n    <input class=\"registrationButton\" type=\"button\" value=\"Register\" onclick=\"window.location.href='/register'\" />\n    <br>\n    <br>\n  </div>\n</form>\n"
 
 /***/ }),
 
@@ -7216,7 +7724,7 @@ module.exports = "<header>\r\n  <div id=\"carouselExampleIndicators\" class=\"ca
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".carousel-item {\n  height: 65vh;\n  min-height: 500px;\n  background: no-repeat center center scroll;\n  background-size: cover; }\n\n.ul {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  overflow: hidden;\n  height: 100%;\n  background-color: #333; }\n\n.active {\n  background-color: #4CAF50; }\n\nli {\n  float: left; }\n\nli a {\n  display: block;\n  text-align: center;\n  padding: 14px 16px;\n  text-decoration: none; }\n\nli a:hover {\n  background-color: #111; }\n\n.btn {\n  color: #4CAF50;\n  margin: 8px;\n  float: right; }\n\n.div.button-section {\n  position: fixed; }\n\n.button-section {\n  text-align: center; }\n\n.container {\n  margin-top: 10px; }\n\ndiv#footer {\n  padding: 10px;\n  color: white;\n  background-color: black; }\n\n.col-3 {\n  width: 33.33%; }\n\n.section-heading {\n  padding: 0 0 15px 0; }\n\n.row {\n  padding: 15px !important;\n  flex-wrap: wrap;\n  margin-left: -15px;\n  margin-right: -15px; }\n\n.row-1 {\n  padding: 15px !important;\n  flex-wrap: wrap;\n  margin-left: -45px;\n  margin-right: -45px; }\n\n.clearfix:after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\n.testimonial {\n  padding: 15px; }\n\nblockquote {\n  position: relative; }\n\n.testimonial img {\n  max-height: 250px;\n  border-radius: 300em; }\n\n.testimonial footer {\n  padding-top: 12px; }\n\n.testimonial.classic img {\n  display: inline-block;\n  margin-bottom: 25px; }\n\n.testimonial.classic q {\n  display: block; }\n\n.testimonial.classic footer:before {\n  display: block;\n  content: \"\";\n  width: 30px;\n  height: 4px;\n  margin: 10px auto 15px auto; }\n\n.text-center {\n  text-align: center; }\n\np {\n  margin-top: 25px;\n  margin-bottom: 1rem; }\n\n.registrationButton {\n  background-color: #4CAF50;\n  color: black;\n  font-size: 20px;\n  border: 2px solid black;\n  width: 30%;\n  border: none;\n  padding: 15px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  margin: 4px 2px;\n  cursor: pointer; }\n\n.registrationButton:hover {\n  color: #ffff00;\n  background: #000;\n  border: 0px solid #fff; }\n\n.portfolio {\n  visibility: visible; }\n\n.section-title {\n  text-align: center; }\n\n#portfolios .mix {\n  padding: 10px; }\n\n.col-md-4 {\n  flex: 0 0 33.333333%;\n  max-width: 33.333333%; }\n\n#portfolios .portfolio-item .shot-item {\n  margin: 0px; }\n\n.shot-item {\n  margin-right: 15px;\n  border-radius: 4px;\n  background: #fff;\n  position: relative; }\n\n.shot-item img {\n  width: 100%; }\n\n.shot-item .overlay {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  background: rgba(0, 180, 217, 0.6);\n  opacity: 0; }\n\n.icon-eye:before {\n  content: \"\\e087\"; }\n\n.overlay {\n  opacity: 0; }\n\n.overlay .icons i {\n  height: 42px;\n  width: 42px;\n  line-height: 42px;\n  color: #00b4d9;\n  left: 50%;\n  margin-left: -24px;\n  margin-top: -24px;\n  top: 50%;\n  position: absolute;\n  z-index: 2;\n  cursor: pointer;\n  text-align: center;\n  font-size: 20px;\n  background: #fff;\n  border-radius: 4px; }\n\n.overlay .preview {\n  position: absolute;\n  left: 40%;\n  top: 50%;\n  color: #fff; }\n\n.overlay .preview .icon-preview {\n  background-image: url('preview.png'); }\n\n.overlay .link {\n  position: absolute;\n  left: 60%;\n  margin-left: 10px;\n  top: 50%;\n  color: #fff; }\n\n.overlay .link .icon-link {\n  background-image: url('link.png'); }\n\n.shot-item:hover .overlay {\n  opacity: 1; }\n\n.icon {\n  width: 50px;\n  height: 60px; }\n\n.lead {\n  text-align: center;\n  color: ghostwhite;\n  font-size: 30px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9FOlxcR2l0SHViXFxUcmF2ZWxpbmdCbG9nXFxUcmF2ZWxpbmdCbG9nLkFuZ3VsYXIvc3JjXFxhcHBcXGhvbWVcXGhvbWUuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFZO0VBQ1osa0JBQWlCO0VBQ2pCLDJDQUEwQztFQUkxQyx1QkFBc0IsRUFDckI7O0FBRUQ7RUFDQSxzQkFBcUI7RUFDckIsVUFBUztFQUNULFdBQVU7RUFDVixpQkFBZ0I7RUFDaEIsYUFBWTtFQUNaLHVCQUFzQixFQUNyQjs7QUFFRjtFQUNDLDBCQUF5QixFQUMxQjs7QUFFRDtFQUNBLFlBQVcsRUFDVjs7QUFFRDtFQUNBLGVBQWM7RUFDZCxtQkFBa0I7RUFDbEIsbUJBQWtCO0VBQ2xCLHNCQUFxQixFQUNwQjs7QUFFRDtFQUNBLHVCQUFzQixFQUNyQjs7QUFFRDtFQUNBLGVBQWM7RUFDZCxZQUFXO0VBQ1gsYUFBWSxFQUNYOztBQUVEO0VBQ0EsZ0JBQ0EsRUFBQzs7QUFFRDtFQUNBLG1CQUFrQixFQUNqQjs7QUFFRDtFQUNBLGlCQUFnQixFQUNmOztBQUVEO0VBQ0EsY0FBYTtFQUNiLGFBQVk7RUFDWix3QkFBdUIsRUFDdEI7O0FBRUQ7RUFDQSxjQUFhLEVBQ1o7O0FBRUQ7RUFDQSxvQkFBbUIsRUFDbEI7O0FBRUQ7RUFDQSx5QkFBd0I7RUFDeEIsZ0JBQWU7RUFDZixtQkFBa0I7RUFDbEIsb0JBQW1CLEVBQ2xCOztBQUVEO0VBQ0EseUJBQXdCO0VBQ3hCLGdCQUFlO0VBQ2YsbUJBQWtCO0VBQ2xCLG9CQUFtQixFQUNsQjs7QUFFRDtFQUNBLFlBQVc7RUFDWCxlQUFjO0VBQ2QsWUFBVyxFQUNWOztBQUVEO0VBQ0EsY0FBYSxFQUNaOztBQUVEO0VBQ0EsbUJBQWtCLEVBQ2pCOztBQUVEO0VBQ0Esa0JBQWlCO0VBQ2pCLHFCQUFvQixFQUNuQjs7QUFFRDtFQUNBLGtCQUFpQixFQUNoQjs7QUFFRDtFQUNBLHNCQUFxQjtFQUNyQixvQkFBbUIsRUFDbEI7O0FBRUQ7RUFDQSxlQUFjLEVBQ2I7O0FBRUQ7RUFDQSxlQUFjO0VBQ2QsWUFBVztFQUNYLFlBQVc7RUFDWCxZQUFXO0VBQ1gsNEJBQTJCLEVBQzFCOztBQUVEO0VBQ0EsbUJBQWtCLEVBQ2pCOztBQUVEO0VBQ0UsaUJBQWdCO0VBQ2hCLG9CQUFtQixFQUNwQjs7QUFFRDtFQUNBLDBCQUF5QjtFQUN6QixhQUFZO0VBQ1osZ0JBQWU7RUFDZix3QkFBdUI7RUFDdkIsV0FBVTtFQUNWLGFBQVk7RUFDWixtQkFBa0I7RUFDbEIsbUJBQWtCO0VBQ2xCLHNCQUFxQjtFQUNyQixzQkFBcUI7RUFDckIsZ0JBQWU7RUFDZixnQkFBZSxFQUNkOztBQUVEO0VBQ0EsZUFBYztFQUNkLGlCQUFnQjtFQUNoQix1QkFBc0IsRUFDckI7O0FBRUQ7RUFDQSxvQkFBbUIsRUFDbEI7O0FBQ0Q7RUFDQSxtQkFBa0IsRUFDakI7O0FBRUQ7RUFDQSxjQUFhLEVBQ1o7O0FBRUQ7RUFDQSxxQkFBb0I7RUFDcEIsc0JBQ0EsRUFBQzs7QUFFRDtFQUNBLFlBQVcsRUFDVjs7QUFFRDtFQUNBLG1CQUFrQjtFQUNsQixtQkFBa0I7RUFDbEIsaUJBQWdCO0VBQ2hCLG1CQUFrQixFQUNqQjs7QUFFRDtFQUNBLFlBQVcsRUFDVjs7QUFFRDtFQUNBLG1CQUFrQjtFQUNsQixZQUFXO0VBQ1gsYUFBWTtFQUNaLFFBQU87RUFDUCxPQUFNO0VBQ04sbUNBQWtDO0VBQ2xDLFdBQVUsRUFDVDs7QUFFRDtFQUNBLGlCQUFnQixFQUNmOztBQUVEO0VBQ0EsV0FBVSxFQUNUOztBQUVEO0VBQ0EsYUFBWTtFQUNaLFlBQVc7RUFDWCxrQkFBaUI7RUFDakIsZUFBYztFQUNkLFVBQVM7RUFDVCxtQkFBa0I7RUFDbEIsa0JBQWlCO0VBQ2pCLFNBQVE7RUFDUixtQkFBa0I7RUFDbEIsV0FBVTtFQUNWLGdCQUFlO0VBQ2YsbUJBQWtCO0VBQ2xCLGdCQUFlO0VBQ2YsaUJBQWdCO0VBQ2hCLG1CQUFrQixFQUNqQjs7QUFFRDtFQUNFLG1CQUFrQjtFQUNsQixVQUFTO0VBQ1QsU0FBUTtFQUNSLFlBQVcsRUFDWjs7QUFFRDtFQUNFLHFDQUE4RCxFQUMvRDs7QUFFRDtFQUNBLG1CQUFrQjtFQUNsQixVQUFTO0VBQ1Qsa0JBQWlCO0VBQ2pCLFNBQVE7RUFDUixZQUFXLEVBQ1Y7O0FBRUQ7RUFDRSxrQ0FBMkQsRUFDNUQ7O0FBRUQ7RUFDQSxXQUFVLEVBQ1Q7O0FBRUQ7RUFDQSxZQUFXO0VBQ1gsYUFBWSxFQUNYOztBQUVEO0VBQ0EsbUJBQWtCO0VBQ2xCLGtCQUFpQjtFQUNqQixnQkFBZSxFQUNkIiwiZmlsZSI6InNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNhcm91c2VsLWl0ZW0ge1xyXG4gIGhlaWdodDogNjV2aDtcclxuICBtaW4taGVpZ2h0OiA1MDBweDtcclxuICBiYWNrZ3JvdW5kOiBuby1yZXBlYXQgY2VudGVyIGNlbnRlciBzY3JvbGw7XHJcbiAgLXdlYmtpdC1iYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gIC1tb3otYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcclxuICAtby1iYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XHJcbiAgfVxyXG5cclxuICAudWwge1xyXG4gIGxpc3Qtc3R5bGUtdHlwZTogbm9uZTtcclxuICBtYXJnaW46IDA7XHJcbiAgcGFkZGluZzogMDtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzMzO1xyXG4gIH0gIFxyXG4gIFxyXG4gLmFjdGl2ZSB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzRDQUY1MDtcclxufVxyXG5cclxubGkge1xyXG5mbG9hdDogbGVmdDsgXHJcbn1cclxuXHJcbmxpIGEge1xyXG5kaXNwbGF5OiBibG9jaztcclxudGV4dC1hbGlnbjogY2VudGVyO1xyXG5wYWRkaW5nOiAxNHB4IDE2cHg7XHJcbnRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxufVxyXG5cclxubGkgYTpob3ZlciB7XHJcbmJhY2tncm91bmQtY29sb3I6ICMxMTE7XHJcbn1cclxuXHJcbi5idG4ge1xyXG5jb2xvcjogIzRDQUY1MDtcclxubWFyZ2luOiA4cHg7XHJcbmZsb2F0OiByaWdodDtcclxufVxyXG5cclxuLmRpdi5idXR0b24tc2VjdGlvbiB7XHJcbnBvc2l0aW9uOiBmaXhlZFxyXG59XHJcblxyXG4uYnV0dG9uLXNlY3Rpb257XHJcbnRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLmNvbnRhaW5lcntcclxubWFyZ2luLXRvcDogMTBweDtcclxufVxyXG5cclxuZGl2I2Zvb3RlciB7XHJcbnBhZGRpbmc6IDEwcHg7XHJcbmNvbG9yOiB3aGl0ZTtcclxuYmFja2dyb3VuZC1jb2xvcjogYmxhY2s7XHJcbn1cclxuXHJcbi5jb2wtMyB7XHJcbndpZHRoOiAzMy4zMyU7XHJcbn1cclxuXHJcbi5zZWN0aW9uLWhlYWRpbmcge1xyXG5wYWRkaW5nOiAwIDAgMTVweCAwO1xyXG59XHJcblxyXG4ucm93IHtcclxucGFkZGluZzogMTVweCAhaW1wb3J0YW50O1xyXG5mbGV4LXdyYXA6IHdyYXA7XHJcbm1hcmdpbi1sZWZ0OiAtMTVweDtcclxubWFyZ2luLXJpZ2h0OiAtMTVweDsgXHJcbn1cclxuXHJcbi5yb3ctMXtcclxucGFkZGluZzogMTVweCAhaW1wb3J0YW50O1xyXG5mbGV4LXdyYXA6IHdyYXA7XHJcbm1hcmdpbi1sZWZ0OiAtNDVweDtcclxubWFyZ2luLXJpZ2h0OiAtNDVweDtcclxufVxyXG5cclxuLmNsZWFyZml4OmFmdGVyIHtcclxuY29udGVudDogXCJcIjtcclxuZGlzcGxheTogdGFibGU7XHJcbmNsZWFyOiBib3RoO1xyXG59XHJcblxyXG4udGVzdGltb25pYWwge1xyXG5wYWRkaW5nOiAxNXB4O1xyXG59XHJcblxyXG5ibG9ja3F1b3RlIHtcclxucG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcblxyXG4udGVzdGltb25pYWwgaW1nIHtcclxubWF4LWhlaWdodDogMjUwcHg7XHJcbmJvcmRlci1yYWRpdXM6IDMwMGVtO1xyXG59XHJcblxyXG4udGVzdGltb25pYWwgZm9vdGVyIHtcclxucGFkZGluZy10b3A6IDEycHg7XHJcbn1cclxuXHJcbi50ZXN0aW1vbmlhbC5jbGFzc2ljIGltZyB7XHJcbmRpc3BsYXk6IGlubGluZS1ibG9jaztcclxubWFyZ2luLWJvdHRvbTogMjVweDtcclxufVxyXG5cclxuLnRlc3RpbW9uaWFsLmNsYXNzaWMgcSB7XHJcbmRpc3BsYXk6IGJsb2NrO1xyXG59XHJcblxyXG4udGVzdGltb25pYWwuY2xhc3NpYyBmb290ZXI6YmVmb3JlIHtcclxuZGlzcGxheTogYmxvY2s7XHJcbmNvbnRlbnQ6IFwiXCI7XHJcbndpZHRoOiAzMHB4O1xyXG5oZWlnaHQ6IDRweDtcclxubWFyZ2luOiAxMHB4IGF1dG8gMTVweCBhdXRvO1xyXG59XHJcblxyXG4udGV4dC1jZW50ZXIge1xyXG50ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbnB7XHJcbiAgbWFyZ2luLXRvcDogMjVweDtcclxuICBtYXJnaW4tYm90dG9tOiAxcmVtO1xyXG59XHJcblxyXG4ucmVnaXN0cmF0aW9uQnV0dG9ue1xyXG5iYWNrZ3JvdW5kLWNvbG9yOiAjNENBRjUwO1xyXG5jb2xvcjogYmxhY2s7XHJcbmZvbnQtc2l6ZTogMjBweDtcclxuYm9yZGVyOiAycHggc29saWQgYmxhY2s7XHJcbndpZHRoOiAzMCU7XHJcbmJvcmRlcjogbm9uZTtcclxucGFkZGluZzogMTVweCAzMnB4O1xyXG50ZXh0LWFsaWduOiBjZW50ZXI7XHJcbnRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxuZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG5tYXJnaW46IDRweCAycHg7XHJcbmN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLnJlZ2lzdHJhdGlvbkJ1dHRvbjpob3ZlcntcclxuY29sb3I6ICNmZmZmMDA7XHJcbmJhY2tncm91bmQ6ICMwMDA7XHJcbmJvcmRlcjogMHB4IHNvbGlkICNmZmY7XHJcbn1cclxuXHJcbi5wb3J0Zm9saW97XHJcbnZpc2liaWxpdHk6IHZpc2libGU7XHJcbn1cclxuLnNlY3Rpb24tdGl0bGV7XHJcbnRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuI3BvcnRmb2xpb3MgLm1peCB7XHJcbnBhZGRpbmc6IDEwcHg7XHJcbn1cclxuXHJcbi5jb2wtbWQtNHtcclxuZmxleDogMCAwIDMzLjMzMzMzMyU7XHJcbm1heC13aWR0aDogMzMuMzMzMzMzJVxyXG59XHJcblxyXG4jcG9ydGZvbGlvcyAucG9ydGZvbGlvLWl0ZW0gLnNob3QtaXRlbSB7XHJcbm1hcmdpbjogMHB4O1xyXG59XHJcblxyXG4uc2hvdC1pdGVtIHtcclxubWFyZ2luLXJpZ2h0OiAxNXB4O1xyXG5ib3JkZXItcmFkaXVzOiA0cHg7XHJcbmJhY2tncm91bmQ6ICNmZmY7XHJcbnBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuLnNob3QtaXRlbSBpbWcge1xyXG53aWR0aDogMTAwJTtcclxufVxyXG5cclxuLnNob3QtaXRlbSAub3ZlcmxheSB7XHJcbnBvc2l0aW9uOiBhYnNvbHV0ZTtcclxud2lkdGg6IDEwMCU7XHJcbmhlaWdodDogMTAwJTtcclxubGVmdDogMDtcclxudG9wOiAwO1xyXG5iYWNrZ3JvdW5kOiByZ2JhKDAsIDE4MCwgMjE3LCAwLjYpO1xyXG5vcGFjaXR5OiAwO1xyXG59XHJcblxyXG4uaWNvbi1leWU6YmVmb3JlIHtcclxuY29udGVudDogXCJcXGUwODdcIjtcclxufVxyXG5cclxuLm92ZXJsYXkge1xyXG5vcGFjaXR5OiAwO1xyXG59XHJcblxyXG4ub3ZlcmxheSAuaWNvbnMgaSB7XHJcbmhlaWdodDogNDJweDtcclxud2lkdGg6IDQycHg7XHJcbmxpbmUtaGVpZ2h0OiA0MnB4O1xyXG5jb2xvcjogIzAwYjRkOTtcclxubGVmdDogNTAlO1xyXG5tYXJnaW4tbGVmdDogLTI0cHg7XHJcbm1hcmdpbi10b3A6IC0yNHB4O1xyXG50b3A6IDUwJTtcclxucG9zaXRpb246IGFic29sdXRlO1xyXG56LWluZGV4OiAyO1xyXG5jdXJzb3I6IHBvaW50ZXI7XHJcbnRleHQtYWxpZ246IGNlbnRlcjtcclxuZm9udC1zaXplOiAyMHB4O1xyXG5iYWNrZ3JvdW5kOiAjZmZmO1xyXG5ib3JkZXItcmFkaXVzOiA0cHg7XHJcbn1cclxuXHJcbi5vdmVybGF5IC5wcmV2aWV3IHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbGVmdDogNDAlO1xyXG4gIHRvcDogNTAlO1xyXG4gIGNvbG9yOiAjZmZmO1xyXG59XHJcblxyXG4ub3ZlcmxheSAucHJldmlldyAuaWNvbi1wcmV2aWV3IHtcclxuICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoXCJhc3NldHMvaW1hZ2VzL2dhbGxlcnktaW1nL3ByZXZpZXcucG5nXCIpO1xyXG59XHJcblxyXG4ub3ZlcmxheSAubGluayB7XHJcbnBvc2l0aW9uOiBhYnNvbHV0ZTtcclxubGVmdDogNjAlO1xyXG5tYXJnaW4tbGVmdDogMTBweDtcclxudG9wOiA1MCU7XHJcbmNvbG9yOiAjZmZmO1xyXG59XHJcblxyXG4ub3ZlcmxheSAubGluayAuaWNvbi1saW5rIHtcclxuICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoXCJhc3NldHMvaW1hZ2VzL2dhbGxlcnktaW1nL2xpbmsucG5nXCIpO1xyXG59XHJcblxyXG4uc2hvdC1pdGVtOmhvdmVyIC5vdmVybGF5IHtcclxub3BhY2l0eTogMTtcclxufVxyXG5cclxuLmljb24ge1xyXG53aWR0aDogNTBweDtcclxuaGVpZ2h0OiA2MHB4O1xyXG59XHJcbiBcclxuLmxlYWQge1xyXG50ZXh0LWFsaWduOiBjZW50ZXI7XHJcbmNvbG9yOiBnaG9zdHdoaXRlO1xyXG5mb250LXNpemU6IDMwcHg7XHJcbn0iXX0= */"
+module.exports = ".carousel-item {\n  height: 65vh;\n  min-height: 500px;\n  background: no-repeat center center scroll;\n  background-size: cover; }\n\n.ul {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  overflow: hidden;\n  height: 100%;\n  background-color: #333; }\n\n.active {\n  background-color: #4CAF50; }\n\nli {\n  float: left; }\n\nli a {\n  display: block;\n  text-align: center;\n  padding: 14px 16px;\n  text-decoration: none; }\n\nli a:hover {\n  background-color: #111; }\n\n.btn {\n  color: #4CAF50;\n  margin: 8px;\n  float: right; }\n\n.div.button-section {\n  position: fixed; }\n\n.button-section {\n  text-align: center; }\n\n.container {\n  margin-top: 10px; }\n\ndiv#footer {\n  padding: 10px;\n  color: white;\n  background-color: black; }\n\n.col-3 {\n  width: 33.33%; }\n\n.section-heading {\n  padding: 0 0 15px 0; }\n\n.row {\n  padding: 15px !important;\n  flex-wrap: wrap;\n  margin-left: -15px;\n  margin-right: -15px; }\n\n.row-1 {\n  padding: 15px !important;\n  flex-wrap: wrap;\n  margin-left: -45px;\n  margin-right: -45px; }\n\n.clearfix:after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\n.testimonial {\n  padding: 15px; }\n\nblockquote {\n  position: relative; }\n\n.testimonial img {\n  max-height: 250px;\n  border-radius: 300em; }\n\n.testimonial footer {\n  padding-top: 12px; }\n\n.testimonial.classic img {\n  display: inline-block;\n  margin-bottom: 25px; }\n\n.testimonial.classic q {\n  display: block; }\n\n.testimonial.classic footer:before {\n  display: block;\n  content: \"\";\n  width: 30px;\n  height: 4px;\n  margin: 10px auto 15px auto; }\n\n.text-center {\n  text-align: center; }\n\np {\n  margin-top: 25px;\n  margin-bottom: 1rem; }\n\n.registrationButton {\n  background-color: #4CAF50;\n  color: black;\n  font-size: 20px;\n  border: 2px solid black;\n  width: 30%;\n  border: none;\n  padding: 15px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  margin: 4px 2px;\n  cursor: pointer; }\n\n.registrationButton:hover {\n  color: #ffff00;\n  background: #000;\n  border: 0px solid #fff; }\n\n.portfolio {\n  visibility: visible; }\n\n.section-title {\n  text-align: center; }\n\n#portfolios .mix {\n  padding: 10px; }\n\n.col-md-4 {\n  flex: 0 0 33.333333%;\n  max-width: 33.333333%; }\n\n#portfolios .portfolio-item .shot-item {\n  margin: 0px; }\n\n.shot-item {\n  margin-right: 15px;\n  border-radius: 4px;\n  background: #fff;\n  position: relative; }\n\n.shot-item img {\n  width: 100%; }\n\n.shot-item .overlay {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  left: 0;\n  top: 0;\n  background: rgba(0, 180, 217, 0.6);\n  opacity: 0; }\n\n.icon-eye:before {\n  content: \"\\e087\"; }\n\n.overlay {\n  opacity: 0; }\n\n.overlay .icons i {\n  height: 42px;\n  width: 42px;\n  line-height: 42px;\n  color: #00b4d9;\n  left: 50%;\n  margin-left: -24px;\n  margin-top: -24px;\n  top: 50%;\n  position: absolute;\n  z-index: 2;\n  cursor: pointer;\n  text-align: center;\n  font-size: 20px;\n  background: #fff;\n  border-radius: 4px; }\n\n.overlay .preview {\n  position: absolute;\n  left: 45%;\n  top: 50%;\n  color: #fff; }\n\n.overlay .link {\n  position: absolute;\n  left: 60%;\n  margin-left: 10px;\n  top: 50%;\n  color: #fff; }\n\n.shot-item:hover .overlay {\n  opacity: 1; }\n\n.icon {\n  width: 50px;\n  height: 60px; }\n\n.lead {\n  text-align: center;\n  color: ghostwhite;\n  font-size: 30px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9FOlxcVGVzdFxcVHJhdmVsaW5nQmxvZy1kZXZlbG9wZXJcXFRyYXZlbGluZ0Jsb2cuQW5ndWxhci9zcmNcXGFwcFxcaG9tZVxcaG9tZS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQVk7RUFDWixrQkFBaUI7RUFDakIsMkNBQTBDO0VBSTFDLHVCQUFzQixFQUNyQjs7QUFFRDtFQUNBLHNCQUFxQjtFQUNyQixVQUFTO0VBQ1QsV0FBVTtFQUNWLGlCQUFnQjtFQUNoQixhQUFZO0VBQ1osdUJBQXNCLEVBQ3JCOztBQUVGO0VBQ0MsMEJBQXlCLEVBQzFCOztBQUVEO0VBQ0EsWUFBVyxFQUNWOztBQUVEO0VBQ0EsZUFBYztFQUNkLG1CQUFrQjtFQUNsQixtQkFBa0I7RUFDbEIsc0JBQXFCLEVBQ3BCOztBQUVEO0VBQ0EsdUJBQXNCLEVBQ3JCOztBQUVEO0VBQ0EsZUFBYztFQUNkLFlBQVc7RUFDWCxhQUFZLEVBQ1g7O0FBRUQ7RUFDQSxnQkFDQSxFQUFDOztBQUVEO0VBQ0EsbUJBQWtCLEVBQ2pCOztBQUVEO0VBQ0EsaUJBQWdCLEVBQ2Y7O0FBRUQ7RUFDQSxjQUFhO0VBQ2IsYUFBWTtFQUNaLHdCQUF1QixFQUN0Qjs7QUFFRDtFQUNBLGNBQWEsRUFDWjs7QUFFRDtFQUNBLG9CQUFtQixFQUNsQjs7QUFFRDtFQUNBLHlCQUF3QjtFQUN4QixnQkFBZTtFQUNmLG1CQUFrQjtFQUNsQixvQkFBbUIsRUFDbEI7O0FBRUQ7RUFDQSx5QkFBd0I7RUFDeEIsZ0JBQWU7RUFDZixtQkFBa0I7RUFDbEIsb0JBQW1CLEVBQ2xCOztBQUVEO0VBQ0EsWUFBVztFQUNYLGVBQWM7RUFDZCxZQUFXLEVBQ1Y7O0FBRUQ7RUFDQSxjQUFhLEVBQ1o7O0FBRUQ7RUFDQSxtQkFBa0IsRUFDakI7O0FBRUQ7RUFDQSxrQkFBaUI7RUFDakIscUJBQW9CLEVBQ25COztBQUVEO0VBQ0Esa0JBQWlCLEVBQ2hCOztBQUVEO0VBQ0Esc0JBQXFCO0VBQ3JCLG9CQUFtQixFQUNsQjs7QUFFRDtFQUNBLGVBQWMsRUFDYjs7QUFFRDtFQUNBLGVBQWM7RUFDZCxZQUFXO0VBQ1gsWUFBVztFQUNYLFlBQVc7RUFDWCw0QkFBMkIsRUFDMUI7O0FBRUQ7RUFDQSxtQkFBa0IsRUFDakI7O0FBRUQ7RUFDRSxpQkFBZ0I7RUFDaEIsb0JBQW1CLEVBQ3BCOztBQUVEO0VBQ0EsMEJBQXlCO0VBQ3pCLGFBQVk7RUFDWixnQkFBZTtFQUNmLHdCQUF1QjtFQUN2QixXQUFVO0VBQ1YsYUFBWTtFQUNaLG1CQUFrQjtFQUNsQixtQkFBa0I7RUFDbEIsc0JBQXFCO0VBQ3JCLHNCQUFxQjtFQUNyQixnQkFBZTtFQUNmLGdCQUFlLEVBQ2Q7O0FBRUQ7RUFDQSxlQUFjO0VBQ2QsaUJBQWdCO0VBQ2hCLHVCQUFzQixFQUNyQjs7QUFFRDtFQUNBLG9CQUFtQixFQUNsQjs7QUFDRDtFQUNBLG1CQUFrQixFQUNqQjs7QUFFRDtFQUNBLGNBQWEsRUFDWjs7QUFFRDtFQUNBLHFCQUFvQjtFQUNwQixzQkFDQSxFQUFDOztBQUVEO0VBQ0EsWUFBVyxFQUNWOztBQUVEO0VBQ0EsbUJBQWtCO0VBQ2xCLG1CQUFrQjtFQUNsQixpQkFBZ0I7RUFDaEIsbUJBQWtCLEVBQ2pCOztBQUVEO0VBQ0EsWUFBVyxFQUNWOztBQUVEO0VBQ0EsbUJBQWtCO0VBQ2xCLFlBQVc7RUFDWCxhQUFZO0VBQ1osUUFBTztFQUNQLE9BQU07RUFDTixtQ0FBa0M7RUFDbEMsV0FBVSxFQUNUOztBQUVEO0VBQ0EsaUJBQWdCLEVBQ2Y7O0FBRUQ7RUFDQSxXQUFVLEVBQ1Q7O0FBRUQ7RUFDQSxhQUFZO0VBQ1osWUFBVztFQUNYLGtCQUFpQjtFQUNqQixlQUFjO0VBQ2QsVUFBUztFQUNULG1CQUFrQjtFQUNsQixrQkFBaUI7RUFDakIsU0FBUTtFQUNSLG1CQUFrQjtFQUNsQixXQUFVO0VBQ1YsZ0JBQWU7RUFDZixtQkFBa0I7RUFDbEIsZ0JBQWU7RUFDZixpQkFBZ0I7RUFDaEIsbUJBQWtCLEVBQ2pCOztBQUVEO0VBQ0EsbUJBQWtCO0VBQ2xCLFVBQVM7RUFDVCxTQUFRO0VBQ1IsWUFBVyxFQUNWOztBQUVEO0VBQ0EsbUJBQWtCO0VBQ2xCLFVBQVM7RUFDVCxrQkFBaUI7RUFDakIsU0FBUTtFQUNSLFlBQVcsRUFDVjs7QUFFRDtFQUNBLFdBQVUsRUFDVDs7QUFFRDtFQUNBLFlBQVc7RUFDWCxhQUFZLEVBQ1g7O0FBRUQ7RUFDQSxtQkFBa0I7RUFDbEIsa0JBQWlCO0VBQ2pCLGdCQUFlLEVBQ2QiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2Fyb3VzZWwtaXRlbSB7XG4gIGhlaWdodDogNjV2aDtcbiAgbWluLWhlaWdodDogNTAwcHg7XG4gIGJhY2tncm91bmQ6IG5vLXJlcGVhdCBjZW50ZXIgY2VudGVyIHNjcm9sbDtcbiAgLXdlYmtpdC1iYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICAtbW96LWJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIC1vLWJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIH1cblxuICAudWwge1xuICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7XG4gIG1hcmdpbjogMDtcbiAgcGFkZGluZzogMDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgaGVpZ2h0OiAxMDAlO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzMzO1xuICB9ICBcbiAgXG4gLmFjdGl2ZSB7XG4gIGJhY2tncm91bmQtY29sb3I6ICM0Q0FGNTA7XG59XG5cbmxpIHtcbmZsb2F0OiBsZWZ0OyBcbn1cblxubGkgYSB7XG5kaXNwbGF5OiBibG9jaztcbnRleHQtYWxpZ246IGNlbnRlcjtcbnBhZGRpbmc6IDE0cHggMTZweDtcbnRleHQtZGVjb3JhdGlvbjogbm9uZTtcbn1cblxubGkgYTpob3ZlciB7XG5iYWNrZ3JvdW5kLWNvbG9yOiAjMTExO1xufVxuXG4uYnRuIHtcbmNvbG9yOiAjNENBRjUwO1xubWFyZ2luOiA4cHg7XG5mbG9hdDogcmlnaHQ7XG59XG5cbi5kaXYuYnV0dG9uLXNlY3Rpb24ge1xucG9zaXRpb246IGZpeGVkXG59XG5cbi5idXR0b24tc2VjdGlvbntcbnRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLmNvbnRhaW5lcntcbm1hcmdpbi10b3A6IDEwcHg7XG59XG5cbmRpdiNmb290ZXIge1xucGFkZGluZzogMTBweDtcbmNvbG9yOiB3aGl0ZTtcbmJhY2tncm91bmQtY29sb3I6IGJsYWNrO1xufVxuXG4uY29sLTMge1xud2lkdGg6IDMzLjMzJTtcbn1cblxuLnNlY3Rpb24taGVhZGluZyB7XG5wYWRkaW5nOiAwIDAgMTVweCAwO1xufVxuXG4ucm93IHtcbnBhZGRpbmc6IDE1cHggIWltcG9ydGFudDtcbmZsZXgtd3JhcDogd3JhcDtcbm1hcmdpbi1sZWZ0OiAtMTVweDtcbm1hcmdpbi1yaWdodDogLTE1cHg7IFxufVxuXG4ucm93LTF7XG5wYWRkaW5nOiAxNXB4ICFpbXBvcnRhbnQ7XG5mbGV4LXdyYXA6IHdyYXA7XG5tYXJnaW4tbGVmdDogLTQ1cHg7XG5tYXJnaW4tcmlnaHQ6IC00NXB4O1xufVxuXG4uY2xlYXJmaXg6YWZ0ZXIge1xuY29udGVudDogXCJcIjtcbmRpc3BsYXk6IHRhYmxlO1xuY2xlYXI6IGJvdGg7XG59XG5cbi50ZXN0aW1vbmlhbCB7XG5wYWRkaW5nOiAxNXB4O1xufVxuXG5ibG9ja3F1b3RlIHtcbnBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLnRlc3RpbW9uaWFsIGltZyB7XG5tYXgtaGVpZ2h0OiAyNTBweDtcbmJvcmRlci1yYWRpdXM6IDMwMGVtO1xufVxuXG4udGVzdGltb25pYWwgZm9vdGVyIHtcbnBhZGRpbmctdG9wOiAxMnB4O1xufVxuXG4udGVzdGltb25pYWwuY2xhc3NpYyBpbWcge1xuZGlzcGxheTogaW5saW5lLWJsb2NrO1xubWFyZ2luLWJvdHRvbTogMjVweDtcbn1cblxuLnRlc3RpbW9uaWFsLmNsYXNzaWMgcSB7XG5kaXNwbGF5OiBibG9jaztcbn1cblxuLnRlc3RpbW9uaWFsLmNsYXNzaWMgZm9vdGVyOmJlZm9yZSB7XG5kaXNwbGF5OiBibG9jaztcbmNvbnRlbnQ6IFwiXCI7XG53aWR0aDogMzBweDtcbmhlaWdodDogNHB4O1xubWFyZ2luOiAxMHB4IGF1dG8gMTVweCBhdXRvO1xufVxuXG4udGV4dC1jZW50ZXIge1xudGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG5we1xuICBtYXJnaW4tdG9wOiAyNXB4O1xuICBtYXJnaW4tYm90dG9tOiAxcmVtO1xufVxuXG4ucmVnaXN0cmF0aW9uQnV0dG9ue1xuYmFja2dyb3VuZC1jb2xvcjogIzRDQUY1MDtcbmNvbG9yOiBibGFjaztcbmZvbnQtc2l6ZTogMjBweDtcbmJvcmRlcjogMnB4IHNvbGlkIGJsYWNrO1xud2lkdGg6IDMwJTtcbmJvcmRlcjogbm9uZTtcbnBhZGRpbmc6IDE1cHggMzJweDtcbnRleHQtYWxpZ246IGNlbnRlcjtcbnRleHQtZGVjb3JhdGlvbjogbm9uZTtcbmRpc3BsYXk6IGlubGluZS1ibG9jaztcbm1hcmdpbjogNHB4IDJweDtcbmN1cnNvcjogcG9pbnRlcjtcbn1cblxuLnJlZ2lzdHJhdGlvbkJ1dHRvbjpob3ZlcntcbmNvbG9yOiAjZmZmZjAwO1xuYmFja2dyb3VuZDogIzAwMDtcbmJvcmRlcjogMHB4IHNvbGlkICNmZmY7XG59XG5cbi5wb3J0Zm9saW97XG52aXNpYmlsaXR5OiB2aXNpYmxlO1xufVxuLnNlY3Rpb24tdGl0bGV7XG50ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbiNwb3J0Zm9saW9zIC5taXgge1xucGFkZGluZzogMTBweDtcbn1cblxuLmNvbC1tZC00e1xuZmxleDogMCAwIDMzLjMzMzMzMyU7XG5tYXgtd2lkdGg6IDMzLjMzMzMzMyVcbn1cblxuI3BvcnRmb2xpb3MgLnBvcnRmb2xpby1pdGVtIC5zaG90LWl0ZW0ge1xubWFyZ2luOiAwcHg7XG59XG5cbi5zaG90LWl0ZW0ge1xubWFyZ2luLXJpZ2h0OiAxNXB4O1xuYm9yZGVyLXJhZGl1czogNHB4O1xuYmFja2dyb3VuZDogI2ZmZjtcbnBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLnNob3QtaXRlbSBpbWcge1xud2lkdGg6IDEwMCU7XG59XG5cbi5zaG90LWl0ZW0gLm92ZXJsYXkge1xucG9zaXRpb246IGFic29sdXRlO1xud2lkdGg6IDEwMCU7XG5oZWlnaHQ6IDEwMCU7XG5sZWZ0OiAwO1xudG9wOiAwO1xuYmFja2dyb3VuZDogcmdiYSgwLCAxODAsIDIxNywgMC42KTtcbm9wYWNpdHk6IDA7XG59XG5cbi5pY29uLWV5ZTpiZWZvcmUge1xuY29udGVudDogXCJcXGUwODdcIjtcbn1cblxuLm92ZXJsYXkge1xub3BhY2l0eTogMDtcbn1cblxuLm92ZXJsYXkgLmljb25zIGkge1xuaGVpZ2h0OiA0MnB4O1xud2lkdGg6IDQycHg7XG5saW5lLWhlaWdodDogNDJweDtcbmNvbG9yOiAjMDBiNGQ5O1xubGVmdDogNTAlO1xubWFyZ2luLWxlZnQ6IC0yNHB4O1xubWFyZ2luLXRvcDogLTI0cHg7XG50b3A6IDUwJTtcbnBvc2l0aW9uOiBhYnNvbHV0ZTtcbnotaW5kZXg6IDI7XG5jdXJzb3I6IHBvaW50ZXI7XG50ZXh0LWFsaWduOiBjZW50ZXI7XG5mb250LXNpemU6IDIwcHg7XG5iYWNrZ3JvdW5kOiAjZmZmO1xuYm9yZGVyLXJhZGl1czogNHB4O1xufVxuXG4ub3ZlcmxheSAucHJldmlldyB7XG5wb3NpdGlvbjogYWJzb2x1dGU7XG5sZWZ0OiA0NSU7XG50b3A6IDUwJTtcbmNvbG9yOiAjZmZmO1xufVxuXG4ub3ZlcmxheSAubGluayB7XG5wb3NpdGlvbjogYWJzb2x1dGU7XG5sZWZ0OiA2MCU7XG5tYXJnaW4tbGVmdDogMTBweDtcbnRvcDogNTAlO1xuY29sb3I6ICNmZmY7XG59XG5cbi5zaG90LWl0ZW06aG92ZXIgLm92ZXJsYXkge1xub3BhY2l0eTogMTtcbn1cblxuLmljb24ge1xud2lkdGg6IDUwcHg7XG5oZWlnaHQ6IDYwcHg7XG59XG4gXG4ubGVhZCB7XG50ZXh0LWFsaWduOiBjZW50ZXI7XG5jb2xvcjogZ2hvc3R3aGl0ZTtcbmZvbnQtc2l6ZTogMzBweDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -7522,7 +8030,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var ConfigService = (function () {
     function ConfigService() {
-        this._apiURI = 'https://trvlblg.azurewebsites.net';
+        this._apiURI = 'http://travelingblog.azurewebsites.net';
     }
     ConfigService.prototype.getApiURI = function () {
         return this._apiURI;
@@ -7545,7 +8053,7 @@ var ConfigService = (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div [hidden]=\"!isDelayedRunning\" class=\"spinner\">\r\n  <div class=\"double-bounce1\"></div>\r\n  <div class=\"double-bounce2\"></div>\r\n</div> \r\n"
+module.exports = "<div [hidden]=\"!isDelayedRunning\" class=\"spinner\">\n  <div class=\"double-bounce1\"></div>\n  <div class=\"double-bounce2\"></div>\n</div> \n"
 
 /***/ }),
 
@@ -7556,7 +8064,7 @@ module.exports = "<div [hidden]=\"!isDelayedRunning\" class=\"spinner\">\r\n  <d
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".spinner {\n  width: 40px;\n  height: 40px;\n  position: relative;\n  margin: 30px auto; }\n\n.double-bounce1, .double-bounce2 {\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #333;\n  opacity: 0.6;\n  position: absolute;\n  top: 0;\n  left: 0;\n  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;\n  animation: sk-bounce 2.0s infinite ease-in-out; }\n\n.double-bounce2 {\n  -webkit-animation-delay: -1.0s;\n  animation-delay: -1.0s; }\n\n@-webkit-keyframes sk-bounce {\n  0%, 100% {\n    -webkit-transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1); } }\n\n@keyframes sk-bounce {\n  0%, 100% {\n    transform: scale(0);\n    -webkit-transform: scale(0); }\n  50% {\n    transform: scale(1);\n    -webkit-transform: scale(1); } }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3Bpbm5lci9FOlxcR2l0SHViXFxUcmF2ZWxpbmdCbG9nXFxUcmF2ZWxpbmdCbG9nLkFuZ3VsYXIvc3JjXFxhcHBcXHNwaW5uZXJcXHNwaW5uZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxZQUFXO0VBQ1gsYUFBWTtFQUNaLG1CQUFrQjtFQUNsQixrQkFBaUIsRUFDbEI7O0FBRUQ7RUFDRSxZQUFXO0VBQ1gsYUFBWTtFQUNaLG1CQUFrQjtFQUNsQix1QkFBc0I7RUFDdEIsYUFBWTtFQUNaLG1CQUFrQjtFQUNsQixPQUFNO0VBQ04sUUFBTztFQUNQLHVEQUFzRDtFQUN0RCwrQ0FBOEMsRUFDL0M7O0FBRUQ7RUFDRSwrQkFBOEI7RUFDOUIsdUJBQXNCLEVBQ3ZCOztBQUVEO0VBQ0U7SUFDRSw0QkFBNkIsRUFBQTtFQUcvQjtJQUNFLDRCQUE2QixFQUFBLEVBQUE7O0FBSWpDO0VBQ0U7SUFDRSxvQkFBcUI7SUFDckIsNEJBQTZCLEVBQUE7RUFHL0I7SUFDRSxvQkFBcUI7SUFDckIsNEJBQTZCLEVBQUEsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3NwaW5uZXIvc3Bpbm5lci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zcGlubmVyIHtcclxuICB3aWR0aDogNDBweDtcclxuICBoZWlnaHQ6IDQwcHg7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIG1hcmdpbjogMzBweCBhdXRvO1xyXG59XHJcblxyXG4uZG91YmxlLWJvdW5jZTEsIC5kb3VibGUtYm91bmNlMiB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzMzO1xyXG4gIG9wYWNpdHk6IDAuNjtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgdG9wOiAwO1xyXG4gIGxlZnQ6IDA7XHJcbiAgLXdlYmtpdC1hbmltYXRpb246IHNrLWJvdW5jZSAyLjBzIGluZmluaXRlIGVhc2UtaW4tb3V0O1xyXG4gIGFuaW1hdGlvbjogc2stYm91bmNlIDIuMHMgaW5maW5pdGUgZWFzZS1pbi1vdXQ7XHJcbn1cclxuXHJcbi5kb3VibGUtYm91bmNlMiB7XHJcbiAgLXdlYmtpdC1hbmltYXRpb24tZGVsYXk6IC0xLjBzO1xyXG4gIGFuaW1hdGlvbi1kZWxheTogLTEuMHM7XHJcbn1cclxuXHJcbkAtd2Via2l0LWtleWZyYW1lcyBzay1ib3VuY2Uge1xyXG4gIDAlLCAxMDAlIHtcclxuICAgIC13ZWJraXQtdHJhbnNmb3JtOiBzY2FsZSgwLjApXHJcbiAgfVxyXG5cclxuICA1MCUge1xyXG4gICAgLXdlYmtpdC10cmFuc2Zvcm06IHNjYWxlKDEuMClcclxuICB9XHJcbn1cclxuXHJcbkBrZXlmcmFtZXMgc2stYm91bmNlIHtcclxuICAwJSwgMTAwJSB7XHJcbiAgICB0cmFuc2Zvcm06IHNjYWxlKDAuMCk7XHJcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogc2NhbGUoMC4wKTtcclxuICB9XHJcblxyXG4gIDUwJSB7XHJcbiAgICB0cmFuc2Zvcm06IHNjYWxlKDEuMCk7XHJcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogc2NhbGUoMS4wKTtcclxuICB9XHJcbn1cclxuIl19 */"
+module.exports = ".spinner {\n  width: 40px;\n  height: 40px;\n  position: relative;\n  margin: 30px auto; }\n\n.double-bounce1, .double-bounce2 {\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #333;\n  opacity: 0.6;\n  position: absolute;\n  top: 0;\n  left: 0;\n  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;\n  animation: sk-bounce 2.0s infinite ease-in-out; }\n\n.double-bounce2 {\n  -webkit-animation-delay: -1.0s;\n  animation-delay: -1.0s; }\n\n@-webkit-keyframes sk-bounce {\n  0%, 100% {\n    -webkit-transform: scale(0); }\n  50% {\n    -webkit-transform: scale(1); } }\n\n@keyframes sk-bounce {\n  0%, 100% {\n    transform: scale(0);\n    -webkit-transform: scale(0); }\n  50% {\n    transform: scale(1);\n    -webkit-transform: scale(1); } }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3Bpbm5lci9FOlxcVGVzdFxcVHJhdmVsaW5nQmxvZy1kZXZlbG9wZXJcXFRyYXZlbGluZ0Jsb2cuQW5ndWxhci9zcmNcXGFwcFxcc3Bpbm5lclxcc3Bpbm5lci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVc7RUFDWCxhQUFZO0VBQ1osbUJBQWtCO0VBQ2xCLGtCQUFpQixFQUNsQjs7QUFFRDtFQUNFLFlBQVc7RUFDWCxhQUFZO0VBQ1osbUJBQWtCO0VBQ2xCLHVCQUFzQjtFQUN0QixhQUFZO0VBQ1osbUJBQWtCO0VBQ2xCLE9BQU07RUFDTixRQUFPO0VBQ1AsdURBQXNEO0VBQ3RELCtDQUE4QyxFQUMvQzs7QUFFRDtFQUNFLCtCQUE4QjtFQUM5Qix1QkFBc0IsRUFDdkI7O0FBRUQ7RUFDRTtJQUNFLDRCQUE2QixFQUFBO0VBRy9CO0lBQ0UsNEJBQTZCLEVBQUEsRUFBQTs7QUFJakM7RUFDRTtJQUNFLG9CQUFxQjtJQUNyQiw0QkFBNkIsRUFBQTtFQUcvQjtJQUNFLG9CQUFxQjtJQUNyQiw0QkFBNkIsRUFBQSxFQUFBIiwiZmlsZSI6InNyYy9hcHAvc3Bpbm5lci9zcGlubmVyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnNwaW5uZXIge1xuICB3aWR0aDogNDBweDtcbiAgaGVpZ2h0OiA0MHB4O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1hcmdpbjogMzBweCBhdXRvO1xufVxuXG4uZG91YmxlLWJvdW5jZTEsIC5kb3VibGUtYm91bmNlMiB7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDEwMCU7XG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzMzMztcbiAgb3BhY2l0eTogMC42O1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMDtcbiAgbGVmdDogMDtcbiAgLXdlYmtpdC1hbmltYXRpb246IHNrLWJvdW5jZSAyLjBzIGluZmluaXRlIGVhc2UtaW4tb3V0O1xuICBhbmltYXRpb246IHNrLWJvdW5jZSAyLjBzIGluZmluaXRlIGVhc2UtaW4tb3V0O1xufVxuXG4uZG91YmxlLWJvdW5jZTIge1xuICAtd2Via2l0LWFuaW1hdGlvbi1kZWxheTogLTEuMHM7XG4gIGFuaW1hdGlvbi1kZWxheTogLTEuMHM7XG59XG5cbkAtd2Via2l0LWtleWZyYW1lcyBzay1ib3VuY2Uge1xuICAwJSwgMTAwJSB7XG4gICAgLXdlYmtpdC10cmFuc2Zvcm06IHNjYWxlKDAuMClcbiAgfVxuXG4gIDUwJSB7XG4gICAgLXdlYmtpdC10cmFuc2Zvcm06IHNjYWxlKDEuMClcbiAgfVxufVxuXG5Aa2V5ZnJhbWVzIHNrLWJvdW5jZSB7XG4gIDAlLCAxMDAlIHtcbiAgICB0cmFuc2Zvcm06IHNjYWxlKDAuMCk7XG4gICAgLXdlYmtpdC10cmFuc2Zvcm06IHNjYWxlKDAuMCk7XG4gIH1cblxuICA1MCUge1xuICAgIHRyYW5zZm9ybTogc2NhbGUoMS4wKTtcbiAgICAtd2Via2l0LXRyYW5zZm9ybTogc2NhbGUoMS4wKTtcbiAgfVxufVxuIl19 */"
 
 /***/ }),
 
@@ -7764,7 +8272,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\GitHub\TravelingBlog\TravelingBlog.Angular\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! E:\Test\TravelingBlog-developer\TravelingBlog.Angular\src\main.ts */"./src/main.ts");
 
 
 /***/ })

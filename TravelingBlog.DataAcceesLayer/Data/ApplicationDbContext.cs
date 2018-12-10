@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using TravelingBlog.DataAcceesLayer.Models.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TravelingBlog.DataAcceesLayer.Configurations;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.DataAcceesLayer.Data
 {

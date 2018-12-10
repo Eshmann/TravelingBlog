@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Threading.Tasks;
-using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
+using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.DataAcceesLayer.Data;
+using System.Threading.Tasks;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {
@@ -15,12 +15,24 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         private IPostBlogRepository postBlogs;
         private ICountryRepository countries;
         private ITagRepository tags;
+        private IImageRepository images;
 
         public UnitOfWork(ApplicationDbContext ApplicationDbContext)
         {
             this.ApplicationDbContext = ApplicationDbContext;
         }
 
+        public IImageRepository Images
+        {
+            get
+            {
+                if (this.images == null)
+                {
+                    this.images = new ImageRepository(ApplicationDbContext);
+                }
+                return images;
+            }
+        }
         public IUserRepository Users
         {
             get

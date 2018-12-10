@@ -1,60 +1,60 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.Contracts;
-using TravelingBlog.BusinessLogicLayer.Services.BlobContainer;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Linq;
+using System.IO;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
-using TravelingBlog.Services.BlobContainer;
+using TravelingBlog.Helpers.AzureStorage;
 
-namespace TravelingBlog.Controllers
+namespace Fiver.Azure.Blob.Client.Controllers
 {
     [Route("api/upload")]
-    public class ImagesController : Controller
+    public class ImageController : Controller
     {
+        private readonly IConfiguration _configuration;
         private readonly ClaimsPrincipal caller;
-        private readonly IUnitOfWork unitOfWork;
-        private IConfiguration configuration;
-
-        public ImagesController(IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork, IConfiguration Configuration)
+        readonly IUnitOfWork unitOfWork;
+        public readonly IAzureBlob azureBlob;
+        private string AzureConnectionString { get; }
+        public ImageController(IConfiguration configuration, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor)
         {
             caller = httpContextAccessor.HttpContext.User;
-            configuration = Configuration;
+            _configuration = configuration;
+            AzureConnectionString = _configuration.GetConnectionString("StorageConnectionString");
             this.unitOfWork = unitOfWork;
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddImages(List<IFormFile> files)
+        public async Task<IActionResult> UploadImage(List<IFormFile> files)
         {
-            var connectionStr = configuration.GetConnectionString("StorageConnectionString");
             var userId = caller.Claims.Single(c => c.Type == "id");
             var user = await unitOfWork.Users.GetUserByIdentityId(userId.Value);
             var imagesPathes = new List<string>();
 
-            if (!CheckImage.ChekingImages(files))
-                return BadRequest("error");
+            if (!azureBlob.CheckFile(files))
+                return BadRequest("eroor");
 
-            foreach (var formFile in files)
+            foreach(var formFile in files)
             {
-                if (formFile.Length <= 0)
+                if(formFile.Length <= 0)
                 {
                     continue;
                 }
-
-                using (var ms = new MemoryStream())
+                using(var ms = new MemoryStream())
                 {
                     formFile.CopyTo(ms);
                     var fileBytes = ms.ToArray();
+                    var container = azureBlob.GetBlobContainer(AzureConnectionString, user.Id.ToString());
+                    var blockBlob = azureBlob.GetBlockBlobAsync(formFile.FileName, container, fileBytes);
+                    string path = await blockBlob;
 
-                    string path = await StorageImages.UploadToBlob(user.Id, formFile.FileName, connectionStr, fileBytes, null);
                     imagesPathes.Add(path);
                 }
             }
-
             var imageDTOList = new List<ImageDTO>();
 
             for (var i = 0; i < imagesPathes.Count; i++)
@@ -63,6 +63,19 @@ namespace TravelingBlog.Controllers
             }
 
             return Ok(imageDTOList);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAsync()
+        {
+            var userId = caller.Claims.Single(c => c.Type == "id");
+            var user = await unitOfWork.Users.GetUserByIdentityId(userId.Value);
+
+            var container = azureBlob.GetBlobContainer(AzureConnectionString, user.Id.ToString());
+
+            var mes = unitOfWork.Images.DeleteBlob(container, user.Id);
+
+            return Ok(mes);
         }
     }
 }

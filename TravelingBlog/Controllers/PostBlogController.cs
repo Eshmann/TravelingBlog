@@ -1,14 +1,20 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
 using TravelingBlog.BusinessLogicLayer.Contracts;
-using TravelingBlog.BusinessLogicLayer.Services.LoggerService;
+using TravelingBlog.BusinessLogicLayer.Repositories;
+using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
+using TravelingBlog.Helpers;
 
 namespace TravelingBlog.Controllers
 {
@@ -30,18 +36,19 @@ namespace TravelingBlog.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> GetAllBlogs()
+        public IActionResult GetAllBlogs(PagingModel attribute)
         {
             try
             {
-                var blog = await unitOfWork.PostBlogs.GetAllPostBlogsAsync();
+
+                var blog = unitOfWork.PostBlogs.GetAllPostBlogsAsync(attribute, out var total);
                 if (blog == null)
                 {
                     logger.LogInfo("TripsNotFound");
                     return NotFound();
                 }
                 logger.LogInfo("Return all trips from database");
-                return Ok(blog);
+                return Ok(new{Total = total, Blog = blog});
             }
             catch (Exception ex)
             {
@@ -50,6 +57,8 @@ namespace TravelingBlog.Controllers
             }
 
         }
+
+        
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBlog(int id)

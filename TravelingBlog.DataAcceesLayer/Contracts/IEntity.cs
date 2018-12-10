@@ -1,4 +1,8 @@
-﻿namespace TravelingBlog.DataAcceesLayer.Contracts
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace TravelingBlog.DataAcceesLayer.Contracts
 {
     public interface IEntity
     {

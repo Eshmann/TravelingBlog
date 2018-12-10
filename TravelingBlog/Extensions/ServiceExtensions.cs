@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
+﻿using TravelingBlog.BusinessLogicLayer.Contracts;
+using LoggerService;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using TravelingBlog.BusinessLogicLayer.Contracts;
-using TravelingBlog.BusinessLogicLayer.Repositories;
-using TravelingBlog.BusinessLogicLayer.Services.LoggerService;
-using TravelingBlog.BusinessLogicLayer.Services.Mappings;
 using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.BusinessLogicLayer.Repositories;
+using TravelingBlog.BusinessLogicLayer.ViewModels.Mappings;
 
 namespace TravelingBlog.Extensions
 {

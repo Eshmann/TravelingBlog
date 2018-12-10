@@ -1,11 +1,12 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.Helpers;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
+using TravelingBlog.BusinessLogicLayer.ViewModels;
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.Contracts;
-using TravelingBlog.BusinessLogicLayer.Helpers;
-using TravelingBlog.BusinessLogicLayer.ViewModels;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.Controllers
 {

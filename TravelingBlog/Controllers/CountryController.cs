@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TravelingBlog.BusinessLogicLayer.Contracts;
-using TravelingBlog.BusinessLogicLayer.Services.LoggerService;
+using TravelingBlog.BusinessLogicLayer.Repositories;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 
@@ -49,7 +52,7 @@ namespace TravelingBlog.Controllers
         }
 
 
-      //  [Authorize(Roles = "moderator")]
+        // [Authorize(Roles = "moderator")]
         [HttpPost]
         public IActionResult AddCountry([FromBody]CountryDTO model)
         {
