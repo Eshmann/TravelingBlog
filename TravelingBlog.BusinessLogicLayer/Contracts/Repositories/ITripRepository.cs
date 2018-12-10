@@ -18,5 +18,6 @@ namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
         Trip GetTripWithPostBlogs(int id);
         IQueryable<Trip> SearchTrips(Search searchQuery);
         Task<IEnumerable<TripDetail>> GetUserTripsAsync(string id);
+        IEnumerable<Trip> GetTripsWithHighestRating();
     }
 }

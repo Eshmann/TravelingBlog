@@ -14,6 +14,7 @@ namespace TravelingBlog.DataAcceesLayer.Models.Entities
         public bool IsDone { get; set; }
         public string Description { get; set; }
         public int UserInfoId { get; set; }
+        public double RatingTrip { get; set; }
         public UserInfo UserInfo { get; set; }
         public ICollection<PostBlog> PostBlogs { get; set; }
         public ICollection<Comment> Comments { get; set; }
