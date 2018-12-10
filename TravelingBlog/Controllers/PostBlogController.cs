@@ -104,7 +104,17 @@ namespace TravelingBlog.Controllers
                     return Forbid();
                 }
                 post.Trip = trip;
-                unitOfWork.PostBlogs.Add(post);
+
+                var result = unitOfWork.PostBlogs.Add(post);
+
+                //Add images to postblog
+                var images = model.Url.Select(path => new Image
+                {
+                    Path = path,
+                    PostBlogId = result
+                });
+                unitOfWork.Images.AddRange(images);
+
                 logger.LogInfo($"Add some post");
                 return Ok(model);
             }
