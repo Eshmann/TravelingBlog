@@ -44,21 +44,24 @@ namespace TravelingBlog.Controllers
                 var list = new List<TripDTO>();
                 for (int i = 0; i < trips.Count(); i++)
                 {
-                    list.Add(new TripDTO { Id = trips.ElementAt(i).Id,
+                    list.Add(new TripDTO
+                    {
+                        Id = trips.ElementAt(i).Id,
                         Name = trips.ElementAt(i).Name,
                         IsDone = trips.ElementAt(i).IsDone,
-                        UserId = trips.ElementAt(i).UserInfoId});
+                        UserId = trips.ElementAt(i).UserInfoId
+                    });
                 }
-                return Ok(new {Total=total, List=list});
+                return Ok(new { Total = total, List = list });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.LogError($"Error occured inside GetAllTripsAction:{ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
         [AllowAnonymous]
-        [HttpGet("{id}",Name = "GetTrip")]
+        [HttpGet("{id}", Name = "GetTrip")]
         public async Task<IActionResult> GetTrip(int id)
         {
             try
@@ -70,9 +73,9 @@ namespace TravelingBlog.Controllers
                     return NotFound();
                 }
                 logger.LogInfo("Return trip with id=" + id);
-                return Ok(new TripDTO { Id = trip.Id, Name = trip.Name, IsDone = trip.IsDone,UserId = trip.UserInfoId });
+                return Ok(new TripDTO { Id = trip.Id, Name = trip.Name, IsDone = trip.IsDone, UserId = trip.UserInfoId });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.LogError($"Error occured inside GetTripAction:{ex.Message}");
                 return StatusCode(500, "Internal server error");
@@ -104,7 +107,7 @@ namespace TravelingBlog.Controllers
                         DateOfCreation = trip.PostBlogs.ElementAt(i).DateOfCreation
                     });
                 }
-                return Ok(new TripDetailsDTO(trip) {PostBlogs = list });
+                return Ok(new TripDetailsDTO(trip) { PostBlogs = list });
             }
             catch (Exception ex)
             {
@@ -112,6 +115,21 @@ namespace TravelingBlog.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        //New method for Trips with highest Rating
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult GetTripsWithHighestRating()
+        {
+            var rating = unitOfWork.Trips.GetTripsWithHighestRating();
+            if (rating == null)
+            {
+                logger.LogInfo("This trip doesn`t have a rating");
+                return NotFound();
+            }
+            logger.LogInfo("This trip with rating is found");
+            return Ok(rating);
+        }
+
         [HttpPost]
         [Route("addtrip")]
         public async Task<IActionResult> AddTripAsync([FromBody]TripDTO model)
