@@ -1,19 +1,19 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using TravelingBlog.BusinessLogicLayer.Contracts;
-using TravelingBlog.BusinessLogicLayer.Services.LoggerService;
+using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using TravelingBlog.BusinessLogicLayer.ViewModels.TripViewModels;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.Controllers
-{
+{    
     [Route("api/trip")]
     [Authorize]
     public class TripController : Controller
@@ -30,11 +30,11 @@ namespace TravelingBlog.Controllers
         }
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> GetAllTrips()
+        public IActionResult GetAllTrips(PagingModel paging)
         {
             try
             {
-                var trips = await unitOfWork.Trips.GetAllTripsAsync();
+                var trips = unitOfWork.Trips.GetAllTripsAsync(paging, out var total);
                 if (trips == null)
                 {
                     logger.LogInfo("TripsNotFound");
@@ -49,7 +49,7 @@ namespace TravelingBlog.Controllers
                         IsDone = trips.ElementAt(i).IsDone,
                         UserId = trips.ElementAt(i).UserInfoId});
                 }
-                return Ok(list);
+                return Ok(new {Total=total, List=list});
             }
             catch(Exception ex)
             {
@@ -214,6 +214,7 @@ namespace TravelingBlog.Controllers
         { 
             
             var userId = caller.Claims.Single(c => c.Type == "id");
+            var user = await unitOfWork.Users.GetUserByIdentityId(userId.Value);
 
             var trips = await unitOfWork.Trips.GetUserTripsAsync(userId.Value);       
               
@@ -226,7 +227,7 @@ namespace TravelingBlog.Controllers
         public async Task<IActionResult> GetUserTripsAsync(int id)
         {
             var user = await unitOfWork.Users.GetUserByIdAsync(id);
-            
+
             var trips = await unitOfWork.Trips.GetUserTripsAsync(user.IdentityId);
 
 

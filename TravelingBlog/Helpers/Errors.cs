@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace TravelingBlog.BusinessLogicLayer.Helpers
+namespace TravelingBlog.Helpers
 {
     public static class Errors
     {

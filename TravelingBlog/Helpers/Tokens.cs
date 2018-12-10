@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using TravelingBlog.BusinessLogicLayer.Services.Auth;
+using TravelingBlog.Auth;
 using TravelingBlog.Models;
+using Newtonsoft.Json;
 
-namespace TravelingBlog.BusinessLogicLayer.Helpers
+namespace TravelingBlog.Helpers
 {
     public class Tokens
     {

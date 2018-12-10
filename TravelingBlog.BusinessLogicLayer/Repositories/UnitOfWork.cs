@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Threading.Tasks;
-using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
+using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.DataAcceesLayer.Data;
+using System.Threading.Tasks;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {

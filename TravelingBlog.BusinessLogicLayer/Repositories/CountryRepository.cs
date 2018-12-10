@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
-using TravelingBlog.DataAcceesLayer.Data;
+using Microsoft.EntityFrameworkCore;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
+using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {
@@ -23,5 +26,7 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
             var countries = await FindAllAsync();
             return countries.OrderBy(c => c.Name);
         }
+
+
     }
 }

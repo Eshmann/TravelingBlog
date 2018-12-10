@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using TravelingBlog.BusinessLogicLayer.Services.LoggerService;
+using System.Threading.Tasks;
+using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.ActionFilters

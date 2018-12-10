@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.DataAcceesLayer.Models.Entities

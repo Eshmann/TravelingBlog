@@ -1,4 +1,4 @@
-﻿namespace TravelingBlog.BusinessLogicLayer.Services.LoggerService
+﻿namespace TravelingBlog.BusinessLogicLayer.Contracts
 {
     public interface ILoggerManager
     {

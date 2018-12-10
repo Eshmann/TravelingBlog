@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace TravelingBlog.BusinessLogicLayer.Services.Auth
+namespace TravelingBlog.Auth
 {
     public interface IJwtFactory
     {

@@ -1,12 +1,13 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.Helpers;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
+using TravelingBlog.BusinessLogicLayer.ViewModels;
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.Contracts;
-using TravelingBlog.BusinessLogicLayer.Helpers;
-using TravelingBlog.BusinessLogicLayer.ViewModels;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.Controllers
 {
@@ -56,7 +57,7 @@ namespace TravelingBlog.Controllers
 
             UserInfo user = await unitOfWork.Users.GetUserByIdAsync(id);
 
-            if(user == null)
+            if (user == null)
             {
                 return NotFound();
             }
@@ -64,7 +65,7 @@ namespace TravelingBlog.Controllers
             AppUser picture = await userManager.FindByIdAsync(user.IdentityId);
 
             string countryName = string.Empty;
-            if(user.CountryId!=null)
+            if (user.CountryId != null)
             {
                 Country a = await unitOfWork.Countries.GetCountryByIdAsync(int.Parse(user.CountryId.ToString()));
                 countryName = a.Name;
@@ -80,6 +81,5 @@ namespace TravelingBlog.Controllers
 
             return Ok(UserInfo);
         }
-
     }
 }
