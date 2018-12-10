@@ -4,8 +4,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using TravelingBlog.BusinessLogicLayer.Helpers;
-using TravelingBlog.BusinessLogicLayer.Models;
+using TravelingBlog.Helpers;
+using TravelingBlog.Models.AuthModels;
 
 namespace TravelingBlog.BusinessLogicLayer.SecondaryServices.Auth
 {

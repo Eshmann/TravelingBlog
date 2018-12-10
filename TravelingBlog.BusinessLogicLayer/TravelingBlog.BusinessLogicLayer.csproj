@@ -6,13 +6,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TravelingBlog.DataAcceesLayer\TravelingBlog.DataAcceesLayer.csproj" />
+    <ProjectReference Include="..\TravelingBlog.Helpers\TravelingBlog.Helpers.csproj" />
+    <ProjectReference Include="..\TravelingBlog.Models\TravelingBlog.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
-    <PackageReference Include="FluentValidation" Version="7.6.105" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="7.6.105" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="NLog" Version="4.5.11" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
   </ItemGroup>

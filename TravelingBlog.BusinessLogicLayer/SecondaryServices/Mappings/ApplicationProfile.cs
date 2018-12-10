@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using TravelingBlog.BusinessLogicLayer.ViewModels;
-using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
+using TravelingBlog.Models.ViewModels;
+using TravelingBlog.Models.ViewModels.DTO;
 
 namespace TravelingBlog.BusinessLogicLayer.SecondaryServices.Mappings
 {

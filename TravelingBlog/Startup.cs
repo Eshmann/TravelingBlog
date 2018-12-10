@@ -14,8 +14,6 @@ using System;
 using System.IO;
 using System.Text;
 using TravelingBlog.ActionFilters;
-using TravelingBlog.BusinessLogicLayer.Helpers;
-using TravelingBlog.BusinessLogicLayer.Models;
 using TravelingBlog.BusinessLogicLayer.ModelsServices;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.Auth;
@@ -23,6 +21,8 @@ using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
 using TravelingBlog.DataAcceesLayer.Data;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 using TravelingBlog.Extensions;
+using TravelingBlog.Helpers;
+using TravelingBlog.Models.AuthModels;
 
 namespace TravelingBlog
 {

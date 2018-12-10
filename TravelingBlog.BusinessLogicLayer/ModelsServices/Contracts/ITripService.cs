@@ -1,5 +1,5 @@
-﻿using TravelingBlog.BusinessLogicLayer.Filters;
-using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
+﻿using TravelingBlog.Models.Filters;
+using TravelingBlog.Models.ViewModels.DTO;
 
 namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
 {

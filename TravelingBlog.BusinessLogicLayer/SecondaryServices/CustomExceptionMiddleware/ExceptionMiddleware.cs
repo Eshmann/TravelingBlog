@@ -2,8 +2,8 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using TravelingBlog.BusinessLogicLayer.Models;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
+using TravelingBlog.Models;
 
 namespace TravelingBlog.BusinessLogicLayer.SecondaryServices.CustomExceptionMiddleware
 {

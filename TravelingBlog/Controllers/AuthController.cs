@@ -4,11 +4,11 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using TravelingBlog.BusinessLogicLayer.Helpers;
-using TravelingBlog.BusinessLogicLayer.Models;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.Auth;
-using TravelingBlog.BusinessLogicLayer.ViewModels;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
+using TravelingBlog.Helpers;
+using TravelingBlog.Models.AuthModels;
+using TravelingBlog.Models.ViewModels;
 
 namespace TravelingBlog.Controllers
 {

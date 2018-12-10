@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TravelingBlog.BusinessLogicLayer.Filters;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
-using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
+using TravelingBlog.Models.Filters;
+using TravelingBlog.Models.ViewModels.DTO;
 
 namespace TravelingBlog.Controllers
 {

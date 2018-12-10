@@ -5,12 +5,12 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using TravelingBlog.BusinessLogicLayer.Helpers;
-using TravelingBlog.BusinessLogicLayer.Models;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.Auth;
-using TravelingBlog.BusinessLogicLayer.ViewModels;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 using TravelingBlog.DataAcceesLayer.Repositories.Contracts;
+using TravelingBlog.Helpers;
+using TravelingBlog.Models.AuthModels;
+using TravelingBlog.Models.ViewModels;
 
 namespace TravelingBlog.Controllers
 {
