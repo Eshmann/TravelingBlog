@@ -9,11 +9,6 @@ namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
 {
     public interface IImageRepository : IRepository<Image>
     {
-        IEnumerable<Image> GetImages();
-        IEnumerable<Image> GetImagesWhithPostBlog(int postBlodId);
-        Image GetById(int id);
-        string DeleteBlob(CloudBlobContainer container, int userId);
-        Task SetImageAsync(Uri uri);
         
     }
 }

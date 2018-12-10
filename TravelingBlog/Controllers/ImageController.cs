@@ -65,19 +65,5 @@ namespace Fiver.Azure.Blob.Client.Controllers
 
             return Ok(imageDTOList);
         }
-
-
-        [HttpDelete]
-        public async Task<IActionResult> DeleteAsync()
-        {
-            var userId = caller.Claims.Single(c => c.Type == "id");
-            var user = await unitOfWork.Users.GetUserByIdentityId(userId.Value);
-
-            var container = azureBlob.GetBlobContainer(AzureConnectionString, user.Id.ToString());
-
-            var mes = unitOfWork.Images.DeleteBlob(container, user.Id);
-
-            return Ok(mes);
-        }
     }
 }
