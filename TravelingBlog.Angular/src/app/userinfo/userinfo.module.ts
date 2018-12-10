@@ -5,12 +5,10 @@ import { SharedModule } from '../shared/modules/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
-import { routing } from './edit.routing';
+import { routing } from './userinfo.routing';
 
-import { AuthGuard } from '../auth.guard';
-
-import { TripEditComponent } from './trip/trip.component';
-import { EditService } from './services/edit.services'
+import { UserInfoComponent } from './userinfo/userinfo.component';
+import { UserInfoService } from './services/userinfo.services';
 
 
 @NgModule({
@@ -22,8 +20,8 @@ import { EditService } from './services/edit.services'
     routing,
     SharedModule
   ],
-  declarations: [TripEditComponent],
+  declarations: [UserInfoComponent],
   exports: [],
-  providers: [AuthGuard, EditService]
+  providers: [UserInfoService]
 })
-export class EditModule { }
+export class UserInfoModule { }

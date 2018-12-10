@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TravelingBlog.BusinessLogicLayer.Contracts;
+using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 
 namespace TravelingBlog.Controllers
 {
@@ -44,6 +45,41 @@ namespace TravelingBlog.Controllers
             await unitOfWork.CompleteAsync();
 
             return new OkObjectResult("Account created");
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserInfo(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            UserInfo user = await unitOfWork.Users.GetUserByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            AppUser picture = await userManager.FindByIdAsync(user.IdentityId);
+
+            string countryName = string.Empty;
+            if (user.CountryId != null)
+            {
+                Country a = await unitOfWork.Countries.GetCountryByIdAsync(int.Parse(user.CountryId.ToString()));
+                countryName = a.Name;
+            }
+
+            var UserInfo = new UserInfoWithImage
+            {
+                firstName = user.FirstName,
+                lastName = user.LastName,
+                location = countryName,
+                pictureUrl = picture.PictureUrl
+            };
+
+            return Ok(UserInfo);
         }
     }
 }

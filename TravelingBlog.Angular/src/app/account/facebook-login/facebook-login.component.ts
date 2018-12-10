@@ -19,7 +19,7 @@ export class FacebookLoginComponent {
 
   launchFbLogin() {
     // tslint:disable-next-line:max-line-length
-    this.authWindow = window.open('https://www.facebook.com/v2.11/dialog/oauth?&response_type=token&display=popup&client_id=312472109343376&display=popup&redirect_uri=http://travelingblog.azurewebsites.net/facebook-auth.html&scope=email', null, 'width=600,height=400');
+    this.authWindow = window.open('https://www.facebook.com/v2.11/dialog/oauth?&response_type=token&display=popup&client_id=312472109343376&display=popup&redirect_uri=https://localhost:44360/facebook-auth.html&scope=email', null, 'width=600,height=400');
   }
 
   constructor(private userService: UserService, private router: Router) {
@@ -33,7 +33,7 @@ export class FacebookLoginComponent {
   handleMessage(event: Event) {
     const message = event as MessageEvent;
     // Only trust messages from the below origin.
-    if (message.origin !== 'http://travelingblog.azurewebsites.net') return;
+    if (message.origin !== 'https://localhost:44360') return;
 
     this.authWindow.close();
 

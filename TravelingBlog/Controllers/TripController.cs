@@ -222,5 +222,17 @@ namespace TravelingBlog.Controllers
             return Ok(trips);
         }
 
+        [AllowAnonymous]
+        [HttpGet("mytrips/{id}")]
+        public async Task<IActionResult> GetUserTripsAsync(int id)
+        {
+            var user = await unitOfWork.Users.GetUserByIdAsync(id);
+
+            var trips = await unitOfWork.Trips.GetUserTripsAsync(user.IdentityId);
+
+
+            return Ok(trips);
+        }
+
     }
 }

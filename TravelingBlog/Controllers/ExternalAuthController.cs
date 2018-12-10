@@ -55,6 +55,11 @@ namespace TravelingBlog.Controllers
             var userInfoResponse = await Client.GetStringAsync($"https://graph.facebook.com/v2.8/me?fields=id,email,first_name,last_name,name,gender,locale,birthday,picture&access_token={model.AccessToken}");
             var userInfo = JsonConvert.DeserializeObject<FacebookUserData>(userInfoResponse);
 
+            if (userInfo.Email == null)
+            {
+                userInfo.Email = "FbUser" + userInfo.Id + "@travelingblog.azurewebsites.net";
+            }
+
             // 4. ready to create the local user account (if necessary) and jwt
             var user = await userManager.FindByEmailAsync(userInfo.Email);
 
