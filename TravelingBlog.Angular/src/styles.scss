@@ -4,9 +4,17 @@
  * Base structure
  */
 
-/* Move down content because we have a fixed navbar that is 3.5rem tall */
+html{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  padding-top: 0rem;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
 }
 
 /*

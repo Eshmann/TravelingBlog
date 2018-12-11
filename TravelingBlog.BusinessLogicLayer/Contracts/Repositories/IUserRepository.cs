@@ -1,5 +1,4 @@
 ﻿using TravelingBlog.DataAcceesLayer.Models.Entities;
-using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
