@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.Contracts;
+using TravelingBlog.BusinessLogicLayer.LoggerService;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 using TravelingBlog.Helpers.AzureStorage;

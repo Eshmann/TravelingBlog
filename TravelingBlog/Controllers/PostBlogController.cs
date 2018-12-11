@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.Contracts;
-using TravelingBlog.BusinessLogicLayer.Repositories;
+using TravelingBlog.BusinessLogicLayer.LoggerService;
 using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
-using TravelingBlog.Helpers;
 
 namespace TravelingBlog.Controllers
 {
     [Route("api/[controller]")]
-    //[ApiController]
     [Authorize]
     public class PostBlogController : Controller
     {
@@ -94,7 +88,6 @@ namespace TravelingBlog.Controllers
                     Plot = model.Plot
                 };
                 var userId = caller.Claims.Single(c => c.Type == "id");
-                //var customer = await appDbContext.UserInfoes.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == userId.Value);
                 var user = await unitOfWork.Users.GetUserByIdentityId(userId.Value);
                 var trip = await unitOfWork.Trips.GetTripByIdAsync(model.TripId);
 
@@ -107,7 +100,7 @@ namespace TravelingBlog.Controllers
 
                 var result = unitOfWork.PostBlogs.Add(post);
 
-                //Add images to postblog
+                // Add images to postblog
                 var images = model.Url.Select(path => new Image
                 {
                     Path = path,

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.Contracts;
+using TravelingBlog.BusinessLogicLayer.LoggerService;
 using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
@@ -114,8 +115,10 @@ namespace TravelingBlog.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-        //New method for Trips with highest Rating
+
+        // New method for Trips with highest Rating
         [AllowAnonymous]
+        [Route("best")]
         [HttpGet]
         public IActionResult GetTripsWithHighestRating([FromBody]int count)
         {
@@ -230,8 +233,8 @@ namespace TravelingBlog.Controllers
             }
         }
 
-        //Alexel37 GetUserTrips
-        //api/trip/mytrips
+        // Alexel37 GetUserTrips
+        // api/trip/mytrips
         [HttpGet("mytrips")]
         public async Task<IActionResult> GetUserTripsAsync()
         { 

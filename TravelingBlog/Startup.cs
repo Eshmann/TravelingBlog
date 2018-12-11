@@ -1,31 +1,27 @@
-using System;
-using System.Net;
-using System.Text;
-using TravelingBlog.Auth;
-using TravelingBlog.DataAcceesLayer.Data;
-using TravelingBlog.Extensions;
-using TravelingBlog.Helpers;
-using TravelingBlog.DataAcceesLayer.Models;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
-using System.IO;
-using TravelingBlog.Models;
 using NLog;
-using Microsoft.AspNetCore.HttpOverrides;
+using System;
+using System.IO;
+using System.Text;
 using TravelingBlog.ActionFilters;
+using TravelingBlog.Auth;
+using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.DataAcceesLayer.Models;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
+using TravelingBlog.Extensions;
+using TravelingBlog.Helpers;
 using TravelingBlog.Helpers.AzureStorage;
+using TravelingBlog.Models;
 
 namespace TravelingBlog
 {
@@ -128,7 +124,7 @@ namespace TravelingBlog
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.ConfigureCustomExceptionMiddleware();
+            app.ConfigureCustomExceptionMiddleware();
             app.UseAuthentication();
             app.UseDefaultFiles();
 
