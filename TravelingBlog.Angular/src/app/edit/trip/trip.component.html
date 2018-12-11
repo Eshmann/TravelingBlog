@@ -1,10 +1,13 @@
+<body class="Centered">
 <div class="row">
+    <h1></h1>
+    <h1></h1>
     <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
         <div class="row">
             <div class="col-md-6 col-sm-3">
                 <input type="button" value="AddPost" class="btn btn-default" (click)="add()" />
                 <div *ngIf="tableMode; else create">
-                    <h3>Trip</h3>
+                    <h3>Trip Lalalalala</h3>
                     <label>Name:</label>
                     <input type="text" [(ngModel)]="trip.name" class="form-control" />
                     <p>
@@ -37,6 +40,7 @@
         </div>
     </main>
 </div>
+</body>
 
 <!--шаблон для добавления-->
 <ng-template #create>

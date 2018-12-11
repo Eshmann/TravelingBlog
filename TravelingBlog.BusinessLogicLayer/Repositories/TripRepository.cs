@@ -34,6 +34,14 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
 
         }
 
+        public IEnumerable<Trip> GetTripsWithHighestRating()
+        {
+            return ApplicationDbContext.Trips
+                .OrderByDescending(k => k.RatingTrip)
+                .Take(3)
+                .ToList();
+        }
+
         public bool IsUserCreator(int userId, int tripId)
         {
             return Set.Any(i => i.UserInfoId == userId && i.Id == tripId);

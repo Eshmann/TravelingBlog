@@ -17,6 +17,7 @@ import { AccountModule } from './account/account.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 /*Edit Imports */
 import { EditModule } from './edit/edit.module';
+import { UserInfoModule } from './userinfo/userinfo.module';
 
 import { ConfigService } from './shared/utils/config.service';
 import { FooterComponent } from './footer/footer.component';
@@ -33,6 +34,7 @@ import { SearchModule } from './search/search.module';
     AccountModule,
     DashboardModule,
     EditModule,
+    UserInfoModule,
     BrowserModule,
     FormsModule,
     HttpModule,

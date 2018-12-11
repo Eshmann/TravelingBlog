@@ -19,6 +19,6 @@ namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
         Trip GetTripWithPostBlogs(int id);
         IList<TripWithUserInfo> SearchTrips(Search searchQuery, out int total);
         Task<IEnumerable<TripDetail>> GetUserTripsAsync(string id);
-        IList<TripWithUserInfo> FilterTripsByCountry(Filter filter, out int total);
+        IEnumerable<Trip> GetTripsWithHighestRating();
     }
 }
