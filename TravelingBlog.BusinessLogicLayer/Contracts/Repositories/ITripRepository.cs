@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
-using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 using TravelingBlog.BusinessLogicLayer.ViewModels.TripViewModels;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
 {
@@ -18,6 +15,7 @@ namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
         Trip GetTripWithPostBlogs(int id);
         IQueryable<Trip> SearchTrips(Search searchQuery);
         Task<IEnumerable<TripDetail>> GetUserTripsAsync(string id);
-        IEnumerable<Trip> GetTripsWithHighestRating();
+        IEnumerable<Trip> GetTripsWithHighestRating(int count);
+        IEnumerable<Trip> GetRandomTrips(int count, List<Trip> trips);
     }
 }

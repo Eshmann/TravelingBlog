@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
-using Microsoft.EntityFrameworkCore;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
-using TravelingBlog.DataAcceesLayer.Data;
 using System.Threading.Tasks;
+using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
 using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 using TravelingBlog.BusinessLogicLayer.ViewModels.TripViewModels;
+using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {
@@ -32,12 +33,33 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
 
         }
 
-        public IEnumerable<Trip> GetTripsWithHighestRating()
+        public IEnumerable<Trip> GetTripsWithHighestRating(int count)
         {
+            if (count < ApplicationDbContext.Trips.Count())
+                count = ApplicationDbContext.Trips.Count();
+
             return ApplicationDbContext.Trips
-                .OrderByDescending(k => k.RatingTrip)
-                .Take(3)
+                .OrderByDescending(t => t.RatingTrip)
+                .Take(count)
                 .ToList();
+        }
+
+        public IEnumerable<Trip> GetRandomTrips(int count, List<Trip> trips)
+        {
+            var rnd = new Random();
+            var shuffle = new List<Trip>(trips);
+
+            for (var i = 2; i < shuffle.Count; ++i)
+            {
+                var temp = shuffle[i];
+                var nextRandom = rnd.Next(i - 1);
+                shuffle[i] = shuffle[nextRandom];
+                shuffle[nextRandom] = temp;
+            }
+
+            var result = shuffle.GetRange(0, count);
+
+            return result;
         }
 
         public bool IsUserCreator(int userId, int tripId)
@@ -64,12 +86,12 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
         {
             List<TripDetail> trips = new List<TripDetail>();
             var user = await ApplicationDbContext.UserInfoes.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == id);
-            var userTrips = ApplicationDbContext.Trips.Where(x => x.UserInfoId==user.Id);
-            foreach(var trip in userTrips)
+            var userTrips = ApplicationDbContext.Trips.Where(x => x.UserInfoId == user.Id);
+            foreach (var trip in userTrips)
             {
                 trips.Add(new TripDetail { Description = trip.Description, IsDone = trip.IsDone, Name = trip.Name, Id = trip.Id });
             }
-            
+
             return trips;
         }
     }
