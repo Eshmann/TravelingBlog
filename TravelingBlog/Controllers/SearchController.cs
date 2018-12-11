@@ -1,13 +1,12 @@
 using System;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TravelingBlog.BusinessLogicLayer.Contracts;
 using TravelingBlog.BusinessLogicLayer.ResourceHelpers;
 using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
+using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 
 namespace TravelingBlog.Controllers
 {
@@ -17,13 +16,10 @@ namespace TravelingBlog.Controllers
         public IUnitOfWork UnitOfWork { get; set; }
         private ILoggerManager Logger { get; set; }
 
-        private readonly ClaimsPrincipal _caller;
-
-        public SearchController(IUnitOfWork _unitOfWork, ILoggerManager _logger, IHttpContextAccessor httpContextAccessor)
+        public SearchController(IUnitOfWork unitOfWork, ILoggerManager logger, IHttpContextAccessor httpContextAccessor)
         {
-            UnitOfWork = _unitOfWork;
-            Logger = _logger;
-            _caller = httpContextAccessor.HttpContext.User;
+            UnitOfWork = unitOfWork;
+            Logger = logger;
         }
 
 
@@ -39,7 +35,7 @@ namespace TravelingBlog.Controllers
                 {
                     var noresult = UnitOfWork.Trips.GetAllTripsAsync(search, out var h);
                     Logger.LogInfo("Bad search line");
-                    return Ok(noresult);
+                    return Ok(new {total = h, Result = noresult});
                 }
                 return Ok(new { Total = total,Result = result });
             }
@@ -59,7 +55,7 @@ namespace TravelingBlog.Controllers
             {
                 var result = UnitOfWork.Trips.FilterTripsByCountry(filter, out var total);
                 Logger.LogInfo("Filter");
-                return Ok(new { Total = total, Result = result });
+                return Ok(new { Total = total, Result = result, });
             }
             catch (Exception e)
             {

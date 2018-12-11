@@ -17,8 +17,8 @@ namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
         Task<Trip> GetTripByIdAsync(int tripId);
         bool IsUserCreator(int userId, int tripId);
         Trip GetTripWithPostBlogs(int id);
-        IList<Trip> SearchTrips(Search searchQuery, out int total);
+        IList<TripWithUserInfo> SearchTrips(Search searchQuery, out int total);
         Task<IEnumerable<TripDetail>> GetUserTripsAsync(string id);
-        IList<Trip> FilterTripsByCountry(Filter filter, out int total);
+        IList<TripWithUserInfo> FilterTripsByCountry(Filter filter, out int total);
     }
 }

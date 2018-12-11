@@ -43,14 +43,26 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
             return ApplicationDbContext.Trips.Include(t => t.PostBlogs).SingleOrDefault(t => t.Id == id);
         }
 
-        public IList<Trip> SearchTrips(Search searchQuery, out int total)
+        public IList<TripWithUserInfo> SearchTrips(Search searchQuery, out int total)
         {
+            List<TripWithUserInfo> user = new List<TripWithUserInfo>();
             var word = searchQuery.SearchQuery;
             var result = ApplicationDbContext
                 .Trips.Where(x => x.Name.ToLower().Contains(word)
-                                  || x.Description.ToLower().Contains(word));
+                                  || x.Description.ToLower().Contains(word)).Include(i => i.UserInfo);
             total = result.Count();
-            var skip = result.Skip(searchQuery.PageSize * (searchQuery.PageNumber - 1))
+            foreach (var n in result)
+            {
+                user.Add(new TripWithUserInfo
+                {
+                    Name = n.Name,
+                    Description = n.Description,
+                    Id = n.Id,
+                    FirstName = n.UserInfo.FirstName,
+                    LastName = n.UserInfo.LastName
+                });
+            }
+            var skip = user.Skip(searchQuery.PageSize * (searchQuery.PageNumber - 1))
              .Take(searchQuery.PageSize);
 
             return skip.ToList();
@@ -68,14 +80,26 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
             return trips;
         }
 
-        public IList<Trip> FilterTripsByCountry(Filter filter, out int total)
+        public IList<TripWithUserInfo> FilterTripsByCountry(Filter filter, out int total)
         {
+            List<TripWithUserInfo> user = new List<TripWithUserInfo>();
             var query = ApplicationDbContext.Trips.Where(i => i.CountryTrips
-                .Any(x => x.Country.Id == filter.Id));
+                .Any(x => x.Country.Id == filter.Id)).Include(a => a.UserInfo);
             total = query.Count();
-            var result = query.Skip(filter.PageSize * (filter.PageNumber - 1))
-               .Take(filter.PageSize)
-                .ToList();
+            foreach (var n in query)
+            {
+                user.Add(new TripWithUserInfo
+                {
+                    Name = n.Name,
+                    Description = n.Description,
+                    Id = n.Id,
+                    FirstName = n.UserInfo.FirstName,
+                    LastName = n.UserInfo.LastName
+                });
+            }
+            var result = user
+                .Skip(filter.PageSize * (filter.PageNumber - 1))
+                .Take(filter.PageSize).ToList();
             return result.ToList();
         }
     }
