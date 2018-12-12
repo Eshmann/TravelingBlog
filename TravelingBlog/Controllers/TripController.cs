@@ -1,19 +1,19 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using TravelingBlog.BusinessLogicLayer.Contracts;
+using TravelingBlog.BusinessLogicLayer.LoggerService;
 using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
-using TravelingBlog.BusinessLogicLayer.ViewModels.TripViewModels;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.Controllers
-{    
+{
     [Route("api/trip")]
     [Authorize]
     public class TripController : Controller
@@ -115,20 +115,27 @@ namespace TravelingBlog.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-       
-        //New method for Trips with highest Rating
+
+        // New method for Trips with highest Rating
         [AllowAnonymous]
-        [HttpGet("besttrips")]
-        public IActionResult GetTripsWithHighestRating()
+        [Route("best")]
+        [HttpGet]
+        public IActionResult GetTripsWithHighestRating([FromBody]int count)
         {
-            var rating = unitOfWork.Trips.GetTripsWithHighestRating();
-            if (rating == null)
+            var trips = unitOfWork.Trips.GetTripsWithHighestRating(count);
+            var bestTrips = new List<Trip>();
+
+            logger.LogInfo("Getting best trips");
+
+            foreach (var t in trips)
             {
-                logger.LogInfo("This trip doesn`t have a rating");
-                return NotFound();
+                if (t != null)
+                {
+                    bestTrips.Add(t);
+                }
             }
-            logger.LogInfo("This trip with rating is found");
-            return Ok(rating);
+
+            return Ok(bestTrips);
         }
 
         [HttpPost]
@@ -226,8 +233,8 @@ namespace TravelingBlog.Controllers
             }
         }
 
-        //Alexel37 GetUserTrips
-        //api/trip/mytrips
+        // Alexel37 GetUserTrips
+        // api/trip/mytrips
         [HttpGet("mytrips")]
         public async Task<IActionResult> GetUserTripsAsync()
         { 

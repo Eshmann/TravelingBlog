@@ -1,12 +1,11 @@
-using System;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using TravelingBlog.BusinessLogicLayer.Contracts;
+using TravelingBlog.BusinessLogicLayer.LoggerService;
 using TravelingBlog.BusinessLogicLayer.ResourceHelpers;
 using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
-using TravelingBlog.BusinessLogicLayer.ViewModels.DTO;
 
 namespace TravelingBlog.Controllers
 {
