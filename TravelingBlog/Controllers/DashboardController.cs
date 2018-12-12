@@ -1,13 +1,13 @@
-﻿using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using TravelingBlog.DataAcceesLayer.Data;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.Controllers
 {
@@ -29,7 +29,7 @@ namespace TravelingBlog.Controllers
         public async Task<IActionResult> Home()
         {
             // retrieve the user info
-            //HttpContext.User
+            // HttpContext.User
             var userId = caller.Claims.Single(c => c.Type == "id");
             var customer = await appDbContext.UserInfoes.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == userId.Value);
 

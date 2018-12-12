@@ -4,6 +4,6 @@ namespace TravelingBlog.BusinessLogicLayer.Contracts.Repositories
 {
     public interface IImageRepository : IRepository<Image>
     {
-
+        Image GetRandomImage(Trip trip);
     }
 }

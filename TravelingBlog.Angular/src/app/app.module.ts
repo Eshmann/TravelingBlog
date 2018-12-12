@@ -22,13 +22,12 @@ import { UserInfoModule } from './userinfo/userinfo.module';
 import { ConfigService } from './shared/utils/config.service';
 import { FooterComponent } from './footer/footer.component';
 import { SearchModule } from './search/search.module';
-import {HomeModule} from './home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    //HomeComponent,
+    HomeComponent,
     FooterComponent
   ],
   imports: [
@@ -40,7 +39,6 @@ import {HomeModule} from './home/home.module';
     FormsModule,
     HttpModule,
     SearchModule,
-    HomeModule,
     routing
   ],
   providers: [ConfigService, {

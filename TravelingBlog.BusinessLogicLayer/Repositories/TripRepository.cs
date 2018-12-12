@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
-using Microsoft.EntityFrameworkCore;
-using TravelingBlog.DataAcceesLayer.Models.Entities;
-using TravelingBlog.DataAcceesLayer.Data;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using TravelingBlog.BusinessLogicLayer.Contracts.Repositories;
 using TravelingBlog.BusinessLogicLayer.ResourceHelpers;
 using TravelingBlog.BusinessLogicLayer.ResourseHelpers;
 using TravelingBlog.BusinessLogicLayer.ViewModels.TripViewModels;
+using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.BusinessLogicLayer.Repositories
 {
@@ -34,12 +35,33 @@ namespace TravelingBlog.BusinessLogicLayer.Repositories
 
         }
 
-        public IEnumerable<Trip> GetTripsWithHighestRating()
+        public IEnumerable<Trip> GetTripsWithHighestRating(int count)
         {
+            if (count < ApplicationDbContext.Trips.Count())
+                count = ApplicationDbContext.Trips.Count();
+
             return ApplicationDbContext.Trips
-                .OrderByDescending(k => k.RatingTrip)
-                .Take(3)
+                .OrderByDescending(t => t.RatingTrip)
+                .Take(count)
                 .ToList();
+        }
+
+        public IEnumerable<Trip> GetRandomTrips(int count, List<Trip> trips)
+        {
+            var rnd = new Random();
+            var shuffle = new List<Trip>(trips);
+
+            for (var i = 2; i < shuffle.Count; ++i)
+            {
+                var temp = shuffle[i];
+                var nextRandom = rnd.Next(i - 1);
+                shuffle[i] = shuffle[nextRandom];
+                shuffle[nextRandom] = temp;
+            }
+
+            var result = shuffle.GetRange(0, count);
+
+            return result;
         }
 
         public bool IsUserCreator(int userId, int tripId)
