@@ -38,152 +38,132 @@
   </div>
 </header>
 
-
-<aside id="testimonials" class="text-center" data-enllax-ratio=".2" tabindex="-1" style="background-position: center 34px;">
-  <div class="section-heading">
-    <h2 class="section-title">Our experienced blogs!</h2>
-  </div>
+    <aside id="testimonials"  data-enllax-ratio=".2" tabindex="-1" style="background-position: center 34px;">
+        <div class="section-heading">
+          <h2 class="section-title">Our popular trips!</h2>
+        </div>
   <div class="row">
-    <div class="col-sm-4">
-      <blockquote class=" testimonial classic">
-        <img src="assets/images/user-img/user-1.jpg" alt="User"/>
-        <h3>England - why not?</h3>
-        <q>Brits love to sip, slurp and gulp down tea while occasionally dunking a digestive in there too.
-          Among the three ghosts said to haunt Athelhampton House, one of them is an ape.
-          An interesting fact is that French was the official language of England for about 300 years.</q>
-        <p>Julie Fan - Happy Customer</p>
-      </blockquote>
+        <blockquote class= "testimonial classic">
+      <li *ngFor="let tr of bestTrip">
+        <div class = "col-md-4"></div>
+        <img src="assets/images/user-img/user-1.jpg" alt="User">
+        <div>Name: {{ tr?.name }}</div>
+        <div>Description: {{tr?.descriptions}}</div>
+        <div>Rating: {{ tr?.ratingTrip}}</div>
+      </li>
+    </blockquote>
     </div>
-
-    <div class="col-sm-4">
-      <blockquote class="testimonial classic">
-        <img src="assets/images/user-img/user-3.jpg" alt="User" />
-        <h3>"Like Spain, I am bound to the past."</h3>
-        <q>It’s like a dream to come to Spain and stay for a couple of years and get somebody to teach me Spanish
-          music.
-          I have seen dawn and sunset on moors and windy hills coming in solemn beauty like slow old tunes of Spain.
-        </q>
-        <p>Thomas Doe </p>
-      </blockquote>
-    </div>
-
-    <div class="col-sm-4">
-      <blockquote class="testimonial classic">
-        <img src="assets/images/user-img/user-2.jpg" alt="User" />
-        <h3>Trip to the Netherland</h3>
-        <q>Yep, a country so small you can drive through it from its Northern- to its Southern-tip (the largest
-          distance)
-          in just about two hours if you don’t hit any heavy traffic.
-          Somehow the Dutch still manage to crank out enough food to “Feed the World” with so little space! I liked it!</q>
-        <p>Roslyn Doe</p>
-      </blockquote>
-    </div>
-  </div>
-
-</aside>
-
-<section id="portfolios" class="section-padding">
-  <div class="container">
-    <h2 class="section-title" data-wow-delay="0.4s">Countries and places which inspire</h2>
-    <div class="row">
-      <div id="portfolio" class="row" data-wow-delay="0.4s">
-        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development print">
-          <div class="portfolio-item">
-            <div class="shot-item">
-              <img src="assets/images/block-img/7.jpg" alt="" />
-              <div class="overlay">
-                <div class="icons">
-                  <a class="lightbox preview" href="assets/images/block-img/7.jpg" data-fancybox="block-img" data-title="Image #1">
-                    <i class="icon-preview" title="Full-screen window"></i>
-                  </a>
-                  <a class="link" href="#">
-                    <i class="icon-link" title="Go to trip"></i>
-                  </a>
+    </aside>
+ 
+  <section id="portfolios" class="section-padding">
+    <div class="container">
+      <h2 class="section-title" data-wow-delay="0.4s">Countries and places which inspire</h2>
+      <div class="row">
+        <div id="portfolio" class="row" data-wow-delay="0.4s">
+          <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development print">
+            <div class="portfolio-item">
+              <div class="shot-item">
+                <img src="assets/images/block-img/7.jpg" alt="" />
+                <div class="overlay">
+                  <div class="icons">
+                    <a class="lightbox preview" href="assets/images/block-img/7.jpg" data-fancybox="block-img"
+                      data-title="Image #1">
+                      <i class="icon-preview" title="Full-screen window"></i>
+                    </a>
+                    <a class="link" href="#">
+                      <i class="icon-link" title="Go to trip"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix design print">
-          <div class="portfolio-item">
-            <div class="shot-item">
-              <img src="assets/images/block-img/2.jpg" alt="" />
-              <div class="overlay">
-                <div class="icons">
-                  <a class="lightbox preview" href="assets/images/block-img/2.jpg" data-fancybox="block-img" data-title="Image #2">
-                    <i class="icon-preview" title="Full-screen window"></i>
-                  </a>
-                  <a class="link" href="#">
-                    <i class="icon-link" title="Go to trip"></i>
-                  </a>
+          <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix design print">
+            <div class="portfolio-item">
+              <div class="shot-item">
+                <img src="assets/images/block-img/2.jpg" alt="" />
+                <div class="overlay">
+                  <div class="icons">
+                    <a class="lightbox preview" href="assets/images/block-img/2.jpg" data-fancybox="block-img"
+                      data-title="Image #2">
+                      <i class="icon-preview" title="Full-screen window"></i>
+                    </a>
+                    <a class="link" href="#">
+                      <i class="icon-link" title="Go to trip"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development">
-          <div class="portfolio-item">
-            <div class="shot-item">
-              <img src="assets/images/block-img/3.jpg" alt="" />
-              <div class="overlay">
-                <div class="icons">
-                  <a class="lightbox preview" href="assets/images/block-img/3.jpg" data-fancybox="block-img" data-title="Image #3">
-                    <i class="icon-preview" title="Full-screen window"></i>
-                  </a>
-                  <a class="link" href="#">
-                    <i class="icon-link" title="Go to trip"></i>
-                  </a>
+          <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development">
+            <div class="portfolio-item">
+              <div class="shot-item">
+                <img src="assets/images/block-img/3.jpg" alt="" />
+                <div class="overlay">
+                  <div class="icons">
+                    <a class="lightbox preview" href="assets/images/block-img/3.jpg" data-fancybox="block-img"
+                      data-title="Image #3">
+                      <i class="icon-preview" title="Full-screen window"></i>
+                    </a>
+                    <a class="link" href="#">
+                      <i class="icon-link" title="Go to trip"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development design">
-          <div class="portfolio-item">
-            <div class="shot-item">
-              <img src="assets/images/block-img/4.jpg" alt="" />
-              <div class="overlay">
-                <div class="icons">
-                  <a class="lightbox preview" href="assets/images/block-img/4.jpg" data-fancybox="block-img" data-title="Image #4">
-                    <i class="icon-preview" title="Full-screen window"></i>
-                  </a>
-                  <a class="link" href="#">
-                    <i class="icon-link" title="Go to trip"></i>
-                  </a>
+          <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development design">
+            <div class="portfolio-item">
+              <div class="shot-item">
+                <img src="assets/images/block-img/4.jpg" alt="" />
+                <div class="overlay">
+                  <div class="icons">
+                    <a class="lightbox preview" href="assets/images/block-img/4.jpg" data-fancybox="block-img"
+                      data-title="Image #4">
+                      <i class="icon-preview" title="Full-screen window"></i>
+                    </a>
+                    <a class="link" href="#">
+                      <i class="icon-link" title="Go to trip"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development">
-          <div class="portfolio-item">
-            <div class="shot-item">
-              <img src="assets/images/block-img/5.jpg" alt="" />
-              <div class="overlay">
-                <div class="icons">
-                  <a class="lightbox preview" href="assets/images/block-img/5.jpg" data-fancybox="block-img" data-title="Image #5">
-                    <i class="icon-preview" title="Full-screen window"></i>
-                  </a>
-                  <a class="link" href="#">
-                    <i class="icon-link" title="Go to trip"></i>
-                  </a>
+          <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix development">
+            <div class="portfolio-item">
+              <div class="shot-item">
+                <img src="assets/images/block-img/5.jpg" alt="" />
+                <div class="overlay">
+                  <div class="icons">
+                    <a class="lightbox preview" href="assets/images/block-img/5.jpg" data-fancybox="block-img"
+                      data-title="Image #5">
+                      <i class="icon-preview" title="Full-screen window"></i>
+                    </a>
+                    <a class="link" href="#">
+                      <i class="icon-link" title="Go to trip"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix print design">
-          <div class="portfolio-item">
-            <div class="shot-item">
-              <img src="assets/images/block-img/6.jpg" alt="" />
-              <div class="overlay">
-                <div class="icons">
-                  <a class="lightbox preview" href="assets/images/block-img/6.jpg" data-fancybox="block-img" data-title="Image #6">
-                    <i class="icon-preview" title="Full-screen window"></i>
-                  </a>
-                  <a class="link" href="#">
-                    <i class="icon-link" title="Go to trip"></i>
-                  </a>
+          <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix print design">
+            <div class="portfolio-item">
+              <div class="shot-item">
+                <img src="assets/images/block-img/6.jpg" alt="" />
+                <div class="overlay">
+                  <div class="icons">
+                    <a class="lightbox preview" href="assets/images/block-img/6.jpg" data-fancybox="block-img"
+                      data-title="Image #6">
+                      <i class="icon-preview" title="Full-screen window"></i>
+                    </a>
+                    <a class="link" href="#">
+                      <i class="icon-link" title="Go to trip"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -191,14 +171,13 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<form>
-  <div class="button-section">
-    <h3>Let`s register and start your advantures!</h3>
-    <input class="registrationButton" type="button" value="Register" onclick="window.location.href='/register'" />
-    <br>
-    <br>
-  </div>
-</form>
+  <form>
+    <div class="button-section">
+      <h3>Let`s register and start your advantures!</h3>
+      <input class="registrationButton" type="button" value="Register" onclick="window.location.href='/register'" />
+      <br>
+      <br>
+    </div>
+  </form>

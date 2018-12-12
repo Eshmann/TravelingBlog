@@ -115,9 +115,10 @@ namespace TravelingBlog.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+       
         //New method for Trips with highest Rating
         [AllowAnonymous]
-        [HttpGet]
+        [HttpGet("besttrips")]
         public IActionResult GetTripsWithHighestRating()
         {
             var rating = unitOfWork.Trips.GetTripsWithHighestRating();
