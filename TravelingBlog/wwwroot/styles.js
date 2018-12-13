@@ -40,7 +40,7 @@ module.exports = [[module.i, "/*! jQuery UI - v1.11.1 - 2014-08-13\n* http://jqu
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\n/*\r\n * Base structure\r\n */\n/* Move down content because we have a fixed navbar that is 3.5rem tall */\nbody {\n  padding-top: 0rem; }\n/*\r\n * Typography\r\n */\nh1 {\n  padding-bottom: 9px;\n  margin-bottom: 20px;\n  border-bottom: 1px solid #ec0c0c; }\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9FOlxcR2l0SHViXFxtYXN0ZXJcXFRyYXZlbGluZ0Jsb2dcXFRyYXZlbGluZ0Jsb2cuQW5ndWxhci9zcmNcXHN0eWxlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLCtFQUErRTtBQUUvRTs7R0FFRztBQUVILDBFQUEwRTtBQUMxRTtFQUNFLGtCQUFpQixFQUNsQjtBQUVEOztHQUVHO0FBRUg7RUFDRSxvQkFBbUI7RUFDbkIsb0JBQW1CO0VBQ25CLGlDQUF5QyxFQUMxQyIsImZpbGUiOiJzcmMvc3R5bGVzLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBZb3UgY2FuIGFkZCBnbG9iYWwgc3R5bGVzIHRvIHRoaXMgZmlsZSwgYW5kIGFsc28gaW1wb3J0IG90aGVyIHN0eWxlIGZpbGVzICovXHJcblxyXG4vKlxyXG4gKiBCYXNlIHN0cnVjdHVyZVxyXG4gKi9cclxuXHJcbi8qIE1vdmUgZG93biBjb250ZW50IGJlY2F1c2Ugd2UgaGF2ZSBhIGZpeGVkIG5hdmJhciB0aGF0IGlzIDMuNXJlbSB0YWxsICovXHJcbmJvZHkge1xyXG4gIHBhZGRpbmctdG9wOiAwcmVtO1xyXG59XHJcblxyXG4vKlxyXG4gKiBUeXBvZ3JhcGh5XHJcbiAqL1xyXG5cclxuaDEge1xyXG4gIHBhZGRpbmctYm90dG9tOiA5cHg7XHJcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcclxuICBib3JkZXItYm90dG9tOiAxcHggc29saWQgcmdiKDIzNiwgMTIsIDEyKTtcclxufVxyXG4iXX0= */", '', '']]
+module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\n/*\r\n * Base structure\r\n */\n/* Move down content because we have a fixed navbar that is 3.5rem tall */\nbody {\n  padding-top: 0rem; }\n/*\r\n * Typography\r\n */\nh1 {\n  padding-bottom: 9px;\n  margin-bottom: 20px;\n  border-bottom: 1px solid #ec0c0c; }\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9FOlxcR2l0SHViXFxOZXdBcmNoaXRlY3R1cmVcXFRyYXZlbGluZ0Jsb2dcXFRyYXZlbGluZ0Jsb2cuQW5ndWxhci9zcmNcXHN0eWxlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLCtFQUErRTtBQUUvRTs7R0FFRztBQUVILDBFQUEwRTtBQUMxRTtFQUNFLGtCQUFpQixFQUNsQjtBQUVEOztHQUVHO0FBRUg7RUFDRSxvQkFBbUI7RUFDbkIsb0JBQW1CO0VBQ25CLGlDQUF5QyxFQUMxQyIsImZpbGUiOiJzcmMvc3R5bGVzLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBZb3UgY2FuIGFkZCBnbG9iYWwgc3R5bGVzIHRvIHRoaXMgZmlsZSwgYW5kIGFsc28gaW1wb3J0IG90aGVyIHN0eWxlIGZpbGVzICovXHJcblxyXG4vKlxyXG4gKiBCYXNlIHN0cnVjdHVyZVxyXG4gKi9cclxuXHJcbi8qIE1vdmUgZG93biBjb250ZW50IGJlY2F1c2Ugd2UgaGF2ZSBhIGZpeGVkIG5hdmJhciB0aGF0IGlzIDMuNXJlbSB0YWxsICovXHJcbmJvZHkge1xyXG4gIHBhZGRpbmctdG9wOiAwcmVtO1xyXG59XHJcblxyXG4vKlxyXG4gKiBUeXBvZ3JhcGh5XHJcbiAqL1xyXG5cclxuaDEge1xyXG4gIHBhZGRpbmctYm90dG9tOiA5cHg7XHJcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcclxuICBib3JkZXItYm90dG9tOiAxcHggc29saWQgcmdiKDIzNiwgMTIsIDEyKTtcclxufVxyXG4iXX0= */", '', '']]
 
 /***/ }),
 
@@ -678,10 +678,10 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\GitHub\master\TravelingBlog\TravelingBlog.Angular\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
-__webpack_require__(/*! E:\GitHub\master\TravelingBlog\TravelingBlog.Angular\node_modules\jqueryui\jquery-ui.min.css */"./node_modules/jqueryui/jquery-ui.min.css");
-__webpack_require__(/*! E:\GitHub\master\TravelingBlog\TravelingBlog.Angular\src\styles.scss */"./src/styles.scss");
-module.exports = __webpack_require__(/*! E:\GitHub\master\TravelingBlog\TravelingBlog.Angular\node_modules\animate.css\animate.min.css */"./node_modules/animate.css/animate.min.css");
+__webpack_require__(/*! E:\GitHub\NewArchitecture\TravelingBlog\TravelingBlog.Angular\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
+__webpack_require__(/*! E:\GitHub\NewArchitecture\TravelingBlog\TravelingBlog.Angular\node_modules\jqueryui\jquery-ui.min.css */"./node_modules/jqueryui/jquery-ui.min.css");
+__webpack_require__(/*! E:\GitHub\NewArchitecture\TravelingBlog\TravelingBlog.Angular\src\styles.scss */"./src/styles.scss");
+module.exports = __webpack_require__(/*! E:\GitHub\NewArchitecture\TravelingBlog\TravelingBlog.Angular\node_modules\animate.css\animate.min.css */"./node_modules/animate.css/animate.min.css");
 
 
 /***/ })

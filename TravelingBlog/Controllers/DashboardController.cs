@@ -29,7 +29,7 @@ namespace TravelingBlog.Controllers
         public async Task<IActionResult> Home()
         {
             // retrieve the user info
-            //HttpContext.User
+            // HttpContext.User
             var userId = caller.Claims.Single(c => c.Type == "id");
             var customer = await appDbContext.UserInfoes.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == userId.Value);
 

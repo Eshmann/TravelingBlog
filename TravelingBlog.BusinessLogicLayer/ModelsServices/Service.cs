@@ -67,8 +67,8 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         public IEnumerable<TDto> FindAll(TFilter filter)
         {
-            Func<TEntity, bool> predicate = GetFilter(filter);
-            var entities = Repository.FindAll(e => predicate(e)).ToList();
+            Expression<Func<TEntity, bool>> predicate = GetFilter(filter);
+            var entities = Repository.FindAll(predicate).ToList();
 
             return entities.Select(e => mapper.Map<TDto>(e));
 
@@ -76,8 +76,8 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         public TDto Find(TFilter filter)
         {
-            Func<TEntity, bool> predicate = GetFilter(filter);
-            var entity = Repository.Find(e => predicate(e));
+            Expression<Func<TEntity, bool>> predicate = GetFilter(filter);
+            var entity = Repository.Find(predicate);
 
             return mapper.Map<TDto>(entity);
         }
@@ -140,8 +140,8 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         public int Count(TFilter filter)
         {
-            Func<TEntity, bool> predicate = GetFilter(filter);
-            var entities = Repository.FindAll(e => predicate(e)).ToList();
+            Expression<Func<TEntity, bool>> predicate = GetFilter(filter);
+            var entities = Repository.FindAll(predicate).ToList();
 
             return entities.Count();
         }
@@ -153,6 +153,6 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             return Expression.Lambda<Func<TEntity, bool>>(body, param);
         }
 
-        protected abstract Func<TEntity, bool> GetFilter(TFilter filter);
+        protected abstract Expression<Func<TEntity, bool>> GetFilter(TFilter filter);
     }
 }

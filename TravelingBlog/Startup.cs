@@ -17,6 +17,7 @@ using TravelingBlog.ActionFilters;
 using TravelingBlog.BusinessLogicLayer.ModelsServices;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.Auth;
+using TravelingBlog.BusinessLogicLayer.SecondaryServices.AzureStorage;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
 using TravelingBlog.DataAcceesLayer.Data;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
@@ -50,6 +51,8 @@ namespace TravelingBlog
             services.ConfigureAutoMapper();
 
             services.AddScoped<ITripService, TripService>();
+
+            services.AddScoped<IAzureBlob, AzureBlob>();
 
             // Add validation attribute service.
             services.AddScoped<ValidationFilterAttribute>();
@@ -138,19 +141,6 @@ namespace TravelingBlog
             {
                 ForwardedHeaders = ForwardedHeaders.All
             });
-
-            // app.Use(async (context, next) => … will point on the index page in the Angular project.
-            /*app.Use(async (context, next) =>
-            {
-                await next();
-
-                if (context.Response.StatusCode == 404
-                    && !Path.HasExtension(context.Request.Path.Value))
-                {
-                    context.Request.Path = "/index.html";
-                    await next();
-                }
-            });*/
 
             // app.UseStaticFiles() enables using static files for the request.
 

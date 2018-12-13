@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.DataAcceesLayer.Models.Entities
 {
     [Table("UserImage")]
-    public class UserImage
+    public class UserImage : ICreatedByUser
     {
         public int Id { get; set; }
         public string Path { get; set; }

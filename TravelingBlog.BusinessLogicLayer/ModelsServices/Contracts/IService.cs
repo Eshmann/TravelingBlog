@@ -17,6 +17,5 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
         void UpdateRange(IEnumerable<TDto> dto);
 
         int Count(TFilter filter);
-
     }
 }

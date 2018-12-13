@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.DataAcceesLayer.Models.Entities
 {
     [Table("Rating")]
-    public class Rating
+    public class Rating : ICreatedByUser
     {
         public int UserInfoId { get; set; }
         public int TripId { get; set; }

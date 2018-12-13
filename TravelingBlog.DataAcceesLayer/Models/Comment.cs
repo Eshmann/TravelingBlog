@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using TravelingBlog.DataAcceesLayer.Contracts;
 
 namespace TravelingBlog.DataAcceesLayer.Models.Entities
 {
     [Table("Comment")]
-    public class Comment
+    public class Comment : ICreatedByUser
     {
         public int UserInfoId { get; set; }
         public int TripId { get; set; }
