@@ -27,7 +27,7 @@ namespace TravelingBlog.Helpers
         {
             if(!_userManager.Users.Any())
             {
-                var userData = System.IO.File.ReadAllText(@"C:\Users\адмін\Desktop\github 2\TravelingBlog\TravelingBlog\Helpers\UserSeedData.json");
+                var userData = System.IO.File.ReadAllText(@"Helpers\UserSeedData.json");
                 var deserializeObjects = JsonConvert.DeserializeObject<List<RegistrationViewModel>>(userData);
 
                 var list = new List<AppUser>();
