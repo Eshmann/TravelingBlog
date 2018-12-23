@@ -1,4 +1,4 @@
-<body id="bodyyy">  
+<body>  
   <div class="toBeCentered" *ngFor="let trip of trips | paginate: { id:'server', itemsPerPage: 10, currentPage: page ,totalItems:total}">
       <article class="post">
           <header >
@@ -22,5 +22,5 @@
           </footer>
       </article>      
   </div>
-  <pagination-controls (pageChange)="getPage($event)" id="server" responsive="true"></pagination-controls>
+  <pagination-controls class="pagination" (pageChange)="getPage($event)" id="server" responsive="true"></pagination-controls>
 </body>
