@@ -8,8 +8,8 @@ import { FulltripComponent } from './trips/fulltrip/fulltrip.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path:'trips',component:TriplistComponent },
-  { path:'**',redirectTo:'',pathMatch:'full' },
-  { path:'fulltrip/:id',component:FulltripComponent }
+  { path:'fulltrip/:id',component:FulltripComponent },
+  { path:'**',redirectTo:'',pathMatch:'full' }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

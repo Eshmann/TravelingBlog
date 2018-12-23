@@ -14,13 +14,15 @@ export class FulltripComponent implements OnInit {
   constructor(private activeRoute:ActivatedRoute,private location:Location,private tripService:TripService) { }
 
   ngOnInit() {
+    this.getTrip();
   }
-  /*
-  getTrip(){
+  
+  getTrip()
+  {
     const id = +this.activeRoute.snapshot.paramMap.get('id');
-    this.tripService.getTrip(id).subscribe(resp=>this.trip = resp);
+    this.tripService.getFullTrip(id).subscribe(resp=>this.trip = resp);
   }
-  */
+  
   goBack(){
     this.location.back();
   }  

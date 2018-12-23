@@ -31,6 +31,13 @@ export class TripService extends BaseService {
       map(response=>response.json())
       .catch(this.handleError);
    }
+   getFullTrip(id:number):Observable<Trip>
+   {
+    let headers = this.getHeaders();
+    return this.httpClient.get(`${this.apiUrl}${this.baseUrl}/${id}`,{headers}).
+    map(response=>response.json())
+    .catch(this.handleError);
+   }
    createTrip(trip:Trip):Observable<TripHalf>{
     let headers = this.getHeaders();
 

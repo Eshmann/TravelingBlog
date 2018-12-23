@@ -1,4 +1,5 @@
-export class postBlog{
+export class postBlog
+{
     id?:number;
     name?:string;
     plot?:string;
