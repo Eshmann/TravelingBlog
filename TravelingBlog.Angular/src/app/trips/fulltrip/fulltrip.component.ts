@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TripService } from '../trip.service';
-import { Trip } from '../models/trip';
+import { TripHalf } from '../models/TripHalf';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-fulltrip',
@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
 })
 export class FulltripComponent implements OnInit {
 
-  trip:Trip = new Trip();
+  trip:TripHalf;
   constructor(private activeRoute:ActivatedRoute,private location:Location,private tripService:TripService) { }
 
   ngOnInit() {
@@ -20,7 +20,7 @@ export class FulltripComponent implements OnInit {
   getTrip()
   {
     const id = +this.activeRoute.snapshot.paramMap.get('id');
-    this.tripService.getFullTrip(id).subscribe(resp=>this.trip = resp);
+    this.tripService.getTrip(id).subscribe(resp=>this.trip = resp);
   }
   
   goBack(){
