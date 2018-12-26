@@ -18,6 +18,12 @@
     background-color: rgba(107, 107, 110, 0.055);
     border-radius: 15px;
  }
+ .row.content{
+    height: 100%;
+ }
+ .container.content{
+    height: 100vh;
+ }
  .row:after {
     content: "";
     display: table;
