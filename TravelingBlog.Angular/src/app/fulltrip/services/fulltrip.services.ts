@@ -20,5 +20,7 @@ export class FullTripServices extends BaseService {
     super();
     this.baseUrl = configService.getApiURI();
   }
-  
+  getFullTrip():Observable<FullTrip>{ 
+  }
+
 }

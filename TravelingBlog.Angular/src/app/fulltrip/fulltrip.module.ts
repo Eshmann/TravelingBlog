@@ -9,7 +9,7 @@ import { routing } from './fulltrip.rooting';
 
 import { FullTripComponent } from './fulltrip/fulltrip.component';
 
-import {FullTripService} from './fulltrip/fulltrip.service';
+import {a} from './fulltrip/fulltrip.service';
 
 
 @NgModule({
