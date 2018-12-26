@@ -1,0 +1,32 @@
+<body class="Centered">
+        <style>
+                @import url('https://fonts.googleapis.com/css?family=Catamaran|Charmonman|Permanent+Marker');
+                </style>
+    <div class="d-flex flex-row justify-content-center my-flex-container-fluid">
+        <input type="text" class="form-control form-control-lg" [(ngModel)]="id" class="" />
+        <input type="button" value="Search" (click)=" loadTrips(id)" class="btn btn-default" style="position: relative; left: 5px;">
+        <div>
+            <select [(ngModel)]="countryid" class="select dropdown-content">
+                <option value="-1">-ALL</option>
+                <option *ngFor="let p of countries" value="{{p.id}}">{{p.name}}</option>
+            </select>
+
+        </div>
+    </div>
+    <div class="d-flex flex-row justify-content-center my-flex-container flow">
+        <div class="col-md-6 column">
+            <li class="list-group-item list well well-lg" *ngFor="let n of trips">
+                <label class="item row">Name : {{n?.name}}</label>
+                <label class="item row">Description : {{n?.description}}</label>
+                <label class="item row">Trip creator : {{n?.firstName}} {{n?.lastName}}</label>
+                <h1></h1>
+            </li>
+            <input type="button" value="previouspage" *ngIf="prevpage" (click)="previous()" />
+            <input type="button" value="nextpage" *ngIf="nextpage" (click)="next()" />
+        </div>
+    </div>
+    <div style="position:absolute;widows: 50%;">
+
+    </div>
+
+</body>
