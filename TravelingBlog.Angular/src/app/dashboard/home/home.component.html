@@ -1,5 +1,63 @@
-<div class="row" class="Centered">
-  <div class="col-md-6 col-sm-3">
+  <div class="header">
+    <div class="media">
+      <img src="https://picjumbo.com/wp-content/uploads/young-woman-traveler-enjoying-a-view-on-high-tatras-mountains_free_stock_photos_picjumbo_HNCK7618-1080x720.jpg" class="rounded-circle" width="150" height="150"> 
+      <div class="media-body">
+        <button type="button" class="btn btn-secondary btn-lg float-md-right" disabled >Subscribe</button>
+        <h2 id="line">
+          {{homeDetails?.firstName}}  {{homeDetails?.lastName}}
+        </h2>
+        <hr>
+        <div class="spus">
+          <button type="button" class=" btn btn-primary float-md-right" disabled >Disabled Primary</button>
+          <button type="button" class=" btn btn-primary float-md-right" disabled >Subscribers</button>
+        </div>
+        <p *ngIf="homeDetails?.location"><strong>Location:</strong> {{homeDetails?.location}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+        <div class="card-header">
+          <h3>User inform</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col"><h6>Some text <hr></h6></div>
+            <div class="col"><h6>Some text <hr></h6></div>
+            <div class="w-100"></div>
+            <div class="col"><h6>Some text <hr></h6></div>
+            <div class="col"><h6>Some text <hr></h6></div>
+            <div class="w-100"></div>
+            <div class="col"><h6>Some text <hr></h6></div>
+            <div class="col"><h6>Some text <hr></h6></div>
+            <div class="w-100"></div>
+            <div class="col"><h6>Some text <hr></h6></div>
+            <div class="col"><h6>Some text <hr></h6></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rightcolumn">
+      <div class="card">
+        <div class="card-header">
+          <h3>Top Trips</h3>
+        </div>
+        <div class="card-body">
+          <p>Some text</p><hr>
+          <p>Some text</p><hr>
+          <p>Some text</p><hr>
+          <p>Some text</p><hr>
+          <p>Some text</p><hr>
+        </div>
+      </div>
+      <div class="card">
+        <button type="button" class=" btn btn-primary ">See all trips</button>
+      </div>
+    </div>
+  </div>
+<!-- 
+  <div class="col-sm-8">
     <p>{{homeDetails?.message}}</p>
     <p><strong>Name:</strong> {{homeDetails?.firstName}} {{homeDetails?.lastName}}</p>
     <p *ngIf="homeDetails?.location"><strong>Location:</strong> {{homeDetails?.location}}</p>
@@ -7,5 +65,6 @@
     <p *ngIf="homeDetails?.gender"><strong>Gender:</strong> {{homeDetails?.gender}}</p>
     <p *ngIf="homeDetails?.facebookId"><strong>Facebook Id:</strong> {{homeDetails?.facebookId}}</p>
     <div *ngIf="homeDetails?.pictureUrl"><img src="{{homeDetails?.pictureUrl}}" /></div>
-  </div>
-</div>
+  </div> 
+-->
+
