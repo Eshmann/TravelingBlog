@@ -1,3 +1,4 @@
+<body class="Centered">
 <div class="row">
     <div class="col-md-6 col-sm-3">
         <h1>Your Trips:</h1>
@@ -20,29 +21,8 @@
         </ul>
     </div>
 </div>
+</body>     
 
-  <!--шаблон для редактирования--><!--
-<ng-template #edit>
-        <label>Name:</label>
-        <input type="text" [(ngModel)]="trip.name" class="form-control" />
-        
-        <p>
-            <label>Finished:</label>
-            <select [(ngModel)]="trip.isDone" class="custom-select">
-                <option value="true">True</option>
-                <option value="false">False</option>
-            </select>
-        <p>
-        <p>
-            <label>Description</label>
-            <textarea [(ngModel)]="trip.description" class="form-control"></textarea>
-        <p>
-        <p>
-            <input type="button" value="Save" (click)="save()" class="btn btn-sm btn-success" />
-            <input type="button" value="Cancel" (click)="cancel()" class="btn btn-sm btn-warning" />
-        <p>
-    </ng-template>-->
-     
     <!--шаблон для добавления-->
     <ng-template #create>
         <div class="form-group">

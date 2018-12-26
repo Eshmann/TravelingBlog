@@ -1,0 +1,22 @@
+<body class="Centered">
+<div class="row">
+    <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+        <div class="col-md-6 col-sm-3">
+        <h1>User:</h1>
+        <p><strong>Name:</strong> {{userInfo?.firstName}} {{userInfo?.lastName}}</p>
+        <p *ngIf="userInfo?.location"><strong>Location:</strong> {{userInfo?.location}}</p>
+        <div *ngIf="userInfo?.pictureUrl"><img src="{{userInfo?.pictureUrl}}" /></div>
+        <input type="button" value="LoadTrips" class="btn btn-default" (click)="loadTrips()" />
+        <li *ngFor="let p of trips">
+                <ng-template [ngIf]="trip?.id != p.id">
+                    <div>Name: {{ p?.name }}</div>
+                    <div [ngClass]="{greenclass: p?.isDone == true, redclass: p?.isDone == false}">Finished: {{ p?.isDone }}</div>
+                    <p>
+                        <textarea rows="3" cols="60" readonly="readonly" class="form-control">{{ p?.description }}</textarea>
+                    </p>
+                </ng-template>
+            </li>
+            </div>
+   </main>
+</div>
+</body>
