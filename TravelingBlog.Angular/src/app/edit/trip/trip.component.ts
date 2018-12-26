@@ -17,13 +17,10 @@ export class TripEditComponent implements OnInit {
   tableMode: boolean = true;
 
   constructor(private editService: EditService, private router: Router, activeRoute: ActivatedRoute) {
-   // this.id = Number.parseInt(activeRoute.snapshot.params["id"]);
-    //this.id = activeRoute.snapshot.params['id'];
     this.id = router.url.toString();
-    let s : string;
-
-    s = this.id.substring(11,this.id.length);
-    this.id=s;
+    let s : string[];
+    s = this.id.split('/');
+    this.id=s[s.length-1];
   }
 
   ngOnInit() {
