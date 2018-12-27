@@ -14,14 +14,13 @@
   padding-bottom: 15px; 
 }
 .row.content {
-  height: auto;
+  min-height: 100vh;
+  overflow-y: hidden;
 }
 
 .sidenav {
   padding-top: 20px;
   background-color: #ddd6dd;
-
-  height: auto;
 }
  a {
   padding: 6px 8px 6px 16px;
