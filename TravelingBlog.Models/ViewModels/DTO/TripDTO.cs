@@ -7,6 +7,7 @@
         public bool IsDone { get; set; }
         public string Description { get; set; }
         public int UserInfoId { get; set; }
+        public double? RatingTrip { get; set; }
 
     }
 }

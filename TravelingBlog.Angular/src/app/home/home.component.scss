@@ -89,7 +89,10 @@ clear: both;
 }
 
 .testimonial {
-padding: 15px;
+  padding-left: 100px;
+  padding-right: 100px;
+font-style: unset;
+font-size: 25px;
 }
 
 blockquote {
@@ -98,16 +101,21 @@ position: relative;
 
 .testimonial img {
 max-height: 250px;
-border-radius: 300em;
+border-radius: 320em;
 }
 
 .testimonial footer {
 padding-top: 12px;
 }
 
+.testimonial-classic{
+  padding-left: 150px;
+  padding-right: 150px;
+}
 .testimonial.classic img {
 display: inline-block;
 margin-bottom: 25px;
+margin: 50px;
 }
 
 .testimonial.classic q {

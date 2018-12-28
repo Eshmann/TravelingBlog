@@ -1,0 +1,244 @@
+.testimonial {
+    padding-left: 10px;
+    padding-right: 10px;
+  font-style: unset;
+  font-size: 25px;
+  }
+  
+  blockquote {
+  position: relative;
+  }
+  
+  .testimonial-img {
+    float: left;
+    -webkit-border-radius: 50em;
+      -moz-border-radius: 50em;
+      border-radius: 50em;
+    margin: 0 auto;
+    width: 90px;
+  }
+  .testimonial.m-img{
+    position: absolute;
+      content: ' ';
+      width: 100px;
+      height: 30px;
+      bottom: -31px;
+    left: 0;
+    max-height: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+  }
+  
+  .testimonial.classic q {
+  display: block;
+  }
+  
+  .testimonial.classic footer:before {
+  display: block;
+  content: "";
+  width: 30px;
+  height: 4px;
+  margin: 10px auto 15px auto;
+  }
+  
+  .text-center {
+  text-align: center;
+  }  
+
+  
+.single-package-item-txt{
+    padding: 0 25px;
+    text-align: center;
+    text-decoration-style: solid;
+  }
+  .single-package-item img {
+    width: 100%;
+  }
+  
+  
+  
+  .about-btn {
+    margin-top: 39px;
+    letter-spacing: 1.2px;
+    text-align: center;
+  }
+  
+  .about-view.packages-btn {
+    width: 150px;
+    height: 40px;
+    font-size: 14px;
+    color: #fff;
+    text-transform: capitalize;
+  }
+  
+  .about-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #00d8ff;
+    border: 1px solid #00d8ff;
+  }
+
+  .about-view.packages-btn {
+    width: 110px;
+    height: 35px;
+    font-size: 14px;
+    color: #fff;
+    text-transform: capitalize;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+  }
+  
+  .packages{
+    padding:120px 0 90px;
+  }
+  .packages-content{
+    margin-top:65px;
+  }
+  
+  .single-package-item{
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+  
+  }
+  .single-package-item-txt{
+    padding: 0 25px;
+  }
+  
+  .single-package-item h3{
+    position: relative;
+    font-size: 20px;
+    color: #565a5c;
+    font-weight:500;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px 0;
+  }
+  .single-package-item h3:after{
+    position: absolute;
+    content: " ";
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #ebebeb;
+  }  
+
+  .packages-review p i{
+    color:  #fdae1c;;
+    font-size: 25px;
+  }
+  .packages-review span{
+    margin-left: 20px;
+    font-size: 14px;
+    color: #aaa;
+    font-family: 'Poppins', sans-serif;
+    text-transform: capitalize;
+  }
+
+  .rating {
+    float:left;
+  }
+  
+  .rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+  }
+  
+  .rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0.1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+  }
+  .rating{
+    text-align: center;
+  }
+  
+  .rating:not(:checked) > label:before {
+    content: '★ ';
+  }
+  
+  .rating > input:checked ~ label {
+    color: #f70;
+  }
+  
+  .rating:not(:checked) > label:hover,
+  .rating:not(:checked) > label:hover ~ label {
+    color: gold;
+  }
+  
+  
+  .rating > input:checked ~ label:hover,
+  .rating > input:checked ~ label:hover ~ label,
+  .rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+  }
+  
+  .about-view.packages-btn{
+    width: 110px;
+    height: 35px;
+    font-size: 14px;
+    color: #fff;
+    text-transform: capitalize;
+    -webkit-transition: .5s; 
+    -moz-transition:.5s; 
+    -ms-transition:.5s; 
+    -o-transition:.5s;
+    transition: .5s;
+  
+  }
+  .about-view.packages-btn:hover{
+    box-shadow: 0 5px 20px rgba(14,15,18,.3);
+  }
+  .single-package-item:hover{
+    box-shadow: 0 0 20px rgba(0,0,0,.2);
+  }
+  
+  .img{
+  border: none;
+      max-width: 100%;
+      height: auto;
+      vertical-align: middle;
+  }
+  .single-package-item img {
+    width: 100%;
+  }
+  
+  
+  .pull-right{
+    float: right;
+    width: 60%;
+    margin-top: 6px;
+  }
+  .pull-right-d{
+    float: right;
+    width: 60%;
+    height: 100px;
+    margin-top: 6px;
+  }
+  .label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+  .col-name{
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+img.rounded-circle{
+
+    height: 90px;
+    width: 90px;
+    float: left;
+}  

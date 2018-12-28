@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HomeComponent } from './home.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+import { ShortTripComponent } from './short-trip.component';
+
+describe('ShortTripComponent', () => {
+  let component: ShortTripComponent;
+  let fixture: ComponentFixture<ShortTripComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent]
+      declarations: [ ShortTripComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(ShortTripComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

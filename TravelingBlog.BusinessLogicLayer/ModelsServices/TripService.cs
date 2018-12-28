@@ -67,16 +67,16 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
         }
 
 
-        public IEnumerable<TripDTO> GetTripsWithHighestRating(int count)
+        public IEnumerable<TripDTO> GetTripsWithHighestRating()
         {
             var tripsCount = Repository.GetAll().Count();
 
-            count = (count < tripsCount) ? tripsCount : count;
+            //  count = (count < tripsCount) ? tripsCount : count;
 
             var result = Repository
                 .GetAll()
                 .OrderByDescending(t => t.RatingTrip)
-                .Take(count)
+                .Take(3)
                 .ToList();
 
             return result.Select(t => mapper.Map<TripDTO>(t)).ToList();
@@ -99,6 +99,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
             return result.Select(t => mapper.Map<TripDTO>(t)).ToList();
         }
+        
 
         public IList<TripWithUserDTO> SearchTrips(Search searchQuery, out int total)
         {
