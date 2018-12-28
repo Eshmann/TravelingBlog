@@ -9,18 +9,24 @@ import { Observable } from 'rxjs/Rx';
 
 // Add the RxJS Observable operators we need in this app.
 import '../../rxjs-operators';
-import { FullTrip } from '../models/fulltrip.class';
+import { FullTrip, Trip, PostBlog } from '../models/fulltrip.class';
 
 @Injectable()
 
-export class FullTripServices extends BaseService {
+export class FullTripService extends BaseService {
 
   baseUrl: string = '';
   constructor(private http: Http, private configService: ConfigService) {
     super();
     this.baseUrl = configService.getApiURI();
   }
-  getFullTrip():Observable<FullTrip>{ 
+
+  getFullTrip(id: string): Observable<Trip> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this.baseUrl + "/api/trip/GetTripWithPosts/" + id, { headers })
+      .map(response => response.json())
+      .catch(this.handleError);
   }
 
 }

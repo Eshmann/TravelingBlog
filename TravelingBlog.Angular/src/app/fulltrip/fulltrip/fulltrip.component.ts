@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FullTripServices } from '../services/fulltrip.services';
-import { FullTrip } from '../models/fulltrip.class';
+import { FullTripService } from '../services/fulltrip.services';
+import { FullTrip, PostBlog, Trip } from '../models/fulltrip.class';
 
 @Component({
   selector: 'app-fulltrip',
@@ -11,10 +11,24 @@ import { FullTrip } from '../models/fulltrip.class';
 
 export class FullTripComponent implements OnInit {
 
-    constructor(private searchservice: FullTripServices, private router: Router, activeRoute: ActivatedRoute) {
-    }
+  idtrip: string ;
+  trip: Trip;
+  constructor(private fulltripservice: FullTripService, private router: Router, activeRoute: ActivatedRoute) {
+    this.trip = new Trip();
+  }
 
-    ngOnInit() {
-      }
+  ngOnInit() {
+  }
+
+  getFullTrip(id: string ) {
+    this.fulltripservice.getFullTrip(this.idtrip)
+      .subscribe((trip: Trip) => {
+        this.trip = trip;
+        console.log(trip);
+      },
+        error => {
+          //this.notificationService.printErrorMessage(error);
+        });
+  }
 
 }

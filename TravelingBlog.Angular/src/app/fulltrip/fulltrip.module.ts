@@ -5,11 +5,13 @@ import { SharedModule } from '../shared/modules/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
+import { RatingModule } from 'ngx-bootstrap';
+
 import { routing } from './fulltrip.rooting';
 
 import { FullTripComponent } from './fulltrip/fulltrip.component';
 
-import {a} from './fulltrip/fulltrip.service';
+import { FullTripService } from '../fulltrip/services/fulltrip.services';
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import {a} from './fulltrip/fulltrip.service';
     FormsModule,
     HttpClientModule,
     routing,
-    SharedModule
+    SharedModule, 
+    RatingModule
   ],
   declarations: [FullTripComponent],
   exports: [],

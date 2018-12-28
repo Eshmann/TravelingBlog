@@ -52,6 +52,8 @@ namespace TravelingBlog
 
             services.AddScoped<ITripService, TripService>();
 
+            services.AddScoped<ISearchService, SearchService>();
+
             services.AddScoped<IAzureBlob, AzureBlob>();
 
             // Add validation attribute service.
