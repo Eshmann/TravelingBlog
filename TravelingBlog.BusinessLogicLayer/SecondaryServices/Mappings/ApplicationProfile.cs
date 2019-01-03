@@ -37,6 +37,20 @@ namespace TravelingBlog.BusinessLogicLayer.SecondaryServices.Mappings
             CreateMap<ImageDTO, Image>();
 
             CreateMap<Image, ImageDTO>();
+
+            CreateMap<Trip, TripDTODa>()
+                .ForMember(dest => dest.User, opt => opt.ResolveUsing(src =>
+                {
+                    return new UserInfoDTO
+                    {
+                        Id = src.UserInfo.Id,
+                        FirstName = src.UserInfo.FirstName,
+                        LastName = src.UserInfo.LastName,
+                        Phone = src.UserInfo.Phone,
+                        PictureUrl = src.UserInfo.Identity.PictureUrl,
+                        FacebookId = src.UserInfo.Identity.FacebookId
+                    };
+                }));
         }
     }
 }

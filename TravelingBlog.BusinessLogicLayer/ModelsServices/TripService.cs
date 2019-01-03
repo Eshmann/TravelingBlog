@@ -34,10 +34,12 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             return result;
         }
 
-        public IList<TripDTO> GetTripsPage(PagingModel pageModel, out int total)
+        public IList<TripDTODa> GetTripsPage(PagingModel pageModel, out int total)
         {
             var trips = Repository
                 .GetAll()
+                .Include(t => t.UserInfo)
+                .ThenInclude(u => u.Identity)
                 .OrderBy(t => t.Name)
                 .ThenBy(x => x.Description)
                 .ToList();
@@ -49,7 +51,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
                 .Take(pageModel.PageSize)
                 .ToList();
 
-            return result.Select(t => mapper.Map<TripDTO>(t)).ToList();
+            return result.Select(t => mapper.Map<TripDTODa>(t)).ToList();
         }
 
         public IEnumerable<TripDTO> GetUserTrips(string id)
