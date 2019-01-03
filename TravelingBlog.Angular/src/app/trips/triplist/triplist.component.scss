@@ -13,11 +13,6 @@ body {
 	line-height: 1;
 }
 
-.pagination
-{
-	margin-bottom: 0;
-}
-
 ol, ul {
 	list-style: none;
 }
@@ -43,6 +38,7 @@ body {
 
 	body {
 		-ms-overflow-style: scrollbar;
+		background: #f4f4f4;
 	}
 
 	@media screen and (max-width: 480px) {
@@ -52,7 +48,6 @@ body {
 		}
 
 	}
-
 	html {
 		box-sizing: border-box;
 	}
@@ -61,8 +56,14 @@ body {
 		box-sizing: inherit;
 	}
 
-	body {
-		background: #f4f4f4;
+	#server
+	{
+		margin-top: 1em;
+		margin-right: auto;
+		margin-left: auto;
+		width: 25%;
+		padding-left: 2em;
+		padding-right: 1em;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -888,7 +889,7 @@ body {
 		.rating { 
 		  border: none;
 		  float: left;
-		  transform: translate(0, 1.7em);
+		  transform: translate(0, 1.3em);
 		}
 		
 		.rating > input 

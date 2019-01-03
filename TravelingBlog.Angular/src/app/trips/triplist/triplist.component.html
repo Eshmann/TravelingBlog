@@ -12,10 +12,12 @@
           <p>{{trip.description}}</p>
           <footer>
               <ul class="actions">
-                  <li><a href="/fulltrip/{{trip.id}}" class="button large">Continue Reading</a></li>
+                <li>
+                    <!-- <a href="/fulltrip/{{trip.id}}"  тут повинен бути лінк на фултріп -->
+                    <a class="button large">Continue Reading</a>
+                </li>
               </ul>
               <ul class="stats">
-                  <li><a href="#">General</a></li>
                   <li>
                     <fieldset class="rating">
                         <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="М о л о д е ц ь - 5 stars"></label>
@@ -35,5 +37,5 @@
           </footer>
       </article>      
   </div>
-  <pagination-controls class="pagination" (pageChange)="getPage($event)" id="server" responsive="true"></pagination-controls>
+    <pagination-controls class="pagination" (pageChange)="getPage($event)" id="server" responsive="true"></pagination-controls>
 </body>
