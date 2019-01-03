@@ -1,9 +1,8 @@
-.container{
+.container-fluide{
   position: relative;
-  margin: 0px;
+  margin-top: 70px;
+  margin-bottom: 0;
   padding: 0px;
-  max-width: 100%;
-  min-height: 200%;
-  max-height: 200%;
+  min-height: 100vh;
   overflow: hidden;
 }

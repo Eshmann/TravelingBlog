@@ -1,18 +1,20 @@
-<div class="row">
-  <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-    <router-outlet></router-outlet>
-  </main>
-  <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar pull-right">
-    <ul class="nav nav-pills flex-column">
-      <li class="nav-item">
-        <a class="nav-link" href="#" routerLinkActive="active" routerLink="/dashboard/home">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" routerLinkActive="active" routerLink="/dashboard/trips">My Trips</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="#" routerLinkActive="active" routerLink="/dashboard/settings">Settings</a>
-        </li>
-    </ul>
-  </nav>
+<div class="container-fluide"> 
+  <div class="row content">
+    <div class="col-sm-2  sidenav">
+        <a href="#">block_1</a>
+        <a href="#">block_2</a>
+        <a href="#">block_3</a>
+        <a href="#">block_4</a>
+    </div>
+      <div class="col-sm-8">
+        <router-outlet></router-outlet>
+      </div>
+    <div class="col-sm-2 sidenav nav-pills">
+      <a class="nav-link" href="#" routerLinkActive="active" routerLink="/dashboard/home">Home</a>
+      <a class="nav-link" href="#">Subscrib</a>
+      <a class="nav-link" href="#"routerLinkActive="active" routerLink="/dashboard/trips">My Trips</a>
+      <a class="nav-link" href="#">Saved</a>
+      <a class="nav-link" href="#"routerLinkActive="active" routerLink="/dashboard/settings">Settings</a>
+    </div>
+  </div>
 </div>

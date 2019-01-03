@@ -24,6 +24,8 @@ import { FooterComponent } from './footer/footer.component';
 import { FullTripModule } from './fulltrip/fulltrip.module';
 import { SearchModule } from './search/search.module';
 
+import { TripsModule } from './trips/trips.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,10 +40,12 @@ import { SearchModule } from './search/search.module';
     UserInfoModule,
     BrowserModule,
     FormsModule,
+    TripsModule,
     HttpModule,
     FullTripModule,
     SearchModule,
     routing
+
   ],
   providers: [ConfigService, {
     provide: XHRBackend,

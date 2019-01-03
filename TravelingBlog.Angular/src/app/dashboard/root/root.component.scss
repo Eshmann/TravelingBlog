@@ -1,31 +1,54 @@
-/*
- * Sidebar
- */
-
-.sidebar {
-  position: fixed;
-  top: 51px;
-  bottom: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 20px 0;
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  border-left: 1px solid #eee;
+// .sidenav {
+//   height: 100%;
+//   width: 160px;
+//   position: fixed;
+//   z-index: 1;
+//   top: 0;
+//   left: 0;
+//   background-color: #d8cdcd;
+//   overflow-x: hidden;
+//   padding-top: 75px;
+//   border-left: 2px solid rgb(12, 12, 12);
+// }
+.col-sm-8{
+  padding-bottom: 15px; 
+}
+.row.content {
+  min-height: 100vh;
+  overflow-y: hidden;
 }
 
-.sidebar .nav {
-  margin-bottom: 20px;
+.sidenav {
+  padding-top: 20px;
+  background-color: #ddd6dd;
+}
+ a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+a:hover {
+  color: #312828;
 }
 
-.sidebar .nav-item {
-  width: 100%;
-}
 
-.sidebar .nav-item + .nav-item {
-  margin-left: 0;
-}
-
-.sidebar .nav-link {
-  border-radius: 0;
-}
+// div.content {
+//   margin-left: 160px;
+//   margin-right: 160px;
+//   margin-bottom: 15px;
+//   padding: 1px 16px;
+//   height: 100%;
+// }
+// .sidenav-right{
+//   height: 100%;
+//   width: 160px;
+//   
+//   z-index: 1;
+//   top: 0;
+//   right: 0;
+//   background-color: #d8cdcd;
+//   overflow-x: hidden;
+//   padding-top: 75px;
+// }
