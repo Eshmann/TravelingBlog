@@ -10,7 +10,7 @@
                 <input type="button" value="Search" (click)="getFullTrip(idtrip)" class="btn btn-default">
                 <h3 class="fonts">{{trip?.name}}</h3>
                 <div class="container-fluid fonts">{{trip?.description}}</div>
-                <rating [(ngModel)]="trip.ratingTrip"></rating>
+                <ngb-rating [(rate)]="trip.ratingTrip"></ngb-rating>
                 <div class="container-fluid" *ngFor="let n of trip.postBlogs; let i = index">
                     <a href="#List-{{ i }}" class="btn btn-info bg-dark text-white fonts" data-toggle="collapse">{{n?.name}}</a>
                     <div id="List-{{ i }}" class="collapse .bg-dark text-black fonts">

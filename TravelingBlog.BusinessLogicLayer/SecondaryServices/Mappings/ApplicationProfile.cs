@@ -40,6 +40,9 @@ namespace TravelingBlog.BusinessLogicLayer.SecondaryServices.Mappings
 
             CreateMap<Trip, TripWithUserDTO>();
             CreateMap<TripWithUserDTO, Trip>();
+
+            CreateMap<Country, CountryDTO>();
+            CreateMap<CountryDTO, Country>();
         }
     }
 }

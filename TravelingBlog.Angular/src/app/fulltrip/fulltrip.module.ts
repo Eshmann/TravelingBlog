@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { SharedModule } from '../shared/modules/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { RatingModule } from 'ngx-bootstrap';
+
+import {NgbRatingConfig, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 import { routing } from './fulltrip.rooting';
 
@@ -22,6 +25,7 @@ import { FullTripService } from '../fulltrip/services/fulltrip.services';
     HttpClientModule,
     routing,
     SharedModule, 
+    NgbModule.forRoot(),
     RatingModule
   ],
   declarations: [FullTripComponent],

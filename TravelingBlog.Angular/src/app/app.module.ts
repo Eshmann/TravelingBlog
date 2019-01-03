@@ -22,6 +22,7 @@ import { UserInfoModule } from './userinfo/userinfo.module';
 import { ConfigService } from './shared/utils/config.service';
 import { FooterComponent } from './footer/footer.component';
 import { FullTripModule } from './fulltrip/fulltrip.module';
+import { SearchModule } from './search/search.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { FullTripModule } from './fulltrip/fulltrip.module';
     FormsModule,
     HttpModule,
     FullTripModule,
+    SearchModule,
     routing
   ],
   providers: [ConfigService, {

@@ -15,10 +15,6 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
 
         IEnumerable<TripDTO> GetRandomTrips(int count, List<TripDTO> trips);
 
-        IList<TripWithUserDTO> SearchTrips(Search searchQuery, out int total);
-
         IEnumerable<TripDTO> GetUserTrips(string id);
-
-        IList<TripWithUserDTO> FilterTripsByCountry(Filter filter, out int total);
     }
 }

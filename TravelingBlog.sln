@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelingBlog.DataAcceesLay
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelingBlog.BusinessLogicLayer", "TravelingBlog.BusinessLogicLayer\TravelingBlog.BusinessLogicLayer.csproj", "{9C2B1D4A-9877-4E87-9551-3B3AF475CD18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelingBlog.Models", "TravelingBlog.Models\TravelingBlog.Models.csproj", "{A1712D76-7824-4C10-8EAF-02A882ECEFAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelingBlog.Models", "TravelingBlog.Models\TravelingBlog.Models.csproj", "{A1712D76-7824-4C10-8EAF-02A882ECEFAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelingBlog.Helpers", "TravelingBlog.Helpers\TravelingBlog.Helpers.csproj", "{5DA026F8-6BC7-4E6D-94A6-32F30E3F62FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelingBlog.Helpers", "TravelingBlog.Helpers\TravelingBlog.Helpers.csproj", "{5DA026F8-6BC7-4E6D-94A6-32F30E3F62FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelTests", "TravelTests\TravelTests.csproj", "{976619E3-999C-45C3-B22C-1B0F48787083}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHelpers", "TestHelpers\TestHelpers.csproj", "{43F33E98-6FBD-4CCD-BB46-4A7CED2693B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{5DA026F8-6BC7-4E6D-94A6-32F30E3F62FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DA026F8-6BC7-4E6D-94A6-32F30E3F62FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DA026F8-6BC7-4E6D-94A6-32F30E3F62FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{976619E3-999C-45C3-B22C-1B0F48787083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{976619E3-999C-45C3-B22C-1B0F48787083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{976619E3-999C-45C3-B22C-1B0F48787083}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{976619E3-999C-45C3-B22C-1B0F48787083}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43F33E98-6FBD-4CCD-BB46-4A7CED2693B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43F33E98-6FBD-4CCD-BB46-4A7CED2693B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43F33E98-6FBD-4CCD-BB46-4A7CED2693B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43F33E98-6FBD-4CCD-BB46-4A7CED2693B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
