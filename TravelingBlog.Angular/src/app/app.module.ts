@@ -23,6 +23,8 @@ import { ConfigService } from './shared/utils/config.service';
 import { FooterComponent } from './footer/footer.component';
 import { SearchModule } from './search/search.module';
 
+import { TripsModule } from './trips/trips.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,9 +39,11 @@ import { SearchModule } from './search/search.module';
     UserInfoModule,
     BrowserModule,
     FormsModule,
+    TripsModule,
     HttpModule,
     SearchModule,
     routing
+
   ],
   providers: [ConfigService, {
     provide: XHRBackend,
