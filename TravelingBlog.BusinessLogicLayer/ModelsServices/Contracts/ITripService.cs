@@ -9,7 +9,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
     {
         TripWithPostBlogsDTO GetTripWithPostBlogs(TripFilter filter);
 
-        IList<TripDTO> GetTripsPage(PagingModel pageModel, out int total);
+        IList<TripDTODa> GetTripsPage(PagingModel pageModel, out int total);
 
         IEnumerable<TripDTO> GetTripsWithHighestRating(int count);
 

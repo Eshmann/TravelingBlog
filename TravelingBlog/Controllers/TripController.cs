@@ -28,7 +28,7 @@ namespace TravelingBlog.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet]
+        [HttpGet("GetTripsPagination")]
         public IActionResult GetTripsPage(PagingModel paging)
         {
             var trips = tripService.GetTripsPage(paging, out var total);
