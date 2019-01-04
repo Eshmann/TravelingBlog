@@ -51,17 +51,15 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
            return subs;
         }
 
-        public bool SubscribeTo(string id, int Subscriberid)
+         public bool SubscribeTo(string id, int Subscriberid)
         {
-            if(id==Subscriberid.ToString())
+            var user = Context.UserInfoes.FirstOrDefault(x => x.IdentityId == id);
+            var Subscriber = Context.UserInfoes.FirstOrDefault(x => x.Id == Subscriberid);
+            if(Subscriberid==user.Id)
             {
                 return false;
             }
-
-            var user = Context.UserInfoes.FirstOrDefault(x => x.IdentityId == id);
-            var Subscriber = Context.UserInfoes.FirstOrDefault(x => x.Id == Subscriberid);
-
-            if(user!=null && Subscriber!=null)
+            
             {
                 var subCheck = Context.Subscriptions.Where(x => x.UserInfoId == user.Id);
                 foreach(var i in subCheck)
