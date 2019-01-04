@@ -14,7 +14,7 @@ using TravelingBlog.Models.ViewModels.DTO;
 namespace TravelingBlog.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize]
+    [Authorize]
     public class SubscriptionController : Controller
     {
         protected readonly ISubscriptionService subscriptionService;
