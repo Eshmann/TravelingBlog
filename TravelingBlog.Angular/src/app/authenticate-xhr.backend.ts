@@ -26,6 +26,7 @@ export class AuthenticateXHRBackend extends XHRBackend {
         3. As at this early stage you can't access the Router for forwarding to the login page,
         4. refreshing the same page will trigger the Guard checks, which will forward you to the login screen */
         localStorage.removeItem('auth_token');
+        localStorage.removeItem('subs');
         window.location.href = window.location.href + '?' + new Date().getMilliseconds();
       }
       return Observable.throw(error);

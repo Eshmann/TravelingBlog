@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/Rx';
 // Add the RxJS Observable operators we need in this app.
 import '../../rxjs-operators';
 import { TripDetails } from '../models/trip.details.interface';
+import { SubscriberDetails } from '../models/subsciber.details.interface';
 
 @Injectable()
 
@@ -32,6 +33,18 @@ export class DashboardService extends BaseService {
     return this.http.get(this.baseUrl + "/api/dashboard/home", { headers })
       .map(response => response.json())
       .catch(this.handleError);
+  }
+
+  getSubscriberDetails(): Observable<SubscriberDetails[]> {
+    localStorage.removeItem('subs');
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+
+    return this.http.get(this.baseUrl + "/api/Subscription/getMySubscription", { headers })
+    .map(response => response.json())
+    .catch(this.handleError);
   }
 
   getTrips(): Observable<TripDetails[]>{
