@@ -51,6 +51,8 @@ namespace TravelingBlog
             services.ConfigureAutoMapper();
 
             services.AddScoped<ITripService, TripService>();
+            //
+            services.AddScoped<ISubscriptionService, SubscriptionService>();
 
             services.AddScoped<IAzureBlob, AzureBlob>();
 

@@ -1,10 +1,7 @@
 <div class="container-fluide"> 
   <div class="row content">
-    <div class="col-sm-2  sidenav">
-        <a href="#">block_1</a>
-        <a href="#">block_2</a>
-        <a href="#">block_3</a>
-        <a href="#">block_4</a>
+    <div class="col-sm-2  sidenav nav-pills leftbar">
+        <a *ngFor="let s of subscriberDetails" class="nav-link" href="#" routerLinkActive="active" routerLink="/user/{{ s.subcriberId }}">{{s.firstName}} {{s.lastName}}</a>
     </div>
       <div class="col-sm-8">
         <router-outlet></router-outlet>

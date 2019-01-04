@@ -3,6 +3,8 @@
     <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
         <div class="col-md-6 col-sm-3">
         <h1>User:</h1>
+        <input *ngIf="subscribe" type="button" value="Subscribe" class="btn btn-sm btn-primary" (click)="subscribeTo()" />
+        <input *ngIf="!subscribe" type="button" value="UnSubscribe" class="btn btn-sm btn-danger" (click)="unSubscribeFrom()" />
         <p><strong>Name:</strong> {{userInfo?.firstName}} {{userInfo?.lastName}}</p>
         <p *ngIf="userInfo?.location"><strong>Location:</strong> {{userInfo?.location}}</p>
         <div *ngIf="userInfo?.pictureUrl"><img src="{{userInfo?.pictureUrl}}" /></div>

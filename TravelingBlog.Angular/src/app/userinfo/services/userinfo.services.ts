@@ -43,4 +43,31 @@ export class UserInfoService extends BaseService {
     .catch(this.handleError);
   }
 
+  subscribeTo(id:string):Observable<boolean>
+  {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+
+    var bolvanka="";
+    return this.http.post(this.baseUrl + "/api/Subscription/subscribeTo/" + id, bolvanka ,{ headers })
+    .map(response => response.json())
+    .catch(this.handleError);
+
+  }
+
+  unsubscribeFrom(id:string):Observable<boolean>
+  {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+
+    return this.http.delete(this.baseUrl + "/api/Subscription/unSubscribeFrom/" + id,{ headers })
+    .map(response => response.json())
+    .catch(this.handleError);
+
+  }
+
 }
