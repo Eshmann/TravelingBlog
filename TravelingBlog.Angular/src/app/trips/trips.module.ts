@@ -5,6 +5,7 @@ import { TripService } from './trip.service';
 import { SharedModule } from '../shared/modules/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { routing } from './trips.routing';
+import { FullTripModule } from '../fulltrip/fulltrip.module';
 
 @NgModule({
   declarations: [TriplistComponent],
@@ -12,7 +13,8 @@ import { routing } from './trips.routing';
     CommonModule,
     SharedModule,
     routing,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FullTripModule
   ],
   exports:[TriplistComponent],
   providers:[TripService]

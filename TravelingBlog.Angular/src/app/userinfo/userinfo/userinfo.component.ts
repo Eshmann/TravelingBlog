@@ -23,17 +23,15 @@ export class UserInfoComponent implements OnInit {
     s = this.id.split('/');
     this.id=s[s.length-1];
 
-    var s2 = localStorage.getItem('subs');
+    var s2 = JSON.parse(localStorage.getItem('subs'));
     this.subscribe=true;
-    if(s2!=null)
+    for(var i=0;i<s2.length;i++)
     {
-      this.subscription=s2.split('%');
-      this.subscription.forEach(element => {
-        if(element==this.id)
-        {
-          this.subscribe=false;
-        }
-      });
+      if(s2[i].toString()==this.id)
+      {
+        this.subscribe=false;
+        break;
+      }
     }
 
   }
@@ -67,17 +65,16 @@ export class UserInfoComponent implements OnInit {
     {
         if(local)
         {       
-          var s = localStorage.getItem('subs');
-          if(s==null)
+          var s = JSON.parse(localStorage.getItem('subs'));
+          var s2 = [];
+          for(var i=0;i<s.length;i++)
           {
-            s=this.id;
+            s2.push(s[i]);
           }
-          else
-          {
-            s+="%"+this.id;
-          }
+          s2.push(Number.parseInt(this.id));
+
           localStorage.removeItem('subs');
-          localStorage.setItem('subs',s);
+          localStorage.setItem('subs',JSON.stringify(s2));
           this.subscribe=false;
         }
     },
@@ -93,22 +90,18 @@ export class UserInfoComponent implements OnInit {
     {
       if(local)
       {
-        var s = localStorage.getItem('subs');
-        var subl = s.split('%');
-        var k = subl.indexOf(this.id);
-        subl.splice(k,1);
-        localStorage.removeItem('subs');
-        s ="";
-        for(var i=0;i<subl.length-1;i++)
-        {
-          s+=subl[i]+"%";
-        }
-        if(subl.length>0)
-        {
-          s+=subl[subl.length-1];
-          localStorage.setItem('subs',s);
-        }
+        var s = JSON.parse(localStorage.getItem('subs'));
+        var s2 =[];
 
+        for(var i=0;i<s.length;i++)
+        {
+          if(s[i].toString()!=this.id)
+          {
+            s2.push(s[i]);
+          }
+        }
+        localStorage.removeItem('subs');
+        localStorage.setItem('subs',JSON.stringify(s2));
         this.subscribe=true;
       }
     },

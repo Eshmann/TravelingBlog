@@ -11,14 +11,10 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
 
         IList<TripDTODa> GetTripsPage(PagingModel pageModel, out int total);
 
-        IEnumerable<TripDTO> GetTripsWithHighestRating(int count);
+        IList<TripWithUserDTO> GetTripsWithHighestRating();
 
         IEnumerable<TripDTO> GetRandomTrips(int count, List<TripDTO> trips);
 
-        IList<TripWithUserDTO> SearchTrips(Search searchQuery, out int total);
-
         IEnumerable<TripDTO> GetUserTrips(string id);
-
-        IList<TripWithUserDTO> FilterTripsByCountry(Filter filter, out int total);
     }
 }

@@ -24,8 +24,10 @@ export class RegistrationFormComponent implements OnInit {
     this.submitted = true;
     this.isRequesting = true;
     this.errors = '';
+    value.captchaToken=grecaptcha.getResponse();
+    //console.log(grecaptcha.getResponse());
     if (valid) {
-      this.userService.register(value.email, value.password, value.firstName, value.lastName, value.location)
+      this.userService.register(value.email, value.password, value.firstName, value.lastName, value.location, value.captchaToken)
         .finally(() => this.isRequesting = false)
         .subscribe(
           result => {
@@ -36,7 +38,5 @@ export class RegistrationFormComponent implements OnInit {
           errors => this.errors = errors);
     }
   }
-
-
 
 }

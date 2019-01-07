@@ -20,9 +20,9 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         protected IRepository<TEntity> Repository => unitOfWork.GetRepository<TEntity>();
 
-        public bool IsUserCreator(int creatirId, int entityId)
+        public bool IsUserCreator(int creatorid, int entityId)
         {
-            return Repository.GetAll().Any(e => e.UserInfoId == creatirId && e.Id == entityId);
+            return Repository.GetAll().Any(e => e.UserInfoId == creatorid && e.Id == entityId);
         }
     }
 }

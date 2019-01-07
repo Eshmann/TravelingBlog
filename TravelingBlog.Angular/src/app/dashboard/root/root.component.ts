@@ -17,16 +17,12 @@ export class RootComponent implements OnInit {
     this.dashboardService.getSubscriberDetails()
     .subscribe((subscriberDetails: SubscriberDetails[])=>{
       this.subscriberDetails=subscriberDetails;
-      var s ="";
-    for(var i=0;i<subscriberDetails.length-1;i++)
-    {
-      s+=subscriberDetails[i].subcriberId+"%";
-    }
-    if(subscriberDetails.length>0)
-    {
-      s+=subscriberDetails[subscriberDetails.length-1].subcriberId;
-      localStorage.setItem('subs',s);
-    }
+      var a = [];
+      for(var i=0;i<subscriberDetails.length;i++)
+      {
+        a.push(subscriberDetails[i].subcriberId);
+      }
+      localStorage.setItem('subs',JSON.stringify(a));     
     },
     error => {
       // this.notificationService.printErrorMessage(error);

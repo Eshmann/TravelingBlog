@@ -9,6 +9,8 @@ import { routing } from './search.rooting';
 
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './services/search.services';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FullTripModule } from '../fulltrip/fulltrip.module';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { SearchService } from './services/search.services';
     FormsModule,
     HttpClientModule,
     routing,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule,
+    FullTripModule
   ],
   declarations: [SearchComponent],
   exports: [],

@@ -153,6 +153,6 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             return Expression.Lambda<Func<TEntity, bool>>(body, param);
         }
 
-        protected abstract Expression<Func<TEntity, bool>> GetFilter(TFilter filter);
+        public abstract Expression<Func<TEntity, bool>> GetFilter(TFilter filter);
     }
 }

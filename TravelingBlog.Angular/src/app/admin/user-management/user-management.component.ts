@@ -39,12 +39,10 @@ export class UserManagementComponent implements OnInit {
     if(rolles.roleNames){
       this.adminService.updateUserRoles(this.userToEditRoles,rolles).subscribe(
         res=>{
-          this.userToEditRoles.roles = [...rolles.roleNames]
+          this.userToEditRoles.roles = [...res]
         }
       );
-      this.getUsersWithRoles();
     }
-
     this.tableMode=true;
   }
 
@@ -55,6 +53,8 @@ export class UserManagementComponent implements OnInit {
   }
 
   editRolesModal(user:User){
+    this.userToEditRoles = new User();
+    this.roles = [];
     this.cancel();
     this.userToEditRoles = user;
     this.roles = this.getRolesArray(user);

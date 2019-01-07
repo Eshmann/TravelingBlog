@@ -14,6 +14,7 @@ using NLog;
 using System;
 using System.IO;
 using System.Text;
+using AutoMapper;
 using TravelingBlog.ActionFilters;
 using TravelingBlog.BusinessLogicLayer.ModelsServices;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
@@ -59,6 +60,10 @@ namespace TravelingBlog
             //
             services.AddScoped<ISubscriptionService, SubscriptionService>();
 
+            services.AddScoped<ISearchService, SearchService>();
+
+            services.AddScoped<ICountryService, CountryService>();
+
             services.AddScoped<IAzureBlob, AzureBlob>();
 
             // Add validation attribute service.
@@ -68,6 +73,7 @@ namespace TravelingBlog
             services.AddSingleton<IJwtFactory, JwtFactory>();
 
             services.Configure<FacebookAuthSettings>(Configuration.GetSection(nameof(FacebookAuthSettings)));
+            services.Configure<ReCaptcha>(Configuration.GetSection(nameof(ReCaptcha)));
 
             services.TryAddTransient<IHttpContextAccessor, HttpContextAccessor>();
 

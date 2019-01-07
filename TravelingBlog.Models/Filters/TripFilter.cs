@@ -2,6 +2,6 @@
 {
     public class TripFilter : BaseFilter
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
     }
 }

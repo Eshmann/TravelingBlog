@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Rx';
 // Add the RxJS Observable operators we need in this app.
 import '../../rxjs-operators';
 import { Search, Country } from '../models/search.class';
+import { HttpClient } from 'selenium-webdriver/http';
 
 @Injectable()
 
@@ -23,26 +24,26 @@ export class SearchService extends BaseService {
     this.baseUrl = configService.getApiURI();
   }
 
-  getTrip(id: string, countryid : string): Observable<Search>{
+  getTrip(query: string, countryid: string, page: number): Observable<Search> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    if(countryid == '-1'){
-      return this.http.get(this.baseUrl + "/api/search/search?searchQuery=" + id,{ headers })
-      .map(response => response.json())
-      .catch(this.handleError);
+    if (countryid == '-1') {
+      return this.http.get(this.baseUrl + "/api/search/search?searchQuery=" + query, { headers })
+        .map(response => response.json())
+        .catch(this.handleError);
     }
-    else{
-      return this.http.get(this.baseUrl + "/api/search/filter?id=" + countryid,{ headers })
-    .map(response => response.json())
-    .catch(this.handleError);
+    else {
+      return this.http.get(this.baseUrl + "/api/search/filter?id=" + countryid, { headers })
+        .map(response => response.json())
+        .catch(this.handleError);
     }
   }
 
-  getCountries() : Observable<Country[]>{
+  getCountries(): Observable<Country[]> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(this.baseUrl +"/api/country" , {headers})
-    .map(response =>response.json())
-    .catch(this.handleError);
+    return this.http.get(this.baseUrl + "/api/country", { headers })
+      .map(response => response.json())
+      .catch(this.handleError);
   }
 }
