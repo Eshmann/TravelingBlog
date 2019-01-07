@@ -52,15 +52,15 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             var result = await _userManager.AddToRolesAsync(user, selectedRoles.Except(userRoles));
             if (!result.Succeeded)
             {
-                return null;
+                throw new System.Exception("Failed to add to role");
             }
 
             result = await _userManager.RemoveFromRolesAsync(user, userRoles.Except(selectedRoles));
             if (!result.Succeeded)
             {
-                return null;
+                throw new System.Exception("Failed to remove from role");
             }
-            var res = await _userManager.GetRolesAsync(user)
+            var res = await _userManager.GetRolesAsync(user);
             return res;
         }
     }

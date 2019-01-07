@@ -79,7 +79,6 @@ namespace TravelingBlog.Controllers
 
         [Route("add")]
         [HttpPost]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public override IActionResult Post([FromBody]TripDTO model)
         {
             if (model == null)

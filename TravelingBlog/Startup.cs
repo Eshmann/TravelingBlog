@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -53,6 +54,8 @@ namespace TravelingBlog
             services.ConfigureSeed();
 
             services.AddScoped<ITripService, TripService>();
+
+            services.AddScoped<IAdminService, AdminService>();
             //
             services.AddScoped<ISubscriptionService, SubscriptionService>();
 
@@ -132,7 +135,11 @@ namespace TravelingBlog
             builder.AddRoleManager<RoleManager<Role>>();
             builder.AddSignInManager<SignInManager<AppUser>>();
 
-            services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services.AddMvc(options=> 
+            {
+                options.Filters.Add(new ServiceFilterAttribute(typeof(ValidationFilterAttribute)));
+            })
+            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
 
         }
 
