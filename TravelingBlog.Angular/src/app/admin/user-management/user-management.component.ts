@@ -10,6 +10,7 @@ import { User } from '../Models/User';
 export class UserManagementComponent implements OnInit {
 
   users:User[];
+
   constructor(private adminService:AdminService) { }
 
   ngOnInit() {

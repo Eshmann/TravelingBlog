@@ -25,6 +25,14 @@ export class AdminService extends BaseService{
     .catch(this.handleError);
    }
 
+   updateUserRoles(user:User, roles:{}){
+     let headers = this.getHeaders();
+
+     return this.httpClient.post(`${this.apiUrl}${this.baseUrl}/editUserRoles/${user.username}`,roles,{headers})
+     .map(response=>response.json())
+     .catch(this.handleError);
+   }
+
    getHeaders():Headers{
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

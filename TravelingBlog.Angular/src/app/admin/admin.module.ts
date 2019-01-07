@@ -6,12 +6,15 @@ import { routing } from './admin.routing'
 import { UserManagementComponent } from './user-management/user-management.component'
 import { TabsModule } from 'ngx-bootstrap'
 import { HasRoleDirective } from './directives/has-role.directive';
+import { RoleManagingComponent } from './role-managing/role-managing.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
     AdminComponent, 
     UserManagementComponent,
-    HasRoleDirective
+    HasRoleDirective,
+    RoleManagingComponent
   ],
   imports: [
     CommonModule,
@@ -19,6 +22,7 @@ import { HasRoleDirective } from './directives/has-role.directive';
     TabsModule.forRoot(),
   ],
   providers:[AdminService],
-  exports:[HasRoleDirective]
+  exports:[HasRoleDirective],
+  entryComponents:[RoleManagingComponent]
 })
 export class AdminModule { }
