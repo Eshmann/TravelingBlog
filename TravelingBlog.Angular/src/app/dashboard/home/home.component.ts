@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { HomeDetails } from '../models/home.details.interface';
 import { DashboardService } from '../services/dashboard.service';
+import { SubscriberDetails } from '../models/subsciber.details.interface';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,10 @@ export class HomeComponent implements OnInit {
         error => {
           // this.notificationService.printErrorMessage(error);
         });
+    
+    
+    
+
 
   }
 
