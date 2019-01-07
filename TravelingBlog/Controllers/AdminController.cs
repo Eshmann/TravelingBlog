@@ -29,7 +29,7 @@ namespace TravelingBlog.Controllers
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpPost("editUserRoles/{userName}")]
-        public async Task<IActionResult> EditUserRoles([FromRoute]string userName, [FromBody]RoleEditDto roleEditDto)
+        public async Task<IActionResult> EditUserRoles(string userName, [FromBody]RoleEditDto roleEditDto)
         {
             var res = await _adminService.EditUserRoles(userName, roleEditDto);
 

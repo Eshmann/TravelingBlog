@@ -7,7 +7,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { TabsModule } from 'ngx-bootstrap'
 import { HasRoleDirective } from './directives/has-role.directive';
 import { RoleManagingComponent } from './role-managing/role-managing.component';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     CommonModule,
     routing,
     TabsModule.forRoot(),
+    FormsModule
   ],
   providers:[AdminService],
   exports:[HasRoleDirective],
