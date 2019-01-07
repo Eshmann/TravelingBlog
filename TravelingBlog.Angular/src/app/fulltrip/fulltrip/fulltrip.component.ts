@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FullTripService } from '../services/fulltrip.services';
-import { FullTrip, PostBlog, Trip } from '../models/fulltrip.class';
+import {  PostBlog, Trip } from '../models/fulltrip.class';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -19,12 +19,18 @@ export class FullTripComponent implements OnInit {
     this.trip = new Trip();
     config.max = 5;
     config.readonly = true;
+
+    this.idtrip = router.url.toString();
+    let s : string[];
+    s = this.idtrip.split('/');
+    this.idtrip=s[s.length-1];
   }
 
   ngOnInit() {
+    this.getFullTrip(this.idtrip);
   }
 
-  getFullTrip(id: string ) {
+  getFullTrip(id: string) {
     this.fulltripservice.getFullTrip(this.idtrip)
       .subscribe((trip: Trip) => {
         this.trip = trip;

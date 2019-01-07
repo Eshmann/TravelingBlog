@@ -13,6 +13,7 @@ using NLog;
 using System;
 using System.IO;
 using System.Text;
+using AutoMapper;
 using TravelingBlog.ActionFilters;
 using TravelingBlog.BusinessLogicLayer.ModelsServices;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;

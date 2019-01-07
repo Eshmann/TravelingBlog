@@ -1,5 +1,6 @@
-﻿using AutoMapper;
+using AutoMapper;
 using System.Linq;
+using Microsoft.CodeAnalysis;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 using TravelingBlog.Models.ViewModels;
 using TravelingBlog.Models.ViewModels.DTO;
@@ -38,8 +39,12 @@ namespace TravelingBlog.BusinessLogicLayer.SecondaryServices.Mappings
 
             CreateMap<Image, ImageDTO>();
 
-            CreateMap<Trip, TripWithUserDTO>();
+            CreateMap<Trip, TripDTO>();
+            CreateMap<TripDTO, Trip>();
+
             CreateMap<TripWithUserDTO, Trip>();
+            CreateMap<Trip, TripWithUserDTO>();
+
 
             CreateMap<Country, CountryDTO>();
             CreateMap<CountryDTO, Country>();

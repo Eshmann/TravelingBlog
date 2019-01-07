@@ -19,7 +19,6 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
         public SearchService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
             : base(unitOfWork, logger, mapper) { }
 
-        private IRepository<UserInfo> UserRepository => unitOfWork.GetRepository<UserInfo>();
 
         public IList<TripWithUserDTO> SearchTrips(Search searchQuery, out int total)
         {
@@ -53,7 +52,17 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
             total = query.Count();
 
-            trips = query.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
+            foreach (var n in query)
+            {
+                trips.Add(new TripWithUserDTO
+                {
+                    Name = n.Name,
+                    Description = n.Description,
+                    Id = n.Id,
+                    FirstName = n.UserInfo.FirstName,
+                    LastName = n.UserInfo.LastName
+                });
+            }
 
             var result = trips
                 .Skip(filter.PageSize * (filter.PageNumber - 1))
@@ -62,7 +71,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
             return result;
         }
-        protected override Expression<Func<Trip, bool>> GetFilter(TripFilter filter)
+        public override Expression<Func<Trip, bool>> GetFilter(TripFilter filter)
         {
             Expression<Func<Trip, bool>> result = t => true;
 

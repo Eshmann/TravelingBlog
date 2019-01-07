@@ -5,5 +5,5 @@ import {FullTripComponent} from './fulltrip/fulltrip.component';
 
 
 export const  routing : ModuleWithProviders = RouterModule.forChild([
-    {path : 'fulltrip', component : FullTripComponent}
+    {path : 'fulltrip/:tripid', component : FullTripComponent}
 ])

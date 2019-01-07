@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Rx';
 
 // Add the RxJS Observable operators we need in this app.
 import '../../rxjs-operators';
-import { FullTrip, Trip, PostBlog } from '../models/fulltrip.class';
+import { Trip, PostBlog } from '../models/fulltrip.class';
 
 @Injectable()
 

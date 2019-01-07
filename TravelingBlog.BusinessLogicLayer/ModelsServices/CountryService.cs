@@ -19,7 +19,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         private IRepository<UserInfo> UserRepository => unitOfWork.GetRepository<UserInfo>();
 
-        protected override Expression<Func<Country, bool>> GetFilter(CountryFilter filter)
+        public override Expression<Func<Country, bool>> GetFilter(CountryFilter filter)
         {
             Expression<Func<Country, bool>> result = t => true;
 

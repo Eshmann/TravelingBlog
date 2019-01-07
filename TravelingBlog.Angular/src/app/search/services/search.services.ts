@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Rx';
 // Add the RxJS Observable operators we need in this app.
 import '../../rxjs-operators';
 import { Search, Country } from '../models/search.class';
+import { HttpClient } from 'selenium-webdriver/http';
 
 @Injectable()
 
@@ -23,11 +24,11 @@ export class SearchService extends BaseService {
     this.baseUrl = configService.getApiURI();
   }
 
-  getTrip(id: string, countryid: string): Observable<Search> {
+  getTrip(query: string, countryid: string, page: number): Observable<Search> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     if (countryid == '-1') {
-      return this.http.get(this.baseUrl + "/api/search/search?searchQuery=" + id, { headers })
+      return this.http.get(this.baseUrl + "/api/search/search?searchQuery=" + query, { headers })
         .map(response => response.json())
         .catch(this.handleError);
     }

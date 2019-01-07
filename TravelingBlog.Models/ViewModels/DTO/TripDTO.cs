@@ -1,4 +1,6 @@
-﻿namespace TravelingBlog.Models.ViewModels.DTO
+﻿using TravelingBlog.DataAcceesLayer.Models.Entities;
+
+namespace TravelingBlog.Models.ViewModels.DTO
 {
     public class TripDTO
     {
@@ -8,6 +10,7 @@
         public string Description { get; set; }
         public int UserInfoId { get; set; }
         public double? RatingTrip { get; set; }
+        public UserInfoDTO User { get; set; }
 
     }
 }

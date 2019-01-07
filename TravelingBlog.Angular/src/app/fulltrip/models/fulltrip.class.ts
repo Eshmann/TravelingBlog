@@ -1,10 +1,4 @@
-export class FullTrip{
-    constructor(
-        public total? : number,
-        public result? : Trip[]
-        ) {}
 
-}
 export class Trip{
     constructor(
         public id? : number,
@@ -21,6 +15,7 @@ export class PostBlog{
     constructor(
         public id? : number,
         public name? : string,
-        public plot? : string 
+        public plot? : string,
+        public dateOfCreation? : string
     ) {}
 }
