@@ -1,26 +1,27 @@
-﻿using AutoMapper;
-using System;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Text;
+using AutoMapper;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 using TravelingBlog.DataAcceesLayer.Repositories.Contracts;
-using TravelingBlog.Models;
 using TravelingBlog.Models.Filters;
 using TravelingBlog.Models.ViewModels.DTO;
 
 namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 {
-    public class PostBlogService : Service<PostBlog, PostBlogDTO, PostBlogFilter>, IPostBlogService
+    public class CountryService : Service<Country, CountryDTO, CountryFilter>, ICountryService
     {
-        public PostBlogService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
+        public CountryService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
             : base(unitOfWork, logger, mapper) { }
 
+        private IRepository<UserInfo> UserRepository => unitOfWork.GetRepository<UserInfo>();
 
-        public override Expression<Func<PostBlog, bool>> GetFilter(PostBlogFilter filter)
+        public override Expression<Func<Country, bool>> GetFilter(CountryFilter filter)
         {
-            Expression<Func<PostBlog, bool>> result = t => true;
+            Expression<Func<Country, bool>> result = t => true;
 
             if (filter.Name != null)
             {

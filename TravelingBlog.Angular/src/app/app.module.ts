@@ -21,6 +21,7 @@ import { UserInfoModule } from './userinfo/userinfo.module';
 
 import { ConfigService } from './shared/utils/config.service';
 import { FooterComponent } from './footer/footer.component';
+import { FullTripModule } from './fulltrip/fulltrip.module';
 import { SearchModule } from './search/search.module';
 
 import { TripsModule } from './trips/trips.module';
@@ -46,6 +47,7 @@ import { RecaptchaSettings} from 'ng-recaptcha/recaptcha/recaptcha-settings';
     FormsModule,
     TripsModule,
     HttpModule,
+    FullTripModule,
     SearchModule,
     RecaptchaModule.forRoot(),
     RecaptchaFormsModule,

@@ -13,6 +13,7 @@ using NLog;
 using System;
 using System.IO;
 using System.Text;
+using AutoMapper;
 using TravelingBlog.ActionFilters;
 using TravelingBlog.BusinessLogicLayer.ModelsServices;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
@@ -53,6 +54,10 @@ namespace TravelingBlog
             services.AddScoped<ITripService, TripService>();
             //
             services.AddScoped<ISubscriptionService, SubscriptionService>();
+
+            services.AddScoped<ISearchService, SearchService>();
+
+            services.AddScoped<ICountryService, CountryService>();
 
             services.AddScoped<IAzureBlob, AzureBlob>();
 

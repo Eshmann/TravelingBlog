@@ -56,24 +56,12 @@ namespace TravelingBlog.Controllers
         }
 
         [AllowAnonymous]
-        [Route("best")]
-        [HttpGet]
-        public IActionResult GetTripsWithHighestRating([FromBody]int count)
+        [HttpGet("bestTrip")]
+        public IActionResult GetTripsWithHighestRating()
         {
-            var trips = tripService.GetTripsWithHighestRating(count);
-            var bestTrips = new List<TripDTO>();
+            var trips = tripService.GetTripsWithHighestRating();
 
-            logger.LogInfo("Getting best trips");
-
-            foreach (var t in trips)
-            {
-                if (t != null)
-                {
-                    bestTrips.Add(t);
-                }
-            }
-
-            return Ok(bestTrips);
+            return Ok(trips);
         }
 
 
