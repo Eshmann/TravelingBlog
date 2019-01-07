@@ -8,6 +8,7 @@ import { BaseService } from "./base.service";
 
 import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/Rx';
+import * as jwt_decode from "jwt-decode";
 
 // Add the RxJS Observable operators we need in this app.
 import '../../rxjs-operators';
@@ -24,6 +25,7 @@ export class UserService extends BaseService {
   authNavStatus$ = this._authNavStatusSource.asObservable();
 
   private loggedIn = false;
+  decodedToken:any;
 
   constructor(private http: Http, private configService: ConfigService) {
     super();
@@ -56,6 +58,7 @@ export class UserService extends BaseService {
       .map(res => res.json())
       .map(res => {
         localStorage.setItem('auth_token', res.auth_token);
+        this.decodedToken = jwt_decode(res.auth_token)
         this.loggedIn = true;
         this._authNavStatusSource.next(true);
         return true;
@@ -71,6 +74,7 @@ export class UserService extends BaseService {
   }
 
   isLoggedIn() {
+    this.decodedToken = jwt_decode(localStorage.getItem('auth_token'));
     return this.loggedIn;
   }
 
@@ -84,10 +88,24 @@ export class UserService extends BaseService {
       .map(res => res.json())
       .map(res => {
         localStorage.setItem('auth_token', res.auth_token);
+        this.decodedToken = jwt_decode(res.auth_token);
         this.loggedIn = true;
         this._authNavStatusSource.next(true);
         return true;
       })
       .catch(this.handleError);
+  }
+
+  roleMatch(allowedRoles):boolean{
+    let isMatch = false
+    const userRoles = this
+    .decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] as Array<string>
+    allowedRoles.forEach(element => {
+      if(userRoles.includes(element)){
+        isMatch = true
+        return
+      }
+    });
+    return isMatch
   }
 }

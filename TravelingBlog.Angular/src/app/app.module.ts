@@ -24,13 +24,16 @@ import { FooterComponent } from './footer/footer.component';
 import { SearchModule } from './search/search.module';
 
 import { TripsModule } from './trips/trips.module';
+import { HasRoleDirective } from './directives/has-role.directive';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    HasRoleDirective
   ],
   imports: [
     AccountModule,
@@ -42,7 +45,8 @@ import { TripsModule } from './trips/trips.module';
     TripsModule,
     HttpModule,
     SearchModule,
-    routing
+    routing,
+    AdminModule
 
   ],
   providers: [ConfigService, {
