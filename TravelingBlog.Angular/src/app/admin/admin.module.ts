@@ -1,15 +1,24 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AdminComponent } from './admin/admin.component';
-import { AdminService } from './Services/admin.service';
-import { routing } from './admin.routing';
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { AdminComponent } from './admin/admin.component'
+import { AdminService } from './Services/admin.service'
+import { routing } from './admin.routing'
+import { UserManagementComponent } from './user-management/user-management.component'
+import { TabsModule } from 'ngx-bootstrap'
+import { HasRoleDirective } from './directives/has-role.directive';
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [
+    AdminComponent, 
+    UserManagementComponent,
+    HasRoleDirective
+  ],
   imports: [
     CommonModule,
-    routing
+    routing,
+    TabsModule.forRoot(),
   ],
-  providers:[AdminService]
+  providers:[AdminService],
+  exports:[HasRoleDirective]
 })
 export class AdminModule { }
