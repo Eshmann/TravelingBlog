@@ -68,6 +68,7 @@ namespace TravelingBlog
             services.AddSingleton<IJwtFactory, JwtFactory>();
 
             services.Configure<FacebookAuthSettings>(Configuration.GetSection(nameof(FacebookAuthSettings)));
+            services.Configure<ReCaptcha>(Configuration.GetSection(nameof(ReCaptcha)));
 
             services.TryAddTransient<IHttpContextAccessor, HttpContextAccessor>();
 

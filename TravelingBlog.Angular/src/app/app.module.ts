@@ -26,6 +26,11 @@ import { SearchModule } from './search/search.module';
 
 import { TripsModule } from './trips/trips.module';
 
+//config for recaptcha
+import { RecaptchaModule, RECAPTCHA_SETTINGS} from 'ng-recaptcha';
+import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
+import { RecaptchaSettings} from 'ng-recaptcha/recaptcha/recaptcha-settings';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,13 +49,22 @@ import { TripsModule } from './trips/trips.module';
     HttpModule,
     FullTripModule,
     SearchModule,
+    RecaptchaModule.forRoot(),
+    RecaptchaFormsModule,
     routing
 
   ],
   providers: [ConfigService, {
     provide: XHRBackend,
     useClass: AuthenticateXHRBackend
-  }],
+  },
+  {
+    provide: RECAPTCHA_SETTINGS,
+    useValue: 
+    {
+      siteKey: '6LcYUIcUAAAAAABkzpe0azQcrLOSD5wi1MCm8Va1',
+    } as RecaptchaSettings,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
