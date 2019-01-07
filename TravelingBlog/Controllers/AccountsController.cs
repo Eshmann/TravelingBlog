@@ -63,6 +63,8 @@ namespace TravelingBlog.Controllers
             if (!result.Succeeded)
                 return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
+            userIdentity = await userManager.FindByNameAsync(userIdentity.UserName);
+            await userManager.AddToRoleAsync(userIdentity, "Member");
             unitOfWork.GetRepository<UserInfo>().Add(new UserInfo { IdentityId = userIdentity.Id, FirstName=model.FirstName, LastName=model.LastName });
             unitOfWork.Complete();
 

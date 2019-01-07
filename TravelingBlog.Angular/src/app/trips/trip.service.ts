@@ -21,7 +21,7 @@ export class TripService extends BaseService {
    getTrips(page:number):Observable<TripPagination>{
     let headers = this.getHeaders();
 
-    return this.httpClient.get(`${this.apiUrl}${this.baseUrl}/GetTripsPagination`,{headers})
+    return this.httpClient.get(`${this.apiUrl}${this.baseUrl}/GetTripsPagination?pagenumber=${page}`,{headers})
     .map(response=>response.json())
     .catch(this.handleError);
    }

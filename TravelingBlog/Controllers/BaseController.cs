@@ -35,7 +35,6 @@ namespace TravelingBlog.Controllers
         }
 
         [HttpPost]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public virtual IActionResult Post([FromBody]TDto dto)
         {
             service.Add(dto);
@@ -43,7 +42,6 @@ namespace TravelingBlog.Controllers
         }
 
         [HttpPut]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public virtual IActionResult Put([FromBody]TDto dto)
         {
             service.Update(dto);
@@ -51,7 +49,6 @@ namespace TravelingBlog.Controllers
         }
 
         [HttpDelete]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public virtual IActionResult Delete([FromBody]TDto dto)
         {
             service.Remove(dto);
@@ -59,7 +56,6 @@ namespace TravelingBlog.Controllers
         }
 
         [HttpPost]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public virtual IActionResult PostRange([FromBody]IEnumerable<TDto> dtos)
         {
             service.AddRange(dtos);
@@ -67,7 +63,6 @@ namespace TravelingBlog.Controllers
         }
 
         [HttpPut]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public virtual IActionResult PutRange([FromBody]IEnumerable<TDto> dtos)
         {
             service.UpdateRange(dtos);
@@ -75,7 +70,6 @@ namespace TravelingBlog.Controllers
         }
 
         [HttpDelete]
-        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public virtual IActionResult DeleteRange([FromBody]IEnumerable<TDto> dtos)
         {
             service.RemoveRange(dtos);

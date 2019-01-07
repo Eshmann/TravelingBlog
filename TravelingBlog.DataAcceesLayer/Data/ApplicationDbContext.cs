@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TravelingBlog.DataAcceesLayer.Configurations;
+using TravelingBlog.DataAcceesLayer.Models;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.DataAcceesLayer.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<AppUser>
+    public class ApplicationDbContext : IdentityDbContext<AppUser, Role, string,
+        IdentityUserClaim<string>, UserRole, IdentityUserLogin<string>, IdentityRoleClaim<string>, IdentityUserToken<string>>
     {
         public ApplicationDbContext(DbContextOptions options)
             : base(options)
@@ -50,6 +53,7 @@ namespace TravelingBlog.DataAcceesLayer.Data
             modelBuilder.ApplyConfiguration(new ImageConfiguration());
             modelBuilder.ApplyConfiguration(new CountryPostBlogConfiguration());
             modelBuilder.ApplyConfiguration(new UserImageConfiguration());
+            modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
         }
 
     }
