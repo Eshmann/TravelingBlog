@@ -55,6 +55,7 @@ namespace TravelingBlog
             services.ConfigureSeed();
 
             services.AddScoped<ITripService, TripService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IAdminService, AdminService>();
             //

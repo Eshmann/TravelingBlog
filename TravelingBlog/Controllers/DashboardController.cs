@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using TravelingBlog.DataAcceesLayer.Data;
+using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
+
 
 namespace TravelingBlog.Controllers
 {
@@ -16,30 +16,30 @@ namespace TravelingBlog.Controllers
     public class DashboardController : Controller
     {
         private readonly ClaimsPrincipal caller;
-        private readonly ApplicationDbContext appDbContext;
 
-        public DashboardController(UserManager<AppUser> userManager, ApplicationDbContext appDbContext, IHttpContextAccessor httpContextAccessor)
+        private readonly IUserService _userService;
+
+        public DashboardController(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor, IUserService userService)
         {
             caller = httpContextAccessor.HttpContext.User;
-            this.appDbContext = appDbContext;
+            _userService = userService;
         }
 
         // GET api/dashboard/home
         [HttpGet]
         public async Task<IActionResult> Home()
         {
-            // retrieve the user info
-            // HttpContext.User
             var userId = caller.Claims.Single(c => c.Type == "id");
-            var customer = await appDbContext.UserInfoes.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == userId.Value);
+
+            var user = await _userService.GetUserInfoIncludingIdentity(userId.Value);
 
             return new OkObjectResult(new
             {
                 Message = "This is secure API and user data!",
-                customer.FirstName,
-                customer.LastName,
-                customer.Identity.PictureUrl,
-                customer.Identity.FacebookId
+                user.FirstName,
+                user.LastName,
+                user.Identity.PictureUrl,
+                user.Identity.FacebookId
             });
         }
     }

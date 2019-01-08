@@ -15,7 +15,7 @@ namespace TravelingBlog.DataAcceesLayer.Data
         {
         }
 
-        public DbSet<UserInfo> UserInfoes { get; set; }
+        public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<CountryPostBlog> CountryPostBlogs { get; set; }
