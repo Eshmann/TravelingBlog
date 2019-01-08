@@ -26,15 +26,17 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         public IEnumerable<SubscriptionDTO> GetUserSubscription(string id)
         {
-            var user = Context.UserInfoes.FirstOrDefault(x => x.IdentityId == id);
+            var user = Context.UserInfos.FirstOrDefault(x => x.IdentityId == id);
 
             var entity = Context.Subscriptions.Where(x => x.UserInfoId == user.Id);
             List<SubscriptionDTO> subs = new List<SubscriptionDTO>();
 
             foreach (var i in entity)
             {
+
                 var currUser = Context.UserInfoes.FirstOrDefault(x => x.Id == i.SubcriberId);
                 if (currUser == null)
+
                 {
                     continue;
                 }
@@ -53,9 +55,11 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         public bool SubscribeTo(string id, int Subscriberid)
         {
+
             var user = Context.UserInfoes.FirstOrDefault(x => x.IdentityId == id);
             var Subscriber = Context.UserInfoes.FirstOrDefault(x => x.Id == Subscriberid);
             if (Subscriberid == user.Id)
+
             {
                 return false;
             }
@@ -79,9 +83,11 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         public bool UnSubscribeFrom(string id, int Subscriberid)
         {
+
             var user = Context.UserInfoes.FirstOrDefault(x => x.IdentityId == id);
             var Subscriber = Context.UserInfoes.FirstOrDefault(x => x.Id == Subscriberid);
             if (user == null || Subscriber == null)
+
             {
                 return false;
             }

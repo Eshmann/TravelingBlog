@@ -1,16 +1,4 @@
-// .sidenav {
-//   height: 100%;
-//   width: 160px;
-//   position: fixed;
-//   z-index: 1;
-//   top: 0;
-//   left: 0;
-//   background-color: #d8cdcd;
-//   overflow-x: hidden;
-//   padding-top: 75px;
-//   border-left: 2px solid rgb(12, 12, 12);
-// }
-.col-sm-8{
+.col-sm-10{
   padding-bottom: 15px; 
 }
 .row.content {
@@ -19,41 +7,33 @@
 }
 
 .sidenav {
+  right: 0;
+  height: 100%;
+  position: fixed;
+  z-index: 0;
+  background-color: #555;
+  overflow-x: hidden;
   padding-top: 20px;
-  background-color: #ddd6dd;
+  border: 3px solid #5bc0de;
 }
- a {
-  padding: 6px 8px 6px 16px;
+
+.sidenav a {
+  padding: 8px 8px 8px 8px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: #ffffff;
   display: block;
-}
-a:hover {
-  color: #312828;
-}
-
-.leftbar{
-  max-width: 25%;
-  font-size: 4vw;
-  overflow-x: hidden;
+  transition: 0.3s;
+  text-align: center;
+  border-bottom: 1px solid rgb(24, 23, 23);
 }
 
-// div.content {
-//   margin-left: 160px;
-//   margin-right: 160px;
-//   margin-bottom: 15px;
-//   padding: 1px 16px;
-//   height: 100%;
-// }
-// .sidenav-right{
-//   height: 100%;
-//   width: 160px;
-//   
-//   z-index: 1;
-//   top: 0;
-//   right: 0;
-//   background-color: #d8cdcd;
-//   overflow-x: hidden;
-//   padding-top: 75px;
-// }
+.sidenav a:hover {
+  background-color: #5bc0de;
+  color: #ffffff;
+}
+
+.active {
+  background-color: #5bc0de;
+}
+

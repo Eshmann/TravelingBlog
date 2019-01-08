@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using TravelingBlog.ActionFilters;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
@@ -75,7 +74,6 @@ namespace TravelingBlog.Controllers
                 return BadRequest("Trip object is null");
             }
 
-            var userId = caller.Claims.Single(c => c.Type == "id");
 
             tripService.Add(model);
 

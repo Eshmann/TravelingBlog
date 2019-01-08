@@ -3,8 +3,10 @@ footer {
   margin-bottom: 0px;
   height:100px;
   width: 100%;
+  position: relative;
+  bottom: 0;
 } 
-  
+
   div.social { 
   text-align: center;
   padding-top: 8px;
@@ -23,7 +25,6 @@ footer {
   border:1px solid #ccc;
   margin:0 8px;
   color:#ccc;
-  opacity:0.75;
   }
   
   footer li {
