@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   homeDetails: HomeDetails;
   topTrips:TripDetails[];
+  disabled:boolean;
   
   constructor(private dashboardService: DashboardService, private tripservice:
     TripserviceService) { }
