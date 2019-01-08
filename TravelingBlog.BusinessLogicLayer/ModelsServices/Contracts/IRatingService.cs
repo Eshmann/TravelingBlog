@@ -11,8 +11,5 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
     public interface IRatingService : IService<RatingDTO, RatingFilter>
     {
         void AddRating(RatingDTO ratingDTO, string identityId);
-        //IQueryable<RatingDTO> AddRating(double ratingTrip);
-        //  IEnumerable<RatingDTO> GetAllRating(double ratingTrip);
-        // IEnumerable<TripDTO> GetRating(int Id);
     }
 }
