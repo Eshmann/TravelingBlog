@@ -13,7 +13,6 @@ import '../../rxjs-operators';
 export class BestTripService extends BaseService{
 
     baseUrl: string = '';
-   // count : string = '3';
     constructor(private http: Http, private configService : ConfigService) {
         super();
         this.baseUrl = configService.getApiURI();
