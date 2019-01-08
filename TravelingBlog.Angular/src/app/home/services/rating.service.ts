@@ -24,15 +24,7 @@ export class RatingService extends BaseService {
             .map(response => response.json())
             .catch(this.handleError);
     }
-
-    // addRating(post: Rating ){
-    //     let headers = new Headers();
-    //     headers.append('Content-Type', 'application/json');
-    //     let authToken = localStorage.getItem('auth_token');
-    //     headers.append('Authorization', Bearer ${ authToken });
-    //    return this.http.post(this.baseUrl + "/api/trip/showRating", JSON.stringify(post),
-    //    {headers}).map(response => response.json()).catch(this.handleError);
-    // }
+    
     addRating(rating: Rating) {
 
         let headers = new Headers();
