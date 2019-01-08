@@ -1,7 +1,44 @@
-.container-fluid {
-    padding-top: 5%;
-}
+.card {
+    background-color: white;
+    margin-top: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
 
-h1 {
+    width: 100%;
+    .card-header{
+      h2{
+          color: aliceblue;
+        }
+    }
+    .card-body{
+        padding-top: 10px;
+        label{
+           margin-bottom: 1px;  
+        }
+        input{
+            margin-bottom: 8px;
+        }
+        button{
+           margin-top: 15px; 
+        }
+        text-align: center;
+        .tab-content{
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+    }
+    background-color: white;
+    .ul{
+        margin-left: 20px;
+        margin-right: 20px;
+        width: 50%;
+    }
+}
+.userimg{
     text-align: center;
+    margin: 15px;
+    img{
+        width: 150px ;
+        height: 150px;
+    }
 }

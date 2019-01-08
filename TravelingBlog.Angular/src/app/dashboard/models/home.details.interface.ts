@@ -5,6 +5,7 @@ export interface HomeDetails {
   location: string;
   locale: string;
   gender: string;
+  picture: string;
   pictureUrl: string;
   facebookId: number;
 }

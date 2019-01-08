@@ -67,6 +67,8 @@ namespace TravelingBlog
 
             services.AddScoped<IAzureBlob, AzureBlob>();
 
+            services.AddScoped<ISettingsService, SettingsService>();
+
             // Add validation attribute service.
             services.AddScoped<ValidationFilterAttribute>();
 

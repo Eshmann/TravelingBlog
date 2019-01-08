@@ -15,9 +15,13 @@ export class HomeComponent implements OnInit {
 
   homeDetails: HomeDetails;
   topTrips:TripDetails[];
-
+  
   constructor(private dashboardService: DashboardService, private tripservice:
     TripserviceService) { }
+
+  disableAll() {
+    this.disabled = true;
+  }
 
   ngOnInit() {
 
