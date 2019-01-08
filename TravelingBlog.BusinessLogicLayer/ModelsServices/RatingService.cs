@@ -16,7 +16,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 {
     public class RatingService : Service<Rating, RatingDTO, RatingFilter>, IRatingService
     {
-        IUnitOfWork unitOfWork;
+        new IUnitOfWork unitOfWork;
         public RatingService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
             : base(unitOfWork, logger, mapper)
         {

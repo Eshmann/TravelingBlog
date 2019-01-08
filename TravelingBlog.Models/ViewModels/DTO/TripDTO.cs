@@ -13,6 +13,5 @@ namespace TravelingBlog.Models.ViewModels.DTO
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public double? RatingTrip { get; set; }
-
     }
 }
