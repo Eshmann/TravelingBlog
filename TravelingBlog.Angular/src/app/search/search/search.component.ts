@@ -28,6 +28,7 @@ export class SearchComponent implements OnInit {
 
   loadTrips()
   {
+    this.trips=[];
     this.searchservice.getTrip(this.query, this.countryid, this.page)
     .subscribe((resp:Search)=>this.onSuccess(resp));
   }
