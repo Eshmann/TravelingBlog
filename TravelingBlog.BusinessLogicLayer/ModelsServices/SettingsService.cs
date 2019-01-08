@@ -39,7 +39,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             }
             unitOfWork.Complete();
         }
-        protected override Expression<Func<UserInfo, bool>> GetFilter(BaseFilter filter)
+        public override Expression<Func<UserInfo, bool>> GetFilter(BaseFilter filter)
         {
             Expression<Func<UserInfo, bool>> result = t => true;
 
