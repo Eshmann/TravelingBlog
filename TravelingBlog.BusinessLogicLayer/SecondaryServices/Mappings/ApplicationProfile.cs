@@ -39,9 +39,6 @@ namespace TravelingBlog.BusinessLogicLayer.SecondaryServices.Mappings
 
             CreateMap<Image, ImageDTO>();
 
-            CreateMap<Trip, TripDTO>();
-            CreateMap<TripDTO, Trip>();
-
             CreateMap<TripWithUserDTO, Trip>();
             CreateMap<Trip, TripWithUserDTO>();
 

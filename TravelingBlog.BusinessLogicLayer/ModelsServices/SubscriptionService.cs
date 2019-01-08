@@ -31,10 +31,10 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             var entity = Context.Subscriptions.Where(x => x.UserInfoId == user.Id);
             List<SubscriptionDTO> subs = new List<SubscriptionDTO>();
 
-            foreach(var i in entity)
+            foreach (var i in entity)
             {
                 var currUser = Context.UserInfoes.FirstOrDefault(x => x.Id == i.SubcriberId);
-                if(currUser==null)
+                if (currUser == null)
                 {
                     continue;
                 }
@@ -48,23 +48,23 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             }
 
 
-           return subs;
+            return subs;
         }
 
-         public bool SubscribeTo(string id, int Subscriberid)
+        public bool SubscribeTo(string id, int Subscriberid)
         {
             var user = Context.UserInfoes.FirstOrDefault(x => x.IdentityId == id);
             var Subscriber = Context.UserInfoes.FirstOrDefault(x => x.Id == Subscriberid);
-            if(Subscriberid==user.Id)
+            if (Subscriberid == user.Id)
             {
                 return false;
             }
-            
+
             {
                 var subCheck = Context.Subscriptions.Where(x => x.UserInfoId == user.Id);
-                foreach(var i in subCheck)
+                foreach (var i in subCheck)
                 {
-                    if(i.SubcriberId==Subscriberid)
+                    if (i.SubcriberId == Subscriberid)
                     {
                         return true;
                     }
@@ -81,12 +81,12 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
         {
             var user = Context.UserInfoes.FirstOrDefault(x => x.IdentityId == id);
             var Subscriber = Context.UserInfoes.FirstOrDefault(x => x.Id == Subscriberid);
-            if(user==null || Subscriber==null)
+            if (user == null || Subscriber == null)
             {
                 return false;
             }
             var subEntity = Context.Subscriptions.FirstOrDefault(x => x.SubcriberId == Subscriber.Id && x.UserInfoId == user.Id);
-            if(subEntity==null)
+            if (subEntity == null)
             {
                 return false;
             }
