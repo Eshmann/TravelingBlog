@@ -83,6 +83,7 @@ namespace TravelingBlog.Controllers
             return Ok(tripWithBlogs);
         }
 
+        
         [AllowAnonymous]
         [HttpGet("bestTrip")]
         public IActionResult GetTripsWithHighestRating()

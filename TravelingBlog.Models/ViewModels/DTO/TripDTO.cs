@@ -1,5 +1,3 @@
-﻿using TravelingBlog.DataAcceesLayer.Models.Entities;
-
 namespace TravelingBlog.Models.ViewModels.DTO
 {
     public class TripDTO
@@ -9,7 +7,11 @@ namespace TravelingBlog.Models.ViewModels.DTO
         public bool IsDone { get; set; }
         public string Description { get; set; }
         public int UserInfoId { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public double? RatingTrip { get; set; }
+
         public UserInfoDTO User { get; set; }
 
     }

@@ -67,20 +67,43 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
             return userTrips.Select(t => mapper.Map<TripDTO>(t));
         }
-        public IList<TripWithUserDTO> GetTripsWithHighestRating()
+
+
+
+        public IEnumerable<TripWithUserDTO> GetTripsWithHighestRating()
         {
             var tripsCount = Repository.GetAll().Count();
-
-            //  count = (count < tripsCount) ? tripsCount : count;
             List<TripWithUserDTO> trips = new List<TripWithUserDTO>();
-            var result = Repository
-                .GetAll().Include(x => x.UserInfo)
-                .OrderByDescending(t => t.RatingTrip)
-                .Take(3)
-                .ToList();
-             trips = result.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
 
-             return trips.ToList();
+            // public IList<TripWithUserDTO> GetTripsWithHighestRating()
+            
+
+                var result = Repository
+                    .GetAll().Include(x => x.UserInfo)
+                    .OrderByDescending(t => t.RatingTrip)
+                    .Take(3)
+                    .Include(x => x.UserInfo)
+                    .ToList();
+                trips = result.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
+
+                foreach (var r in result)
+                {
+                    trips.Add(new TripWithUserDTO
+                    {
+                        Id = r.Id,
+                        Name = r.Name,
+                        Description = r.Description,
+                        FirstName = r.UserInfo.FirstName,
+                        LastName = r.UserInfo.LastName,
+                        RatingTrip = r.RatingTrip,
+                        UserId = r.UserInfoId
+
+                    });
+
+                }
+
+                return trips.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
+            
         }
         public IEnumerable<TripDTO> GetRandomTrips(int count, List<TripDTO> trips)
         {
@@ -100,10 +123,12 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             return result.Select(t => mapper.Map<TripDTO>(t)).ToList();
         }
 
+
+
         public override Expression<Func<Trip, bool>> GetFilter(TripFilter filter)
         {
             Expression<Func<Trip, bool>> result = e => true;
-                
+
             //if (filter.Name != null)
             //{
             //    result = CombineExpressions(result, t => t.Name == filter.Name);

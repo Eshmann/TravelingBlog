@@ -1,0 +1,59 @@
+<div class="trip-main">
+    <div class="section-heading">
+      <h2 class="section-title">Our popular trips!</h2>
+    </div>
+    <div class="services_cards">
+      <div *ngFor="let tr of bestTrip">
+        <div class="services_c">
+          <blockquote class="testimonial.m-img">
+            <img src="assets/images/user-img/user-3.jpg" alt="User">
+          </blockquote>
+          <blockquote class="testimonial-img">
+            <img src="assets/images/user-img/user-1.jpg" class="rounded-circle" alt="User" />
+            {{tr.firstName}}
+            {{tr.lastName}}
+          </blockquote>
+          <div class="horiz-scroll">
+              <blockquote class="flags-img">
+                <img src="assets/images/flag-img/ukraine_flag.png" alt="User" />
+                <blockquote class="flags-img1">
+                  <img src="assets/images/flag-img/netherland_flag.jpg" alt="User" />
+                  <img src="assets/images/flag-img/usa_flag.png" alt="User" />
+                </blockquote>
+              </blockquote>
+            </div>
+          <div class="class-name">
+            {{ tr?.name }}
+          </div>
+          <div class="description">
+            {{tr?.description}}
+          </div>
+          <fieldset class="rating">
+            <div>Rating: {{ tr?.ratingTrip}}</div>
+            <input type="radio" id="btn5" [name]="inputName" [value]="5" [checked]="rating==5" />
+            <label title="Very good" (click)="getValue(tr.id,5)">5 stars</label>
+  
+            <input type="radio" id="btn4" [name]="inputName" [value]="4" [checked]="rating==4" />
+            <label title="Pretty good" (click)="getValue(tr.id,4)">4 stars</label>
+  
+            <input type="radio" id="btn3" [name]="inputName" [value]="3" [checked]="rating==3" />
+            <label title="That`s ok" (click)="getValue(tr.id,3)">3 stars</label>
+  
+            <input type="radio" id="btn2" [name]="inputName" [value]="2" [checked]="rating==2" />
+            <label title="Not bad" (click)="getValue(tr.id,2)">2 stars</label>
+  
+            <input type="radio" id="btn1" [name]="inputName" [value]="1" [checked]="rating==1" />
+            <label title="Bad" (click)="getValue(tr.id,1)">1 star</label>
+          </fieldset>
+          <!-- <hr>
+          <label title="Bad" id="rating">RATING</label>
+          <hr> -->
+          <div class="about-btn">
+            <input class="about-view packages-btn" type="button" value="Go to trip" onclick="window.location.href='/register'" />
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+  
