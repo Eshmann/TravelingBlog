@@ -1,5 +1,6 @@
-﻿using AutoMapper;
+using AutoMapper;
 using System.Linq;
+using Microsoft.CodeAnalysis;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
 using TravelingBlog.Models.ViewModels;
 using TravelingBlog.Models.ViewModels.DTO;
@@ -37,6 +38,27 @@ namespace TravelingBlog.BusinessLogicLayer.SecondaryServices.Mappings
             CreateMap<ImageDTO, Image>();
 
             CreateMap<Image, ImageDTO>();
+
+            CreateMap<TripWithUserDTO, Trip>();
+            CreateMap<Trip, TripWithUserDTO>();
+
+
+            CreateMap<Country, CountryDTO>();
+            CreateMap<CountryDTO, Country>();
+
+            CreateMap<Trip, TripDTODa>()
+                .ForMember(dest => dest.User, opt => opt.ResolveUsing(src =>
+                {
+                    return new UserInfoDTO
+                    {
+                        Id = src.UserInfo.Id,
+                        FirstName = src.UserInfo.FirstName,
+                        LastName = src.UserInfo.LastName,
+                        Phone = src.UserInfo.Phone,
+                        PictureUrl = src.UserInfo.Identity.PictureUrl,
+                        FacebookId = src.UserInfo.Identity.FacebookId
+                    };
+                }));
         }
     }
 }

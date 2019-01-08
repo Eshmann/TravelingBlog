@@ -13,6 +13,7 @@ import '../../rxjs-operators';
 import { TripDetails } from '../models/trip.details.interface';
 import { UserDetails } from '../models/user.details.interface';
 import { Body } from '@angular/http/src/body';
+import { SubscriberDetails } from '../models/subsciber.details.interface';
 
 @Injectable()
 
@@ -36,7 +37,19 @@ export class DashboardService extends BaseService {
       .catch(this.handleError);
   }
 
-  getTrips(): Observable<TripDetails[]> {
+  getSubscriberDetails(): Observable<SubscriberDetails[]> {
+    localStorage.removeItem('subs');
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+
+    return this.http.get(this.baseUrl + "/api/Subscription/getMySubscription", { headers })
+    .map(response => response.json())
+    .catch(this.handleError);
+  }
+
+  getTrips(): Observable<TripDetails[]>{
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let authToken = localStorage.getItem('auth_token');

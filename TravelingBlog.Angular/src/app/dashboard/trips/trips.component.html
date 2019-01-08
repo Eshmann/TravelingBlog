@@ -5,7 +5,6 @@
         <input type="button" value="AddTrip" class="btn btn-default" (click)="add()" />
         <ul *ngIf="tableMode; else create">           
             <li *ngFor="let p of trips">
-                <!--<ng-template [ngIf]="trip?.id != p.id" [ngIfElse]="edit">-->
                 <ng-template [ngIf]="trip?.id != p.id">
                     <div>Name: {{ p?.name }}</div>
                     <div [ngClass]="{greenclass: p?.isDone == true, redclass: p?.isDone == false}">Finished: {{ p?.isDone }}</div>
@@ -23,11 +22,10 @@
 </div>
 </body>     
 
-    <!--шаблон для добавления-->
     <ng-template #create>
         <div class="form-group">
             <label>Name</label>
-            <input type="text" [(ngModel)]="trip.name" class="form-control" />
+            <input type="text" [(ngModel)]="trip.name" class="form-control" /> 
         </div>
         <div class="form-group"> 
             <label>Description</label>

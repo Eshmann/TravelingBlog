@@ -42,7 +42,10 @@ namespace TravelingBlog.Controllers
                 return BadRequest(Errors.AddErrorToModelState("login_failure", "Invalid username or password.", ModelState));
             }
 
-            var jwt = await Tokens.GenerateJwt(identity, jwtFactory, credentials.UserName, jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            var userTo = await userManager.FindByNameAsync(credentials.UserName);
+            var roles = await userManager.GetRolesAsync(userTo);
+
+            var jwt = await Tokens.GenerateJwt(identity, jwtFactory, credentials.UserName, jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented }, roles);
             return new OkObjectResult(jwt);
         }
 

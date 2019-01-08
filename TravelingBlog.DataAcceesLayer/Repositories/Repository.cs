@@ -21,7 +21,10 @@ namespace TravelingBlog.DataAcceesLayer.Repositories
         {
             return Context.Set<TEntity>().Where(e => e.Id == id).SingleOrDefault();
         }
-
+        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Context.Set<TEntity>().Where(predicate);
+        }
         public IQueryable<TEntity> GetAll()
         {
             return Context.Set<TEntity>();

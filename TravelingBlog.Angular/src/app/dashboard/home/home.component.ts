@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { HomeDetails } from '../models/home.details.interface';
 import { DashboardService } from '../services/dashboard.service';
+import { SubscriberDetails } from '../models/subsciber.details.interface';
+import { TripserviceService } from '../services/tripservice.service';
+import { TripDetails } from '../models/trip.details.interface';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +14,10 @@ import { DashboardService } from '../services/dashboard.service';
 export class HomeComponent implements OnInit {
 
   homeDetails: HomeDetails;
-  public disabled: boolean = false;
-
-  constructor(private dashboardService: DashboardService) { }
+  topTrips:TripDetails[];
+  
+  constructor(private dashboardService: DashboardService, private tripservice:
+    TripserviceService) { }
 
   disableAll() {
     this.disabled = true;
@@ -27,8 +31,13 @@ export class HomeComponent implements OnInit {
       },
         error => {
           // this.notificationService.printErrorMessage(error);
-        });
-
+        }); 
+        this.getTopTrips();
   }
-
+  getTopTrips(){
+    this.tripservice.getTopTrips().subscribe(res=>{
+      this.topTrips = [...res]; 
+      console.log(res)
+    })
+  }
 }

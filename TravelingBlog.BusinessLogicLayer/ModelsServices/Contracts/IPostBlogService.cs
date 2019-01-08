@@ -7,9 +7,6 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
 {
     public interface IPostBlogService : IService<PostBlogDTO, PostBlogFilter>
     {
-        IQueryable<PostBlogDTO> GetPostBlogsPage(PagingModel pageModel, out int total);
-
-        IQueryable<PostBlogDTO> SearchBlog(Search searchQuery);
 
     }
 }

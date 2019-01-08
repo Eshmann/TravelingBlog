@@ -11,6 +11,8 @@ import { DashboardService } from './services/dashboard.service';
 import { AuthGuard } from '../auth.guard';
 import { SettingsComponent } from './settings/settings.component';
 import { TripsComponent } from './trips/trips.component';
+import { TripService } from '../trips/trip.service';
+import { TripserviceService } from './services/tripservice.service';
 
 
 @NgModule({
@@ -22,6 +24,6 @@ import { TripsComponent } from './trips/trips.component';
   ],
   declarations: [RootComponent, HomeComponent, SettingsComponent, TripsComponent],
   exports: [],
-  providers: [AuthGuard, DashboardService]
+  providers: [AuthGuard, DashboardService,TripserviceService]
 })
 export class DashboardModule { }

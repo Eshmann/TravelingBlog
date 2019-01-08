@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SearchService } from '../services/search.services';
 import { Search, Country, Trip } from '../models/search.class';
+import { query } from '@angular/core/src/animation/dsl';
 
 @Component({
   selector: 'app-search',
@@ -10,14 +11,14 @@ import { Search, Country, Trip } from '../models/search.class';
 })
 export class SearchComponent implements OnInit {
 
-    trips: Trip[];
+    trip : Search;
+    trips: Trip[] = [];
     countries: Country[];
-    id:string;
+    query:string;
     countryid: string;
-    totalpages : number;
-    nextpage : boolean = false;
-    prevpage : boolean = false;
-    currentpage : number = 1;
+    page:number = 1;
+    isEmpty:boolean = false;
+    total:number;
   constructor(private searchservice: SearchService, private router: Router, activeRoute: ActivatedRoute) {
   }
 
@@ -25,24 +26,27 @@ export class SearchComponent implements OnInit {
     this.getAllCountries();
   }
 
-  loadTrips(id:string)
+  loadTrips()
   {
-    console.log(this.countryid);
-    this.searchservice.getTrip(id, this.countryid)
-    .subscribe((trips: Search) => {
-      this.trips = trips.result;
-      this.totalpages = trips.total/10;
-      if(trips.total%10!= 0){
-        this.totalpages += 1;
-      }
-      if(this.totalpages > 1 ){
-        this.nextpage = true;
-      }
-    },
-      error => {
-        //this.notificationService.printErrorMessage(error);
-      });
+    this.trips=[];
+    this.searchservice.getTrip(this.query, this.countryid, this.page)
+    .subscribe((resp:Search)=>this.onSuccess(resp));
   }
+  
+  onSuccess(res:Search) {  
+    console.log(res);  
+    if (res != undefined && res.result.length!=0) {  
+      res.result.forEach(item => {  
+        this.trips.push(item);  
+      });
+      this.total = res.total;  
+    }
+    else
+    {
+      this.isEmpty = true;
+    }  
+  }
+  
   getAllCountries(){
     this.searchservice.getCountries()
     .subscribe((countries : Country[]) => {
@@ -53,27 +57,28 @@ export class SearchComponent implements OnInit {
         //this.notificationService.printErrorMessage(error);
       });
   }
-  previous(){
-    if(this.currentpage > 1){
-      this.currentpage--;
-      this.nextpage = true;
-      let k : string;
-      k = this.id + '&pageNumber=' + this.currentpage;
-      this.searchservice.getTrip(k, this.countryid);
-    }
-    if(this.currentpage == 1){
-      this.prevpage = false;
-    }
+  getPage(page:number){
+    if(!this.isEmpty){
+      this.loadTripsForPagination(page);
+    }    
+    window.scrollTo(0,0);
   }
-  
-  next(){
-    if(this.currentpage < this.totalpages){
-      this.currentpage++;
-      this.prevpage = true;
+  loadTripsForPagination(num : number)
+  {
+    this.page = num;
+    this.searchservice.getTrip(this.query, this.countryid, num)
+    .subscribe((resp:Search)=>this.onSuccessForPagination(resp));
+  }
+  onSuccessForPagination(res:Search) {  
+    console.log(res);  
+    if (res.result != undefined && res.result.length!=0) {  
+      this.trips = res.result;
+      this.total = res.total;
     }
-    if(this.currentpage == this.totalpages){
-      this.nextpage = false;
-    }
+    else
+    {
+      this.isEmpty = true;
+    }  
   }
   
 }

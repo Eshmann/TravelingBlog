@@ -8,16 +8,32 @@
 }
 
 .sidenav {
+  right: 0;
+  height: 100%;
+  position: fixed;
+  z-index: 0;
+  background-color: #555;
+  overflow-x: hidden;
   padding-top: 20px;
-  background-color: #ddd6dd;
+  border: 3px solid #5bc0de;
 }
- a {
-  padding: 6px 8px 6px 16px;
+
+.sidenav a {
+  padding: 8px 8px 8px 8px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: #ffffff;
   display: block;
+  transition: 0.3s;
+  text-align: center;
+  border-bottom: 1px solid rgb(24, 23, 23);
 }
-a:hover {
-  color: #312828;
+
+.sidenav a:hover {
+  background-color: #5bc0de;
+  color: #ffffff;
+}
+
+.active {
+  background-color: #5bc0de;
 }
