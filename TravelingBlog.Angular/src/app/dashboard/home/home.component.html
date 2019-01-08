@@ -23,17 +23,15 @@
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col"><h6>Some text <hr></h6></div>
-            <div class="col"><h6>Some text <hr></h6></div>
+            <div class="col"><h6>Place of birth <hr></h6></div>
+            <div class="col"><h6>Email <hr></h6></div>
             <div class="w-100"></div>
-            <div class="col"><h6>Some text <hr></h6></div>
-            <div class="col"><h6>Some text <hr></h6></div>
+            <div class="col"><h6>Place of abode <hr></h6></div>
+            <div class="col"><h6>Phone <hr></h6></div>
             <div class="w-100"></div>
-            <div class="col"><h6>Some text <hr></h6></div>
-            <div class="col"><h6>Some text <hr></h6></div>
+            <div class="col"><h6>Date of birth<hr></h6></div>
+            <div class="col"><h6>Skype <hr></h6></div>
             <div class="w-100"></div>
-            <div class="col"><h6>Some text <hr></h6></div>
-            <div class="col"><h6>Some text <hr></h6></div>
             
           </div>
         </div>
@@ -45,15 +43,13 @@
           <h3>Top Trips</h3>
         </div>
         <div class="card-body">
-          <p>Some text</p><hr>
-          <p>Some text</p><hr>
-          <p>Some text</p><hr>
-          <p>Some text</p><hr>
-          <p>Some text</p><hr>
+          <div *ngFor="let trip of topTrips">
+            <a routerLink = "/fulltrip/{{trip.id}}">{{trip.name}}</a><hr/>
+          </div>
         </div>
       </div>
       <div class="card">
-        <button type="button" class=" btn btn-primary ">See all trips</button>
+        <button type="button" routerLink="/triplist" class=" btn btn-primary ">See all trips</button>
       </div>
     </div>
   </div>
