@@ -55,7 +55,7 @@ namespace TravelingBlog.Helpers
                 {
                     _userManager.CreateAsync(list[i], deserializeObjects[i].Password).Wait();
                     _userManager.AddToRoleAsync(list[i], "Moderator").Wait();
-                    _context.UserInfoes.Add(new UserInfo
+                    _context.UserInfos.Add(new UserInfo
                     {
                         IdentityId = list[i].Id,
                         FirstName = deserializeObjects[i].FirstName,
@@ -76,7 +76,7 @@ namespace TravelingBlog.Helpers
 
                     _userManager.AddToRoleAsync(admin, "Admin").Wait();
                     _userManager.AddToRoleAsync(admin, "Moderator").Wait();
-                    _context.UserInfoes.Add(new UserInfo
+                    _context.UserInfos.Add(new UserInfo
                     {
                         IdentityId = admin.Id,
                         FirstName = "Admin",

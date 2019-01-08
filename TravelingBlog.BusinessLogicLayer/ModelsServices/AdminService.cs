@@ -23,7 +23,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         public async Task<List<UserWithRolesDTO>> GetUsersWithRoles()
         {
-            var userList = await (from user in _context.UserInfoes
+            var userList = await (from user in _context.UserInfos
                                   join app in _context.Users
                                   on user.IdentityId equals app.Id
                                   orderby app.UserName
