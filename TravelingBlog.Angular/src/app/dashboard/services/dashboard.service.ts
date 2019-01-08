@@ -6,11 +6,13 @@ import { ConfigService } from '../../shared/utils/config.service';
 
 import { BaseService } from '../../shared/services/base.service';
 
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 // Add the RxJS Observable operators we need in this app.
 import '../../rxjs-operators';
 import { TripDetails } from '../models/trip.details.interface';
+import { UserDetails } from '../models/user.details.interface';
+import { Body } from '@angular/http/src/body';
 
 @Injectable()
 
@@ -29,51 +31,61 @@ export class DashboardService extends BaseService {
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
 
-    return this.http.get(this.baseUrl + "/api/dashboard/home", { headers })
+    return this.http.get(this.baseUrl + '/api/dashboard/home', { headers })
       .map(response => response.json())
       .catch(this.handleError);
   }
 
-  getTrips(): Observable<TripDetails[]>{
+  getTrips(): Observable<TripDetails[]> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
 
-    return this.http.get(this.baseUrl + "/api/trip/mytrips",{ headers })
+    return this.http.get(this.baseUrl + '/api/trip/mytrips', { headers })
     .map(response => response.json())
     .catch(this.handleError);
   }
 
-  createTrip(trip: TripDetails)
-  {
+  createTrip(trip: TripDetails) {
+
     let headers = new Headers();
-    headers.append('Content-Type','application/json');
+    headers.append('Content-Type', 'application/json');
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+    return this.http.post(this.baseUrl + '/api/trip/addTrip', JSON.stringify(trip), { headers })
+    .map(response => response.json()).catch(this.handleError);
+  }
+
+  updateTrip(trip: TripDetails) {
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
 
-    return this.http.post(this.baseUrl + "/api/trip/addTrip", JSON.stringify(trip), { headers }).map(response => response.json()).catch(this.handleError);
-
+    return this.http.put(this.baseUrl + '/api/trip/' + trip.id , trip, { headers });
   }
 
-  updateTrip(trip: TripDetails)
-  {
+  deleteTrip(id: number) {
+
     let headers = new Headers();
-    headers.append('Content-Type','application/json');
+    headers.append('Content-Type', 'application/json');
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
 
-    return this.http.put(this.baseUrl + "/api/trip/" + trip.id , trip, { headers });
+    return this.http.delete(this.baseUrl + '/api/trip/' + id , { headers });
   }
 
-  deleteTrip(id: number)
-  {
+  updateUser(user: UserDetails) {
+
+    console.log('service');
     let headers = new Headers();
-    headers.append('Content-Type','application/json');
+    headers.append('Content-Type', 'application/json');
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
-
-    return this.http.delete(this.baseUrl + "/api/trip/" + id , { headers });
+    return this.http.put(this.baseUrl + '/api/settings/editusername', user, {headers})
+    .map(response => response.json())
+    .catch(this.handleError);
   }
-
 }

@@ -1,19 +1,18 @@
 <div class="container-fluide"> 
   <div class="row content">
-    <div class="col-sm-2  sidenav">
-        <a href="#">block_1</a>
-        <a href="#">block_2</a>
-        <a href="#">block_3</a>
-        <a href="#">block_4</a>
+    <div class="col-sm-2 sidenav nav-pills">
+        <a class="nav-link" href="#" routerLinkActive="active" routerLink="/dashboard/home">Home</a>
+        <a class="nav-link" href="#">Subscrib</a>
+        <a class="nav-link" href="#"routerLinkActive="active" routerLink="/dashboard/trips">My Trips</a>
+        <a class="nav-link" href="#"routerLinkActive="active" routerLink="/dashboard/settings">Settings</a>
     </div>
-      <div class="col-sm-8">
-        <router-outlet></router-outlet>
-      </div>
+    <div class="col-sm-8">
+    <router-outlet></router-outlet>
+    </div>
     <div class="col-sm-2 sidenav nav-pills">
       <a class="nav-link" href="#" routerLinkActive="active" routerLink="/dashboard/home">Home</a>
       <a class="nav-link" href="#">Subscrib</a>
       <a class="nav-link" href="#"routerLinkActive="active" routerLink="/dashboard/trips">My Trips</a>
-      <a class="nav-link" href="#">Saved</a>
       <a class="nav-link" href="#"routerLinkActive="active" routerLink="/dashboard/settings">Settings</a>
     </div>
   </div>

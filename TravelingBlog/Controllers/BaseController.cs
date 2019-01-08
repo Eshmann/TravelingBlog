@@ -10,10 +10,16 @@ namespace TravelingBlog.Controllers
     public abstract class BaseController<TDto, TFilter> : Controller
     {
         protected IService<TDto, TFilter> service;
+        private ISettingsService settingsService;
 
         public BaseController(IService<TDto, TFilter> service)
         {
             this.service = service;
+        }
+
+        protected BaseController(ISettingsService settingsService)
+        {
+            this.settingsService = settingsService;
         }
 
         [AllowAnonymous]

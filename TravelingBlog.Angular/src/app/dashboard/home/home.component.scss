@@ -1,3 +1,7 @@
+img {
+  width: 120px ;
+  height: 120px;
+}
 .card {
     background-color: white;
     margin-left: 15px;
@@ -6,8 +10,13 @@
       h3{
         color: aliceblue;
       }
-      border-radius: 10px;
-      background-color: rgb(71, 71, 71);
+
+    }
+    .card-body{
+      .botton1{
+        margin-top: 15px;
+        text-align: center;
+      } 
     }
     hr{
       color: #f00;
@@ -15,8 +24,6 @@
       margin: 2px;
       height: 1px;
     }
-    background-color: rgba(107, 107, 110, 0.055);
-    border-radius: 15px;
  }
  .row.content{
     height: 100%;
@@ -34,13 +41,11 @@
     h2{
       color: aliceblue;
     }
-    border-radius: 10px;
     margin-top: 15px;
     margin-bottom: 15px;
     padding: 20px;
     font-size: 20px;
     text-align: 150px;
-    background: rgb(71, 71, 71);
   }
 
   .leftcolumn {   
@@ -70,7 +75,7 @@
     margin-top: 35px;
     margin-bottom: 0%;
   }
-
+  
   hr{
     color: #f00;
     background-color: #f00;
@@ -78,13 +83,10 @@
     height: 3px;
   }
 
-  .spus button{
-    margin-left: 15px;
-  }
-
   .media-body{
     .btn.btn-secondary{
-      margin-top: 8px;
-      margin-right: 60px;
+      margin-top: 18px;
+      margin-right: 0px;
     }
   }
+

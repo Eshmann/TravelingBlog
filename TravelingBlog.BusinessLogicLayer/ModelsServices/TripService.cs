@@ -66,7 +66,6 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             return userTrips.Select(t => mapper.Map<TripDTO>(t));
         }
 
-
         public IEnumerable<TripDTO> GetTripsWithHighestRating(int count)
         {
             var tripsCount = Repository.GetAll().Count();
