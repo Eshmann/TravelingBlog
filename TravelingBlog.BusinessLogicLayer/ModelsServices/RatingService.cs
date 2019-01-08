@@ -58,7 +58,6 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
         {
             Expression<Func<Rating, bool>> result = t => true;
 
-
             return result;
         }
     }
