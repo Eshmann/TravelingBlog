@@ -23,10 +23,5 @@ export class ShortTripService extends BaseService{
         .map(response => response.json())
         .catch(this.handleError);
     }
-    createNewRating():Observable<STrip[]>{
-
-        return this.http.get(this.baseUrl + "/api/trip/addtrip")
-        .map(response => response.json())
-        .catch(this.handleError);
-    }
+    
 }

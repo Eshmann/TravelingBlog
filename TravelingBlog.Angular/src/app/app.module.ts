@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, XHRBackend } from '@angular/http';
 import { AuthenticateXHRBackend } from './authenticate-xhr.backend';
 
 import { routing } from './app.routing';
-
 /* App Root */
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-
 
 /* Account Imports */
 import { AccountModule } from './account/account.module';
@@ -21,24 +19,20 @@ import { EditModule } from './edit/edit.module';
 import { ConfigService } from './shared/utils/config.service';
 import { FooterComponent } from './footer/footer.component';
 import {HomeModule} from './home/home.module';
-//import {ShortTripComponent} from './short-trip/short-trip.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
-   // ShortTripComponent
+    FooterComponent
   ],
   imports: [
     AccountModule,
     DashboardModule,
     EditModule,
     BrowserModule,
-    FormsModule,
     HttpModule,
     HomeModule,
-    ReactiveFormsModule,
     routing
   ],
   providers: [ConfigService, {

@@ -11,7 +11,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
 
         IList<TripDTO> GetTripsPage(PagingModel pageModel, out int total);
 
-        IEnumerable<TripDTO> GetTripsWithHighestRating();
+        IEnumerable<TripWithUserDTO> GetTripsWithHighestRating();
 
         IEnumerable<TripDTO> GetRandomTrips(int count, List<TripDTO> trips);
 

@@ -54,28 +54,7 @@ namespace TravelingBlog.Controllers
             return Ok(tripWithBlogs);
         }
 
-        //[AllowAnonymous]
-        //[Route("bestTrip")]
-        //[HttpGet]
-        //public IActionResult GetTripsWithHighestRating([FromBody]int count)
-        //{
-        //    var trips = tripService.GetTripsWithHighestRating(count);
-        //    var bestTrips = new List<TripDTO>();
-
-        //    logger.LogInfo("Getting best trips");
-
-        //    foreach (var t in trips)
-        //    {
-        //        if (t != null)
-        //        {
-        //            bestTrips.Add(t);
-        //        }
-        //    }
-
-        //    return Ok(bestTrips);
-        //}
-
-
+        
         [AllowAnonymous]
         [HttpGet("bestTrip")]
         public IActionResult GetTripsWithHighestRating()
@@ -84,6 +63,7 @@ namespace TravelingBlog.Controllers
             
             return Ok(trips);
         }
+
 
         [Route("add")]
         [HttpPost]
