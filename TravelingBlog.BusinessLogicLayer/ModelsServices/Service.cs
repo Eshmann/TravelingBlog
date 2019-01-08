@@ -53,7 +53,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
         #region Extracts methods
         public TDto Get(int id)
         {
-            var entity = Repository.Get(id);
+            var entity = Repository.Get(x =>x.Id == id);
 
             return mapper.Map<TDto>(entity);
         }

@@ -21,10 +21,33 @@ namespace XUnitTest.ServiceTests
     {
         private readonly List<Trip> _trips;
 
-        private List<Trip> soloTrip;
+        private Trip soloTrip;
 
         public TripServiceTest()
         {
+            soloTrip = new Trip
+            {
+                Id = 10,
+                Name = "Trip 1 testing",
+                IsDone = false,
+                UserInfoId = 1,
+                Description = "Trip description 1",
+                RatingTrip = 3.0,
+                PostBlogs = new List<PostBlog>()
+                {
+                    new PostBlog
+                    {
+                        Name = "Pb 1",
+                        Id = 10,
+                        Plot = "Plot 1",
+                        TripId = 10
+                    }
+                },
+                UserInfo = new UserInfo
+                {
+                    Id = 2
+                }
+            };
             _trips = new List<Trip>
             {
                 new Trip
@@ -126,6 +149,7 @@ namespace XUnitTest.ServiceTests
             Assert.Equal(3, tripDtoa.Count());
         }
 
+
         [Fact]
         public void GetTripsWithBlogs()
         {
@@ -175,6 +199,71 @@ namespace XUnitTest.ServiceTests
 
             //Assert
             Assert.True(isAdded);
+        }
+
+        [Fact]
+        public void RemoveTrip()
+        {
+
+            //Arrange
+            TripDTO tripDto = new TripDTO
+            {
+                Id = 1,
+                Name = "",
+                RatingTrip = 3,
+                Description = "",
+                IsDone = false,
+                UserInfoId = 1
+            };
+            bool isRemoved = false;
+            Mock<IUnitOfWork> unitOfWorkMock = new Mock<IUnitOfWork>();
+            Mock<IRepository<Trip>> repositoryMock = new Mock<IRepository<Trip>>();
+            repositoryMock.Setup(repo => repo.Get(It.IsAny<Expression<Func<Trip, bool>>>()))
+                .Returns<Expression<Func<Trip, bool>>>(predicate =>
+                    _trips.Where(predicate.Compile()).AsQueryable());
+            repositoryMock.Setup(repo => repo.Remove(It.IsAny<Trip>())).Callback(() => isRemoved = true);
+            unitOfWorkMock.Setup(getRepo => getRepo.GetRepository<Trip>()).Returns(repositoryMock.Object);
+            Mock<ILoggerManager> loggerMock = new Mock<ILoggerManager>();
+            Mock<IMapper> mapper = new Mock<IMapper>();
+            TripService studentService = new TripService(unitOfWorkMock.Object, loggerMock.Object, mapper.Object);
+
+            //Act
+            studentService.Remove(tripDto);
+
+            //Assert
+            Assert.True(isRemoved);
+        }
+
+        [Fact]
+        public void UpdateTrip()
+        {
+            //Arrange
+            TripDTO tripDto = new TripDTO
+            {
+                Id = 1,
+                Name = "",
+                RatingTrip = 3,
+                Description = "",
+                IsDone = false,
+                UserInfoId = 1
+            };
+            bool isUpdated = false;
+            Mock<IUnitOfWork> unitOfWorkMock = new Mock<IUnitOfWork>();
+            Mock<IRepository<Trip>> repositoryMock = new Mock<IRepository<Trip>>();
+            repositoryMock.Setup(repo => repo.Get(It.IsAny<Expression<Func<Trip, bool>>>()))
+                .Returns<Expression<Func<Trip, bool>>>(predicate =>
+                    _trips.Where(predicate.Compile()).AsQueryable());
+            repositoryMock.Setup(repo => repo.Update(It.IsAny<Trip>())).Callback(() => isUpdated = true);
+            unitOfWorkMock.Setup(getRepo => getRepo.GetRepository<Trip>()).Returns(repositoryMock.Object);
+            Mock<ILoggerManager> loggerMock = new Mock<ILoggerManager>();
+            Mock<IMapper> mapper = new Mock<IMapper>();
+            TripService studentService = new TripService(unitOfWorkMock.Object, loggerMock.Object, mapper.Object);
+            //Act
+
+            studentService.Update(tripDto);
+            //Assert
+            Assert.True(isUpdated);
+
         }
 
 
