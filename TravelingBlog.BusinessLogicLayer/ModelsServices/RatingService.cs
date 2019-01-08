@@ -54,7 +54,6 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         }
 
-
         protected override Expression<Func<Rating, bool>> GetFilter(RatingFilter filter)
         {
             Expression<Func<Rating, bool>> result = t => true;
