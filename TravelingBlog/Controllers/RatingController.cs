@@ -17,7 +17,7 @@ namespace TravelingBlog.Controllers
 {
     [AllowAnonymous]
     [Route("api/[controller]")]
-    public class RatingController : BaseController<RatingDTO,RatingFilter>
+    public class RatingController : BaseController<RatingDTO, RatingFilter>
     {
         private readonly ClaimsPrincipal caller;
         public IRatingService ratingService;
@@ -28,8 +28,7 @@ namespace TravelingBlog.Controllers
             caller = httpContextAccessor.HttpContext.User;
             this.ratingService = ratingService;
         }
-        
-        
+
         [HttpPost("add")]
         [Authorize]
         public IActionResult AddRating([FromBody]RatingDTO ratingDTO)
