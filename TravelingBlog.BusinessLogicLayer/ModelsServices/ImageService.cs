@@ -15,9 +15,8 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
         public ImageService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
             : base(unitOfWork, logger, mapper) { }
 
-        private IRepository<UserInfo> UserRepository => unitOfWork.GetRepository<UserInfo>();
 
-        protected override Expression<Func<Image, bool>> GetFilter(ImageFilter filter)
+        public override Expression<Func<Image, bool>> GetFilter(ImageFilter filter)
         {
             Expression<Func<Image, bool>> result = i => true;
 

@@ -1,0 +1,30 @@
+[
+  {
+    "email": "edikzaxarin@gmail.com",
+    "password": "23031999",
+    "firstname": "Eduard",
+    "lastname": "Zakharin",
+    "location": "Ukraine"
+  },
+  {
+    "email": "danilmonets@gmail.com",
+    "password": "password",
+    "firstname": "Danil",
+    "lastname": "Monets",
+    "location": "Ukraine"
+  },
+  {
+    "email": "alexel@gmail.com",
+    "password": "password",
+    "firstname": "Alexel",
+    "lastname": "Yemelin",
+    "location": "Ukraine"
+  },
+  {
+    "email": "stasiv@gmail.com",
+    "password": "password",
+    "firstname": "Nazar",
+    "lastname": "Stasiv",
+    "location": "Ukraine"
+  }
+]

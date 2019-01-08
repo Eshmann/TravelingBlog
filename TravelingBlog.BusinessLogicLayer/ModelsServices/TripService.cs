@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -34,10 +34,12 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             return result;
         }
 
-        public IList<TripDTO> GetTripsPage(PagingModel pageModel, out int total)
+        public IList<TripDTODa> GetTripsPage(PagingModel pageModel, out int total)
         {
             var trips = Repository
                 .GetAll()
+                .Include(t => t.UserInfo)
+                .ThenInclude(u => u.Identity)
                 .OrderBy(t => t.Name)
                 .ThenBy(x => x.Description)
                 .ToList();
@@ -49,7 +51,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
                 .Take(pageModel.PageSize)
                 .ToList();
 
-            return result.Select(t => mapper.Map<TripDTO>(t)).ToList();
+            return result.Select(t => mapper.Map<TripDTODa>(t)).ToList();
         }
 
         public IEnumerable<TripDTO> GetUserTrips(string id)
@@ -67,37 +69,42 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
         }
 
 
+
         public IEnumerable<TripWithUserDTO> GetTripsWithHighestRating()
         {
             var tripsCount = Repository.GetAll().Count();
             List<TripWithUserDTO> trips = new List<TripWithUserDTO>();
 
-            var result = Repository
-                .GetAll()
-                .OrderByDescending(t => t.RatingTrip)
-                .Take(3)
-                .Include(x => x.UserInfo)
-                .ToList();
+            // public IList<TripWithUserDTO> GetTripsWithHighestRating()
+            
 
-            foreach (var r in result)
-            {
-                trips.Add(new TripWithUserDTO
+                var result = Repository
+                    .GetAll().Include(x => x.UserInfo)
+                    .OrderByDescending(t => t.RatingTrip)
+                    .Take(3)
+                    .Include(x => x.UserInfo)
+                    .ToList();
+                trips = result.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
+
+                foreach (var r in result)
                 {
-                    Id = r.Id,
-                    Name = r.Name,
-                    Description = r.Description,
-                    FirstName = r.UserInfo.FirstName,
-                    LastName = r.UserInfo.LastName,
-                    RatingTrip = r.RatingTrip,
-                    UserId = r.UserInfoId
-                   
-                });
-        
-            }
+                    trips.Add(new TripWithUserDTO
+                    {
+                        Id = r.Id,
+                        Name = r.Name,
+                        Description = r.Description,
+                        FirstName = r.UserInfo.FirstName,
+                        LastName = r.UserInfo.LastName,
+                        RatingTrip = r.RatingTrip,
+                        UserId = r.UserInfoId
 
-            return trips.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
+                    });
+
+                }
+
+                return trips.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
+            
         }
-
         public IEnumerable<TripDTO> GetRandomTrips(int count, List<TripDTO> trips)
         {
             var rnd = new Random();
@@ -115,63 +122,26 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
             return result.Select(t => mapper.Map<TripDTO>(t)).ToList();
         }
-        
 
-        public IList<TripWithUserDTO> SearchTrips(Search searchQuery, out int total)
+
+
+        public override Expression<Func<Trip, bool>> GetFilter(TripFilter filter)
         {
-            List<TripWithUserDTO> trips = new List<TripWithUserDTO>();
-            var word = searchQuery.SearchQuery;
-            var result = Repository
-                .GetAll()
-                .Where(x => x.Name.ToLower().Contains(word)
-                            || x.Description.ToLower().Contains(word))
-                .Include(i => i.UserInfo);
+            Expression<Func<Trip, bool>> result = e => true;
 
-            total = result.Count();
+            //if (filter.Name != null)
+            //{
+            //    result = CombineExpressions(result, t => t.Name == filter.Name);
+            //}
 
-            trips = result.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
-
-            var skip = trips
-                .Skip(searchQuery.PageSize * (searchQuery.PageNumber - 1))
-                .Take(searchQuery.PageSize)
-                .ToList();
-
-            return skip;
-        }
-
-        public IList<TripWithUserDTO> FilterTripsByCountry(Filter filter, out int total)
-        {
-            List<TripWithUserDTO> trips = new List<TripWithUserDTO>();
-            var query = Repository
-                .GetAll()
-                .Where(i => i.CountryTrips.Any(x => x.Country.Id == filter.Id))
-                .Include(a => a.UserInfo);
-
-            total = query.Count();
-
-            trips = query.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
-
-            var result = trips
-                .Skip(filter.PageSize * (filter.PageNumber - 1))
-                .Take(filter.PageSize)
-                .ToList();
-
-            return result;
-        }
-
-
-        protected override Expression<Func<Trip, bool>> GetFilter(TripFilter filter)
-        {
-            Expression<Func<Trip, bool>> result = t => true;
-
-            if (filter.Name != null)
+            if (!String.IsNullOrEmpty(filter?.Name))
             {
-                result = CombineExpressions(result, t => t.Name == filter.Name);
+                result = CombineExpressions(result, e => e.Name == filter.Name);
             }
 
             if (filter.Id != null)
             {
-                result = CombineExpressions(result, t => t.Id == filter.Id);
+                result = CombineExpressions(result, e => e.Id == filter.Id);
             }
 
             return result;

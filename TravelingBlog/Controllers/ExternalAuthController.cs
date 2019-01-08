@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.Auth;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
-using TravelingBlog.DataAcceesLayer.Repositories.Contracts;
 using TravelingBlog.Helpers;
 using TravelingBlog.Models.AuthModels;
 using TravelingBlog.Models.ViewModels;
@@ -17,20 +17,22 @@ namespace TravelingBlog.Controllers
     [Route("api/[controller]/[action]")]
     public class ExternalAuthController : Controller
     {
-        private readonly IUnitOfWork unitOfWork;
         private readonly UserManager<AppUser> userManager;
         private readonly FacebookAuthSettings fbAuthSettings;
         private readonly IJwtFactory jwtFactory;
         private readonly JwtIssuerOptions jwtOptions;
         private static readonly HttpClient Client = new HttpClient();
 
-        public ExternalAuthController(IOptions<FacebookAuthSettings> fbAuthSettingsAccessor, UserManager<AppUser> userManager, IUnitOfWork unitOfWork, IJwtFactory jwtFactory, IOptions<JwtIssuerOptions> jwtOptions)
+        private readonly IUserService _userService;
+
+        public ExternalAuthController(IOptions<FacebookAuthSettings> fbAuthSettingsAccessor, UserManager<AppUser> userManager, IJwtFactory jwtFactory, IOptions<JwtIssuerOptions> jwtOptions, IUserService userService)
         {
             fbAuthSettings = fbAuthSettingsAccessor.Value;
             this.userManager = userManager;
-            this.unitOfWork = unitOfWork;
+       
             this.jwtFactory = jwtFactory;
             this.jwtOptions = jwtOptions.Value;
+            _userService = userService;
         }
 
         // POST api/externalauth/facebook
@@ -70,8 +72,11 @@ namespace TravelingBlog.Controllers
 
                 if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
-                unitOfWork.GetRepository<UserInfo>().Add(new UserInfo { IdentityId = appUser.Id, FirstName = userInfo.FirstName, LastName = userInfo.LastName });
-                unitOfWork.Complete();
+                appUser = await userManager.FindByNameAsync(appUser.UserName);
+                await userManager.AddToRoleAsync(appUser, "Member");
+
+                _userService.Add(new UserInfo { IdentityId = appUser.Id, FirstName = userInfo.FirstName, LastName = userInfo.LastName });
+
             }
 
             // generate the jwt for the local user...
@@ -82,9 +87,10 @@ namespace TravelingBlog.Controllers
                 return BadRequest(Errors.AddErrorToModelState("login_failure", "Failed to create local user account.", ModelState));
             }
 
-            var jwt = await Tokens.GenerateJwt(jwtFactory.GenerateClaimsIdentity(localUser.UserName, localUser.Id),
-                                               jwtFactory, localUser.UserName, jwtOptions, 
-                                               new JsonSerializerSettings { Formatting = Formatting.Indented });
+            var roles = await userManager.GetRolesAsync(localUser);
+            var jwt = await Tokens.GenerateJwt(jwtFactory.GenerateClaimsIdentity(user.UserName, user.Id),
+                                               jwtFactory, user.UserName, jwtOptions,
+                                               new JsonSerializerSettings { Formatting = Formatting.Indented }, roles);
 
             return new OkObjectResult(jwt);
         }

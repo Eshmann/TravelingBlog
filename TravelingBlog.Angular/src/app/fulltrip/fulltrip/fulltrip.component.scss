@@ -1,0 +1,40 @@
+.noheader{
+    margin-top: 5em;
+    height: 100vh;
+}
+.hrefs{
+    margin-top : 10px;
+}
+.btn {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+
+}
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  .active, .btn:hover {
+  }
+  
+  /* Style the collapsible content. Note: hidden by default */
+  .lol {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    font-family: 'Quicksand', sans-serif;
+  }
+  .table-bordered{
+        }
+  .fonts{
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+  }

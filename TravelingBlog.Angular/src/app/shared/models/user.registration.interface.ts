@@ -4,4 +4,5 @@ export interface UserRegistration {
   firstName: string;
   lastName: string;
   location: string;
+  captchaToken:string;
 }

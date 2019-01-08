@@ -4,9 +4,17 @@
  * Base structure
  */
 
-/* Move down content because we have a fixed navbar that is 3.5rem tall */
+html{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  padding-top: 0rem;
+  min-height: 100%;
+  padding: 0;
+  margin: 0 auto;
+  position: relative;
 }
 
 /*
@@ -17,4 +25,60 @@ h1 {
   padding-bottom: 9px;
   margin-bottom: 20px;
   border-bottom: 1px solid rgb(236, 12, 12);
+}
+
+.app-loading {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.app-loading .spinner {
+  height: 200px;
+  width: 200px;
+  animation: rotate 2s linear infinite;
+  transform-origin: center center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.app-loading .spinner .path {
+  stroke-dasharray: 5, 200;
+  stroke-dashoffset: 0;
+  animation: dash 2.5s ease-in-out infinite;
+  stroke-linecap: round;
+  stroke: #ddd;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 300;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 300;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 300;
+    stroke-dashoffset: -124px;
+  }
+}
+.app-loading {
+  .logo {
+    width: 700px;
+    height: 700px;
+    
+    // this way asset gets processed by webpack 
+    background: url(./assets/logo.png) center center no-repeat; 
+  }
 }

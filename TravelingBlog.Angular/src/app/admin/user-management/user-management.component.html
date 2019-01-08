@@ -1,0 +1,40 @@
+<div *ngIf="tableMode; else create">
+  <div class="row">
+    <table class="table">
+      <tr>
+        <th class="col-2 col-lg-4 col-md-4 col-sm-4">User Id</th>
+        <th class="col-2 col-lg-4 col-md-4 col-sm-4">Username</th>
+        <th class="col-2 col-lg-4 col-md-4 col-sm-4">Active roles</th>
+        <th class="col-2 col-lg-4 col-md-4 col-sm-4"></th>
+      </tr>
+      <tr *ngFor="let user of users">
+        <td class="col-2 col-lg-4 col-md-4 col-sm-4">{{user.id}}</td>
+        <td class="col-2 col-lg-4 col-md-4 col-sm-4">{{user.userName}}</td>
+        <td class="col-2 col-lg-4 col-md-4 col-sm-4">{{user.roles}}</td>
+        <td class="col-2 col-lg-4 col-md-4 col-sm-4"><button class="btn btn-info" (click)="editRolesModal(user)">Edit Roles</button></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<ng-template #create>
+  <div class="container">
+    <h4>Edit Roles for {{userToEditRoles.userName}}</h4>
+    <form #rolesForm="ngForm" id="rolesForm">
+        <div class="form-check" *ngFor="let role of roles">
+          <input
+            class="form-check-input"
+            type="checkbox" value="role.name"
+            [checked]="role.checked"
+            (change)="role.checked = !role.checked"
+            [disabled]="role.name === 'Admin' && userToEditRoles.roles.includes('Admin')">
+          <label>{{role.name}}</label>
+        </div>
+    </form>
+    
+    <div>
+      <button value="Save" (click)="save()" form="rolesForm" class="btn btn-success">Submit</button>
+      <button value="Cancel" (click)="cancel()" class="btn btn-warning">Cancel</button>
+    </div>
+  </div>
+</ng-template>

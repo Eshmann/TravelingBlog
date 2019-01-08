@@ -7,6 +7,7 @@ using TravelingBlog.BusinessLogicLayer.SecondaryServices.Mappings;
 using TravelingBlog.DataAcceesLayer.Data;
 using TravelingBlog.DataAcceesLayer.Repositories;
 using TravelingBlog.DataAcceesLayer.Repositories.Contracts;
+using TravelingBlog.Helpers;
 
 namespace TravelingBlog.Extensions
 {
@@ -16,6 +17,11 @@ namespace TravelingBlog.Extensions
         {
             var connectionString = config.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+        }
+        
+        public static void ConfigureSeed(this IServiceCollection services)
+        {
+            services.AddTransient<Seed>();
         }
 
         public static void ConfigureCors(this IServiceCollection services)

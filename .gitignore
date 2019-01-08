@@ -821,3 +821,5 @@ typings/
 #alexel37
 TravelingBlog.Angular/package-lock.json
 TravelingBlog/wwwroot/*
+
+package-lock.json

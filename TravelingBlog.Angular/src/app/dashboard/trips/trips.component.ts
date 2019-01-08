@@ -22,8 +22,7 @@ export class TripsComponent implements OnInit {
     this.loadTrips();
   }
 
-  loadTrips()
-  {
+  loadTrips() {
     this.dashboardService.getTrips()
     .subscribe((trips: TripDetails[]) => {
       this.trips = trips;
@@ -33,41 +32,32 @@ export class TripsComponent implements OnInit {
       });
   }
 
-  save(){
-    if(this.trip.id == null)
-    {
+  save() {
+    if (this.trip.id == null) {
       this.dashboardService.createTrip(this.trip).subscribe(data => this.loadTrips());
-      
-    }
-    else
-    {
-      this.dashboardService.updateTrip(this.trip).subscribe(data => this.loadTrips())
+    } else {
+      this.dashboardService.updateTrip(this.trip).subscribe(data => this.loadTrips());
     }
     this.cancel();
   }
 
-  editTrip(trip: TripDetails)
-  {
-    this.trip=trip;
+  editTrip(trip: TripDetails) {
+    this.trip = trip;
   }
 
-  cancel()
-  {
+  cancel() {
     this.trip = new TripDetails();
     this.tableMode = true;
   }
 
-  delete(trip: TripDetails)
-  {
+  delete(trip: TripDetails) {
     var r = confirm("Are you sure?");
-    if(r==true)
-    {
+    if (r == true) {
       this.dashboardService.deleteTrip(trip.id).subscribe(data => this.loadTrips());
     }
   }
 
-  add()
-  {
+  add() {
     this.cancel();
     this.tableMode = false;
   }

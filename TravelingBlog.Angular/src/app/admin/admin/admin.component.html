@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Admin Panel</h2>
+    <tabset>
+      <tab heading="User Management" *appHasRole="['Admin']">
+        <div class="adminContainer">
+            <app-user-management></app-user-management>
+        </div>
+      </tab>
+    </tabset>
+</div>

@@ -46,7 +46,7 @@ float: right;
 position: fixed
 }
 
-.button-section{
+.button-section {
 text-align: center;
 }
 
@@ -165,7 +165,6 @@ padding: 10px;
 
 .col-md-4{
 flex: 0 0 33.333333%;
-//max-width: 33.333333%
 max-width: 100%;
 }
 
@@ -237,16 +236,13 @@ color: ghostwhite;
 font-size: 30px;
 }
 
+
 .horiz-scroll{
-  //padding-left: 40px;
- // opacity: 0.5;
+
   width: 100px;
   height: 100px;
   padding-left: 40px;
   bottom: 120px;
-  //overflow-y: auto;
- // overflow-x: hidden;
-  //transform: rotate(90deg);
   transform-origin: right top;
   position: relative;
   
@@ -395,3 +391,4 @@ h4 {
   margin-inline-end: 0px;
   font-weight: bold;
 }
+
