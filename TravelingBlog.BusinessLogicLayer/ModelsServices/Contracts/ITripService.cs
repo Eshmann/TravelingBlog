@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using TravelingBlog.Models;
 using TravelingBlog.Models.Filters;
 using TravelingBlog.Models.ViewModels.DTO;
@@ -11,9 +11,8 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
 
         IList<TripDTODa> GetTripsPage(PagingModel pageModel, out int total);
 
-        IEnumerable<TripWithUserDTO> GetTripsWithHighestRating();
 
-       // IList<TripWithUserDTO> GetTripsWithHighestRating();
+        IList<TripWithUserDTO> GetTripsWithHighestRating();
 
         IEnumerable<TripDTO> GetRandomTrips(int count, List<TripDTO> trips);
 
