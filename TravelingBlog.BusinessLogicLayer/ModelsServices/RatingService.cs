@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +54,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         }
 
-        protected override Expression<Func<Rating, bool>> GetFilter(RatingFilter filter)
+        public override Expression<Func<Rating, bool>> GetFilter(RatingFilter filter)
         {
             Expression<Func<Rating, bool>> result = t => true;
 
