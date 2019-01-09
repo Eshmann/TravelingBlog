@@ -3,8 +3,6 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
-
-  
     "@angular/animations": "5.0.0",
     "@angular/common": "5.0.0",
     "@angular/compiler": "5.0.0",
@@ -32,7 +30,6 @@
     "node-sass": "4.10.0",
     "rxjs": "5.5.2",
     "zone.js": "0.8.14"
-
   },
   "scripts": {
     "ng": "ng",
@@ -44,7 +41,10 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",
-
+    "@angular-devkit/core": "7.0.4",
+    "@angular/cli": "7.0.6",
+    "@angular/compiler-cli": "5.0.0",
+    "@angular/language-service": "5.0.0",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",

@@ -70,40 +70,41 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
 
 
-        public IEnumerable<TripWithUserDTO> GetTripsWithHighestRating()
+
+
+
+        public IList<TripWithUserDTO> GetTripsWithHighestRating()
         {
             var tripsCount = Repository.GetAll().Count();
             List<TripWithUserDTO> trips = new List<TripWithUserDTO>();
 
-            // public IList<TripWithUserDTO> GetTripsWithHighestRating()
-            
 
-                var result = Repository
+            var result = Repository
                     .GetAll().Include(x => x.UserInfo)
                     .OrderByDescending(t => t.RatingTrip)
                     .Take(3)
                     .Include(x => x.UserInfo)
                     .ToList();
-                trips = result.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
+           
 
-                foreach (var r in result)
+            foreach (var r in result)
+            {
+                trips.Add(new TripWithUserDTO
                 {
-                    trips.Add(new TripWithUserDTO
-                    {
-                        Id = r.Id,
-                        Name = r.Name,
-                        Description = r.Description,
-                        FirstName = r.UserInfo.FirstName,
-                        LastName = r.UserInfo.LastName,
-                        RatingTrip = r.RatingTrip,
-                        UserId = r.UserInfoId
+                    Id = r.Id,
+                    Name = r.Name,
+                    Description = r.Description,
+                    FirstName = r.UserInfo.FirstName,
+                    LastName = r.UserInfo.LastName,
+                    RatingTrip = r.RatingTrip,
+                    UserId = r.UserInfoId
 
-                    });
+                });
 
-                }
+            }
 
-                return trips.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
-            
+            return trips.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
+
         }
         public IEnumerable<TripDTO> GetRandomTrips(int count, List<TripDTO> trips)
         {
