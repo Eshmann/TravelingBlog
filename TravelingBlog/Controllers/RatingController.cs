@@ -17,13 +17,12 @@ namespace TravelingBlog.Controllers
 {
     [AllowAnonymous]
     [Route("api/[controller]")]
-    public class RatingController : BaseController<RatingDTO, RatingFilter>
+    public class RatingController : Controller
     {
         private readonly ClaimsPrincipal caller;
         public IRatingService ratingService;
 
         public RatingController(IRatingService ratingService, IHttpContextAccessor httpContextAccessor)
-            : base(ratingService)
         {
             caller = httpContextAccessor.HttpContext.User;
             this.ratingService = ratingService;

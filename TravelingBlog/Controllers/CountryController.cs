@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
@@ -11,6 +12,7 @@ using TravelingBlog.Models.ViewModels.DTO;
 
 namespace TravelingBlog.Controllers
 {
+    [Authorize(Policy = "RequireModeratorAndAdmin")]
     [Route("api/[controller]")]
     public class CountryController : BaseController<CountryDTO, CountryFilter>
     {

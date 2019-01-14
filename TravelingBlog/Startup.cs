@@ -55,6 +55,7 @@ namespace TravelingBlog
             services.ConfigureSeed();
 
             services.AddScoped<ITripService, TripService>();
+
             services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IAdminService, AdminService>();
@@ -66,7 +67,6 @@ namespace TravelingBlog
             services.AddScoped<ICountryService, CountryService>();
 
             services.AddScoped<IAzureBlob, AzureBlob>();
-
 
             services.AddScoped<IRatingService, RatingService>();
 

@@ -14,51 +14,40 @@ using TravelingBlog.Models.ViewModels.DTO;
 
 namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 {
-    public class RatingService : Service<Rating, RatingDTO, RatingFilter>, IRatingService
+    public class RatingService : IRatingService
     {
-        new IUnitOfWork unitOfWork;
-        public RatingService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
-            : base(unitOfWork, logger, mapper)
+        private readonly IUnitOfWork unitOfWork;
+
+        public RatingService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
 
-
         public void AddRating(RatingDTO ratingDTO, string identityId)
         {
-            var user = unitOfWork.GetRepository<UserInfo>().GetAll();
-            var list = new Rating();
-            foreach (var i in user)
+            var user = unitOfWork.GetRepository<UserInfo>().Find(u => u.IdentityId == identityId);
+            var list = new Rating
             {
-                if (i.IdentityId == identityId)
-                {
-                    list.Id = ratingDTO.Id;
-                    list.TripId = ratingDTO.TripId;
-                    list.UserInfoId = i.Id;
-                    list.RatingPostBlog = ratingDTO.Rating;
+                Id = ratingDTO.Id,
+                TripId = ratingDTO.TripId,
+                UserInfoId = user.Id,
+                RatingPostBlog = ratingDTO.Rating
+            };
 
-                    var rtg = unitOfWork.GetRepository<Rating>().GetAll();
-                    foreach(var item in rtg)
-                    {
-                        if(item.TripId==list.TripId && item.UserInfoId==list.UserInfoId)
-                        {
-                            return;
-                        }
-                    }
+            var rtg = unitOfWork.GetRepository<Rating>()
+                .Find(item=> item.TripId == list.TripId && item.UserInfoId == list.UserInfoId);
 
-                    break;
-                }
+            if (rtg != null)
+            {
+                rtg.RatingPostBlog = ratingDTO.Rating;
+                unitOfWork.GetRepository<Rating>().Update(rtg);
+                unitOfWork.Complete();
             }
-            unitOfWork.GetRepository<Rating>().Add(list);
-            unitOfWork.Complete();
-
-        }
-
-        public override Expression<Func<Rating, bool>> GetFilter(RatingFilter filter)
-        {
-            Expression<Func<Rating, bool>> result = t => true;
-
-            return result;
+            else
+            {
+                unitOfWork.GetRepository<Rating>().Add(list);
+                unitOfWork.Complete();
+            }
         }
     }
 }

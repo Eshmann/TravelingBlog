@@ -54,32 +54,12 @@ namespace TravelingBlog.Controllers
             return Ok();
         }
 
-        [HttpDelete]
-        public virtual IActionResult Delete([FromBody]TDto dto)
+        [HttpDelete("{id}")]
+        public virtual IActionResult Delete(int id)
         {
-            service.Remove(dto);
+            service.Remove(id);
             return Ok();
         }
-
-        [HttpPost]
-        public virtual IActionResult PostRange([FromBody]IEnumerable<TDto> dtos)
-        {
-            service.AddRange(dtos);
-            return CreatedAtRoute(this.Url, dtos);
-        }
-
-        [HttpPut]
-        public virtual IActionResult PutRange([FromBody]IEnumerable<TDto> dtos)
-        {
-            service.UpdateRange(dtos);
-            return Ok();
-        }
-
-        [HttpDelete]
-        public virtual IActionResult DeleteRange([FromBody]IEnumerable<TDto> dtos)
-        {
-            service.RemoveRange(dtos);
-            return Ok();
-        }
+        
     }
 }

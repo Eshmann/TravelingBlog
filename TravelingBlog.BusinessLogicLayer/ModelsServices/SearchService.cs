@@ -14,11 +14,20 @@ using TravelingBlog.Models.ViewModels.DTO;
 
 namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 {
-    public class SearchService : Service<Trip, TripWithUserDTO, TripFilter>, ISearchService
+    public class SearchService : ISearchService
     {
-        public SearchService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
-            : base(unitOfWork, logger, mapper) { }
+        private readonly IUnitOfWork unitOfWork;
+        private readonly ILoggerManager logger;
+        private readonly IMapper mapper;
 
+        public SearchService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
+        {
+            this.unitOfWork = unitOfWork;
+            this.logger = logger;
+            this.mapper = mapper;
+        }
+
+        private IRepository<Trip> Repository => this.unitOfWork.GetRepository<Trip>();
 
         public IList<TripWithUserDTO> SearchTrips(Search searchQuery, out int total)
         {
@@ -71,7 +80,15 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
             return result;
         }
-        public override Expression<Func<Trip, bool>> GetFilter(TripFilter filter)
+
+        public Expression<Func<Trip, bool>> CombineExpressions(Expression<Func<Trip, bool>> first, Expression<Func<Trip, bool>> second)
+        {
+            ParameterExpression param = Expression.Parameter(typeof(Trip), "x");
+            BinaryExpression body = Expression.AndAlso(Expression.Invoke(first, param), Expression.Invoke(second, param));
+            return Expression.Lambda<Func<Trip, bool>>(body, param);
+        }
+
+        public Expression<Func<Trip, bool>> GetFilter(TripFilter filter)
         {
             Expression<Func<Trip, bool>> result = t => true;
 

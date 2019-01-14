@@ -6,7 +6,6 @@ namespace TravelingBlog.DataAcceesLayer.Models.Entities
     [Table("Rating")]
     public class Rating : IEntity, ICreatedByUser
     {
-
         public int Id { get; set; }
         public int UserInfoId { get; set; }
         public int TripId { get; set; }

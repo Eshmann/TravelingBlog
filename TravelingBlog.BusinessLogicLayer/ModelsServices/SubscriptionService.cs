@@ -1,16 +1,8 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
-using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
 using TravelingBlog.DataAcceesLayer.Data;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
-using TravelingBlog.DataAcceesLayer.Repositories.Contracts;
-using TravelingBlog.Models.Filters;
 using TravelingBlog.Models.ViewModels.DTO;
 
 namespace TravelingBlog.BusinessLogicLayer.ModelsServices
@@ -78,7 +70,6 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
                 Context.SaveChanges();
                 return true;
             }
-            return false;
         }
 
         public bool UnSubscribeFrom(string id, int Subscriberid)
