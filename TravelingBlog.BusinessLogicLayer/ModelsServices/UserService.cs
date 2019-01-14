@@ -12,16 +12,34 @@ using System.Threading.Tasks;
 
 namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 {
-    public class UserService : IUserService
+    public class UserService : Service<UserInfo, UserInfo, UserFilter>, IUserService
     {
-        private readonly IUnitOfWork unitOfWork;
 
-        public UserService(IUnitOfWork unitOfWork)
+        public UserService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
+            : base(unitOfWork, logger, mapper)
         {
-            this.unitOfWork = unitOfWork;
         }
 
         private IRepository<UserInfo> UserRepository => unitOfWork.GetRepository<UserInfo>();
+
+        public override void Add(UserInfo dto)
+        {
+            Repository.Add(dto);
+
+            unitOfWork.Complete();
+        }
+
+        public override Expression<Func<UserInfo, bool>> GetFilter(UserFilter filter)
+        {
+            Expression<Func<UserInfo, bool>> result = t => true;
+
+            if (filter.IdentityId != null)
+            {
+                result = CombineExpressions(result, t => t.IdentityId == filter.IdentityId);
+            }
+
+            return result;
+        }
 
         public async Task<UserInfo> GetUserInfoIncludingIdentity(string identityId)
         {
@@ -29,6 +47,26 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
                 .GetAll()
                 .Include(t => t.Identity)
                 .SingleAsync(t => t.Identity.Id == identityId);
+        }
+
+        public override void Remove(int id)
+        {
+            var entity = Repository.Get(id);
+            if (entity == null)
+                throw new Exception($"There is no user with id {id}");
+            Repository.Remove(entity);
+
+            unitOfWork.Complete();
+        }
+
+        public override void Update(UserInfo dto)
+        {
+            var entity = Repository.Get(dto.Id);
+            if (entity == null)
+                throw new Exception($"There is no user with id {dto.Id}");
+            Repository.Update(dto);
+
+            unitOfWork.Complete();
         }
     }
 }

@@ -173,7 +173,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         public override void Update(TripDTO dto)
         {
-            var trip = Repository.Get(dto.Id);
+            var trip = Repository.Get((int)dto.Id);
             if (trip == null)
                 throw new Exception($"Db does not contain trip with id {dto.Id}");
             var isCreator = IsUserCreator(_caller, trip.Id);
@@ -187,6 +187,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         public override void Add(TripDTO dto)
         {
+            dto.RatingTrip = 0;
             var trip = mapper.Map<Trip>(dto);
             var userId = _caller.Claims.Single(c => c.Type == "id").Value;
             var creator = unitOfWork.GetRepository<UserInfo>().Find(u => u.IdentityId == userId);

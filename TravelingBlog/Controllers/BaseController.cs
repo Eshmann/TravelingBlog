@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using TravelingBlog.ActionFilters;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
 
 namespace TravelingBlog.Controllers
@@ -44,7 +42,7 @@ namespace TravelingBlog.Controllers
         public virtual IActionResult Post([FromBody]TDto dto)
         {
             service.Add(dto);
-            return CreatedAtRoute(this.Url, dto);
+            return Ok();
         }
 
         [HttpPut]
