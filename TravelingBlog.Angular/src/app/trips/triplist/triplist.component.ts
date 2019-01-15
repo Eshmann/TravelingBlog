@@ -2,6 +2,7 @@ import { Component, OnInit,HostListener } from '@angular/core';
 import { TripService } from '../trip.service';
 import { Trip } from '../models/trip';
 import { TripPagination } from '../models/TripPagination';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-triplist',
@@ -15,7 +16,11 @@ export class TriplistComponent implements OnInit {
   page:number = 1;
   isEmpty:boolean = false;
   total:number;
-  constructor(private tripService:TripService) { }
+  constructor(private tripService:TripService, config : NgbRatingConfig) 
+  { 
+    config.max = 5;
+    config.readonly = true;
+  }
 
   ngOnInit() {
     this.loadTrips();
@@ -40,6 +45,17 @@ export class TriplistComponent implements OnInit {
     }  
   }
 
+  getWidthForStars(trip:Trip)
+  {
+    for(var i = 0; i < this.trips.length; i++)
+    {
+      if(this.trips[i] === trip)
+      {
+        return (this.trips[i].ratingTrip*100)/5;
+      }
+    }
+    return 0;
+  }
   //
   //-------- Pagination -------
   //

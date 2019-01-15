@@ -6,6 +6,8 @@ import { SharedModule } from '../shared/modules/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { routing } from './trips.routing';
 import { FullTripModule } from '../fulltrip/fulltrip.module';
+import {NgbRatingConfig, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { RatingModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [TriplistComponent],
@@ -14,7 +16,9 @@ import { FullTripModule } from '../fulltrip/fulltrip.module';
     SharedModule,
     routing,
     NgxPaginationModule,
-    FullTripModule
+    FullTripModule,
+    RatingModule,
+    NgbModule
   ],
   exports:[TriplistComponent],
   providers:[TripService]

@@ -52,6 +52,29 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
                 .ThenBy(x => x.Description)
                 .ToList();
 
+            var tripsDTO = new List<TripDTODa>();
+            foreach (var t in trips)
+            {
+                tripsDTO.Add(new TripDTODa
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                    IsDone = t.IsDone,
+                    Description = t.Description,
+                    CommentsNumber = t.Comments.Count,
+                    RatingTrip = (double)t.RatingTrip,
+                    User = new UserInfoDTO
+                    {
+                        Id = t.UserInfo.Id,
+                        FirstName = t.UserInfo.FirstName,
+                        LastName = t.UserInfo.LastName,
+                        Phone = t.UserInfo.Phone,
+                        PictureUrl = t.UserInfo.Identity.PictureUrl,
+                        FacebookId = t.UserInfo.Identity.FacebookId
+                    }
+                });
+            }
+
             total = trips.Count();
 
             var result = trips
