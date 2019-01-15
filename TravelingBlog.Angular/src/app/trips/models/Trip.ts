@@ -6,5 +6,6 @@ export class Trip{
     description?:string;
     isDone?:boolean;
     user?:User;
+    commentsNumber?:number;
     postBlog?:PostBlog[];
 }

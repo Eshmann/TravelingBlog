@@ -64,6 +64,9 @@ namespace TravelingBlog.BusinessLogicLayer.SecondaryServices.Mappings
                         PictureUrl = src.UserInfo.Identity.PictureUrl,
                         FacebookId = src.UserInfo.Identity.FacebookId
                     };
+                })).ForMember(kek => kek.CommentsNumber, lol => lol.ResolveUsing(src =>
+                {
+                    return src.Comments.Count;
                 }));
         }
     }

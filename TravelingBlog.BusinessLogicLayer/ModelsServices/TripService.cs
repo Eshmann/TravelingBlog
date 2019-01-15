@@ -45,6 +45,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
         {
             var trips = Repository
                 .GetAll()
+                .Include(c => c.Comments)
                 .Include(t => t.UserInfo)
                 .ThenInclude(u => u.Identity)
                 .OrderBy(t => t.Name)
