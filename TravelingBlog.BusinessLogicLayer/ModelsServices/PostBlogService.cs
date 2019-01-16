@@ -45,6 +45,10 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             var trip = tripRepo.Get(dto.TripId);
             if (trip == null)
                 throw new ArgumentNullException("There is no corresponding trip for this postblog");
+            var isCreator = _tripService.IsUserCreator(_caller, trip.Id);
+            if (!isCreator)
+                throw new 
+                    Exception($"You are not allowed to modify content of this trip");
             var entity = mapper.Map<PostBlog>(dto);
             Repository.Add(entity);
 
@@ -84,7 +88,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             var isCreator = _tripService.IsUserCreator(_caller, trip.Id);
             if (!isCreator)
                 throw new Exception
-                ($"User with IdentityId {_caller.Claims.Single(c=>c.Type=="id").Value} tried to remove postblog which belongs to another user");
+                ($"You are not allowed to modify this postblog");
         }
     }
 }

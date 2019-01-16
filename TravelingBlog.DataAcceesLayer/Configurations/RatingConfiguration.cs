@@ -6,14 +6,16 @@ namespace TravelingBlog.DataAcceesLayer.Configurations
 {
     public class RatingConfiguration : IEntityTypeConfiguration<Rating>
     {
+        //TODO: change pk to id propetry and add unique index to cols userinfoid and tripid
         public void Configure(EntityTypeBuilder<Rating> builder)
         {
-            builder.HasKey(r => new { r.UserInfoId, r.TripId }).HasName("pk_constraint_rating");
+            builder.HasKey(r => r.Id).HasName("pk_constraint_rating");
+            builder.HasIndex(r => new { r.UserInfoId, r.TripId }).IsUnique(true).HasName("unique_constraint_rating");
 
             builder.Property(r => r.UserInfoId).HasColumnName("userinfoid");
             builder.Property(r => r.TripId).HasColumnName("tripid");
 
-            builder.Property(r => r.RatingPostBlog).IsRequired(false).HasColumnName("ratingpostblog");
+            builder.Property(r => r.RatingPostBlog).IsRequired(true).HasColumnName("ratingpostblog");
 
             builder.HasOne(r => r.UserInfo).WithMany(u => u.Ratings).HasForeignKey(r => r.UserInfoId)
                 .HasConstraintName("fk_constraint_userinfoid_rating").OnDelete(DeleteBehavior.Restrict);

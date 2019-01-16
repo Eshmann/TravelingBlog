@@ -30,7 +30,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
         
         public TDto Get(int id)
         {
-            var entity = Repository.Get(x =>x.Id == id);
+            var entity = Repository.Get(id);
 
             return mapper.Map<TDto>(entity);
         }

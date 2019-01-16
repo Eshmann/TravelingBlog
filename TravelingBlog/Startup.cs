@@ -72,6 +72,7 @@ namespace TravelingBlog
 
             services.AddScoped<ISettingsService, SettingsService>();
 
+            services.AddScoped<IPostBlogService, PostBlogService>();
 
             // Add validation attribute service.
             services.AddScoped<ValidationFilterAttribute>();

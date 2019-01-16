@@ -120,29 +120,5 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
             return result;
         }
-
-        public Expression<Func<Trip, bool>> CombineExpressions(Expression<Func<Trip, bool>> first, Expression<Func<Trip, bool>> second)
-        {
-            ParameterExpression param = Expression.Parameter(typeof(Trip), "x");
-            BinaryExpression body = Expression.AndAlso(Expression.Invoke(first, param), Expression.Invoke(second, param));
-            return Expression.Lambda<Func<Trip, bool>>(body, param);
-        }
-
-        public Expression<Func<Trip, bool>> GetFilter(TripFilter filter)
-        {
-            Expression<Func<Trip, bool>> result = t => true;
-
-            if (filter.Name != null)
-            {
-                result = CombineExpressions(result, t => t.Name == filter.Name);
-            }
-
-            if (filter.Id != null)
-            {
-                result = CombineExpressions(result, t => t.Id == filter.Id);
-            }
-
-            return result;
-        }
     }
 }

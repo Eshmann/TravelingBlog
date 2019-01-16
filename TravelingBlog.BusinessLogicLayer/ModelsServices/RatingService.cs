@@ -28,7 +28,6 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             var user = unitOfWork.GetRepository<UserInfo>().Find(u => u.IdentityId == identityId);
             var list = new Rating
             {
-                Id = ratingDTO.Id,
                 TripId = ratingDTO.TripId,
                 UserInfoId = user.Id,
                 RatingPostBlog = ratingDTO.Rating
@@ -36,19 +35,9 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
             var rtg = unitOfWork.GetRepository<Rating>()
                 .Find(item=> item.TripId == list.TripId && item.UserInfoId == list.UserInfoId);
-
-            if (rtg != null)
-            {
-                rtg.RatingPostBlog = ratingDTO.Rating;
-                unitOfWork.GetRepository<Rating>().Update(rtg);
-                unitOfWork.Complete();
-            }
-            else
-            {
-                unitOfWork.GetRepository<Rating>().Add(list);
-                unitOfWork.Complete();
-            }
-        }
+            unitOfWork.GetRepository<Rating>().Add(list);
+            unitOfWork.Complete();
+           }
     }
 }
 
