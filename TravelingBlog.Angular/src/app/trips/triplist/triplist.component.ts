@@ -3,6 +3,7 @@ import { TripService } from '../trip.service';
 import { Trip } from '../models/trip';
 import { TripPagination } from '../models/TripPagination';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-triplist',
@@ -11,11 +12,11 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class TriplistComponent implements OnInit {
 
-  trip:TripPagination;
-  trips:Trip[] = [];
-  page:number = 1;
-  isEmpty:boolean = false;
-  total:number;
+  @Input() trip:TripPagination;
+  @Input() trips:Trip[] = [];
+  @Input() page:number = 1;
+  @Input() isEmpty:boolean = false;
+  @Input() total:number;
   constructor(private tripService:TripService, config : NgbRatingConfig) 
   { 
     config.max = 5;

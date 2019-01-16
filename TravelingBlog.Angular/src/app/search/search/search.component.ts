@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SearchService } from '../services/search.services';
-import { Search, Country, Trip } from '../models/search.class';
-import { query } from '@angular/core/src/animation/dsl';
+import { Search, Country } from '../models/search.class';
+import { TripPagination } from '../../trips/models/TripPagination';
+import { Trip } from '../../trips/models/Trip';
 
 @Component({
   selector: 'app-search',
@@ -19,6 +20,8 @@ export class SearchComponent implements OnInit {
     page:number = 1;
     isEmpty:boolean = false;
     total:number;
+    tripPagination: TripPagination;
+    
   constructor(private searchservice: SearchService, private router: Router, activeRoute: ActivatedRoute) {
   }
 
@@ -40,6 +43,7 @@ export class SearchComponent implements OnInit {
         this.trips.push(item);  
       });
       this.total = res.total;  
+      this.setTripPagination();
     }
     else
     {
@@ -47,6 +51,11 @@ export class SearchComponent implements OnInit {
     }  
   }
   
+  setTripPagination()
+  {
+    this.tripPagination.total = this.trip.total;
+    this.tripPagination.trips = this.trip.result;
+  }
   getAllCountries(){
     this.searchservice.getCountries()
     .subscribe((countries : Country[]) => {

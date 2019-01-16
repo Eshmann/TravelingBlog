@@ -18,9 +18,10 @@ import { RatingModule } from 'ngx-bootstrap';
     NgxPaginationModule,
     FullTripModule,
     RatingModule,
-    NgbModule
+    NgbModule,
+    RatingModule,
   ],
   exports:[TriplistComponent],
-  providers:[TripService]
+  providers:[TripService], 
 })
 export class TripsModule { }
