@@ -2,13 +2,13 @@
         <style>
                 @import url('https://fonts.googleapis.com/css?family=Catamaran|Charmonman|Permanent+Marker');
                 </style>
-    <div class="d-flex flex-row justify-content-center my-flex-container-fluid">
+    <div class="d-flex flex-row justify-content-center my-flex-container-fluid" style="padding-bottom: 0.3em;">
         <input type="text" class="form-control form-control-lg" [(ngModel)]="query" class="" />
         <input type="button" value="Search" (click)=" loadTrips()" class="btn btn-default" style="position: relative; left: 5px;">
         <div>
             <select [(ngModel)]="countryid" class="select dropdown-content">
-                <option value="-1" selected="selected">-ALL</option>
-                <option *ngFor="let p of countries" value="{{p.id}}">{{p.name}}</option>
+                <option value="-1" selected>-ALL</option>
+                <option *ngFor="let p of countries" value="{{p.id}}" >{{p.name}}</option>
             </select>
 
         </div>

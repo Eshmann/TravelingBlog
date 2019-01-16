@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit {
     trips: Trip[] = [];
     countries: Country[];
     query:string;
-    countryid: string;
+    countryid: string = '-1';
     page:number = 1;
     isEmpty:boolean = false;
     total:number;
