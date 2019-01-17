@@ -38,6 +38,7 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit() {
     this.loadUserInfo(Number.parseInt(this.id));
+    window.scrollTo(0,0);
   }
 
   loadUserInfo(id:number)

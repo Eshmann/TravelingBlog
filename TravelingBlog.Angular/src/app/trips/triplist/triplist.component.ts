@@ -57,6 +57,15 @@ export class TriplistComponent implements OnInit {
     }
     return 0;
   }
+
+  checkIfTrips()
+  {
+    if(this.trips.length === 0)
+    {
+      document.getElementById('server').setAttribute('style', 'height: 20em;');
+    }
+  }
+
   //
   //-------- Pagination -------
   //
