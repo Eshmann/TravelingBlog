@@ -8,7 +8,7 @@ export class HasRoleDirective implements OnInit{
 
   @Input() appHasRole:string[];
 
-  isVisible=false;
+  //isVisible=false;
 
   constructor(private viewContainerRef:ViewContainerRef,
     private templateRef:TemplateRef<any>,
@@ -23,7 +23,7 @@ export class HasRoleDirective implements OnInit{
       }
 
       if(this.userService.roleMatch(this.appHasRole)){
-        this.isVisible = true
+        //this.isVisible = true
         this.viewContainerRef.createEmbeddedView(this.templateRef)
       }
       else{

@@ -15,6 +15,11 @@
                 <li>
                     <a class="button large" routerLink="/fulltrip/{{trip.id}}">Continue Reading</a>
                 </li>
+                <div *appHasRole="['Admin']">
+                    <li>
+                        <a class="button large">Edit</a>
+                    </li>
+                </div>
               </ul>
               <ul class="stats">
                   <li class="superStarRating">
