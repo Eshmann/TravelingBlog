@@ -60,11 +60,22 @@ export class TriplistComponent implements OnInit {
     return 0;
   }
 
+<<<<<<< HEAD
   deleteTrip(trip:Trip){
     let conf = confirm("Are you sure?")
     if(conf)
       this.editServ.deleteTrip(trip.id).subscribe((dara)=>this.loadTrips());
   }
+=======
+  checkIfTrips()
+  {
+    if(this.trips.length === 0)
+    {
+      document.getElementById('server').setAttribute('style', 'height: 20em;');
+    }
+  }
+
+>>>>>>> bb44587ddc829c91861a2ffb57b393fa3e98467b
   //
   //-------- Pagination -------
   //

@@ -4,7 +4,6 @@ import { TriplistComponent } from './triplist/triplist.component';
 import { TripService } from './trip.service';
 import { SharedModule } from '../shared/modules/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { routing } from './trips.routing';
 import { FullTripModule } from '../fulltrip/fulltrip.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RatingModule } from 'ngx-bootstrap';
@@ -17,7 +16,6 @@ import {DashboardModule} from '../dashboard/dashboard.module'
   imports: [
     CommonModule,
     SharedModule,
-    routing,
     NgxPaginationModule,
     FullTripModule,
     RatingModule,

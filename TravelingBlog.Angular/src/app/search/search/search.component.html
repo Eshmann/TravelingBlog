@@ -1,21 +1,21 @@
 <body class="Centered">
-    <style>
-            @import url('https://fonts.googleapis.com/css?family=Catamaran|Charmonman|Permanent+Marker');
-            </style>
-<div class="d-flex flex-row justify-content-center my-flex-container-fluid" style="padding-bottom: 0.3em;">
-    <input type="text"[(ngModel)]="query" />
-    <input type="button" value="Search" (click)=" loadTrips()" class="btn btn-default" style="position: relative; left: 5px;">
-</div>
+        <style>
+                @import url('https://fonts.googleapis.com/css?family=Catamaran|Charmonman|Permanent+Marker');
+                </style>
+    <div class="d-flex flex-row justify-content-center my-flex-container-fluid" style="padding-bottom: 0.3em;">
+        <input type="text"[(ngModel)]="query" />
+        <input type="button" value="Search" (click)=" loadTrips()" class="btn btn-default" style="position: relative; left: 5px;">
+    </div>
 
-<div class="filterCountry" id="filters">
-        <h3>FILTERS</h3>
-        <select [(ngModel)]="countryid" class="select dropdown-content">
-            <option value="-1" selected>-ALL</option>
-            <option *ngFor="let p of countries" value="{{p.id}}" >{{p.name}}</option>
-        </select>
-</div>
-<div id="notFound">
-    <h3 id="notFoundText">Nothing is found for "{{query}}"</h3>
-</div>
-<app-triplist class="tripsComponent" [trips]="trips" [page]="page" [isEmpty]="isEmpty" [total]="total" [trip]="tripPagination"></app-triplist>
+    <div class="filterCountry" id="filters">
+            <h3>FILTERS</h3>
+            <select [(ngModel)]="countryid" class="select dropdown-content">
+                <option value="-1" selected>-ALL</option>
+                <option *ngFor="let p of countries" value="{{p.id}}" >{{p.name}}</option>
+            </select>
+    </div>
+    <div id="notFound">
+        <h3 id="notFoundText">Nothing is found for "{{query}}"</h3>
+    </div>
+    <app-triplist class="tripsComponent" [trips]="trips" [page]="page" [isEmpty]="isEmpty" [total]="total" [trip]="tripPagination"></app-triplist>
 </body>
