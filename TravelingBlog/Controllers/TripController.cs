@@ -26,6 +26,12 @@ namespace TravelingBlog.Controllers
             this.logger = logger;
             caller = httpContextAccessor.HttpContext.User;
         }
+        
+        [HttpGet("usertrips/{id}")]
+        public IActionResult GetUserTrips(int id)
+        {
+            return Ok(tripService.GetUserTrips(id));
+        }
 
         [AllowAnonymous]
         [HttpGet("mytrips")]

@@ -37,21 +37,21 @@ namespace TravelingBlog.Controllers
 
             return Ok(collection);
         }
-
+        
         [HttpPost]
         public virtual IActionResult Post([FromBody]TDto dto)
         {
             service.Add(dto);
             return Ok();
         }
-
+        
         [HttpPut]
         public virtual IActionResult Put([FromBody]TDto dto)
         {
             service.Update(dto);
             return Ok();
         }
-
+        
         [HttpDelete("{id}")]
         public virtual IActionResult Delete(int id)
         {

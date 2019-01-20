@@ -87,14 +87,20 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         public IEnumerable<TripDTO> GetUserTrips(string id)
         {
-            var user = UserRepository
-                .GetAll()
-                .Include(t => t.Identity)
-                .Single(t => t.Identity.Id == id);
 
             var userTrips = Repository
                 .GetAll()
-                .Where(x => x.UserInfoId == user.Id);
+                .Where(x => x.UserInfo.IdentityId==id);
+
+            var result = userTrips
+                .ToList();
+            
+            return result.Select(t=>mapper.Map<TripDTO>(t));
+        }
+
+        public IEnumerable<TripDTO> GetUserTrips(int id)
+        {
+            var userTrips = Repository.GetAll().Where(x => x.UserInfoId == id).ToList();
 
             return userTrips.Select(t => mapper.Map<TripDTO>(t));
         }
@@ -203,7 +209,10 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             var isCreator = IsUserCreator(_caller, trip.Id);
             if (!isCreator)
                 throw new Exception($"{_caller.Claims.Single(c => c.Type == "id").Value} tried to delete trip {trip.Id}");
-            trip = mapper.Map<Trip>(dto);
+            trip.Name = dto.Name;
+            trip.IsDone = (bool)dto.IsDone;
+            trip.Description = dto.Description;
+
             Repository.Update(trip);
 
             unitOfWork.Complete();

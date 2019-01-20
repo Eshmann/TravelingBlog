@@ -50,7 +50,11 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
         public override void Update(CountryDTO dto)
         {
-            var entity = mapper.Map<Country>(dto);
+            var entity = Repository.Get(dto.Id);
+
+            entity.MobCode = dto.MobCode;
+            entity.Name = dto.Name;
+
             Repository.Update(entity);
 
             unitOfWork.Complete();

@@ -72,9 +72,10 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 
             CheckCreatorFunc(postBlog);
 
-            var entity = mapper.Map<PostBlog>(dto);
+            postBlog.Name = dto.Name;
+            postBlog.Plot = dto.Plot;
 
-            Repository.Update(entity);
+            Repository.Update(postBlog);
 
             unitOfWork.Complete();
         }

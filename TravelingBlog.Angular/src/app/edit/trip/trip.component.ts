@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { EditService } from '../services/edit.services';
 import { TripWithPost, Post } from '../models/trip.with.post.interface';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-trip',
@@ -11,12 +12,13 @@ import { TripWithPost, Post } from '../models/trip.with.post.interface';
 export class TripEditComponent implements OnInit {
 
   id: string;
-  trip: TripWithPost;    // изменяемый объект
+  trip: TripWithPost = new TripWithPost();    // изменяемый объект
   loaded: boolean = false;
   post: Post = new Post();
   tableMode: boolean = true;
 
-  constructor(private editService: EditService, private router: Router, activeRoute: ActivatedRoute) {
+  constructor(private editService: EditService, private router: Router,
+    private location:Location) {
     this.id = router.url.toString();
     let s : string[];
     s = this.id.split('/');
@@ -44,13 +46,13 @@ export class TripEditComponent implements OnInit {
     if(post.id == null)
     {
       
-      this.editService.createPost(post).subscribe(data => this.loadTrip(this.id));
+      this.editService.createPost(post).subscribe((data) => this.loadTrip(this.id));
       
     }
     else
     {
       console.log("hello");
-      this.editService.updatePost(post).subscribe(data => this.loadTrip(this.id))
+      this.editService.updatePost(post).subscribe((data) => this.loadTrip(this.id))
     }
     this.cancel();
   }
@@ -70,4 +72,7 @@ export class TripEditComponent implements OnInit {
     this.tableMode = false;
   }
 
+  goBack(){
+    this.location.back();
+  }
 }

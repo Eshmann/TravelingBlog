@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
   canActivate(next:ActivatedRouteSnapshot) {
 
     if (!this.user.isLoggedIn()) {
-      this.router.navigate(['/account/login']);
+      this.router.navigate(['/login']);
       return false;
     }
     const roles = next.firstChild.data['roles'] as Array<string>

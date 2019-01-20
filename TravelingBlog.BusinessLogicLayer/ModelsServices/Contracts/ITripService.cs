@@ -18,6 +18,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
         IEnumerable<TripDTO> GetRandomTrips(int count, List<TripDTO> trips);
 
         IEnumerable<TripDTO> GetUserTrips(string id);
+        IEnumerable<TripDTO> GetUserTrips(int id);
 
         bool IsUserCreator(ClaimsPrincipal user, int tripId);
     }
