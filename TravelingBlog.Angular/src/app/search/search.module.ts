@@ -28,7 +28,7 @@ import { TripsModule } from '../trips/trips.module';
     TripsModule,
   ],
   declarations: [SearchComponent],
-  exports: [],
+  exports: [SearchComponent],
   providers: [SearchService]
 })
 export class SearchModule { }

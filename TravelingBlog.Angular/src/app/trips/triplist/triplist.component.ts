@@ -4,6 +4,7 @@ import { Trip } from '../models/trip';
 import { TripPagination } from '../models/TripPagination';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Input } from '@angular/core';
+import { DashboardService } from '../../dashboard/services/dashboard.service';
 
 @Component({
   selector: 'app-triplist',
@@ -17,7 +18,7 @@ export class TriplistComponent implements OnInit {
   @Input() page:number = 1;
   @Input() isEmpty:boolean = false;
   @Input() total:number;
-  constructor(private tripService:TripService, config : NgbRatingConfig) 
+  constructor(private tripService:TripService, config : NgbRatingConfig, private editServ:DashboardService) 
   { 
     config.max = 5;
     config.readonly = true;
@@ -33,8 +34,9 @@ export class TriplistComponent implements OnInit {
   }
   
   onSuccess(res:TripPagination) {  
-    console.log(res);  
+    console.log(res);
     if (res != undefined&&res.trips.length!=0) {  
+      this.trips = [];
       res.trips.forEach(item => {  
         this.trips.push(item);  
       });
@@ -56,6 +58,12 @@ export class TriplistComponent implements OnInit {
       }
     }
     return 0;
+  }
+
+  deleteTrip(trip:Trip){
+    let conf = confirm("Are you sure?")
+    if(conf)
+      this.editServ.deleteTrip(trip.id).subscribe((dara)=>this.loadTrips());
   }
   //
   //-------- Pagination -------
