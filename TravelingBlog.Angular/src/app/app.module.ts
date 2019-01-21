@@ -26,7 +26,6 @@ import { FullTripModule } from './fulltrip/fulltrip.module';
 import { SearchModule } from './search/search.module';
 
 import { TripsModule } from './trips/trips.module';
-import { HasRoleDirective } from './admin/directives/has-role.directive';
 import { AdminModule } from './admin/admin.module';
 
 //config for recaptcha
@@ -34,6 +33,7 @@ import { RecaptchaModule, RECAPTCHA_SETTINGS} from 'ng-recaptcha';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import { RecaptchaSettings} from 'ng-recaptcha/recaptcha/recaptcha-settings';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -59,8 +59,8 @@ import { FormsModule } from '@angular/forms';
     AdminModule,
     RecaptchaModule.forRoot(),
     RecaptchaFormsModule,
-    routing
-
+    routing,
+    RouterModule
   ],
   providers: [ConfigService, {
     provide: XHRBackend,

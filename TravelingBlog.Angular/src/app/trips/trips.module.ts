@@ -9,6 +9,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RatingModule } from 'ngx-bootstrap';
 import {AdminModule} from '../admin/admin.module';
 import {DashboardModule} from '../dashboard/dashboard.module'
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {DashboardModule} from '../dashboard/dashboard.module'
     NgbModule,
     RatingModule,
     AdminModule,
-    DashboardModule
+    DashboardModule,
+    RouterModule
   ],
   exports:[TriplistComponent],
   providers:[TripService], 

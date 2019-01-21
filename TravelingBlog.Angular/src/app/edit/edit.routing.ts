@@ -8,10 +8,13 @@ import { AuthGuard } from '../auth.guard';
 export const routing: ModuleWithProviders = RouterModule.forChild([
   {
     path: 'edit',
-    component: TripEditComponent, canActivate: [AuthGuard],
-
+    runGuardsAndResolvers:'always',
+    canActivate: [AuthGuard],
     children: [
-      { path : 'trip/:id', component: TripEditComponent}
+      { 
+        path : 'trip/:id',
+        component: TripEditComponent,
+      }
     ]
   }
 ]);

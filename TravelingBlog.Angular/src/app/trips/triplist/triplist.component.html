@@ -13,28 +13,18 @@
           <footer>
               <ul class="actions">
                 <li>
-<<<<<<< HEAD
-                    <a class="button large" a href="/fulltrip/{{trip.id}}">Continue</a>
+                    <a class="button large" routerLink="/fulltrip/{{trip.id}}">Continue</a>
                 </li>
               
                 
-                <li *appHasRole="['Admin']">
+                <li *appHasRole="['Admin','Moderator']">
                     <a class="button large" routerLink="/edit/trip/{{trip.id}}">Edit</a>
                 </li>
 
-                <li *appHasRole="['Admin']">
+                <li *appHasRole="['Admin','Moderator']">
                     <a class="button large" (click)="deleteTrip(trip)">Delete</a>
                 </li>
                 
-=======
-                    <a class="button large" routerLink="/fulltrip/{{trip.id}}">Continue Reading</a>
-                </li>
-                <div *appHasRole="['Admin']">
-                    <li>
-                        <a class="button large">Edit</a>
-                    </li>
-                </div>
->>>>>>> bb44587ddc829c91861a2ffb57b393fa3e98467b
               </ul>
               <ul class="stats">
                   <li class="superStarRating">
