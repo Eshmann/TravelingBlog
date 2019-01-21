@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <!-- Logo -->
     <a class="navbar-brand mb-0 h1" href="#">
-      <img src="assets\logo.png" width="45" height="45" class="d-inline-block align-top" alt="">TravelingBlog</a>
+      <img src="../../assets/logo.png" width="45" height="45" class="d-inline-block align-top" alt="">TravelingBlog</a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +13,7 @@
     <div class="navbar-collapse collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav nav1 mr-auto ">
         <li>
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" routerLink="/">Home</a>
         </li>
         <li>
             <a class="nav-link" routerLink="/flow">Trips</a>
@@ -27,7 +27,7 @@
       <ul *ngIf="!status" class="navbar-nav ml-auto">
         <li>
           <div class="btn-group mr-2" role="group" aria-label="First group">
-            <a class="btn btn-info" href="#"  routerLink="/login">SIGN-IN</a>
+            <a class="btn btn-info" routerLink="/login">SIGN-IN</a>
           </div>
           <div class="btn-group mr-2" role="group" aria-label="First group">
             <a class="btn btn-info " href="/register">SIGN-UP</a>
