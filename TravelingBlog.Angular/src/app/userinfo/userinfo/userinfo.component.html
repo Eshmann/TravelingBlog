@@ -1,24 +1,65 @@
-<body class="Centered">
-<div class="row">
-    <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-        <div class="col-md-6 col-sm-3">
-        <h1>User:</h1>
-        <input *ngIf="subscribe" type="button" value="Subscribe" class="btn btn-sm btn-primary" (click)="subscribeTo()" />
-        <input *ngIf="!subscribe" type="button" value="UnSubscribe" class="btn btn-sm btn-danger" (click)="unSubscribeFrom()" />
-        <p><strong>Name:</strong> {{userInfo?.firstName}} {{userInfo?.lastName}}</p>
-        <p *ngIf="userInfo?.location"><strong>Location:</strong> {{userInfo?.location}}</p>
-        <div *ngIf="userInfo?.pictureUrl"><img src="{{userInfo?.pictureUrl}}" /></div>
-        <input type="button" value="LoadTrips" class="btn btn-default" (click)="loadTrips()" />
-        <li *ngFor="let p of trips">
-                <ng-template [ngIf]="trip?.id != p.id">
-                    <div>Name: {{ p?.name }}</div>
-                    <div [ngClass]="{greenclass: p?.isDone == true, redclass: p?.isDone == false}">Finished: {{ p?.isDone }}</div>
-                    <p>
-                        <textarea rows="3" cols="60" readonly="readonly" class="form-control">{{ p?.description }}</textarea>
-                    </p>
-                </ng-template>
-            </li>
-            </div>
-   </main>
+<div class="row content">
+    <div class="col-sm-2  sidenavleft nav-pills leftbar">
+    <div *ngIf="logged">
+        <a *ngFor="let s of subscriberDetails" class="nav-link" href="/user/{{ s.subcriberId }}" >{{s.firstName}} {{s.lastName}}</a>
+     </div>
+    </div>
+    <div class="col-sm-8">
+<div class="header bg-dark">
+<div class="media bg-dark">
+  <div *ngIf="userInfo?.pictureUrl"><img src="{{userInfo?.pictureUrl}}" class="rounded-circle" /></div>
+  <div *ngIf="!userInfo?.pictureUrl"><img src="../../../assets/images/UserImg/images.png" class="rounded-circle"/></div> 
+  <div class="media-body">
+    <!--<button type="button" class="btn btn-secondary btn-lg float-md-right" disabled >Subscribe</button>-->
+    <input *ngIf="subscribe" type="button" value="Subscribe" class="btn btn-sm btn-primary" (click)="subscribeTo()" />
+    <input *ngIf="!subscribe" type="button" value="UnSubscribe" class="btn btn-sm btn-danger" (click)="unSubscribeFrom()" />
+    <h2 id="line">
+      {{userInfo?.firstName}}  {{userInfo?.lastName}}
+    </h2>
+    <hr>
+  </div>
 </div>
-</body>
+</div>
+<div class="row">
+<div class="leftcolumn">
+  <div class="card">
+    <div class="card-header bg-dark">
+      <h3>User inform</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col"><h6>Place of birth <hr></h6></div>
+        <div class="col"><h6>Email <hr></h6></div>
+        <div class="w-100"></div>
+        <div class="col"><h6>Place of abode <hr></h6></div>
+        <div class="col"><h6>Phone <hr></h6></div>
+        <div class="w-100"></div>
+        <div class="col"><h6>Date of birth<hr></h6></div>
+        <div class="col"><h6>Skype <hr></h6></div>
+        <div class="w-100"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<h1></h1>
+<input type="button" value="LoadTrips" class="btn btn-default" (click)="loadTrips()" />
+    <li *ngFor="let p of trips">
+            <ng-template [ngIf]="trip?.id != p.id">
+                <div><a class="bluetext" href="#" routerLinkActive="active" routerLink="/fulltrip/{{ p.id }}">Name: {{ p?.name }}</a></div>
+                <div [ngClass]="{greenclass: p?.isDone == true, redclass: p?.isDone == false}">Finished: {{ p?.isDone }}</div>
+                <p>
+                    <textarea rows="3" cols="60" readonly="readonly" class="form-control">{{ p?.description }}</textarea>
+                </p>
+            </ng-template>
+        </li>
+    </div>
+    <div class="col-sm-2 sidenav bg-dark">
+    <div *ngIf="logged">
+        <a href="#" routerLinkActive="active" routerLink="/dashboard/home">Home</a>
+        <a href="#">Subscriptions</a>
+        <a href="#" routerLinkActive="active" routerLink="/dashboard/trips">My Trips</a>
+        <a href="#" routerLinkActive="active" routerLink="/dashboard/settings">Settings</a>
+      </div>
+    </div>
+    </div>
