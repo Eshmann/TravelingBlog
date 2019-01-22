@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, RequestOptions} from '@angular/http';
 
 import { HomeDetails } from '../models/home.details.interface';
 import { ConfigService } from '../../shared/utils/config.service';
@@ -44,7 +44,7 @@ export class DashboardService extends BaseService {
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
 
-    return this.http.get(this.baseUrl + "/api/Subscription/getMySubscription", { headers })
+    return this.http.get(this.baseUrl + '/api/Subscription/getMySubscription', { headers })
     .map(response => response.json())
     .catch(this.handleError);
   }
@@ -97,8 +97,22 @@ export class DashboardService extends BaseService {
     headers.append('Content-Type', 'application/json');
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
-    return this.http.put(this.baseUrl + '/api/settings/editusername', user, {headers})
-    .map(response => response.json())
-    .catch(this.handleError);
+      return this.http.put(this.baseUrl + '/api/settings/editusername', user, {headers})
+      .map(response => response.json())
+      .catch(this.handleError);
+  }
+
+  public uploadImage(image: File): Observable<Response> {
+    const formData = new FormData();
+    console.log(formData);
+    let headers = new Headers();
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+    formData.append('files', image);
+
+    console.log(formData);
+    return this.http.post(this.baseUrl + '/api/settings/upload', formData, {headers})
+    .map(res => res.json());
+
   }
 }
