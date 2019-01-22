@@ -48,6 +48,8 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
                 .Include(c => c.Comments)
                 .Include(t => t.UserInfo)
                 .ThenInclude(u => u.Identity)
+                .Include(t=>t.UserInfo)
+                .ThenInclude(u=>u.UserImage)
                 .OrderBy(t => t.Name)
                 .ThenBy(x => x.Description)
                 .ToList();
@@ -69,7 +71,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
                         FirstName = t.UserInfo.FirstName,
                         LastName = t.UserInfo.LastName,
                         Phone = t.UserInfo.Phone,
-                        PictureUrl = t.UserInfo.Identity.PictureUrl,
+                        PictureUrl = t.UserInfo.UserImage.Path,
                         FacebookId = t.UserInfo.Identity.FacebookId
                     }
                 });
