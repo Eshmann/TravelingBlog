@@ -71,7 +71,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
                         FirstName = t.UserInfo.FirstName,
                         LastName = t.UserInfo.LastName,
                         Phone = t.UserInfo.Phone,
-                        PictureUrl = t.UserInfo.UserImage.Path,
+                        PictureUrl = t.UserInfo.UserImage==null?null:t.UserInfo.UserImage.Path,
                         FacebookId = t.UserInfo.Identity.FacebookId
                     }
                 });
@@ -84,7 +84,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
                 .Take(pageModel.PageSize)
                 .ToList();
 
-            return result.Select(t => mapper.Map<TripDTODa>(t)).ToList();
+            return tripsDTO;
         }
 
         public IEnumerable<TripDTO> GetUserTrips(string id)

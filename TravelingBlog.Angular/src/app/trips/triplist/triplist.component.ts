@@ -37,7 +37,9 @@ export class TriplistComponent implements OnInit {
     console.log(res);
     if (res != undefined&&res.trips.length!=0) {  
       this.trips = [];
-      res.trips.forEach(item => {  
+      res.trips.forEach(item => {
+        if(item.user.pictureUrl)
+          item.user.pictureUrl = 'https://travelpictures.blob.core.windows.net' +item.user.pictureUrl;  
         this.trips.push(item);  
       });
       this.total = res.total;  

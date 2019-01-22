@@ -8,7 +8,7 @@
               <div class="meta">
                   <a routerLink="/user/{{trip.user.id}}" class="author">
                     <span class="name">{{trip.user.firstName}} {{trip.user.lastName}}</span>
-                    <img *ngIf = "trip.user.pictureUrl" src="{{trip.user.pictureUrl}}" alt="" />
+                    <img *ngIf = "trip.user.pictureUrl" src="{{trip.user.pictureUrl}}" />
                     <img *ngIf = "!trip.user.pictureUrl" src = "../../../assets/images/UserImg/images.png" />
                 </a>
               </div>
