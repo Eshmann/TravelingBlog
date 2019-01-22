@@ -1,16 +1,41 @@
 <div class="container-fluide">
   <div class="row content">
-    <div class="col-sm-2  sidenavleft nav-pills leftbar">
-       <a *ngFor="let s of subscriberDetails" class="nav-link" href="#" routerLinkActive="active" routerLink="/user/{{ s.subcriberId }}">{{s.firstName}} {{s.lastName}}</a>
+    <div class="col-sm-2  sidenavleft nav-pills leftbar bg-dark">
+      <h3 class="new">
+          Subscribs
+      </h3>
+      <hr>
+      <div class="ex2">
+        <a *ngFor="let s of subscriberDetails" class="nav-link" href="#" routerLinkActive="active" routerLink="/user/{{ s.subcriberId }}">
+          <img src="../../../assets/images/UserImg/images.png" class="rounded-circle"> 
+          {{s.firstName}} {{s.lastName}}
+        </a>
+      </div>
+      <hr>
+      <h3 class="new1">
+          Recommend
+      </h3>
+      <hr>
+      <div class="ex2">
+        <a *ngFor="let s of subscriberDetails" class="nav-link" href="#" routerLinkActive="active" routerLink="/user/{{ s.subcriberId }}">
+          <img src="../../../assets/images/UserImg/images.png" class="rounded-circle"> 
+          {{s.firstName}} {{s.lastName}}
+        </a>
+      </div>
+      <hr>
     </div>
     <div class="col-sm-8">
       <router-outlet></router-outlet>
     </div>
-    <div class="col-sm-2 sidenav bg-dark">
+    <div class="col-sm-2 sidenav bg-dark" id="mySidenav">
+      <div>
+        <h3>MENU</h3>
+        <hr>
+      </div>
       <a href="#" routerLinkActive="active" routerLink="/dashboard/home">Home</a>
-      <a href="#">Subscriptions</a>
       <a href="#" routerLinkActive="active" routerLink="/dashboard/trips">My Trips</a>
       <a href="#" routerLinkActive="active" routerLink="/dashboard/settings">Settings</a>
     </div>
   </div>
 </div>
+

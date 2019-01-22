@@ -31,14 +31,14 @@ namespace TravelingBlog.Controllers
         {
             var userId = caller.Claims.Single(c => c.Type == "id");
 
-            var user = await _userService.GetUserInfoIncludingIdentity(userId.Value);
+            var user = await _userService.GetUserInfoIncludingIdentity(userId.Value);                   
 
             return new OkObjectResult(new
             {
                 Message = "This is secure API and user data!",
                 user.FirstName,
                 user.LastName,
-                user.Identity.PictureUrl,
+                PictureUrl = user.UserImage.Path,
                 user.Identity.FacebookId
             });
         }

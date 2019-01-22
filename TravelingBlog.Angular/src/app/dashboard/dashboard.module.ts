@@ -24,6 +24,6 @@ import { TripserviceService } from './services/tripservice.service';
   ],
   declarations: [RootComponent, HomeComponent, SettingsComponent, TripsComponent],
   exports: [],
-  providers: [AuthGuard, DashboardService,TripserviceService]
+  providers: [AuthGuard, DashboardService, TripserviceService]
 })
 export class DashboardModule { }

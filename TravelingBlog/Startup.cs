@@ -81,6 +81,7 @@ namespace TravelingBlog
 
             services.Configure<FacebookAuthSettings>(Configuration.GetSection(nameof(FacebookAuthSettings)));
             services.Configure<ReCaptcha>(Configuration.GetSection(nameof(ReCaptcha)));
+            services.Configure<BlobConnection>(Configuration.GetSection(nameof(BlobConnection)));
 
             services.TryAddTransient<IHttpContextAccessor, HttpContextAccessor>();
 

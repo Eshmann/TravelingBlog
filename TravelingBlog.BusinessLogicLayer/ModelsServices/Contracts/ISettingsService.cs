@@ -7,6 +7,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
 {
     public interface ISettingsService
     {
-         void EditUserName(SettingDTO settingDTO);
+        void EditPhoto (SettingDTO settingDTO);
+        void EditUserName(SettingDTO settingDTO);
     }
 }

@@ -25,6 +25,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             return await UserRepository
                 .GetAll()
                 .Include(t => t.Identity)
+                .Include(t=>t.UserImage)
                 .SingleAsync(t => t.Identity.Id == identityId);
         }
 

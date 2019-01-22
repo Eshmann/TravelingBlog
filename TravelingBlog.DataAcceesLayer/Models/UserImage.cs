@@ -4,7 +4,7 @@ using TravelingBlog.DataAcceesLayer.Contracts;
 namespace TravelingBlog.DataAcceesLayer.Models.Entities
 {
     [Table("UserImage")]
-    public class UserImage : ICreatedByUser
+    public class UserImage : ICreatedByUser,IEntity
     {
         public int Id { get; set; }
         public string Path { get; set; }
