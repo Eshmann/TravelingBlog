@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TravelingBlog.Models.ViewModels.DTO
 {
@@ -9,5 +8,7 @@ namespace TravelingBlog.Models.ViewModels.DTO
         public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public IList<IFormFile> formFile { get; set; }
+        public string PhotoUser { get; set; }
     }
 }

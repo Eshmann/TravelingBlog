@@ -2,3 +2,150 @@
 {
     margin-top: 4em;
 }
+img {
+    width: 120px ;
+    height: 120px;
+  }
+  .card {
+      background-color: white;
+      margin-left: 15px;
+      margin-right: 15px;
+      .card-header{
+        h3{
+          color: aliceblue;
+        }
+  
+      }
+      .card-body{
+        .botton1{
+          margin-top: 15px;
+          text-align: center;
+        } 
+      }
+      hr{
+        color: #f00;
+        background-color: #f00;
+        margin: 2px;
+        height: 1px;
+      }
+   }
+   a
+   {
+     text-decoration: none;
+     color: black;
+   }
+  extent{
+      height: 100%;
+   }
+   .container.content{
+      height: 100vh;
+   }
+   .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  
+    .header {
+      h2{
+        color: aliceblue;
+      }
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 20px;
+      font-size: 20px;
+      text-align: 150px;
+    }
+  
+    .leftcolumn {   
+      float: left;
+      width: 75%;
+      hr{
+        margin: 0px;
+        margin-top: 2px; 
+      }
+    }
+  
+    .rightcolumn {
+      float: left;
+      width: 25%;
+      padding-left: 20px;
+      .card{
+        p{
+          text-align: center;
+          margin-top: 5px;
+          margin-bottom: 1px;
+        }
+      }
+    }
+  
+    #line {
+      margin-left: 15px;
+      margin-top: 35px;
+      margin-bottom: 0%;
+    }
+    
+    hr{
+      color: #f00;
+      background-color: #f00;
+      margin-top: 2px;
+      height: 3px;
+    }
+  
+    .media-body{
+      .btn.btn-secondary{
+        margin-top: 18px;
+        margin-right: 0px;
+      }
+    }
+
+.bluetext{
+    color:blue;
+}
+  
+
+.col-sm-8{
+    padding-bottom: 15px; 
+  }
+  .row.content {
+    min-height: 100vh;
+    overflow-y: hidden;
+  }
+  
+  .sidenavleft {
+    padding-top: 20px;
+    background-color: #555;
+  }
+  
+  .sidenav {
+    right: 0;
+    height: 100%;
+    position: fixed;
+    z-index: 0;
+    background-color: #555;
+    overflow-x: hidden;
+    padding-top: 20px;
+    border: 3px solid #5bc0de;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+    text-align: center;
+    border-bottom: 1px solid rgb(24, 23, 23);
+  }
+  
+  .sidenav a:hover {
+    background-color: #5bc0de;
+    color: #ffffff;
+  }
+  
+  .active {
+    background-color: #5bc0de;
+  }
+  
+  
