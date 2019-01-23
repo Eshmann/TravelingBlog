@@ -84,7 +84,8 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
                 .Take(pageModel.PageSize)
                 .ToList();
 
-            return tripsDTO;
+            return tripsDTO.Skip(pageModel.PageSize*(pageModel.PageNumber-1))
+                .Take(pageModel.PageSize).ToList();
         }
 
         public IEnumerable<TripDTO> GetUserTrips(string id)
