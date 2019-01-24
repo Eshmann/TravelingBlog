@@ -12,6 +12,7 @@ import '../../rxjs-operators';
 
 import { UserInfo } from '../models/userinfo.interface';
 import { TripDetails } from '../../dashboard/models/trip.details.interface';
+import { SubscriberDetails } from '../../dashboard/models/subsciber.details.interface';
 
 @Injectable()
 
@@ -68,6 +69,18 @@ export class UserInfoService extends BaseService {
     .map(response => response.json())
     .catch(this.handleError);
 
+  }
+
+  getSubs(): Observable<SubscriberDetails[]> {
+    localStorage.removeItem('subs');
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+
+    return this.http.get(this.baseUrl + "/api/Subscription/getMySubscription", { headers })
+    .map(response => response.json())
+    .catch(this.handleError);
   }
 
 }
