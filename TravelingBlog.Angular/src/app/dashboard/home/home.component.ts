@@ -14,11 +14,14 @@ import { TripDetails } from '../models/trip.details.interface';
 export class HomeComponent implements OnInit {
 
   homeDetails: HomeDetails;
-  topTrips:TripDetails[];
-  disabled:boolean;
-  
+  topTrips: TripDetails[];
+  disabled: boolean;
+
   constructor(private dashboardService: DashboardService, private tripservice:
-    TripserviceService) { }
+    TripserviceService) {
+
+      this.homeDetails = new HomeDetails();
+    }
 
   disableAll() {
     this.disabled = true;
@@ -33,13 +36,13 @@ export class HomeComponent implements OnInit {
       },
         error => {
           // this.notificationService.printErrorMessage(error);
-        }); 
+        });
         this.getTopTrips();
   }
-  getTopTrips(){
-    this.tripservice.getTopTrips().subscribe(res=>{
-      this.topTrips = [...res]; 
-      console.log(res)
-    })
+  getTopTrips() {
+    this.tripservice.getTopTrips().subscribe(res => {
+      this.topTrips = [...res];
+      console.log(res);
+    });
   }
 }

@@ -1,4 +1,4 @@
-export interface HomeDetails {
+export class HomeDetails {
   message: string;
   firstName: string;
   lastName: string;
