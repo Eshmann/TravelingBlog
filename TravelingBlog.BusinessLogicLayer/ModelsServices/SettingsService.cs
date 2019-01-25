@@ -1,12 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using NLog.Filters;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.AzureStorage;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
