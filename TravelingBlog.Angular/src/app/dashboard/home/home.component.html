@@ -1,7 +1,7 @@
   <div class="header bg-dark">
     <div class="media bg-dark">
-      <img *ngIf="homeDetails.pictureUrl" src="{{homeDetails?.pictureUrl}}" class="rounded-circle"/>
-      <img *ngIf="!homeDetails.pictureUrl" src="../../../assets/images/UserImg/images.png" class="rounded-circle"> 
+      <img *ngIf="homeDetails?.pictureUrl" src="{{homeDetails?.pictureUrl}}" class="rounded-circle"/>
+      <img *ngIf="!homeDetails?.pictureUrl" src="../../../assets/images/UserImg/images.png" class="rounded-circle">
       <div class="media-body">
         <button type="button" class="btn btn-secondary btn-lg float-md-right" disabled >Subscribe</button>
         <h2 id="line">

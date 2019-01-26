@@ -27,33 +27,10 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
         }
 
         protected IRepository<TEntity> Repository => unitOfWork.GetRepository<TEntity>();
-
-        #region ErrorMessages
-        protected string NotFoundErrorMessage(string typeName, string fieldName, string fieldValue)
-        {
-            return $"{typeName} with {fieldName} {fieldValue} not found!";
-        }
-
-        protected string NotMatchFilterErrorMessage(string typeName)
-        {
-            return $"Noone {typeName} matches filter!";
-        }
-
-        protected string ExistsErrorMessage(string typeName, string fieldName, string fieldValue)
-        {
-            return $"{typeName} with {fieldName} {fieldValue} already exists!";
-        }
-
-        protected string IsNullErrorMessage(string typeName)
-        {
-            return $"{typeName} is null!";
-        }
-        #endregion
-
-        #region Extracts methods
+        
         public TDto Get(int id)
         {
-            var entity = Repository.Get(x =>x.Id == id);
+            var entity = Repository.Get(id);
 
             return mapper.Map<TDto>(entity);
         }
@@ -65,78 +42,19 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             return entities.Select(e => mapper.Map<TDto>(e));
         }
 
-        public IEnumerable<TDto> FindAll(TFilter filter)
+        public IEnumerable<TDto> Get(TFilter filter)
         {
             Expression<Func<TEntity, bool>> predicate = GetFilter(filter);
             var entities = Repository.FindAll(predicate).ToList();
 
             return entities.Select(e => mapper.Map<TDto>(e));
-
         }
 
-        public TDto Find(TFilter filter)
-        {
-            Expression<Func<TEntity, bool>> predicate = GetFilter(filter);
-            var entity = Repository.Find(predicate);
+        public abstract void Remove(int id);
 
-            return mapper.Map<TDto>(entity);
-        }
-        #endregion
+        public abstract void Update(TDto dto);
 
-        #region CRUD methods
-        public void Add(TDto dto)
-        {
-            var entity = mapper.Map<TEntity>(dto);
-            Repository.Add(entity);
-
-            unitOfWork.Complete();
-        }
-
-        public void Remove(TDto dto)
-        {
-            var entity = mapper.Map<TEntity>(dto);
-            Repository.Remove(entity);
-
-            unitOfWork.Complete();
-
-        }
-
-        public void Update(TDto dto)
-        {
-            var entity = mapper.Map<TEntity>(dto);
-            Repository.Update(entity);
-
-            unitOfWork.Complete();
-
-        }
-
-        public void AddRange(IEnumerable<TDto> dto)
-        {
-            var entities = dto.Select(d => mapper.Map<TEntity>(d));
-            Repository.AddRange(entities);
-
-            unitOfWork.Complete();
-
-        }
-
-        public void RemoveRange(IEnumerable<TDto> dto)
-        {
-            var entities = dto.Select(d => mapper.Map<TEntity>(d));
-            Repository.RemoveRange(entities);
-
-            unitOfWork.Complete();
-
-        }
-
-        public void UpdateRange(IEnumerable<TDto> dto)
-        {
-            var entities = dto.Select(d => mapper.Map<TEntity>(d));
-            Repository.UpdateRange(entities);
-
-            unitOfWork.Complete();
-
-        }
-        #endregion
+        public abstract void Add(TDto dto);
 
         public int Count(TFilter filter)
         {
@@ -144,9 +62,10 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             var entities = Repository.FindAll(predicate).ToList();
 
             return entities.Count();
-        }
+        }     
 
-        public Expression<Func<TEntity, bool>> CombineExpressions(Expression<Func<TEntity, bool>> first, Expression<Func<TEntity, bool>> second)
+        public Expression<Func<TEntity, bool>> CombineExpressions(Expression<Func<TEntity, bool>> first,
+            Expression<Func<TEntity, bool>> second)
         {
             ParameterExpression param = Expression.Parameter(typeof(TEntity), "x");
             BinaryExpression body = Expression.AndAlso(Expression.Invoke(first, param), Expression.Invoke(second, param));

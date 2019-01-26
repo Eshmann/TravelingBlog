@@ -4,7 +4,7 @@ using TravelingBlog.Models.Filters;
 
 namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
 {
-    public interface IUserService : IService<UserInfo, UserFilter>
+    public interface IUserService:IService<UserInfo,UserFilter>
     {
         Task<UserInfo> GetUserInfoIncludingIdentity(string identityId);
     }

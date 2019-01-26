@@ -1,3 +1,5 @@
+import { Trip } from '../../trips/models/Trip';
+
 export class Search{
     constructor(
         public total? : number,
@@ -5,16 +7,7 @@ export class Search{
         ) {}
 
 }
-export class Trip{
-    constructor(
-        public id? : number,
-        public name? : string, 
-        public isdone? : boolean, 
-        public description? : string,
-        public firstname? : string,
-        public lastname? : string
-    ){}
-}
+
 export class Country{
     constructor(
         public id? : number,

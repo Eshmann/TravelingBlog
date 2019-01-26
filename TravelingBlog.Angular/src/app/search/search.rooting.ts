@@ -5,5 +5,5 @@ import {SearchComponent} from './search/search.component';
 
 
 export const  routing : ModuleWithProviders = RouterModule.forChild([
-    {path : 'search', component : SearchComponent}
+    {path : 'flow', component : SearchComponent}
 ])

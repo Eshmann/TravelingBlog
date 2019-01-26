@@ -86,7 +86,7 @@ namespace XUnitTest.ServiceTests
                 }
             };
         }
-
+/*
         [Fact]
         public void SearchTrip()
         {
@@ -130,5 +130,7 @@ namespace XUnitTest.ServiceTests
             Assert.NotNull(tripWithUser);
             Assert.Equal(total, tripWithUser.Count);
         }
+    */
     }
+    
 }

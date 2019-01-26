@@ -15,7 +15,7 @@ export class UserInfoComponent implements OnInit {
 
   id: string;
   userInfo: UserInfo;
-  trips: TripDetails[];
+  trips: TripDetails[] = [];
   subscribe:boolean=true;
   subscription:string[];
   subscriberDetails:SubscriberDetails[];
@@ -53,6 +53,7 @@ export class UserInfoComponent implements OnInit {
   ngOnInit() {
     //console.log(this.id);
     this.loadUserInfo(Number.parseInt(this.id));
+    window.scrollTo(0,0);
     if(this.logged==true)
     {
       this.userInfoService.getSubs().subscribe((data: SubscriberDetails[])=> {
@@ -76,13 +77,10 @@ export class UserInfoComponent implements OnInit {
 
   loadTrips()
   {
-    this.userInfoService.getTrips(this.id)
+    this.userInfoService.getTrips(Number.parseInt(this.id))
     .subscribe((trips: TripDetails[]) => {
       this.trips = trips;
-    },
-      error => {
-        //this.notificationService.printErrorMessage(error);
-      });
+    });
   }
 
   subscribeTo()

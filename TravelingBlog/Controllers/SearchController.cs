@@ -15,14 +15,13 @@ using TravelingBlog.Models.ViewModels.DTO;
 namespace TravelingBlog.Controllers
 {
     [Route("api/[controller]")]
-    public class SearchController : BaseController<TripWithUserDTO, TripFilter>
+    public class SearchController : Controller
     {
         protected readonly ISearchService searchService;
         protected readonly ILoggerManager logger;
         private readonly ClaimsPrincipal caller;
 
         public SearchController(ISearchService searchService, ILoggerManager logger, IHttpContextAccessor httpContextAccessor)
-            : base(searchService)
         {
             this.searchService = searchService;
             this.logger = logger;

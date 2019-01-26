@@ -7,7 +7,7 @@ using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.DataAcceesLayer.Repositories.Contracts
 {
-    public interface IRepository<TEntity> where TEntity : class, IEntity
+    public interface IRepository<TEntity> where TEntity : class
     {
         TEntity Get(int id);
 

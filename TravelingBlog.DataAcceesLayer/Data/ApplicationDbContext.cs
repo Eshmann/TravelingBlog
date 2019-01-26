@@ -7,6 +7,32 @@ using TravelingBlog.DataAcceesLayer.Models.Entities;
 
 namespace TravelingBlog.DataAcceesLayer.Data
 {
+    /*
+     тригер до таблиці RATING(він прекрасний)
+     /****** Object:  Trigger [dbo].[Trigger1]    Script Date: 16.01.2019 15:44:56 
+    SET ANSI_NULLS ON
+    GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER[dbo].[Trigger1]
+    ON[dbo].[Rating]
+    After Insert
+
+    AS
+        Declare @number INT
+
+        Select @number = MAX(Rating.Id) from Rating
+
+        Declare @value INT
+        Select @value = Rating.tripid from Rating Where Rating.Id = @number
+        Update Trip
+        SET RatingTrip = (Select AVG(r.ratingpostblog) as Average
+        FROM Trip INNER JOIN Rating as R ON Trip.id = R.tripid
+            Where dbo.Trip.id = @value
+        GROUP BY Trip.id)
+
+        Where Trip.id = @value;
+    */
     public class ApplicationDbContext : IdentityDbContext<AppUser, Role, string,
         IdentityUserClaim<string>, UserRole, IdentityUserLogin<string>, IdentityRoleClaim<string>, IdentityUserToken<string>>
     {

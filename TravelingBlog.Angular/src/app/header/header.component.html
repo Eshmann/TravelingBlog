@@ -1,10 +1,8 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <!-- Logo -->
-    <a class="navbar-brand mb-0 h2" href="#" id="Log">
-      <img src="assets\logo.png" width="45" height="45" class="d-inline-block align-top" alt="">
-      TravelingBlog
-    </a>
+    <a class="navbar-brand mb-0 h1" href="#">
+      <img src="../../assets/logo.png" width="45" height="45" class="d-inline-block align-top" alt="">TravelingBlog</a>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,29 +11,23 @@
     <!-- Navigation components -->
     <!-- Home - Guide - Trips buttons -->
     <div class="navbar-collapse collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav nav1 mr-auto">
+      <ul class="navbar-nav nav1 mr-auto ">
         <li>
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" routerLink="/">Home</a>
         </li>
         <li>
-            <a class="nav-link" href="/triplist">Trips</a>
+            <a class="nav-link" routerLink="/flow">Trips</a>
         </li>
         <li *appHasRole="['Admin']">
           <a class="nav-link" routerLink="/admin">Admin</a>
         </li>
       </ul>
-      <nav class="navbar-nav navbar-left" action="">
-        <form class="form-inline my-1 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-info " type="submit" href="#" routerLink="/search">Search</button>
-          </form>
-        </nav>
 
 <!-- Right navbar before sign -->
       <ul *ngIf="!status" class="navbar-nav ml-auto">
         <li>
           <div class="btn-group mr-2" role="group" aria-label="First group">
-            <a class="btn btn-info" href="#"  routerLink="/login">SIGN-IN</a>
+            <a class="btn btn-info" routerLink="/login">SIGN-IN</a>
           </div>
           <div class="btn-group mr-2" role="group" aria-label="First group">
             <a class="btn btn-info " href="/register">SIGN-UP</a>

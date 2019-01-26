@@ -35,11 +35,13 @@ export class UserInfoService extends BaseService {
     .map(response => response.json())
     .catch(this.handleError);
   }
-  getTrips(id: string): Observable<TripDetails[]>{
+  getTrips(id: number): Observable<TripDetails[]>{
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    let authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
 
-    return this.http.get(this.baseUrl + "/api/trip/mytrips/" + id,{ headers })
+    return this.http.get(this.baseUrl + "/api/trip/usertrips/" + id,{ headers })
     .map(response => response.json())
     .catch(this.handleError);
   }

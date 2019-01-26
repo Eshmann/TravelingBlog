@@ -38,7 +38,7 @@ namespace TravelingBlog.Controllers
                 Message = "This is secure API and user data!",
                 user.FirstName,
                 user.LastName,
-                PictureUrl = user.UserImage.Path,
+                PictureUrl = user.UserImage==null?null:user.UserImage.Path,
                 user.Identity.FacebookId
             });
         }

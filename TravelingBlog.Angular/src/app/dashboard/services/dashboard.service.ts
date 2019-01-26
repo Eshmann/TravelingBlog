@@ -66,8 +66,8 @@ export class DashboardService extends BaseService {
     headers.append('Content-Type', 'application/json');
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
-    return this.http.post(this.baseUrl + '/api/trip/addTrip', JSON.stringify(trip), { headers })
-    .map(response => response.json()).catch(this.handleError);
+    return this.http.post(this.baseUrl + '/api/trip', JSON.stringify(trip), { headers })
+    .catch(this.handleError);
   }
 
   updateTrip(trip: TripDetails) {
@@ -77,7 +77,8 @@ export class DashboardService extends BaseService {
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
 
-    return this.http.put(this.baseUrl + '/api/trip/' + trip.id , trip, { headers });
+    return this.http.put(this.baseUrl + '/api/trip' , trip, { headers })
+    .catch(this.handleError)
   }
 
   deleteTrip(id: number) {
@@ -87,7 +88,8 @@ export class DashboardService extends BaseService {
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
 
-    return this.http.delete(this.baseUrl + '/api/trip/' + id , { headers });
+    return this.http.delete(this.baseUrl + '/api/trip/' + id , { headers })
+    .catch(this.handleError)
   }
 
   updateUser(user: UserDetails) {

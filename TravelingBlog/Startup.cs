@@ -55,6 +55,7 @@ namespace TravelingBlog
             services.ConfigureSeed();
 
             services.AddScoped<ITripService, TripService>();
+
             services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IAdminService, AdminService>();
@@ -67,11 +68,11 @@ namespace TravelingBlog
 
             services.AddScoped<IAzureBlob, AzureBlob>();
 
-
             services.AddScoped<IRatingService, RatingService>();
 
             services.AddScoped<ISettingsService, SettingsService>();
 
+            services.AddScoped<IPostBlogService, PostBlogService>();
 
             // Add validation attribute service.
             services.AddScoped<ValidationFilterAttribute>();

@@ -41,7 +41,8 @@ export class EditService extends BaseService {
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
 
-    return this.http.put(this.baseUrl + "/api/trip/" + trip.id , trip, { headers });
+    return this.http.put(this.baseUrl + "/api/trip", trip, { headers })
+    .catch(this.handleError)
   }
 
   createPost(post: Post)
@@ -51,7 +52,8 @@ export class EditService extends BaseService {
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
 
-    return this.http.post(this.baseUrl + "/api/PostBlog", JSON.stringify(post), { headers }).map(response => response.json()).catch(this.handleError);
+    return this.http.post(this.baseUrl + "/api/PostBlog", JSON.stringify(post), { headers })
+    .catch(this.handleError)
   }
 
   updatePost(post: Post)
@@ -63,7 +65,8 @@ export class EditService extends BaseService {
     headers.append('Authorization', `Bearer ${authToken}`);
 
     //return this.http.put(this.baseUrl + "/api/PostBlog/" + post.id, JSON.stringify(post), { headers }).map(response => response.json()).catch(this.handleError);
-    return this.http.put(this.baseUrl + "/api/postblog/" + post.id, post, { headers });
+    return this.http.put(this.baseUrl + "/api/postblog", post, { headers })
+    .catch(this.handleError);
   }
 
 }

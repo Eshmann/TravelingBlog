@@ -1,37 +1,42 @@
 <body>  
-  <div class="toBeCentered" *ngFor="let trip of trips | paginate: { id:'server', itemsPerPage: 10, currentPage: page ,totalItems:total}">
+  <div class="toBeCentered"*ngFor="let trip of trips | paginate: { id:'server', itemsPerPage: 10, currentPage: page ,totalItems:total}">
       <article class="post">
           <header >
               <div class="title">
-                  <h2><a href="#">{{trip.name}}</a></h2>
+                  <h2><a routerLink="/fulltrip/{{trip.id}}">{{trip.name}}</a></h2>
                 </div>
               <div class="meta">
-                  <a href="#" class="author"><span class="name">{{trip.user.firstName}} {{trip.user.lastName}}</span><img src="{{trip.user.pictureUrl}}" alt="" /></a>
+                  <a routerLink="/user/{{trip.user.id}}" class="author">
+                    <span class="name">{{trip.user.firstName}} {{trip.user.lastName}}</span>
+                    <img *ngIf = "trip.user.pictureUrl" src="{{trip.user.pictureUrl}}" />
+                    <img *ngIf = "!trip.user.pictureUrl" src = "../../../assets/images/UserImg/images.png" />
+                </a>
               </div>
           </header>
           <p>{{trip.description}}</p>
           <footer>
               <ul class="actions">
                 <li>
-                    <a class="button large" a href="/fulltrip/{{trip.id}}">Continue Reading</a>
+                    <a class="button large" routerLink="/fulltrip/{{trip.id}}">Continue</a>
                 </li>
+              
+                
+                <li *appHasRole="['Admin','Moderator']">
+                    <a class="button large" routerLink="/edit/trip/{{trip.id}}">Edit</a>
+                </li>
+
+                <li *appHasRole="['Admin','Moderator']">
+                    <a class="button large" (click)="deleteTrip(trip)">Delete</a>
+                </li>
+                
               </ul>
               <ul class="stats">
-                  <li>
-                    <fieldset class="rating">
-                        <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Good trip! - 5 stars"></label>
-                        <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half"></label>
-                        <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" ></label>
-                        <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" ></label>
-                        <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" ></label>
-                        <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" ></label>
-                        <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" ></label>
-                        <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" ></label>
-                        <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" ></label>
-                        <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf"></label>
-                    </fieldset>
+                  <li class="superStarRating">
+                        <div class="star-rating">
+                            <span [ngStyle]="{'width': getWidthForStars(trip)+'%'}"  ></span>
+                        </div>
                   </li>
-                  <li><a href="#" class="icon fa-comment">128</a></li>
+                  <li><a href="#" class="icon fa-comment">{{trip.commentsNumber}}</a></li>
               </ul>
           </footer>
       </article>      

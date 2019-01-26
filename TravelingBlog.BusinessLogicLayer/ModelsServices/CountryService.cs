@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using AutoMapper;
@@ -17,7 +18,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
         public CountryService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
             : base(unitOfWork, logger, mapper) { }
 
-        private IRepository<UserInfo> UserRepository => unitOfWork.GetRepository<UserInfo>();
+        private IRepository<UserInfo> UserRepository => unitOfWork.GetRepository<UserInfo>();        
 
         public override Expression<Func<Country, bool>> GetFilter(CountryFilter filter)
         {
@@ -29,6 +30,34 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             }
 
             return result;
+        }
+
+        public override void Add(CountryDTO dto)
+        {
+            var entity = mapper.Map<Country>(dto);
+            Repository.Add(entity);
+
+            unitOfWork.Complete();
+        }
+
+        public override void Remove(int id)
+        {
+            var entity = Repository.Get(id);
+            Repository.Remove(entity);
+
+            unitOfWork.Complete();
+        }
+
+        public override void Update(CountryDTO dto)
+        {
+            var entity = Repository.Get(dto.Id);
+
+            entity.MobCode = dto.MobCode;
+            entity.Name = dto.Name;
+
+            Repository.Update(entity);
+
+            unitOfWork.Complete();
         }
     }
 }

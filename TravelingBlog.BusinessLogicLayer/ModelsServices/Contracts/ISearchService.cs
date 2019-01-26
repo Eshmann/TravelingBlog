@@ -7,10 +7,10 @@ using TravelingBlog.Models.ViewModels.DTO;
 
 namespace TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts
 {
-    public interface ISearchService : IService<TripWithUserDTO, TripFilter>
+    public interface ISearchService
     {
-        IList<TripWithUserDTO> FilterTripsByCountry(Filter filter, out int total);
+        IList<TripDTODa> FilterTripsByCountry(Filter filter, out int total);
 
-        IList<TripWithUserDTO> SearchTrips(Search searchQuery, out int total);
+        IList<TripDTODa> SearchTrips(Search searchQuery, out int total);
     }
 }

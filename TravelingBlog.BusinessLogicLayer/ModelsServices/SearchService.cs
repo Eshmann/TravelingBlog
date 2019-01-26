@@ -14,27 +14,61 @@ using TravelingBlog.Models.ViewModels.DTO;
 
 namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 {
-    public class SearchService : Service<Trip, TripWithUserDTO, TripFilter>, ISearchService
+    public class SearchService : ISearchService
     {
+        private readonly IUnitOfWork unitOfWork;
+        private readonly ILoggerManager logger;
+        private readonly IMapper mapper;
+
         public SearchService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
-            : base(unitOfWork, logger, mapper) { }
-
-
-        public IList<TripWithUserDTO> SearchTrips(Search searchQuery, out int total)
         {
-            List<TripWithUserDTO> trips = new List<TripWithUserDTO>();
+            this.unitOfWork = unitOfWork;
+            this.logger = logger;
+            this.mapper = mapper;
+        }
+
+        private IRepository<Trip> Repository => this.unitOfWork.GetRepository<Trip>();
+
+        public IList<TripDTODa> SearchTrips(Search searchQuery, out int total)
+        {
             var word = searchQuery.SearchQuery;
             var result = Repository
                 .GetAll()
                 .Where(x => x.Name.ToLower().Contains(word)
                             || x.Description.ToLower().Contains(word))
-                .Include(i => i.UserInfo);
+                .Include(c => c.Comments)
+                .Include(t => t.UserInfo)
+                .ThenInclude(u => u.Identity)
+                .OrderBy(t => t.Name)
+                .ThenBy(x => x.Description)
+                .ToList();
 
             total = result.Count();
 
-            trips = result.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
+            var tripsDTO = new List<TripDTODa>();
+            foreach (var t in result)
+            {
+                tripsDTO.Add(new TripDTODa
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                    IsDone = t.IsDone,
+                    Description = t.Description,
+                    CommentsNumber = t.Comments.Count,
+                    RatingTrip = (double)t.RatingTrip,
+                    User = new UserInfoDTO
+                    {
+                        Id = t.UserInfo.Id,
+                        FirstName = t.UserInfo.FirstName,
+                        LastName = t.UserInfo.LastName,
+                        Phone = t.UserInfo.Phone,
+                        PictureUrl = t.UserInfo.Identity.PictureUrl,
+                        FacebookId = t.UserInfo.Identity.FacebookId
+                    }
+                });
+            }
 
-            var skip = trips
+            var skip = tripsDTO
                 .Skip(searchQuery.PageSize * (searchQuery.PageNumber - 1))
                 .Take(searchQuery.PageSize)
                 .ToList();
@@ -42,25 +76,40 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             return skip;
         }
 
-        public IList<TripWithUserDTO> FilterTripsByCountry(Filter filter, out int total)
+        public IList<TripDTODa> FilterTripsByCountry(Filter filter, out int total)
         {
-            List<TripWithUserDTO> trips = new List<TripWithUserDTO>();
+            List<TripDTODa> trips = new List<TripDTODa>();
             var query = Repository
                 .GetAll()
                 .Where(i => i.CountryTrips.Any(x => x.Country.Id == filter.Id))
-                .Include(a => a.UserInfo);
+                .Include(c => c.Comments)
+                .Include(t => t.UserInfo)
+                .ThenInclude(u => u.Identity)
+                .OrderBy(t => t.Name)
+                .ThenBy(x => x.Description)
+                .ToList();
 
             total = query.Count();
 
-            foreach (var n in query)
+            foreach (var t in query)
             {
-                trips.Add(new TripWithUserDTO
+                trips.Add(new TripDTODa
                 {
-                    Name = n.Name,
-                    Description = n.Description,
-                    Id = n.Id,
-                    FirstName = n.UserInfo.FirstName,
-                    LastName = n.UserInfo.LastName
+                    Id = t.Id,
+                    Name = t.Name,
+                    IsDone = t.IsDone,
+                    Description = t.Description,
+                    CommentsNumber = t.Comments.Count,
+                    RatingTrip = (double)t.RatingTrip,
+                    User = new UserInfoDTO
+                    {
+                        Id = t.UserInfo.Id,
+                        FirstName = t.UserInfo.FirstName,
+                        LastName = t.UserInfo.LastName,
+                        Phone = t.UserInfo.Phone,
+                        PictureUrl = t.UserInfo.Identity.PictureUrl,
+                        FacebookId = t.UserInfo.Identity.FacebookId
+                    }
                 });
             }
 
@@ -68,22 +117,6 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
                 .Skip(filter.PageSize * (filter.PageNumber - 1))
                 .Take(filter.PageSize)
                 .ToList();
-
-            return result;
-        }
-        public override Expression<Func<Trip, bool>> GetFilter(TripFilter filter)
-        {
-            Expression<Func<Trip, bool>> result = t => true;
-
-            if (filter.Name != null)
-            {
-                result = CombineExpressions(result, t => t.Name == filter.Name);
-            }
-
-            if (filter.Id != null)
-            {
-                result = CombineExpressions(result, t => t.Id == filter.Id);
-            }
 
             return result;
         }

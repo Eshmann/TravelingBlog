@@ -74,7 +74,10 @@ export class UserService extends BaseService {
   }
 
   isLoggedIn() {
-    this.decodedToken = jwt_decode(localStorage.getItem('auth_token'));
+    if(this.loggedIn)
+    {
+      this.decodedToken = jwt_decode(localStorage.getItem('auth_token'));
+    }
     return this.loggedIn;
   }
 

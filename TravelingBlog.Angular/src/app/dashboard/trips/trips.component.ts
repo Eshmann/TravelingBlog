@@ -26,6 +26,7 @@ export class TripsComponent implements OnInit {
     this.dashboardService.getTrips()
     .subscribe((trips: TripDetails[]) => {
       this.trips = trips;
+      console.log(trips);
     },
       error => {
         //this.notificationService.printErrorMessage(error);

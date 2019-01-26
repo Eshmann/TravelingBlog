@@ -1,9 +1,11 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Claims;
 using TravelingBlog.BusinessLogicLayer.ModelsServices.Contracts;
 using TravelingBlog.BusinessLogicLayer.SecondaryServices.LoggerService;
 using TravelingBlog.DataAcceesLayer.Models.Entities;
@@ -16,8 +18,13 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
 {
     public class TripService : Service<Trip, TripDTO, TripFilter>, ITripService
     {
-        public TripService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper)
-            : base(unitOfWork, logger, mapper) { }
+        private readonly ClaimsPrincipal _caller;
+
+        public TripService(IUnitOfWork unitOfWork, ILoggerManager logger, IMapper mapper, 
+            IHttpContextAccessor http): base(unitOfWork, logger, mapper)
+        {
+            _caller = http.HttpContext.User;
+        }
 
         private IRepository<UserInfo> UserRepository => unitOfWork.GetRepository<UserInfo>();
 
@@ -38,11 +45,37 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
         {
             var trips = Repository
                 .GetAll()
+                .Include(c => c.Comments)
                 .Include(t => t.UserInfo)
                 .ThenInclude(u => u.Identity)
+                .Include(t=>t.UserInfo)
+                .ThenInclude(u=>u.UserImage)
                 .OrderBy(t => t.Name)
                 .ThenBy(x => x.Description)
                 .ToList();
+
+            var tripsDTO = new List<TripDTODa>();
+            foreach (var t in trips)
+            {
+                tripsDTO.Add(new TripDTODa
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                    IsDone = t.IsDone,
+                    Description = t.Description,
+                    CommentsNumber = t.Comments.Count,
+                    RatingTrip = (double)t.RatingTrip,
+                    User = new UserInfoDTO
+                    {
+                        Id = t.UserInfo.Id,
+                        FirstName = t.UserInfo.FirstName,
+                        LastName = t.UserInfo.LastName,
+                        Phone = t.UserInfo.Phone,
+                        PictureUrl = t.UserInfo.UserImage==null?null:t.UserInfo.UserImage.Path,
+                        FacebookId = t.UserInfo.Identity.FacebookId
+                    }
+                });
+            }
 
             total = trips.Count();
 
@@ -51,27 +84,29 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
                 .Take(pageModel.PageSize)
                 .ToList();
 
-            return result.Select(t => mapper.Map<TripDTODa>(t)).ToList();
+            return tripsDTO.Skip(pageModel.PageSize*(pageModel.PageNumber-1))
+                .Take(pageModel.PageSize).ToList();
         }
 
         public IEnumerable<TripDTO> GetUserTrips(string id)
         {
-            var user = UserRepository
-                .GetAll()
-                .Include(t => t.Identity)
-                .Single(t => t.Identity.Id == id);
 
             var userTrips = Repository
                 .GetAll()
-                .Where(x => x.UserInfoId == user.Id);
+                .Where(x => x.UserInfo.IdentityId==id);
+
+            var result = userTrips
+                .ToList();
+            
+            return result.Select(t=>mapper.Map<TripDTO>(t));
+        }
+
+        public IEnumerable<TripDTO> GetUserTrips(int id)
+        {
+            var userTrips = Repository.GetAll().Where(x => x.UserInfoId == id).ToList();
 
             return userTrips.Select(t => mapper.Map<TripDTO>(t));
         }
-
-
-
-
-
 
         public IList<TripWithUserDTO> GetTripsWithHighestRating()
         {
@@ -106,6 +141,7 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             return trips.Select(t => mapper.Map<TripWithUserDTO>(t)).ToList();
 
         }
+
         public IEnumerable<TripDTO> GetRandomTrips(int count, List<TripDTO> trips)
         {
             var rnd = new Random();
@@ -124,18 +160,11 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             return result.Select(t => mapper.Map<TripDTO>(t)).ToList();
         }
 
-
-
         public override Expression<Func<Trip, bool>> GetFilter(TripFilter filter)
         {
             Expression<Func<Trip, bool>> result = e => true;
 
-            //if (filter.Name != null)
-            //{
-            //    result = CombineExpressions(result, t => t.Name == filter.Name);
-            //}
-
-            if (!String.IsNullOrEmpty(filter?.Name))
+            if (!string.IsNullOrEmpty(filter?.Name))
             {
                 result = CombineExpressions(result, e => e.Name == filter.Name);
             }
@@ -146,6 +175,62 @@ namespace TravelingBlog.BusinessLogicLayer.ModelsServices
             }
 
             return result;
+        }
+
+        public bool IsUserCreator(ClaimsPrincipal caller, int tripId)
+        {
+            var userId = caller.Claims.Single(c => c.Type == "id").Value;
+            var userRep = unitOfWork.GetRepository<UserInfo>();
+            var user = userRep.Find(u => u.IdentityId == userId);
+            var temp = Repository.Find(t => t.UserInfoId == user.Id && t.Id == tripId);
+
+            if (temp != null || caller.IsInRole("Moderator") || caller.IsInRole("Admin"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override void Remove(int id)
+        {
+            var trip = Repository.Get(id);
+            if (trip == null)
+                throw new Exception($"Db does not contain trip with id {id}");
+            var isCreator = IsUserCreator(_caller, trip.Id);
+            if (!isCreator)
+                throw new Exception($"{_caller.Claims.Single(c => c.Type == "id").Value} tried to delete trip {trip.Id}");
+            Repository.Remove(trip);
+
+            unitOfWork.Complete();
+        }
+
+        public override void Update(TripDTO dto)
+        {
+            var trip = Repository.Get((int)dto.Id);
+            if (trip == null)
+                throw new Exception($"Db does not contain trip with id {dto.Id}");
+            var isCreator = IsUserCreator(_caller, trip.Id);
+            if (!isCreator)
+                throw new Exception($"{_caller.Claims.Single(c => c.Type == "id").Value} tried to delete trip {trip.Id}");
+            trip.Name = dto.Name;
+            trip.IsDone = (bool)dto.IsDone;
+            trip.Description = dto.Description;
+
+            Repository.Update(trip);
+
+            unitOfWork.Complete();
+        }
+
+        public override void Add(TripDTO dto)
+        {
+            dto.RatingTrip = 0;
+            var trip = mapper.Map<Trip>(dto);
+            var userId = _caller.Claims.Single(c => c.Type == "id").Value;
+            var creator = unitOfWork.GetRepository<UserInfo>().Find(u => u.IdentityId == userId);
+            trip.UserInfo = creator;
+            Repository.Add(trip);
+
+            unitOfWork.Complete();
         }
     }
 }

@@ -12,6 +12,8 @@ import { SearchService } from './services/search.services';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FullTripModule } from '../fulltrip/fulltrip.module';
 
+import { TripsModule } from '../trips/trips.module';
+
 
 @NgModule({
   imports: [
@@ -22,10 +24,11 @@ import { FullTripModule } from '../fulltrip/fulltrip.module';
     routing,
     SharedModule,
     NgxPaginationModule,
-    FullTripModule
+    FullTripModule,
+    TripsModule,
   ],
   declarations: [SearchComponent],
-  exports: [],
+  exports: [SearchComponent],
   providers: [SearchService]
 })
 export class SearchModule { }
