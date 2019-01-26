@@ -90,8 +90,7 @@ namespace TravelingBlog.Controllers
             }
             settingsService.EditPhoto(settingDTO);
             #endregion
-            return Ok();
+            return Ok(true);
         }
     }
 }
-

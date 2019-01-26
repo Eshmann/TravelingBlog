@@ -25,7 +25,7 @@ export class TriplistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadTrips();
+    this.loadTripsForPagination(1);
   }
   loadTrips()
   {
@@ -90,9 +90,14 @@ export class TriplistComponent implements OnInit {
   }
   onSuccessForPagination(res:TripPagination) {  
     console.log(res);  
-    if (res.trips != undefined&&res.trips.length!=0) {  
-      this.trips = res.trips;
+    if (res.trips != undefined&&res.trips.length!=0) {
       this.total = res.total;
+      this.trips = [];
+      res.trips.forEach(item=>{
+        if(item.user.pictureUrl)
+          item.user.pictureUrl = 'https://travelpictures.blob.core.windows.net' + item.user.pictureUrl; 
+        this.trips.push(item);
+      })
     }
     else
     {

@@ -10,13 +10,16 @@
             <a class="nav-link active" data-toggle="tab" href="#menu0">Password</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#menu5">Email</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#menu1">Name</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#menu3">Photo</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#menu4">Menu 2</a>
+            <a class="nav-link" data-toggle="tab" href="#menu4">Private info</a>
           </li>
         </ul>
         <div class="tab-content">
@@ -27,10 +30,32 @@
               <div class="card-body">
                 <h3>Change password</h3>
                 <div class="form-group">
-                  <label for="password2"><b>Repeat new password</b></label>
-                  <input id="password2" type="password" class="form-control" name="password" placeholder="Repeat new password" [(ngModel)]="user.password">
+                  <label for="password1"><b>Enter current password</b></label>
+                  <input id="password1" type="password" class="form-control" name="password" placeholder="Enter current password" [(ngModel)]="user.currentPassword">
                 </div>
-                <button type="button" class="btn btn-successes btn-lg btn-block" (click)="saveChange()">Save changes</button>
+                <div class="form-group">
+                  <label for="password2"><b>New password</b></label>
+                  <input id="password2" type="password" class="form-control" name="password" placeholder="New password" [(ngModel)]="user.newPassword">
+                </div>
+                <button type="button" class="btn btn-info btn-lg btn-block" (click)="saveChange()">Save changes</button>
+              </div> 
+            </div>
+          </div>
+
+          <!-- email part -->
+          <div id="menu5" class="container tab-pane"><br>
+            <div class="row">
+              <div class="card-body">
+                <h3>Change email</h3>
+                <div class="form-group">
+                  <label for="currentEmail"><b>Enter current password</b></label>
+                  <input id="currentEmail" type="text" class="form-control" name="email" placeholder="Enter current email" [(ngModel)]="user.currentPassword">
+                </div>
+                <div class="form-group">
+                  <label for="newEmail"><b>New password</b></label>
+                  <input id="newEmail" type="text" class="form-control" name="email" placeholder="Enter new email" [(ngModel)]="user.newPassword">
+                </div>
+                <button type="button" class="btn btn-info btn-lg btn-block" (click)="saveChange()">Save changes</button>
               </div> 
             </div>
           </div>
@@ -48,7 +73,7 @@
                   <label for="last-name"><b>Change Last name</b></label>
                   <input type="text" class="form-control" id="last-name" placeholder="Your last name" name="lastName" [(ngModel)]="user.lastName">
                 </div>
-                  <input type="button" (click)="saveChange()" class="btn btn-successes btn-lg btn-block" value="Save Changes"/>
+                  <input type="button" (click)="saveChange()" class="btn btn-info btn-lg btn-block" value="Save Changes"/>
                 </div>
               </div> 
             </div>
@@ -59,19 +84,30 @@
                 <div class="card-body">
                   <h3>Change photo</h3>
                   <div class="userimg">
-                    <img src="../../../assets/images/UserImg/images.png" class="rounded-circle"> 
-                  </div>
+                    <img *ngIf="homeDetails.pictureUrl" src="{{homeDetails?.pictureUrl}}" class="rounded-circle"/>
+                    <img *ngIf="!homeDetails.pictureUrl" src="../../../assets/images/UserImg/images.png" class="rounded-circle">                   </div>
                     <div class="custom-file">
                         <!-- <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx"> -->
                         <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
                       <input #imageInput accept="image/" type="file"  id="validatedCustomFile" (change)="processFile(imageInput)">
                       <div class="invalid-feedback">Example invalid custom file feedback</div>
                     </div>
-                    <button type="button" class="btn btn-successes btn-lg btn-block" >Save changes</button>
+                    <button type="button" (click)="onFileChanged()" class="btn btn-info btn-lg btn-block" >Save changes</button>
+
                     <!-- (click)='onUpload()' -->
                 </div> 
               </div>
             </div>
+
+            <!--User private info -->
+            <div id="menu4" class="container tab-pane"><br>
+              <div class="row" >
+                <div class="card-body">
+                    <input type="button" (click)="saveChange()" class="btn btn-info btn-lg btn-block" value="Save Changes"/>
+                  </div>
+                </div> 
+              </div>
+
           <!-- </form> -->
         </div>
       </div>
